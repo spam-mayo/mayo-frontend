@@ -1,0 +1,10 @@
+addReviewers: true
+
+addAssignees: author
+
+reviewers:
+  - keoneokeoneo
+  - jingoworld
+  - jjeonge97
+
+numberOfReviewers: 0
