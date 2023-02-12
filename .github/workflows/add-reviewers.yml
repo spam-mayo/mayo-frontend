@@ -1,7 +1,7 @@
 name: 'Add Reviewers'
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, ready_for_review]
 
 jobs:
@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: kentaro-m/auto-assign-action@v1.2.4
         with:
-          configuration-path: '.github/config/add-reviewers-config.yml'
+          configuration-path: '.github/add-reviewers-config.yml'
