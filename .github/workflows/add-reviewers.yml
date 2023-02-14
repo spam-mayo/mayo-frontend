@@ -1,14 +1,13 @@
-name: 'Add Reviewers'
+name: Add Reviewers
 
 on:
   pull_request:
-    types: [opened, ready_for_review, edited]
+    types: [opened, ready_for_review, edited, synchronize]
 
 jobs:
   add-reviewers:
     runs-on: ubuntu-latest
     steps:
-      - uses: kentaro-m/auto-assign-action@v1.2.4
+      - uses: kentaro-m/auto-assign-action@v1.2.1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           configuration-path: '.github/add-reviewers-config.yml'

@@ -1,10 +1,8 @@
 addReviewers: true
-
 addAssignees: author
-
 reviewers:
   - keoneokeoneo
   - jingoworld
   - jjeonge97
-
+# Set 0 to add all the reviewers (default: 0)
 numberOfReviewers: 0
