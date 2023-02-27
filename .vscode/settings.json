@@ -26,6 +26,6 @@
   "[scss]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },"
+  },
   "workbench.settings.useSplitJSON": true
 }
