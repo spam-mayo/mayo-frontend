@@ -1,6 +1,7 @@
-import A from '@/components/A';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Main from './pages/Main';
 
 const queryClient = new QueryClient();
 
@@ -9,13 +10,34 @@ const App = () => {
     //
   };
 
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Main />,
+      children: [
+        {
+          // path: 'study/:studyId',
+          // element: <Study />,
+        },
+        {
+          // path: 'study/:studyId/create',
+          // element: <StudyCreate />,
+        },
+        {
+          // path: 'study/:studyId/edit',
+          // element: <StudyEdit />,
+        },
+      ],
+    },
+  ]);
+
   return (
     <div>
       <QueryClientProvider client={queryClient}>
-        Spam Mayo Frontend
-        <A />
+        Header area
         <button onClick={onClick}>BTN</button>
-        <ReactQueryDevtools />
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
   );

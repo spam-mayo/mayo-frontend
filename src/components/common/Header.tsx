@@ -1,9 +1,7 @@
-import React from 'react';
+import { type FC } from 'react';
 
-type Props = {};
-
-const Header = (props: Props) => {
-  return <div>Header</div>;
+const Header = () => {
+  return <div>Footer</div>;
 };
 
 export default Header;
