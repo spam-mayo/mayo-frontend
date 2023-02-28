@@ -8,8 +8,7 @@ interface Posts {
 
 const maxPostPage = 10;
 
-const getPosts = async (pageNum: number) =>
-  axiosInstance.get(`/posts?_limit=12&_page=${pageNum}`).then(({ data }) => data);
+const getPosts = (pageNum: number) => axiosInstance.get(`/posts?_limit=12&_page=${pageNum}`).then(({ data }) => data);
 
 const Main: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
