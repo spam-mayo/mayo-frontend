@@ -1,5 +1,5 @@
 // import A from '@/components/A';
-import { RegisterForm } from './components/registerForm';
+import { Register } from './pages/auth/Register1';
 
 const App = () => {
   // const onClick = () => {
@@ -10,7 +10,7 @@ const App = () => {
       {/* Spam Mayo Frontend
       <A />
       <button onClick={onClick}>BTN</button> */}
-      <RegisterForm />
+      <Register />
     </div>
   );
 };
