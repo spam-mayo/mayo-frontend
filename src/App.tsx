@@ -6,10 +6,6 @@ import Main from './pages/Main';
 const queryClient = new QueryClient();
 
 const App = () => {
-  const onClick = () => {
-    //
-  };
-
   const router = createBrowserRouter([
     {
       path: '/',
@@ -34,8 +30,6 @@ const App = () => {
   return (
     <div>
       <QueryClientProvider client={queryClient}>
-        Header area
-        <button onClick={onClick}>BTN</button>
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

@@ -1,7 +1,6 @@
-import type { FC } from 'react';
-import { useState } from 'react';
+import { type FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { axiosInstance } from '@/api/axiosInstance';
 interface Posts {
   id?: number | null;
   title: string;
@@ -9,18 +8,18 @@ interface Posts {
 
 const maxPostPage = 10;
 
-const getPosts = async (pageNum: number) => {
-  const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${pageNum}`);
-  return data;
-};
+const getPosts = async (pageNum: number) =>
+  axiosInstance.get(`/posts?_limit=12&_page=${pageNum}`).then(({ data }) => data);
 
 const Main: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedPost, setSelectedPost] = useState<Posts | null>(null);
   const { data, isLoading, isError, error } = useQuery<Posts>(['posts', currentPage], () => getPosts(currentPage), {
     staleTime: 2000,
   });
+
   if (isLoading) return <div>loading...</div>;
+
   if (isError)
     return (
       <>
@@ -28,6 +27,7 @@ const Main: FC = () => {
         <p>{error.toString()}</p>
       </>
     );
+
   return (
     <div>
       Main Page

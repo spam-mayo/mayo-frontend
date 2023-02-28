@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-const Header = () => {
+const Header: FC = () => {
   return <div>Footer</div>;
 };
 
