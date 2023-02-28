@@ -1,14 +1,16 @@
-import A from '@/components/A';
+// import A from '@/components/A';
+import { RegisterForm } from './components/registerForm';
 
 const App = () => {
-  const onClick = () => {
-    //
-  };
+  // const onClick = () => {
+  //   //
+  // };
   return (
     <div>
-      Spam Mayo Frontend
+      {/* Spam Mayo Frontend
       <A />
-      <button onClick={onClick}>BTN</button>
+      <button onClick={onClick}>BTN</button> */}
+      <RegisterForm />
     </div>
   );
 };
