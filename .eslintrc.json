@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "react", "no-relative-import-paths"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "no-console": "error",
+    "no-relative-import-paths/no-relative-import-paths": ["warn", { "allowSameFolder": true }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-tag-spacing": ["error", { "beforeSelfClosing": "always" }],
+    "react/jsx-handler-names": [
+      "error",
+      {
+        "eventHandlerPrefix": "handle|on",
+        "eventHandlerPropPrefix": "on",
+        "checkLocalVariables": true
+      }
+    ],
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }]
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
+}

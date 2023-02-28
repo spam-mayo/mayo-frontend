@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import A from '@/components/A';
 
-function App() {
-
+const App = () => {
+  const onClick = () => {
+    //
+  };
   return (
     <div>
       Spam Mayo Frontend
+      <A />
+      <button onClick={onClick}>BTN</button>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
