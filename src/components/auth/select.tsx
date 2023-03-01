@@ -1,16 +1,16 @@
 import { forwardRef, type DetailedHTMLProps, type SelectHTMLAttributes } from 'react';
 
-interface Option {
+export interface FieldOption {
   label: string;
   value: string | number;
   id: number;
 }
 
-interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
-  options: Option[];
+interface Props extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
+  options: FieldOption[];
 }
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ options, ...props }, ref) => (
+export const Select = forwardRef<HTMLSelectElement, Props>(({ options, ...props }, ref) => (
   <select ref={ref} {...props}>
     {options.map(({ label, value, id }) => (
       <option key={id} value={value}>

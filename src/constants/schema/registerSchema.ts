@@ -6,11 +6,7 @@ export const registerSchema = yup
       .string()
       .required('이름을 입력해주세요.')
       .matches(/^[가-힣a-zA-Z0-9]{2,16}$/, '특수문자와 공백 없이 2자 이상 입력해주세요.'),
-    email: yup
-      .string()
-      .email()
-      .required('이메일을 입력해주세요.')
-      .matches(/^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, '이메일 형식에 맞지 않습니다.'),
+    email: yup.string().email().required('이메일을 입력해주세요.'),
     email_check: yup.string().required('이메일 인증은 필수입니다.'),
     password: yup
       .string()

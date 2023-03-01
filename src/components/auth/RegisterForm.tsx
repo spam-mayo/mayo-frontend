@@ -2,9 +2,10 @@ import { type FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from './Input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Select } from '@/components/auth/select';
+import { Select } from './select';
 import './registerForm.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
+import { FieldOption } from '@/constants/FieldOption';
 
 export const RegisterForm: FC = () => {
   const {
@@ -16,13 +17,13 @@ export const RegisterForm: FC = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  const [emailCheck, setEmailCheck] = useState(false);
+  const [isEmailChecked, setIsEmailChecked] = useState(false);
 
-  const onClickEmailCheckBtn = () => {
-    setEmailCheck(true);
+  const onClickEmailCheck = () => {
+    setIsEmailChecked(true);
   };
 
-  const onClickEmailCheckComfirmBtn = () => {
+  const onClickEmailCheckComfirm = () => {
     const emailValues = getValues('email_check');
     alert(JSON.stringify(emailValues));
   };
@@ -41,11 +42,11 @@ export const RegisterForm: FC = () => {
             placeholder="이메일을 입력해주세요."
             error={errors.email?.message}
           />
-          <button type="button" onClick={onClickEmailCheckBtn}>
+          <button type="button" onClick={onClickEmailCheck}>
             인증하기
           </button>
         </div>
-        {emailCheck && (
+        {isEmailChecked && (
           <div className="inputRow">
             <Input
               {...register('email_check')}
@@ -53,7 +54,7 @@ export const RegisterForm: FC = () => {
               placeholder="인증번호를 입력해주세요."
               error={errors.email_check?.message}
             />
-            <button type="button" onClick={onClickEmailCheckComfirmBtn}>
+            <button type="button" onClick={onClickEmailCheckComfirm}>
               인증확인
             </button>
           </div>
@@ -72,17 +73,7 @@ export const RegisterForm: FC = () => {
           placeholder="비밃번호를 확인해주세요."
           error={errors.password_check?.message}
         />
-        <Select
-          {...register('field')}
-          options={[
-            { label: '선택 안 함', value: 'nofield', id: 1 },
-            { label: '프론트엔드', value: 'frontend', id: 2 },
-            { label: '백엔드', value: 'backend', id: 3 },
-            { label: '디자인', value: 'design', id: 4 },
-            { label: '기획', value: 'plan', id: 5 },
-            { label: '기타', value: 'other', id: 6 },
-          ]}
-        />
+        <Select {...register('field')} options={FieldOption} />
 
         <button type="submit">회원가입</button>
 

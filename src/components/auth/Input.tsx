@@ -1,11 +1,11 @@
 import { type InputHTMLAttributes, forwardRef } from 'react';
 import './Input.scss';
 
-interface InputValues extends InputHTMLAttributes<HTMLInputElement> {
+interface InputElements extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
 }
-export const Input = forwardRef<HTMLInputElement, InputValues>(({ label, error, ...rest }, ref) => (
+export const Input = forwardRef<HTMLInputElement, InputElements>(({ label, error, ...rest }, ref) => (
   <div className="inputCountainer">
     <label>{label}</label>
     <input {...rest} ref={ref} />
