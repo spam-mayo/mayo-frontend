@@ -1,6 +1,6 @@
 import { type FC } from 'react';
-import '@/assets/_common.scss';
-import './common.scss';
+import Button from './Button';
+import './style/common.scss';
 
 const Footer: FC = () => {
   return (
@@ -9,11 +9,21 @@ const Footer: FC = () => {
         <div className="wrapper">
           <div className="innerLeft">
             <div className="navigate">
-              <button>이용약관</button>
-              <button>개인정보처리방침</button>
-              <button>파트너</button>
-              <button>멤버십</button>
-              <button>인재채용</button>
+              <Button size="small" color="gray" text>
+                이용약관
+              </Button>
+              <Button size="small" color="gray" text>
+                개인정보처리방침
+              </Button>
+              <Button size="small" color="gray" text>
+                파트너
+              </Button>
+              <Button size="small" color="gray" text>
+                멤버십
+              </Button>
+              <Button size="small" color="gray" text>
+                인재채용
+              </Button>
             </div>
           </div>
           <div className="innerRight">

@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Footer from './components/common/Footer';
 import Header from './components/common/Header';
 import Main from './pages/Main';
+import './assets/global.scss';
 
 const queryClient = new QueryClient();
 
