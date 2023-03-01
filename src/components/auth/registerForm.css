@@ -1,0 +1,13 @@
+.registerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.registerContainer .registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.registerContainer .registerForm .inputRow {
+  display: flex;
+}/*# sourceMappingURL=registerForm.css.map */

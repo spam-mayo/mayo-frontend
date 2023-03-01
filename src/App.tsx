@@ -1,5 +1,5 @@
 // import A from '@/components/A';
-import { Register } from './pages/auth/Register1';
+import { Register } from './pages/auth/Register';
 
 const App = () => {
   // const onClick = () => {
