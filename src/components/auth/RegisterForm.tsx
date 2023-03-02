@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Select } from './select';
 import './registerForm.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
-import { FieldOption } from '@/constants/FieldOption';
+import { categoryOption } from '@/constants/option/FieldOption';
 
 export const RegisterForm: FC = () => {
   const {
@@ -63,17 +63,17 @@ export const RegisterForm: FC = () => {
           {...register('password')}
           type="password"
           label="비밀번호"
-          placeholder="비밃번호를 입력해주세요."
+          placeholder="비밀번호를 입력해주세요."
           error={errors.password?.message}
         />
         <Input
           {...register('password_check')}
           type="password"
           label="비밀번호 확인"
-          placeholder="비밃번호를 확인해주세요."
+          placeholder="비밀번호를 확인해주세요."
           error={errors.password_check?.message}
         />
-        <Select {...register('field')} options={FieldOption} />
+        <Select {...register('field')} options={categoryOption} />
 
         <button type="submit">회원가입</button>
 

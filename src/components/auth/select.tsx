@@ -1,13 +1,13 @@
 import { forwardRef, type DetailedHTMLProps, type SelectHTMLAttributes } from 'react';
 
-export interface FieldOption {
+export interface SelectOption {
   label: string;
   value: string | number;
   id: number;
 }
 
 interface Props extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
-  options: FieldOption[];
+  options: SelectOption[];
 }
 
 export const Select = forwardRef<HTMLSelectElement, Props>(({ options, ...props }, ref) => (

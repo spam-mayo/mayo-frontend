@@ -1,4 +1,6 @@
-export const FieldOption = [
+import type { SelectOption } from '@/components/auth/select';
+
+export const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
   { label: '프론트엔드', value: 'frontend', id: 2 },
   { label: '백엔드', value: 'backend', id: 3 },
