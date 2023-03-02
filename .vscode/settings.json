@@ -4,15 +4,7 @@
     // For ESLint
     "source.fixAll.eslint": true
   },
-    "eslint.validate": [
-    "html",
-    "scss",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "json"
-  ],
+  "eslint.validate": ["html", "javascript", "javascriptreact", "typescript", "typescriptreact", "json"],
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -30,6 +22,10 @@
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "workbench.settings.useSplitJSON": true
 }
