@@ -1,15 +1,15 @@
-export type RegisterReq = {
+export interface RegisterReq {
   userName: string;
   email: string;
   password: string;
   field?: string;
-};
+}
 
-export type EmailCheck = {
+export interface EmailCheckReq {
   email: string;
-};
+}
 
-export type EmailCheckConfirm = {
+export interface EmailCheckConfirmReq {
   email: string;
   authCode: string;
-};
+}

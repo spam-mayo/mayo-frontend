@@ -1,11 +1,13 @@
 import { type FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Input } from './Input';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Input } from '@/components/auth/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Select, type SelectOption } from './Select';
-import './registerForm.scss';
+import { Select, type SelectOption } from '@/components/auth/Select';
+import './index.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
-import { emailCheck, emailCheckConfirm } from '@/api/auth/authAxiosInstance';
+import { postEmailCheck, postEmailCheckConfirm, postMember } from '@/api/auth/authAPI';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 
 const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -15,6 +17,8 @@ const categoryOption: SelectOption[] = [
   { label: '기획', value: 'plan', id: 5 },
   { label: '기타', value: 'other', id: 6 },
 ];
+
+type RegisterProps = Omit<RegisterSchema, 'email_check' | 'password_check' | 'authCode'>;
 
 export const RegisterForm: FC = () => {
   const {
@@ -26,71 +30,68 @@ export const RegisterForm: FC = () => {
     resolver: yupResolver(registerSchema),
   });
 
+  const { mutate: emailCheck } = useMutation(postEmailCheck, {
+    onSuccess: () => {
+      alert('이메일로 인증번호를 전송했습니다.');
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        err.response?.status === 409 && alert('중복된 이메일입니다.');
+      }
+    },
+  });
+
+  const { mutate: emailCheckConfirm } = useMutation(postEmailCheckConfirm, {
+    onSuccess: () => {
+      alert('인증이 완료되었습니다.');
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        err.response?.status === 400 && alert('인증번호가 일치하지 않습니다.');
+      }
+    },
+  });
+
+  const { mutate: registerMember } = useMutation(postMember, {
+    onSuccess: () => {
+      alert('회원가입 성공');
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        err.response?.status === 403 && alert('이메일 인증은 필수입니다.');
+        err.response?.status === 409 && alert('이미 존재하는 회원입니다.');
+      }
+    },
+  });
+
   const [isEmailChecked, setIsEmailChecked] = useState(false);
 
   const onClickEmailCheck = () => {
-    sendEmailCheck();
+    setIsEmailChecked(true);
+    const body = { email: getValues('email') };
+    emailCheck(body);
   };
 
   const onClickEmailCheckComfirm = () => {
-    confirmEmailCheck();
+    const email = getValues('email');
+    const authCode = getValues('authCode');
+    if (!authCode) return;
+    emailCheckConfirm({ email, authCode });
   };
 
-  const sendEmailCheck = async () => {
-    try {
-      const body = {
-        email: getValues('email'),
-      };
-      const res = await emailCheck(body);
-      if (res.status === 200) {
-        setIsEmailChecked(true);
-        alert('이메일로 인증번호를 전송했습니다.');
-      }
-    } catch (e) {
-      // console.log(e);
-    }
-  };
-
-  const confirmEmailCheck = async () => {
-    try {
-      const body = {
-        email: getValues('email'),
-        authCode: getValues('email_check'),
-      };
-      const res = await emailCheckConfirm(body);
-      if (res.status === 200) {
-        alert('인증이 완료되었습니다');
-      }
-    } catch (e) {
-      //console.log(e);
-    }
-  };
-
-  // const registerMember = async () => {
-  //   try {
-  //     const body = {
-  //       userName: getValues('name'),
-  //       email: getValues('email'),
-  //       password: getValues('password'),
-  //       field: getValues('field'),
-  //     };
-
-  //     const res = await postMember(body);
-  //     console.log(res);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  const onSubmit = (data: RegisterSchema) => {
-    alert(JSON.stringify(data));
-    //registerMember();
+  const onSubmit: SubmitHandler<RegisterProps> = async (data) => {
+    registerMember(data);
   };
 
   return (
     <div className="registerContainer">
       <form onSubmit={handleSubmit(onSubmit)} className="registerForm">
-        <Input {...register('name')} label="이름" placeholder="이름을 입력해주세요." error={errors.name?.message} />
+        <Input
+          {...register('userName')}
+          label="이름"
+          placeholder="이름을 입력해주세요."
+          error={errors.userName?.message}
+        />
         <div className="inputRow">
           <Input
             {...register('email')}
@@ -103,13 +104,14 @@ export const RegisterForm: FC = () => {
             인증하기
           </button>
         </div>
+
         {isEmailChecked && (
           <div className="inputRow">
             <Input
-              {...register('email_check')}
+              {...register('authCode')}
               label=""
               placeholder="인증번호를 입력해주세요."
-              error={errors.email_check?.message}
+              error={errors.authCode?.message}
             />
             <button type="button" onClick={onClickEmailCheckComfirm}>
               인증확인

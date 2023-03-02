@@ -2,8 +2,8 @@ import { type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { type LoginSchema, loginSchema } from '@/constants/schema/loginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Input } from './Input';
-import './LoginForm.scss';
+import { Input } from '@/components/auth/Input';
+import './index.scss';
 
 export const LoginForm: FC = () => {
   const {
