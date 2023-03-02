@@ -2,10 +2,9 @@ import { type FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from './Input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Select } from './select';
+import { Select, type SelectOption } from './Select';
 import './registerForm.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
-import { categoryOption } from '@/constants/option/FieldOption';
 
 export const RegisterForm: FC = () => {
   const {
@@ -16,6 +15,15 @@ export const RegisterForm: FC = () => {
   } = useForm<RegisterSchema>({
     resolver: yupResolver(registerSchema),
   });
+
+  const categoryOption: SelectOption[] = [
+    { label: '선택 안 함', value: 'nofield', id: 1 },
+    { label: '프론트엔드', value: 'frontend', id: 2 },
+    { label: '백엔드', value: 'backend', id: 3 },
+    { label: '디자인', value: 'design', id: 4 },
+    { label: '기획', value: 'plan', id: 5 },
+    { label: '기타', value: 'other', id: 6 },
+  ];
 
   const [isEmailChecked, setIsEmailChecked] = useState(false);
 
