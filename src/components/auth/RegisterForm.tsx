@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Select, type SelectOption } from './Select';
 import './registerForm.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
+import { emailCheck, emailCheckConfirm } from '@/api/auth/authAxiosInstance';
 
 const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -28,15 +29,63 @@ export const RegisterForm: FC = () => {
   const [isEmailChecked, setIsEmailChecked] = useState(false);
 
   const onClickEmailCheck = () => {
-    setIsEmailChecked(true);
+    sendEmailCheck();
   };
 
   const onClickEmailCheckComfirm = () => {
-    const emailValues = getValues('email_check');
-    alert(JSON.stringify(emailValues));
+    confirmEmailCheck();
   };
 
-  const onSubmit = (data: RegisterSchema) => alert(JSON.stringify(data));
+  const sendEmailCheck = async () => {
+    try {
+      const body = {
+        email: getValues('email'),
+      };
+      const res = await emailCheck(body);
+      if (res.status === 200) {
+        setIsEmailChecked(true);
+        alert('이메일로 인증번호를 전송했습니다.');
+      }
+    } catch (e) {
+      // console.log(e);
+    }
+  };
+
+  const confirmEmailCheck = async () => {
+    try {
+      const body = {
+        email: getValues('email'),
+        authCode: getValues('email_check'),
+      };
+      const res = await emailCheckConfirm(body);
+      if (res.status === 200) {
+        alert('인증이 완료되었습니다');
+      }
+    } catch (e) {
+      //console.log(e);
+    }
+  };
+
+  // const registerMember = async () => {
+  //   try {
+  //     const body = {
+  //       userName: getValues('name'),
+  //       email: getValues('email'),
+  //       password: getValues('password'),
+  //       field: getValues('field'),
+  //     };
+
+  //     const res = await postMember(body);
+  //     console.log(res);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
+  const onSubmit = (data: RegisterSchema) => {
+    alert(JSON.stringify(data));
+    //registerMember();
+  };
 
   return (
     <div className="registerContainer">
