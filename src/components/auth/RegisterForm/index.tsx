@@ -8,6 +8,7 @@ import { type RegisterSchema, registerSchema } from '@/constants/schema/register
 import { postEmailCheck, postEmailCheckConfirm, postMember } from '@/api/auth/authAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import type { RegisterReq } from '@/api/auth/types';
 
 const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -17,8 +18,6 @@ const categoryOption: SelectOption[] = [
   { label: '기획', value: 'plan', id: 5 },
   { label: '기타', value: 'other', id: 6 },
 ];
-
-type RegisterProps = Omit<RegisterSchema, 'email_check' | 'password_check' | 'authCode'>;
 
 export const RegisterForm: FC = () => {
   const {
@@ -36,7 +35,7 @@ export const RegisterForm: FC = () => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        err.response?.status === 409 && alert('중복된 이메일입니다.');
+        if (err.response?.status === 409) alert('중복된 이메일입니다.');
       }
     },
   });
@@ -47,7 +46,7 @@ export const RegisterForm: FC = () => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        err.response?.status === 400 && alert('인증번호가 일치하지 않습니다.');
+        if (err.response?.status === 400) alert('인증번호가 일치하지 않습니다.');
       }
     },
   });
@@ -58,8 +57,8 @@ export const RegisterForm: FC = () => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        err.response?.status === 403 && alert('이메일 인증은 필수입니다.');
-        err.response?.status === 409 && alert('이미 존재하는 회원입니다.');
+        if (err.response?.status === 403) alert('이메일 인증은 필수입니다.');
+        if (err.response?.status === 409) alert('이미 존재하는 회원입니다.');
       }
     },
   });
@@ -79,7 +78,7 @@ export const RegisterForm: FC = () => {
     emailCheckConfirm({ email, authCode });
   };
 
-  const onSubmit: SubmitHandler<RegisterProps> = async (data) => {
+  const onSubmit: SubmitHandler<RegisterReq> = async (data) => {
     registerMember(data);
   };
 

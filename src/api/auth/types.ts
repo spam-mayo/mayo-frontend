@@ -9,7 +9,6 @@ export interface EmailCheckReq {
   email: string;
 }
 
-export interface EmailCheckConfirmReq {
-  email: string;
+export interface EmailCheckConfirmReq extends EmailCheckReq {
   authCode: string;
 }
