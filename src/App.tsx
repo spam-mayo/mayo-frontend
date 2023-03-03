@@ -29,6 +29,8 @@ const App = () => {
 
   return (
     <div>
+      <link rel="stylesheet" href="/src/styles/base/_normalize.css" />
+      <link rel="stylesheet" href="/src/styles/main.scss" />
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
