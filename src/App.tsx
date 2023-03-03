@@ -27,7 +27,7 @@ const App = () => {
       ],
     },
     {
-      path: '/user/join',
+      path: '/auth/register',
       element: <Register />,
     },
   ]);
