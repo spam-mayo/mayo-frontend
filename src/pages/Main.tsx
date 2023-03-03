@@ -12,7 +12,7 @@ const getPosts = (pageNum: number) => axiosInstance.get(`/posts?_limit=12&_page=
 
 const Main: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedPost, setSelectedPost] = useState<Posts | null>(null);
+  // const [selectedPost, setSelectedPost] = useState<Posts | null>(null);
   const { data, isLoading, isError, error } = useQuery<Posts>(['posts', currentPage], () => getPosts(currentPage), {
     staleTime: 2000,
   });
@@ -32,7 +32,7 @@ const Main: FC = () => {
       Main Page
       <ul>
         {data.map((post) => (
-          <li key={post.id} className="post-title" onClick={() => setSelectedPost(post)}>
+          <li key={post.id} className="post-title">
             {post.title}
           </li>
         ))}

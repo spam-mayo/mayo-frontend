@@ -3,8 +3,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Footer from './components/common/Footer';
 import Header from './components/common/Header';
+
 import Main from './pages/Main';
 import './assets/global.scss';
+import { Register } from './pages/auth/register';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +29,10 @@ const App = () => {
           // element: <StudyEdit />,
         },
       ],
+    },
+    {
+      path: '/auth/register',
+      element: <Register />,
     },
   ]);
 
