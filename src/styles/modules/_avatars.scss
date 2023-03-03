@@ -1,0 +1,29 @@
+%avatar-base {
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+
+  img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+}
+
+.avatar-small {
+  @extend %avatar-base;
+  width: 32px;
+  height: 32px;
+}
+
+.avatar-medium {
+  @extend %avatar-base;
+  width: 67px;
+  height: 67px;
+}
+.avatar-large {
+  @extend %avatar-base;
+  width: 150px;
+  height: 150px;
+}
