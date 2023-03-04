@@ -1,15 +1,19 @@
-import type { FC, ReactNode } from 'react';
+import type { FC } from 'react';
 import './style/common.scss';
 import './style/Card.module.scss';
 
-const Card: FC<{ children: ReactNode }> = ({ children }) => {
+export interface CardProps {
+  post: { id: number; title: string };
+}
+
+const Card: FC<CardProps> = ({ post }) => {
   return (
     <div className="CardWrapper">
       <div className="imgSection">Image area</div>
       <div className="innerWrapper">
         <div className="badge" />
-        <div className="titleSection">{children}</div>
-        <div className="nameSection">id</div>
+        <div className="titleSection">{post?.title}</div>
+        <div className="nameSection">{post?.id}</div>
         <div className="infoSection">
           <div className="dateSection">2023s년 3월 3일</div>
           <div className="statusSection">모집중</div>
