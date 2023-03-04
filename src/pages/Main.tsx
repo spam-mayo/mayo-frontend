@@ -1,10 +1,10 @@
 import { type FC, useState } from 'react';
-import '@/assets/global.scss';
-import SampleButton from './sample/SampleButton';
-import Card from '@/components/common/Card';
-import { axiosInstance } from '@/api/axiosInstance';
 import { useQuery } from '@tanstack/react-query';
-import './pages/Main.module.scss';
+import { axiosInstance } from '@/api/axiosInstance';
+import Card from '@/components/common/Card';
+import SampleButton from './sample/SampleButton';
+import '@/assets/global.scss';
+import '@/pages/Main.module.scss';
 
 export interface Posts {
   id?: number | null;
