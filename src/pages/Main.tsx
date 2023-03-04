@@ -1,10 +1,16 @@
 import { type FC, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import '@/assets/global.scss';
+import SampleButton from './sample/SampleButton';
+import Card from '@/components/common/Card';
 import { axiosInstance } from '@/api/axiosInstance';
-interface Posts {
+import { useQuery } from '@tanstack/react-query';
+import './pages/Main.module.scss';
+
+export interface Posts {
   id?: number | null;
   title: string;
 }
+[];
 
 const maxPostPage = 10;
 
@@ -12,8 +18,7 @@ const getPosts = (pageNum: number) => axiosInstance.get(`/posts?_limit=12&_page=
 
 const Main: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  // const [selectedPost, setSelectedPost] = useState<Posts | null>(null);
-  const { data, isLoading, isError, error } = useQuery<Posts>(['posts', currentPage], () => getPosts(currentPage), {
+  const { data, isLoading, isError } = useQuery<Posts>(['posts', currentPage], () => getPosts(currentPage), {
     staleTime: 2000,
   });
 
@@ -23,20 +28,19 @@ const Main: FC = () => {
     return (
       <>
         <div>에러남</div>
-        <p>{error.toString()}</p>
       </>
     );
 
   return (
     <div>
       Main Page
-      <ul>
+      <div className="cardList">
         {data.map((post) => (
-          <li key={post.id} className="post-title">
-            {post.title}
-          </li>
+          <div key={post.id}>
+            <Card data={post} />
+          </div>
         ))}
-      </ul>
+      </div>
       <div className="pages">
         <button
           disabled={currentPage <= 1}
@@ -57,6 +61,7 @@ const Main: FC = () => {
         </button>
       </div>
       <hr />
+      <SampleButton />
     </div>
   );
 };
