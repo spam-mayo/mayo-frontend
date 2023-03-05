@@ -55,6 +55,9 @@ const Main: FC = () => {
         >
           Next page
         </button>
+        <i className="icon-user-tie"></i>
+        <i className="icon-calendar"></i>
+        <i className="icon-checkbox-checked"></i>
       </div>
       <hr />
     </div>
