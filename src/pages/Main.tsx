@@ -1,6 +1,7 @@
 import { type FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { axiosInstance } from '@/api/axiosInstance';
+import '@/styles/main.scss';
 interface Posts {
   id?: number | null;
   title: string;
@@ -13,7 +14,7 @@ const getPosts = (pageNum: number) => axiosInstance.get(`/posts?_limit=12&_page=
 const Main: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // const [selectedPost, setSelectedPost] = useState<Posts | null>(null);
-  const { data, isLoading, isError, error } = useQuery<Posts>(['posts', currentPage], () => getPosts(currentPage), {
+  const { data, isLoading, isError } = useQuery<Posts>(['posts', currentPage], () => getPosts(currentPage), {
     staleTime: 2000,
   });
 
@@ -23,7 +24,6 @@ const Main: FC = () => {
     return (
       <>
         <div>에러남</div>
-        <p>{error.toString()}</p>
       </>
     );
 
