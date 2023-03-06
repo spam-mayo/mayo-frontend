@@ -1,6 +1,7 @@
-@import './constants/_normalize.css';
-@import './constants/colors';
-@import './constants/typography';
-@import './constants/spamfont';
+@import 'base/normalize';
 
-@import './modules/avatars';
+@import 'constants/colors';
+@import 'constants/typography';
+@import 'constants/spamfont';
+
+@import 'modules/avatars';

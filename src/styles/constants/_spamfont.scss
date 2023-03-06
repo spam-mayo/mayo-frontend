@@ -2,10 +2,10 @@
 
 @font-face {
   font-family: 'spamfont';
-  src: url('/src/assets/fonts/spamfont.eot');
-  src: url('/src/assets/fonts/spamfont.eot#iefix') format('embedded-opentype'),
-    url('/src/assets/fonts/spamfont.ttf') format('truetype'), url('/src/assets/fonts/spamfont.woff') format('woff'),
-    url('/src/assets/fonts/spamfont.svg#spamfont') format('svg');
+  src: url('@/assets/fonts/spamfont.eot');
+  src: url('@/assets/fonts/spamfont.eot#iefix') format('embedded-opentype'),
+    url('@/assets/fonts/spamfont.ttf') format('truetype'), url('@/assets/fonts/spamfont.woff') format('woff'),
+    url('@/assets/fonts/spamfont.svg#spamfont') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
