@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Main from './pages/Main';
+import Main from '@/pages/Main';
 
 const queryClient = new QueryClient();
 
@@ -28,14 +28,10 @@ const App = () => {
   ]);
 
   return (
-    <div>
-      <link rel="stylesheet" href="/src/styles/constants/_normalize.css" />
-      <link rel="stylesheet" href="/src/styles/main.scss" />
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 
