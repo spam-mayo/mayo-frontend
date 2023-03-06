@@ -19,3 +19,7 @@ export interface LoginReq {
 }
 
 export type PasswordFindReq = EmailCheckReq;
+
+export interface PasswordChangeReq {
+  newPassword: string;
+}

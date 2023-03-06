@@ -9,10 +9,10 @@ import { type EmailSchema, emailSchema } from '@/constants/schema/emailSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 interface Props {
-  onCloseModal: () => void;
+  onClose: () => void;
 }
 
-export const PasswordFindModal: FC<Props> = ({ onCloseModal }: Props) => {
+export const PasswordFindModal: FC<Props> = ({ onClose }: Props) => {
   const {
     handleSubmit,
     register,
@@ -49,7 +49,7 @@ export const PasswordFindModal: FC<Props> = ({ onCloseModal }: Props) => {
         />
         <div>
           <button type="submit">확인</button>
-          <button onClick={onCloseModal}>취소</button>
+          <button onClick={onClose}>취소</button>
         </div>
       </form>
     </div>

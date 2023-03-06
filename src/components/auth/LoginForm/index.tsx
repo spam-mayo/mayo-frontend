@@ -31,7 +31,7 @@ export const LoginForm: FC = () => {
 
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const onClickPasswordCheck = () => {
+  const onClickCloseModal = () => {
     setIsModalOpened(!isModalOpened);
   };
 
@@ -41,7 +41,7 @@ export const LoginForm: FC = () => {
 
   return (
     <>
-      {isModalOpened && <PasswordFindModal onCloseModal={onClickPasswordCheck} />}
+      {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
       <div className="loginContainer">
         <form onSubmit={handleSubmit(onSubmit)} className="loginFormContainer">
           <Input
@@ -58,7 +58,7 @@ export const LoginForm: FC = () => {
             placeholder="비밀번호를 입력해주세요."
             error={errors.password?.message}
           />
-          <button type="button" onClick={onClickPasswordCheck}>
+          <button type="button" onClick={onClickCloseModal}>
             비밀번호 찾기
           </button>
           <button type="submit">로그인</button>

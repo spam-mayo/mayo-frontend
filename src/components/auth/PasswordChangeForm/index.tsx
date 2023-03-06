@@ -15,7 +15,8 @@ export const PasswordChangeForm: FC = () => {
   });
 
   const onSubmit: SubmitHandler<PasswordChangeSchema> = (data) => {
-    alert(JSON.stringify(data));
+    const { newPassword } = data;
+    alert(JSON.stringify(newPassword));
   };
   return (
     <div className="formContainer">
@@ -24,18 +25,18 @@ export const PasswordChangeForm: FC = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <Input
-          {...register('firstPassword')}
+          {...register('newPassword')}
           label="새로운 비밀번호"
           type="password"
           placeholder="새로운 비밀번호를 입력해주세요."
-          error={errors.firstPassword?.message}
+          error={errors.newPassword?.message}
         />
         <Input
-          {...register('secondPassword')}
+          {...register('newPasswordCheck')}
           label="비밀번호 확인"
           type="password"
           placeholder="비밀번호를 확인해주세요."
-          error={errors.secondPassword?.message}
+          error={errors.newPasswordCheck?.message}
         />
         <button type="submit">확인</button>
       </form>

@@ -1,6 +1,5 @@
 import { axiosInstance } from 'src/api/axiosInstance';
 import type { RegisterReq, EmailCheckReq, EmailCheckConfirmReq, LoginReq, PasswordFindReq } from './types';
-import type { PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
 
 export const postMember = (body: RegisterReq) => axiosInstance.post('/user/join', body);
 
@@ -11,6 +10,3 @@ export const postEmailCheckConfirm = (body: EmailCheckConfirmReq) => axiosInstan
 export const postLogin = (body: LoginReq) => axiosInstance.post('/login', body);
 
 export const postPasswordFind = (body: PasswordFindReq) => axiosInstance.post('/auth/email/password', body);
-
-export const postPasswordChange = (body: PasswordChangeSchema) =>
-  axiosInstance.post(`/auth/password/${auth - num}`, body);
