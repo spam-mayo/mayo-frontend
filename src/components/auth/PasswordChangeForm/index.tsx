@@ -3,8 +3,6 @@ import { Input } from 'src/components/auth/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
-// import { useMutation } from '@tanstack/react-query';
-// import { postPasswordChange } from '@/api/auth/authAPI';
 import './index.scss';
 
 export const PasswordChangeForm: FC = () => {
@@ -15,8 +13,6 @@ export const PasswordChangeForm: FC = () => {
   } = useForm<PasswordChangeSchema>({
     resolver: yupResolver(passwordChangeSchema),
   });
-
-  // const { mutate: passwordChange } = useMutation(postPasswordChange);
 
   const onSubmit: SubmitHandler<PasswordChangeSchema> = (data) => {
     alert(JSON.stringify(data));

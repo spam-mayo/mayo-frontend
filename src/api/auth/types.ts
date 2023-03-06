@@ -18,4 +18,4 @@ export interface LoginReq {
   password: string;
 }
 
-export type PasswordCheckReq = EmailCheckReq;
+export type PasswordFindReq = EmailCheckReq;
