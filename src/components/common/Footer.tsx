@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import Button from './Button';
 import './style/common.scss';
 

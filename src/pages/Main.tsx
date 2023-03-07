@@ -1,12 +1,15 @@
 import { FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { axiosInstance } from '@/api/axiosInstance';
+
 import Card, { CardProps } from '@/components/common/Card';
 import SampleButton from './sample/SampleButton';
 import '@/assets/global.scss';
 import '@/pages/Main.module.scss';
+import '@/styles/main.scss';
 
 interface Props {
+  id?: number | null;
   title: string;
   post: CardProps['post'];
 }
@@ -62,6 +65,9 @@ const Main: FC<Props> = () => {
         >
           Next page
         </button>
+        <i className="icon-user-tie"></i>
+        <i className="icon-calendar"></i>
+        <i className="icon-checkbox-checked"></i>
       </div>
       <hr />
       <SampleButton />

@@ -40,7 +40,7 @@ const SampleButton: FC = () => {
         </Button>
       </div>
       <div className="buttons">
-        <Button size="medium" color="blue" text>
+        <Button size="large" color="blue" text>
           버튼
         </Button>
         <Button color="gray" text>
