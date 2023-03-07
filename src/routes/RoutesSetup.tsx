@@ -1,10 +1,11 @@
-import { Login } from '@/pages/auth/Login';
-import { PasswordChange } from '@/pages/auth/PasswordChange';
-import { Register } from '@/pages/auth/register';
+import { Routes, Route } from 'react-router-dom';
+
 import Main from '@/pages/Main';
 import SampleButton from '@/pages/sample/SampleButton';
+import { Register } from '@/pages/auth/register';
+import { Login } from '@/pages/auth/Login';
+import { PasswordChange } from '@/pages/auth/PasswordChange';
 import { Mypage } from '@/pages/user/Mypage';
-import { Routes, Route } from 'react-router-dom';
 
 export const RoutesSetup = () => {
   return (
