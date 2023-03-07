@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import './style/common.scss';
-import './style/Card.module.scss';
+import './style/Card.scss';
 
 export interface CardProps {
   post: { id: number; title: string };
