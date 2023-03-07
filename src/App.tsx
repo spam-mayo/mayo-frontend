@@ -1,8 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Register } from './pages/auth/Register';
-import Main from './pages/Main';
+import { PasswordChange } from '@/pages/auth/PasswordChange';
+import { Login } from '@/pages/auth/Login';
+import { Register } from '@/pages/auth/Register';
+import Main from '@/pages/Main';
+import { Mypage } from '@/pages/Mypage';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +33,15 @@ const App = () => {
       path: '/auth/register',
       element: <Register />,
     },
+    {
+      path: '/auth/login',
+      element: <Login />,
+    },
+    {
+      path: '/auth/password',
+      element: <PasswordChange />,
+    },
+    { path: '/user/mypage', element: <Mypage /> },
   ]);
 
   return (
