@@ -6,7 +6,7 @@ import { PasswordChange } from '@/pages/auth/PasswordChange';
 import { Login } from '@/pages/auth/Login';
 import { Register } from '@/pages/auth/register';
 import Main from '@/pages/Main';
-import { Mypage } from '@/pages/Mypage';
+import { Mypage } from '@/pages/user/Mypage';
 
 const queryClient = new QueryClient();
 

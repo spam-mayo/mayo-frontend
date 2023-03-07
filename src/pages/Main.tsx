@@ -4,13 +4,9 @@ import { axiosInstance } from '@/api/axiosInstance';
 
 import Card, { CardProps } from '@/components/common/Card';
 import SampleButton from './sample/SampleButton';
-import '@/assets/global.scss';
-import '@/pages/Main.module.scss';
 import '@/styles/main.scss';
 
 interface Props {
-  id?: number | null;
-  title: string;
   post: CardProps['post'];
 }
 
