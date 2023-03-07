@@ -7,6 +7,7 @@ import { Register } from '@/pages/auth/Register';
 import Main from '@/pages/Main';
 import { Mypage } from '@/pages/Mypage';
 
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -45,12 +46,10 @@ const App = () => {
   ]);
 
   return (
-    <div>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 
