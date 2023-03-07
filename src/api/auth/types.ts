@@ -12,3 +12,14 @@ export interface EmailCheckReq {
 export interface EmailCheckConfirmReq extends EmailCheckReq {
   authCode: string;
 }
+
+export interface LoginReq {
+  email: string;
+  password: string;
+}
+
+export type PasswordFindReq = EmailCheckReq;
+
+export interface PasswordChangeReq {
+  newPassword: string;
+}
