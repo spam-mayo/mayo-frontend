@@ -8,6 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import { postLogin } from '@/api/auth/authAPI';
 import axios from 'axios';
 import { PasswordFindModal } from '@/components/modal/PasswordFindModal';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginForm: FC = () => {
   const {
@@ -19,8 +20,13 @@ export const LoginForm: FC = () => {
   });
 
   const { mutate: loginMember } = useMutation(postLogin, {
-    onSuccess: () => {
+    onSuccess: (res) => {
+      const { data, headers } = res;
       alert('로그인 성공!');
+      localStorage.setItem('userId', data.userId);
+      localStorage.setItem('authorization', headers.authorization);
+      localStorage.setItem('refresh', headers.refresh);
+      navigate('/');
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
@@ -30,6 +36,7 @@ export const LoginForm: FC = () => {
   });
 
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const navigate = useNavigate();
 
   const onClickCloseModal = () => {
     setIsModalOpened(!isModalOpened);
