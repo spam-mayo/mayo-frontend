@@ -9,7 +9,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(({ label, error, ...res
   <div className="inputCountainer">
     <label>{label}</label>
     <input {...rest} ref={ref} />
-    {error && <p className="errmsg">{error}</p>}
+    {error && <p className="errMsg">{error}</p>}
   </div>
 ));
 
