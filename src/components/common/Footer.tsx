@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 import './style/common.scss';
 
@@ -9,9 +10,11 @@ const Footer: FC = () => {
         <div className="wrapper">
           <div className="innerLeft">
             <div className="navigate">
-              <Button size="small" color="gray" text>
-                이용약관
-              </Button>
+              <Link to="/sample/button">
+                <Button size="small" color="gray" text>
+                  샘플버튼
+                </Button>
+              </Link>
               <Button size="small" color="gray" text>
                 개인정보처리방침
               </Button>
