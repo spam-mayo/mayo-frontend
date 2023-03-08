@@ -1,11 +1,8 @@
-import { type FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { axiosInstance } from '@/api/axiosInstance';
+
 import '@/styles/main.scss';
-interface Posts {
-  id?: number | null;
-  title: string;
-}
 
 const maxPostPage = 10;
 
@@ -13,30 +10,27 @@ const getPosts = (pageNum: number) => axiosInstance.get(`/posts?_limit=12&_page=
 
 const Main: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  // const [selectedPost, setSelectedPost] = useState<Posts | null>(null);
-  const { data, isLoading, isError } = useQuery<Posts>(['posts', currentPage], () => getPosts(currentPage), {
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useQuery<{ id: number; title: string }[]>(['posts', currentPage], () => getPosts(currentPage), {
     staleTime: 2000,
   });
 
   if (isLoading) return <div>loading...</div>;
 
-  if (isError)
-    return (
-      <>
-        <div>에러남</div>
-      </>
-    );
+  if (isError) return <div>에러남</div>;
 
   return (
     <div>
       Main Page
-      <ul>
+      <div className="cardList">
+        {' '}
         {data.map((post) => (
-          <li key={post.id} className="post-title">
-            {post.title}
-          </li>
+          <div key={post.id}></div>
         ))}
-      </ul>
+      </div>
       <div className="pages">
         <button
           disabled={currentPage <= 1}
@@ -55,11 +49,7 @@ const Main: FC = () => {
         >
           Next page
         </button>
-        <i className="icon-user-tie"></i>
-        <i className="icon-calendar"></i>
-        <i className="icon-checkbox-checked"></i>
       </div>
-      <hr />
     </div>
   );
 };
