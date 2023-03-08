@@ -11,6 +11,9 @@ import StudyEdit from '@/pages/study/Edit';
 import RecruitCreate from '@/pages/recruit/Create';
 import RecruitEdit from '@/pages/recruit/Edit';
 
+import StudyList from '@/pages/study/List';
+import StudyDetail from '@/pages/study/Detail';
+
 export const RoutesSetup = () => {
   return (
     <Routes>
@@ -24,6 +27,8 @@ export const RoutesSetup = () => {
       <Route path="/study">
         <Route path="create" element={<StudyCreate />} />
         <Route path="edit" element={<StudyEdit />} />
+        <Route index element={<StudyList />} />
+        <Route path=":studyId" element={<StudyDetail />} />
       </Route>
       <Route path="/recruit">
         <Route path="create" element={<RecruitCreate />} />
