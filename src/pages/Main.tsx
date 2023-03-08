@@ -1,36 +1,41 @@
-import { type FC, useState } from 'react';
+import type { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { axiosInstance } from '@/api/axiosInstance';
+import { getStudies } from '@/api/mockAPI';
 
 import '@/styles/main.scss';
 
-const maxPostPage = 10;
-
-const getPosts = (pageNum: number) => axiosInstance.get(`/posts?_limit=12&_page=${pageNum}`).then(({ data }) => data);
+// const maxPostPage = 10;
 
 const Main: FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading, isError } = useQuery<{ id: number; title: string }[]>(
-    ['posts', currentPage],
-    () => getPosts(currentPage),
-    {
-      staleTime: 2000,
-    }
-  );
+  // const [currentPage, setCurrentPage] = useState(1);
+  const { data, isLoading, isError } = useQuery({
+    queryFn: () => getStudies(),
+    queryKey: ['studies'],
+    select: ({ data }) => data,
+  });
 
-  if (isLoading) return <div>loading...</div>;
+  const studies = data?.data ?? [];
 
-  if (isError) return <div>에러남</div>;
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-      Main Page
-      <div className="cardList">
-        {data.map((post) => (
-          <div key={post.id}></div>
-        ))}
-      </div>
-      <div className="pages">
+      {studies.map(({ studyId, title, userName, startDate, studyStatus, stack }) => (
+        <div key={studyId}>
+          <div>{`제목: ${title}`}</div>
+          <div>{`모집자: ${userName}`}</div>
+          <div>{`시작일자: ${startDate}`}</div>
+          <div>{`모집상태: ${studyStatus}`}</div>
+          <div>{`기술스택: ${stack.map(({ stackName }) => stackName).join(', ')}`}</div>
+        </div>
+      ))}
+      {/* <div className="pages">
         <button
           disabled={currentPage <= 1}
           onClick={() => {
@@ -48,7 +53,7 @@ const Main: FC = () => {
         >
           Next page
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
