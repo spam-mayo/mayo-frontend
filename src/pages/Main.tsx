@@ -1,20 +1,14 @@
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { axiosInstance } from '@/api/axiosInstance';
 
-import Card, { CardProps } from '@/components/common/Card';
-import SampleButton from './sample/SampleButton';
 import '@/styles/main.scss';
-
-interface Props {
-  post: CardProps['post'];
-}
 
 const maxPostPage = 10;
 
 const getPosts = (pageNum: number) => axiosInstance.get(`/posts?_limit=12&_page=${pageNum}`).then(({ data }) => data);
 
-const Main: FC<Props> = () => {
+const Main: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const {
     data = [],
@@ -26,21 +20,15 @@ const Main: FC<Props> = () => {
 
   if (isLoading) return <div>loading...</div>;
 
-  if (isError)
-    return (
-      <>
-        <div>에러남</div>
-      </>
-    );
+  if (isError) return <div>에러남</div>;
 
   return (
     <div>
       Main Page
       <div className="cardList">
+        {' '}
         {data.map((post) => (
-          <div key={post.id}>
-            <Card post={post} />
-          </div>
+          <div key={post.id}></div>
         ))}
       </div>
       <div className="pages">
@@ -61,12 +49,7 @@ const Main: FC<Props> = () => {
         >
           Next page
         </button>
-        <i className="icon-user-tie"></i>
-        <i className="icon-calendar"></i>
-        <i className="icon-checkbox-checked"></i>
       </div>
-      <hr />
-      <SampleButton />
     </div>
   );
 };
