@@ -1,17 +1,12 @@
 import type { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
+import { UserProfile } from '@/components/mypage/userprofile';
+import { UserInfo } from '@/components/mypage/userinfo';
 
-interface Props {
-  userName: string;
-  profileUrl: string;
-  email: string;
-  field: string;
-  stack: [];
-}
-
-export const Mypage: FC<Props> = () => {
+export const Mypage: FC = () => {
   const userId = localStorage.getItem('userId');
+  // console.log(userId);
 
   if (!userId) {
     throw new Error('no user');
@@ -21,11 +16,13 @@ export const Mypage: FC<Props> = () => {
   return (
     <div>
       <div>마이페이지</div>
-      <p>{data?.data.userId}</p>
-      <p>{data?.data.userName}</p>
-      <p>{data?.data.email}</p>
-      <p>{data?.data.field}</p>
-      <p>{data?.data.profileUrl}</p>
+      <UserProfile userName={data?.data.userName} profileUrl={data?.data.profileUrl} />
+      <UserInfo
+        userName={data?.data.userName}
+        email={data?.data.email}
+        field={data?.data.field}
+        stack={data?.data.stack}
+      />
     </div>
   );
 };

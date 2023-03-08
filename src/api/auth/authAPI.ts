@@ -12,3 +12,4 @@ export const postLogin = (body: LoginReq) => axiosInstance.post('/login', body);
 export const postPasswordFind = (body: PasswordFindReq) => axiosInstance.post('/auth/email/password', body);
 
 export const getUserById = (userId: string) => axiosInstance.get(`/user/${userId}`);
+// export const getUserById = (userId: string) => client.get(`/user/${userId}`);
