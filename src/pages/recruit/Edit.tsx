@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 
 const RecruitEdit: FC = () => {
-  return <div>create</div>;
+  return <div>구인 글 edit</div>;
 };
 
 export default RecruitEdit;

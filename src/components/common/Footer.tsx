@@ -15,18 +15,26 @@ const Footer: FC = () => {
                   샘플버튼
                 </Button>
               </Link>
-              <Button size="small" color="gray" text>
-                개인정보처리방침
-              </Button>
-              <Button size="small" color="gray" text>
-                파트너
-              </Button>
-              <Button size="small" color="gray" text>
-                멤버십
-              </Button>
-              <Button size="small" color="gray" text>
-                인재채용
-              </Button>
+              <Link to="/study/create">
+                <Button size="small" color="gray" text>
+                  스터디 생성
+                </Button>
+              </Link>
+              <Link to="/study/edit">
+                <Button size="small" color="gray" text>
+                  스터디 수정
+                </Button>
+              </Link>
+              <Link to="/recruit/create">
+                <Button size="small" color="gray" text>
+                  구인 글 생성
+                </Button>
+              </Link>
+              <Link to="/recruit/edit">
+                <Button size="small" color="gray" text>
+                  구인 글 수정
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="innerRight">
