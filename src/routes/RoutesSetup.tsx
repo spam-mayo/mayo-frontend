@@ -13,9 +13,11 @@ export const RoutesSetup = () => {
       <Route path="/" element={<Main />} />
       <Route path="/sample/button" element={<SampleButton />} />
       <Route path="/user/mypage" element={<Mypage />} />
-      <Route path="/auth/password" element={<PasswordChange />} />
-      <Route path="/auth/login" element={<Login />} />
-      <Route path="/auth/register" element={<Register />} />
+      <Route path="/auth">
+        <Route path="password" element={<PasswordChange />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Route>
     </Routes>
   );
 };
