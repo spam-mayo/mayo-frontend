@@ -1,7 +1,7 @@
-import type { PatchStudyPayload, PostStudyPayload, Study, StudySummary } from '@/api/mockTypes';
+import type { PageInfo, PatchStudyPayload, PostStudyPayload, Study, StudySummary } from '@/api/mockTypes';
 import axios from 'axios';
 
-export const getStudies = () => axios.get<StudySummary[]>('/study');
+export const getStudies = () => axios.get<{ data: StudySummary[]; pageInfo: PageInfo }>('/study');
 
 export const getStudy = (studyId: number) => axios.get<Study>(`/study/${studyId}`);
 
