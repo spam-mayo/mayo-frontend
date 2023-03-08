@@ -10,12 +10,12 @@ import { Mypage } from '@/pages/user/Mypage';
 export const RoutesSetup = () => {
   return (
     <Routes>
+      <Route path="/" element={<Main />} />
       <Route path="/sample/button" element={<SampleButton />} />
       <Route path="/user/mypage" element={<Mypage />} />
       <Route path="/auth/password" element={<PasswordChange />} />
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/register" element={<Register />} />
-      <Route path="/" element={<Main />} />
     </Routes>
   );
 };
