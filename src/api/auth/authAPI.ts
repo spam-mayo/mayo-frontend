@@ -1,4 +1,4 @@
-import { axiosInstance } from 'src/api/axiosInstance';
+import axiosInstance from '@/api/axiosInstance';
 import type { RegisterReq, EmailCheckReq, EmailCheckConfirmReq, LoginReq, PasswordFindReq } from './types';
 
 export const postMember = (body: RegisterReq) => axiosInstance.post('/user/join', body);
