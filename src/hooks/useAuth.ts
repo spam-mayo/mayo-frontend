@@ -1,15 +1,15 @@
 // import type { LoginReq, RegisterReq } from '@/api/auth/types';
-// import { axiosInstance } from '@/api/axiosInstance';
-// import axios, { AxiosResponse } from 'axios';
+// import axiosInstance from '@/api/axiosInstance';
+// import axios from 'axios';
 
 // interface useAuth {
 //   login: (props: LoginReq) => Promise<void>;
-//   signUp: (props: RegisterReq) => Promise<void>;
+//   register: (props: RegisterReq) => Promise<void>;
 //   logout: () => Promise<void>;
 // }
 
 // export const useAuth = (): useAuth => {
-//   const authServerCall = async (urlEndpoint: string, inputData: LogInData | SignupData): Promise<void> => {
+//   const authServerCall = async (urlEndpoint: string, inputData: LoginReq | RegisterReq): Promise<void> => {
 //     try {
 //       const { data, status } = await axiosInstance({
 //         url: urlEndpoint,
@@ -18,7 +18,7 @@
 //         headers: { 'Content-Type': 'application/json' },
 //       });
 
-//       if (status === 400) {
+//       if (status === 401) {
 //         const title = 'message' in data ? data.message : 'Unauthorized';
 //         alert({ title, status: 'warning' });
 //         return;
@@ -26,30 +26,26 @@
 
 //       if ('myInfo' in data && 'accessToken' in data) {
 //         alert('로그인 되었습니다.');
-//         setAccessTokenInAxiosHeader(data.accessToken);
 //       }
 //     } catch (err) {
 //       if (axios.isAxiosError(err)) {
-//         console.log(err);
+//         console.log('useAuthErr :', err);
 //       }
 //     }
 //   };
 
-//   const login = async (loginData: LogInData): Promise<void> => {
-//     await authServerCall('/auth/login', loginData);
+//   const login = async (loginData: LoginReq) => {
+//     await authServerCall('/login', loginData);
+//     //console.log('login :', data);
 //   };
 
-//   const signup = async (signupData: SignupData): Promise<void> => {
-//     await authServerCall('/auth/register', signupData);
+//   const register = async (registerData: RegisterReq) => {
+//     await authServerCall('/user/join', registerData);
 //   };
 
-//   const logout = async (): Promise<void> => {
+//   const logout = async () => {
 //     await logOutApi();
 //   };
 
-//   return { login, signup, logout };
-// };
-
-// export const setAccessTokenInAxiosHeader: (accessToken: string) => void = (accessToken: string) => {
-//   axiosInstance.defaults.headers['x-access-token'] = accessToken;
+//   return { login, register, logout };
 // };

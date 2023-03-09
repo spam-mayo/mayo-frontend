@@ -37,7 +37,7 @@
 
 // // index.ts
 // const getStoredUser = (): User | null => {
-//     // 유저정보 저장 ?
+//   // 유저정보 저장 ?
 //   const storedUser = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 //   return storedUser ? JSON.parse(storedUser) : null;
 // };
