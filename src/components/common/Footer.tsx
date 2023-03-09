@@ -14,9 +14,11 @@ const Footer: FC = () => {
                   샘플버튼
                 </Button>
               </Link>
-              <Button size="small" color="gray" text>
-                개인정보처리방침
-              </Button>
+              <Link to="/sample/grid">
+                <Button size="small" color="gray" text>
+                  샘플그리드
+                </Button>
+              </Link>
               <Button size="small" color="gray" text>
                 파트너
               </Button>
