@@ -40,6 +40,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.1",
+    "msw": "^1.1.0",
     "prettier": "^2.8.4",
     "sass": "^1.58.3",
     "typescript": "^4.9.3",
@@ -51,5 +52,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

@@ -7,6 +7,9 @@ import { Login } from '@/pages/auth/Login';
 import { PasswordChange } from '@/pages/auth/PasswordChange';
 import { Mypage } from '@/pages/user/Mypage';
 
+import StudyList from '@/pages/study/List';
+import StudyDetail from '@/pages/study/Detail';
+
 export const RoutesSetup = () => {
   return (
     <Routes>
@@ -16,6 +19,11 @@ export const RoutesSetup = () => {
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/register" element={<Register />} />
       <Route path="/" element={<Main />} />
+
+      <Route path="/study">
+        <Route index element={<StudyList />} />
+        <Route path=":studyId" element={<StudyDetail />} />
+      </Route>
     </Routes>
   );
 };
