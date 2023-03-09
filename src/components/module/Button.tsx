@@ -1,7 +1,5 @@
 import type { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
-import './style/common.scss';
-import './style/Button.scss';
 
 type ButtonSize = 'small' | 'medium' | 'large';
 type ButtonColor = 'blue' | 'gray' | 'yellow';

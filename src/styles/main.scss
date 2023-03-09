@@ -1,8 +1,18 @@
+/* 변수 */
+@import 'constants/colors';
+@import 'constants/spamfont';
+
+/* 배경 */
 @import 'base/typography';
 @import 'base/normalize';
 @import 'base/reset';
 
-@import 'constants/colors';
-@import 'constants/spamfont';
+/* 레이아웃 */
+@import 'layouts/common';
 
+/* 모듈 */
 @import 'modules/avatars';
+@import 'modules/button';
+
+/* 컴포넌트 */
+@import 'components/main-card';

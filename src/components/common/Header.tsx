@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button';
-import './style/common.scss';
+import Button from 'src/components/module/Button';
 
 const Header: FC = () => {
   return (
