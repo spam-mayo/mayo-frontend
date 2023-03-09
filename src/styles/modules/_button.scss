@@ -44,23 +44,20 @@
   // 사이즈 관리
   &.large {
     height: 3rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0 1rem;
     font-size: 1.25rem;
   }
 
   &.medium {
     height: 2.25rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0 1rem;
     font-size: 1rem;
   }
 
   &.small {
     height: 1.75rem;
     font-size: 0.875rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0 1rem;
   }
 
   // 색상 관리

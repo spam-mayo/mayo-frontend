@@ -1,6 +1,6 @@
+import Button from '@/components/common/Button';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
-import Button from 'src/components/module/Button';
 
 const Footer: FC = () => {
   return (
