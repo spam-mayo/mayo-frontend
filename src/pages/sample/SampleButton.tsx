@@ -1,4 +1,4 @@
-import Button from '@/components/module/Button';
+import Button from '@/components/common/Button';
 import type { FC } from 'react';
 
 const SampleButton: FC = () => {

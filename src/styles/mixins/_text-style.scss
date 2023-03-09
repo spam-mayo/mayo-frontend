@@ -33,28 +33,3 @@
   line-height: 55px;
   letter-spacing: -0.32em;
 }
-
-@mixin text-style($size, $color: false) {
-  @if ($size == 12) {
-    @include text-style-12;
-  }
-  @if ($size == 13) {
-    @include text-style-13;
-  }
-  @if ($size == 14) {
-    @include text-style-14;
-  }
-  @if ($size == 16) {
-    @include text-style-16;
-  }
-  @if ($size == 24) {
-    @include text-style-24;
-  }
-  @if ($size == 46) {
-    @include text-style-46;
-  }
-
-  @if (type-of($color) == color) {
-    color: $color;
-  }
-}

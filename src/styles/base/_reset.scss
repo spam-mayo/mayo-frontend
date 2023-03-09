@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: $font-size-16;
+  @include text-style-16;
 }
 
 body {
