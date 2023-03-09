@@ -6,12 +6,11 @@ import { UserInfo } from '@/components/mypage/userinfo';
 
 export const Mypage: FC = () => {
   const userId = localStorage.getItem('userId');
-  // console.log(userId);
 
   if (!userId) {
     throw new Error('no user');
   }
-  const { data } = useQuery(['user', userId], () => getUserById(userId));
+  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
 
   return (
     <div>
