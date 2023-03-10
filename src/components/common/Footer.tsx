@@ -19,15 +19,7 @@ const Footer: FC = () => {
                   샘플그리드
                 </Button>
               </Link>
-              <Button size="small" color="gray" text>
-                파트너
-              </Button>
-              <Button size="small" color="gray" text>
-                멤버십
-              </Button>
-              <Button size="small" color="gray" text>
-                인재채용
-              </Button>
+
               <Link to="/study/create">
                 <Button size="small" color="gray" text>
                   스터디 생성
