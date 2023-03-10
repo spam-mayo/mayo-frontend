@@ -19,16 +19,16 @@ export const RoutesSetup = () => {
     <Routes>
       <Route path="/" element={<Main />} />
       <Route path="/auth">
-        <Route path="password" element={<PasswordChange />} />
-        <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="password" element={<PasswordChange />} />
       </Route>
       <Route path="/user/mypage" element={<Mypage />} />
       <Route path="/study">
-        <Route path="create" element={<StudyCreate />} />
-        <Route path="edit" element={<StudyEdit />} />
         <Route index element={<StudyList />} />
         <Route path=":studyId" element={<StudyDetail />} />
+        <Route path="create" element={<StudyCreate />} />
+        <Route path="edit" element={<StudyEdit />} />
       </Route>
       <Route path="/recruit">
         <Route path="create" element={<RecruitCreate />} />
