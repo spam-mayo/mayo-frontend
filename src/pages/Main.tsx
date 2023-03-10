@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getStudies } from '@/api/mockAPI';
-
 import '@/styles/main.scss';
 
 // const maxPostPage = 10;

@@ -1,4 +1,4 @@
-import { axiosInstance } from 'src/api/axiosInstance';
+import axiosInstance from '@/api/axiosInstance';
 import type { RegisterReq, EmailCheckReq, EmailCheckConfirmReq, LoginReq, PasswordFindReq } from './types';
 
 export const postMember = (body: RegisterReq) => axiosInstance.post('/user/join', body);
@@ -11,4 +11,6 @@ export const postLogin = (body: LoginReq) => axiosInstance.post('/login', body);
 
 export const postPasswordFind = (body: PasswordFindReq) => axiosInstance.post('/auth/email/password', body);
 
-export const getUserById = (userId: string) => axiosInstance.get(`/user/${userId}`);
+export const getUserById = (userId: number) => axiosInstance.get(`/user/${userId}`);
+
+export const postLogout = () => axiosInstance.post('/auth/logout');

@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { Input } from '@/components/auth/Input';
+import Input from '@/components/auth/Input';
 import { useMutation } from '@tanstack/react-query';
 import { postPasswordFind } from '@/api/auth/authAPI';
 import axios from 'axios';
@@ -12,7 +12,7 @@ interface Props {
   onClose: () => void;
 }
 
-export const PasswordFindModal: FC<Props> = ({ onClose }: Props) => {
+const PasswordFindModal: FC<Props> = ({ onClose }: Props) => {
   const {
     handleSubmit,
     register,
@@ -55,3 +55,5 @@ export const PasswordFindModal: FC<Props> = ({ onClose }: Props) => {
     </div>
   );
 };
+
+export default PasswordFindModal;
