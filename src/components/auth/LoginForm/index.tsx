@@ -2,15 +2,15 @@ import { useState, type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { type LoginSchema, loginSchema } from '@/constants/schema/loginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Input } from '@/components/auth/Input';
+import Input from '@/components/auth/Input';
 import './index.scss';
 import { useMutation } from '@tanstack/react-query';
 import { postLogin } from '@/api/auth/authAPI';
 import axios from 'axios';
-import { PasswordFindModal } from '@/components/modal/PasswordFindModal';
-import { useNavigate } from 'react-router-dom';
+import PasswordFindModal from '@/components/modal/PasswordFindModal';
+import { Link, useNavigate } from 'react-router-dom';
 
-export const LoginForm: FC = () => {
+const LoginForm: FC = () => {
   const {
     handleSubmit,
     register,
@@ -71,10 +71,14 @@ export const LoginForm: FC = () => {
           <button type="submit">로그인</button>
           <div className="row">
             <p>계정이 없으신가요?</p>
-            <button type="button">회원가입</button>
+            <Link to="/auth/register">
+              <button type="button">회원가입</button>
+            </Link>
           </div>
         </form>
       </div>
     </>
   );
 };
+
+export default LoginForm;

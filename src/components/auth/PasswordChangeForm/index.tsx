@@ -1,11 +1,11 @@
 import type { FC } from 'react';
-import { Input } from '@/components/auth/Input';
+import Input from '@/components/auth/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
 import './index.scss';
 
-export const PasswordChangeForm: FC = () => {
+const PasswordChangeForm: FC = () => {
   const {
     handleSubmit,
     register,
@@ -43,3 +43,5 @@ export const PasswordChangeForm: FC = () => {
     </div>
   );
 };
+
+export default PasswordChangeForm;

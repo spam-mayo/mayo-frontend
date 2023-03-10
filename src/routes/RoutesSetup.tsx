@@ -1,16 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-
 import Main from '@/pages/Main';
 import SampleButton from '@/pages/sample/SampleButton';
-import { Register } from '@/pages/auth/register';
-import { Login } from '@/pages/auth/Login';
-import { PasswordChange } from '@/pages/auth/PasswordChange';
-import { Mypage } from '@/pages/user/Mypage';
+import Register from '@/pages/auth/Register';
+import Login from '@/pages/auth/Login';
+import PasswordChange from '@/pages/auth/PasswordChange';
+import Mypage from '@/pages/user/MyPage';
 import StudyCreate from '@/pages/study/Create';
 import StudyEdit from '@/pages/study/Edit';
 import RecruitCreate from '@/pages/recruit/Create';
 import RecruitEdit from '@/pages/recruit/Edit';
-
 import StudyList from '@/pages/study/List';
 import StudyDetail from '@/pages/study/Detail';
 import SampleGrid from '@/pages/sample/SampleGrid';

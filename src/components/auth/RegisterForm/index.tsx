@@ -1,14 +1,15 @@
 import { type FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Input } from '@/components/auth/Input';
+import Input from '@/components/auth/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Select, type SelectOption } from '@/components/auth/Select';
+import Select, { type SelectOption } from '@/components/auth/Select';
 import './index.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
 import { postEmailCheck, postEmailCheckConfirm, postMember } from '@/api/auth/authAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import type { RegisterReq } from '@/api/auth/types';
+import { Link, useNavigate } from 'react-router-dom';
 
 const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -19,7 +20,7 @@ const categoryOption: SelectOption[] = [
   { label: '기타', value: 'other', id: 6 },
 ];
 
-export const RegisterForm: FC = () => {
+const RegisterForm: FC = () => {
   const {
     handleSubmit,
     register,
@@ -53,7 +54,8 @@ export const RegisterForm: FC = () => {
 
   const { mutate: registerMember } = useMutation(postMember, {
     onSuccess: () => {
-      alert('회원가입 성공');
+      alert('회원가입 성공! 로그인 페이지로 이동합니다.');
+      navigate('/auth/login');
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
@@ -64,6 +66,7 @@ export const RegisterForm: FC = () => {
   });
 
   const [isEmailChecked, setIsEmailChecked] = useState(false);
+  const navigate = useNavigate();
 
   const onClickEmailCheck = () => {
     setIsEmailChecked(true);
@@ -137,9 +140,13 @@ export const RegisterForm: FC = () => {
 
         <div className="inputRow">
           <p>이미 계정이 있으신가요?</p>
-          <button type="button">로그인</button>
+          <Link to="/auth/login">
+            <button type="button">로그인</button>
+          </Link>
         </div>
       </form>
     </div>
   );
 };
+
+export default RegisterForm;

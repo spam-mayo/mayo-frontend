@@ -5,7 +5,8 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
 }
-export const Input = forwardRef<HTMLInputElement, Props>(({ label, error, ...rest }, ref) => (
+
+const Input = forwardRef<HTMLInputElement, Props>(({ label, error, ...rest }, ref) => (
   <div className="inputCountainer">
     <label>{label}</label>
     <input {...rest} ref={ref} />
@@ -14,3 +15,5 @@ export const Input = forwardRef<HTMLInputElement, Props>(({ label, error, ...res
 ));
 
 Input.displayName = 'Input';
+
+export default Input;
