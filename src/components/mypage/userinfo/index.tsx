@@ -1,19 +1,20 @@
 import type { FC } from 'react';
 
+interface Stack {
+  stackId: number;
+  stack: string;
+}
+
+type StackArray = Stack[];
+
 interface Props {
   userName: string;
   email: string;
   field: string;
-  stack?: [
-    {
-      stackId: number;
-      stack: string;
-    }
-  ];
+  stack?: StackArray;
 }
 
-export const UserInfo: FC<Props> = (props: Props) => {
-  const { userName, email, field } = props;
+const UserInfo: FC<Props> = ({ userName, email, field, stack }) => {
   return (
     <div>
       <div>
@@ -26,9 +27,9 @@ export const UserInfo: FC<Props> = (props: Props) => {
         <div>활동분야 : {field}</div>
         <div>
           관심분야 :
-          {/* {stack.map((el) => {
+          {stack?.map((el) => {
             return <p key={el.stackId}>{el.stack}</p>;
-          })} */}
+          })}
         </div>
       </div>
       <div>비밀번호</div>
@@ -36,3 +37,5 @@ export const UserInfo: FC<Props> = (props: Props) => {
     </div>
   );
 };
+
+export default UserInfo;

@@ -10,7 +10,7 @@ interface Props extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement
   options: SelectOption[];
 }
 
-export const Select = forwardRef<HTMLSelectElement, Props>(({ options, ...props }, ref) => (
+const Select = forwardRef<HTMLSelectElement, Props>(({ options, ...props }, ref) => (
   <select ref={ref} {...props}>
     {options.map(({ label, value, id }) => (
       <option key={id} value={value}>
@@ -21,3 +21,5 @@ export const Select = forwardRef<HTMLSelectElement, Props>(({ options, ...props 
 ));
 
 Select.displayName = 'Select';
+
+export default Select;

@@ -5,7 +5,7 @@ interface Props {
   userName: string;
 }
 
-export const UserProfile: FC<Props> = (props: Props) => {
+const UserProfile: FC<Props> = (props: Props) => {
   const { userName, profileUrl } = props;
   return (
     <div>
@@ -18,3 +18,5 @@ export const UserProfile: FC<Props> = (props: Props) => {
     </div>
   );
 };
+
+export default UserProfile;

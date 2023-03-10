@@ -1,8 +1,8 @@
 import { type FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Input } from '@/components/auth/Input';
+import Input from '@/components/auth/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Select, type SelectOption } from '@/components/auth/Select';
+import Select, { type SelectOption } from '@/components/auth/Select';
 import './index.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
 import { postEmailCheck, postEmailCheckConfirm, postMember } from '@/api/auth/authAPI';
@@ -20,7 +20,7 @@ const categoryOption: SelectOption[] = [
   { label: '기타', value: 'other', id: 6 },
 ];
 
-export const RegisterForm: FC = () => {
+const RegisterForm: FC = () => {
   const {
     handleSubmit,
     register,
@@ -148,3 +148,5 @@ export const RegisterForm: FC = () => {
     </div>
   );
 };
+
+export default RegisterForm;
