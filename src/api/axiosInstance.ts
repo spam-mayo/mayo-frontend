@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(
       const refresh = localStorage.getItem('refresh');
 
       const { headers } = await axios.post(
-        'http://ec2-3-38-166-165.ap-northeast-2.compute.amazonaws.com:8080/auth/token',
+        'http://ec2-3-38-166-165.ap-northeast-2.compute.amazonaws.com:8080/api/auth/token',
         {},
         {
           headers: { Refresh: refresh },
