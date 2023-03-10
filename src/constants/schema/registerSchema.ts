@@ -18,6 +18,7 @@ export const registerSchema = yup
     password_check: yup
       .string()
       .required('비밀번호를 확인해주세요.')
+      .nullable()
       .oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다.'),
     field: yup.string(),
   })

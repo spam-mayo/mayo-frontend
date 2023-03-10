@@ -12,6 +12,7 @@ export const passwordChangeSchema = yup
     newPasswordCheck: yup
       .string()
       .required('비밀번호를 확인해주세요.')
+      .nullable()
       .oneOf([yup.ref('firstPassword'), null], '비밀번호가 일치하지 않습니다.'),
   })
   .required();
