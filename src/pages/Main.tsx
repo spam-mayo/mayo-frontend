@@ -35,6 +35,7 @@ const Main: FC = () => {
           <div>{`기술스택: ${stack.map(({ stackName }) => stackName).join(', ')}`}</div>
         </div>
       ))}
+
       {/* <div className="pages">
         <button
           disabled={currentPage <= 1}
