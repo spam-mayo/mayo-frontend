@@ -15,8 +15,8 @@ const App = () => {
         <Header />
         <RoutesSetup />
         <Footer />
-        <ReactQueryDevtools initialIsOpen={false} />
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

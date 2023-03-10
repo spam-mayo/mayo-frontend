@@ -7,7 +7,7 @@ const StudyDetail: FC = () => {
   const { studyId } = useParams();
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getStudy(Number(studyId)),
-    queryKey: ['studie', studyId],
+    queryKey: ['studies', studyId],
     select: ({ data }) => data,
   });
 
