@@ -4,7 +4,7 @@ import SampleButton from '@/pages/sample/SampleButton';
 import Register from '@/pages/auth/Register';
 import Login from '@/pages/auth/Login';
 import PasswordChange from '@/pages/auth/PasswordChange';
-import Mypage from '@/pages/user/MyPage';
+import Mypage from '@/pages/user/Mypage';
 import StudyCreate from '@/pages/study/Create';
 import StudyEdit from '@/pages/study/Edit';
 import RecruitCreate from '@/pages/recruit/Create';
