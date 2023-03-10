@@ -18,7 +18,7 @@
     }
   }
 
-  @include responsive(T) {
+  @include responsive(md) {
     max-width: $md-max-container;
     padding: 0 $md-margin;
 
@@ -29,7 +29,7 @@
     }
   }
 
-  @include responsive(D) {
+  @include responsive(lg) {
     max-width: $lg-max-container;
     padding: 0;
 
