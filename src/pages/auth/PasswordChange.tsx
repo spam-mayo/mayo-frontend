@@ -1,5 +1,7 @@
-import { PasswordChangeForm } from '@/components/auth/PasswordChangeForm';
+import PasswordChangeForm from '@/components/auth/PasswordChangeForm';
 
-export const PasswordChange = () => {
+const PasswordChange = () => {
   return <PasswordChangeForm />;
 };
+
+export default PasswordChange;
