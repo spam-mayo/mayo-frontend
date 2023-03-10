@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
-import UserProfile from '@/components/mypage/userprofile';
-import UserInfo from '@/components/mypage/userinfo';
+import UserProfile from '@/components/mypage/UserProfile';
+import UserInfo from '@/components/mypage/UserInfo';
 
 const MyPage: FC = () => {
   const userId = localStorage.getItem('userId');
