@@ -13,7 +13,7 @@ const Header: FC = () => {
     if (userId) {
       setIsLogin(true);
     }
-  }, [userId, isLogin]);
+  }, [userId]);
 
   const { mutate: logout } = useMutation(postLogout, {
     onSuccess: () => {
