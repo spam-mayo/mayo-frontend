@@ -9,7 +9,7 @@ const Header: FC = () => {
         <div className="wrapper">
           <div className="innerLeft">
             <div>
-              <img src="/public/spam.svg" alt="logo" className="logo" />
+              <img src="/spam.svg" alt="logo" className="logo" />
             </div>
             <div className="navigate">
               <Link to="/">
