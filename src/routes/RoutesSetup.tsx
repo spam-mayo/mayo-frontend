@@ -12,7 +12,7 @@ import StudyList from '@/pages/study/List';
 import StudyDetail from '@/pages/study/Detail';
 import Register from '@/pages/auth/Register';
 
-export const RoutesSetup = () => {
+const RoutesSetup = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
@@ -38,3 +38,5 @@ export const RoutesSetup = () => {
     </Routes>
   );
 };
+
+export default RoutesSetup;
