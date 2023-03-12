@@ -29,7 +29,7 @@ axiosInstance.interceptors.response.use(
       config,
       response: { status },
     } = error;
-    if (status === 401) {
+    if (status === 421) {
       const originalRequest = config;
       const refresh = localStorage.getItem('refresh');
 
