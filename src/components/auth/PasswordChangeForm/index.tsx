@@ -4,8 +4,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
 import './index.scss';
+import { useSearchParams } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { patchPassword } from '@/api/auth/authAPI';
+import axios from 'axios';
 
 const PasswordChangeForm: FC = () => {
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('authCode');
+
   const {
     handleSubmit,
     register,
@@ -14,9 +21,23 @@ const PasswordChangeForm: FC = () => {
     resolver: yupResolver(passwordChangeSchema),
   });
 
+  const { mutate: passwordPatch } = useMutation(patchPassword, {
+    onSuccess: () => {
+      alert('비밀번호 변경 완료! 페이지로 돌아가 로그인을 해주세요.');
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        if (err.response?.status === 401) {
+          alert('10분이 초과하여 변경할 수 없습니다.');
+        }
+      }
+    },
+  });
+
   const onSubmit: SubmitHandler<PasswordChangeSchema> = (data) => {
     const { newPassword } = data;
-    alert(JSON.stringify(newPassword));
+    if (!code) return;
+    passwordPatch({ code, newPassword });
   };
   return (
     <div className="formContainer">

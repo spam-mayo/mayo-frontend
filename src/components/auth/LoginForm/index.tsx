@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from '@/components/auth/Input';
 import './index.scss';
 import { useMutation } from '@tanstack/react-query';
-import { postLogin } from '@/api/auth/authAPI';
+import { postGoogle, postKakao, postLogin } from '@/api/auth/authAPI';
 import axios from 'axios';
 import PasswordFindModal from '@/components/modal/PasswordFindModal';
 import { Link, useNavigate } from 'react-router-dom';
@@ -46,6 +46,14 @@ const LoginForm: FC = () => {
     loginMember(data);
   };
 
+  const onClickAuthKakao = () => {
+    postKakao();
+  };
+
+  const onClickAuthGoogle = () => {
+    postGoogle();
+  };
+
   return (
     <>
       {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
@@ -76,6 +84,10 @@ const LoginForm: FC = () => {
             </Link>
           </div>
         </form>
+        <div className="socialLogin">
+          <button onClick={onClickAuthKakao}>kakao</button>
+          <button onClick={onClickAuthGoogle}>google</button>
+        </div>
       </div>
     </>
   );
