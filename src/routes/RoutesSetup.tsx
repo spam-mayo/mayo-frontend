@@ -11,7 +11,7 @@ import RecruitEdit from '@/pages/recruit/Edit';
 import StudyList from '@/pages/study/List';
 import StudyDetail from '@/pages/study/Detail';
 import SampleGrid from '@/pages/sample/SampleGrid';
-import MyPage from '@/pages/user/Mypage';
+import MyPage from '@/pages/user/MyPage';
 
 export const RoutesSetup = () => {
   return (

@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 /* baseURL은 .env 파일로 대체 예정 */
-const BASE_URL = 'http://ec2-3-38-166-165.ap-northeast-2.compute.amazonaws.com:8080';
+const BASE_URL = 'https://spammayo.shop/';
 const config: AxiosRequestConfig = { baseURL: BASE_URL };
 const axiosInstance = axios.create(config);
 
@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(
       const refresh = localStorage.getItem('refresh');
 
       const { headers } = await axios.post(
-        'http://ec2-3-38-166-165.ap-northeast-2.compute.amazonaws.com:8080/auth/token',
+        'https://spammayo.shop/api/auth/token',
         {},
         {
           headers: { Refresh: refresh },
