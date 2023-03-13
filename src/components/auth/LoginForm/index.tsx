@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from '@/components/auth/Input';
 import './index.scss';
 import { useMutation } from '@tanstack/react-query';
-import { postGoogle, postKakao, postLogin } from '@/api/auth/authAPI';
+import { postLogin } from '@/api/auth/authAPI';
 import axios from 'axios';
 import PasswordFindModal from '@/components/modal/PasswordFindModal';
 import { Link, useNavigate } from 'react-router-dom';
@@ -30,7 +30,7 @@ const LoginForm: FC = () => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        if (err.response?.status === 400) alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        if (err.response?.status === 401) alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       }
     },
   });
@@ -44,14 +44,6 @@ const LoginForm: FC = () => {
 
   const onSubmit = (data: LoginSchema) => {
     loginMember(data);
-  };
-
-  const onClickAuthKakao = () => {
-    postKakao();
-  };
-
-  const onClickAuthGoogle = () => {
-    postGoogle();
   };
 
   return (
@@ -84,10 +76,6 @@ const LoginForm: FC = () => {
             </Link>
           </div>
         </form>
-        <div className="socialLogin">
-          <button onClick={onClickAuthKakao}>kakao</button>
-          <button onClick={onClickAuthGoogle}>google</button>
-        </div>
       </div>
     </>
   );

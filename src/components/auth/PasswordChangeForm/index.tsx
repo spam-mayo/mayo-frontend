@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
 import './index.scss';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { patchPassword } from '@/api/auth/authAPI';
 import axios from 'axios';
@@ -24,6 +24,7 @@ const PasswordChangeForm: FC = () => {
   const { mutate: passwordPatch } = useMutation(patchPassword, {
     onSuccess: () => {
       alert('비밀번호 변경 완료! 페이지로 돌아가 로그인을 해주세요.');
+      navigate('/auth/login');
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
@@ -33,6 +34,8 @@ const PasswordChangeForm: FC = () => {
       }
     },
   });
+
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<PasswordChangeSchema> = (data) => {
     const { newPassword } = data;

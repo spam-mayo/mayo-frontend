@@ -25,7 +25,3 @@ export const postLogout = () => axiosInstance.post('/api/auth/logout');
 
 export const patchPassword = ({ code, newPassword }: PasswordChangeReq) =>
   axiosInstance.patch(`/api/auth/password?authCode=${code}`, { newPassword });
-
-export const postKakao = () => axiosInstance.post('/oauth2/authorization/kakao');
-
-export const postGoogle = () => axiosInstance.post('/oauth2/authorization/google');
