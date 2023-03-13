@@ -1,8 +1,27 @@
-@import 'base/typography';
+/* 변수 */
+@import 'constants/colors';
+@import 'constants/spamfont';
+@import 'constants/grids';
+@import 'constants/breakpoints';
+
+/* 배경 */
+@import 'base/font';
 @import 'base/normalize';
 @import 'base/reset';
 
-@import 'constants/colors';
-@import 'constants/spamfont';
-
+/* 모듈 */
 @import 'modules/avatars';
+@import 'modules/button';
+
+/* 믹스인 */
+@import 'mixins/responsive';
+@import 'mixins/text-style';
+@import 'mixins/position';
+@import 'mixins/flexbox';
+
+/* 컴포넌트 */
+@import 'components/header';
+@import 'components/footer';
+
+/* 레이아웃 */
+@import 'layouts/grids';
