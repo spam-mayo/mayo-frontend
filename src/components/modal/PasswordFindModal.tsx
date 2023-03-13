@@ -7,6 +7,7 @@ import axios from 'axios';
 import './passwordFindModal.scss';
 import { type EmailSchema, emailSchema } from '@/constants/schema/emailSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Button from '@/components/common/Button';
 
 interface Props {
   onClose: () => void;
@@ -44,13 +45,15 @@ const PasswordFindModal: FC<Props> = ({ onClose }: Props) => {
         <Input
           {...register('email')}
           type="emil"
-          label="이메일"
+          label=""
           placeholder="이메일을 입력해주세요."
           error={errors.email?.message}
         />
         <div>
-          <button type="submit">확인</button>
-          <button onClick={onClose}>취소</button>
+          <Button onClick={onClose} color="gray" outline>
+            취소
+          </Button>
+          <Button type="submit">전송</Button>
         </div>
       </form>
     </div>
