@@ -12,6 +12,8 @@
 /* 모듈 */
 @import 'modules/avatars';
 @import 'modules/button';
+@import 'modules/input';
+@import 'modules/radio';
 
 /* 믹스인 */
 @import 'mixins/responsive';
@@ -22,6 +24,7 @@
 /* 컴포넌트 */
 @import 'components/header';
 @import 'components/footer';
+@import 'components/section-form';
 
 /* 레이아웃 */
 @import 'layouts/grids';
