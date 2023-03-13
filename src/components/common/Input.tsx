@@ -1,5 +1,4 @@
 import { type InputHTMLAttributes, forwardRef } from 'react';
-import './index.scss';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label: string;

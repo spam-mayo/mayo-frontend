@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import Input from '@/components/auth/Input';
+import Input from '@/components/common/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Select, { type SelectOption } from '@/components/auth/Select';
 import './index.scss';

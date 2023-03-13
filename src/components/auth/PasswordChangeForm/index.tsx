@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import Input from '@/components/auth/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
@@ -8,6 +7,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { patchPassword } from '@/api/auth/authAPI';
 import axios from 'axios';
+import Input from '@/components/common/Input';
 
 const PasswordChangeForm: FC = () => {
   const [searchParams] = useSearchParams();

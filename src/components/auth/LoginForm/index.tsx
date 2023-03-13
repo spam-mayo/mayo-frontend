@@ -2,13 +2,13 @@ import { useState, type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { type LoginSchema, loginSchema } from '@/constants/schema/loginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Input from '@/components/auth/Input';
 import './index.scss';
 import { useMutation } from '@tanstack/react-query';
 import { postLogin } from '@/api/auth/authAPI';
 import axios from 'axios';
 import PasswordFindModal from '@/components/modal/PasswordFindModal';
 import { Link, useNavigate } from 'react-router-dom';
+import Input from '@/components/common/Input';
 
 const LoginForm: FC = () => {
   const {
