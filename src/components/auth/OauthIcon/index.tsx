@@ -5,7 +5,7 @@ import './index.scss';
 interface Props {
   src: string;
   alt: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const OauthIcon: FC<Props> = ({ src, alt, onClick }) => {

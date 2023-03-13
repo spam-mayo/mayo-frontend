@@ -10,9 +10,9 @@ import axios from 'axios';
 import PasswordFindModal from '@/components/modal/PasswordFindModal';
 import { Link, useNavigate } from 'react-router-dom';
 import kakao from '@/assets/images/kakao3.jpeg';
-// import google from '@/assets/images/google3.png';
+import google from '@/assets/images/google3.png';
 import OauthIcon from '@/components/auth/OauthIcon';
-import { postKakao } from '@/api/auth/authAPI';
+// import { postKakao } from '@/api/auth/authAPI';
 
 const LoginForm: FC = () => {
   const {
@@ -39,14 +39,14 @@ const LoginForm: FC = () => {
     },
   });
 
-  const { mutate: loginKakao } = useMutation(postKakao, {
-    onSuccess: (res) => {
-      alert(res);
-    },
-    onError: (err) => {
-      alert(err);
-    },
-  });
+  // const { mutate: loginKakao } = useMutation(postKakao, {
+  //   onSuccess: (res) => {
+  //     alert(res);
+  //   },
+  //   onError: (err) => {
+  //     alert(err);
+  //   },
+  // });
 
   const [isModalOpened, setIsModalOpened] = useState(false);
   const navigate = useNavigate();
@@ -59,9 +59,9 @@ const LoginForm: FC = () => {
     loginMember(data);
   };
 
-  const onClickKakao = () => {
-    loginKakao();
-  };
+  // const onClickKakao = () => {
+  //   loginKakao();
+  // };
 
   return (
     <>
@@ -94,8 +94,8 @@ const LoginForm: FC = () => {
           </div>
           <hr />
           <div className="socialLogin">
-            <OauthIcon src={kakao} alt="kakao" onClick={onClickKakao} />
-            {/* <OauthIcon src={google} alt="google" /> */}
+            <OauthIcon src={kakao} alt="kakao" />
+            <OauthIcon src={google} alt="google" />
           </div>
         </form>
       </div>
