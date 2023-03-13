@@ -16,14 +16,16 @@
     }
   }
   &.text {
-    color: lighten($color, 10%);
+    color: $color;
     font-weight: 500;
     background: none;
 
     border: none;
     border-radius: 4px;
     &:hover {
-      background: lighten($blue, 80%);
+      font-weight: 600;
+      color: darken($color, 10%);
+      background: lighten($background, 5%);
     }
     &:active {
       font-weight: 700;
