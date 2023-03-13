@@ -1,15 +1,19 @@
-.registerContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.inputRow {
+  position: relative;
 
-  .registerForm {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    .inputRow {
-      display: flex;
-    }
+  button {
+    background-color: pink;
+    width: 60px;
+    position: absolute;
+    right: 0;
+    top: 35px;
+    margin-right: 5px;
+    z-index: 999;
   }
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  color: black;
 }

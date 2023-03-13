@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import Input from '@/components/auth/Input';
+import Input from '@/components/auth/Input/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';

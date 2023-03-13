@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import Input from '@/components/auth/Input';
+import Input from '@/components/auth/Input/Input';
 import { useMutation } from '@tanstack/react-query';
 import { postPasswordFind } from '@/api/auth/authAPI';
 import axios from 'axios';

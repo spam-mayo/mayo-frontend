@@ -2,7 +2,7 @@ import { useState, type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { type LoginSchema, loginSchema } from '@/constants/schema/loginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Input from '@/components/auth/Input';
+import Input from '@/components/auth/Input/Input';
 import './index.scss';
 import { useMutation } from '@tanstack/react-query';
 import { postLogin } from '@/api/auth/authAPI';
@@ -51,14 +51,14 @@ const LoginForm: FC = () => {
     <>
       {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
       <div className="container">
-        <div className="row">
+        <div className="row background">
           <div className="col-lg-6 info">
             <h1>로그인</h1>
             <p>환영합니다!</p>
             <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">
-            <div className="login">
+            <div className="auth">
               <Input
                 {...register('email')}
                 type="emil"
@@ -76,7 +76,7 @@ const LoginForm: FC = () => {
               <button type="button" onClick={onClickCloseModal} className="btnText">
                 비밀번호 찾기
               </button>
-              <Button size="large" color="yellow">
+              <Button size="large" color="yellow" type="submit">
                 로그인
               </Button>
               <div className="btnRow">

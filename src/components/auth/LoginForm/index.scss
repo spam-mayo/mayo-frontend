@@ -1,11 +1,11 @@
-.row {
+.background {
   align-items: center;
   justify-content: center;
   background-image: url('@/assets/images/authBackground.jpg');
   background-position: center;
   background-size: cover;
   opacity: 0.9;
-  height: 700px;
+  height: 800px;
 
   .info {
     color: white;
@@ -23,6 +23,7 @@
     p {
       font-size: 20px;
       font-weight: 600;
+      margin-bottom: 20px;
     }
   }
 
@@ -34,9 +35,7 @@
     align-items: center;
     justify-content: center;
 
-    .login {
-      width: 386px;
-      height: 80%;
+    .auth {
       display: flex;
       flex-direction: column;
       gap: 22px;

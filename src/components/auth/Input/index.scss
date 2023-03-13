@@ -5,7 +5,6 @@
 
   label {
     font-size: 16px;
-    // color: $black;
     color: black;
   }
 
@@ -23,7 +22,12 @@
     }
   }
 
+  .btnPad {
+    padding-right: 65px;
+  }
+
   .errMsg {
     color: red;
+    font-size: 13px;
   }
 }
