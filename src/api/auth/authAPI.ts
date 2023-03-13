@@ -1,5 +1,12 @@
 import axiosInstance from '@/api/axiosInstance';
-import type { RegisterReq, EmailCheckReq, EmailCheckConfirmReq, LoginReq, PasswordFindReq } from './types';
+import type {
+  RegisterReq,
+  EmailCheckReq,
+  EmailCheckConfirmReq,
+  LoginReq,
+  PasswordFindReq,
+  PasswordChangeReq,
+} from './types';
 
 export const postMember = (body: RegisterReq) => axiosInstance.post('/api/users/join', body);
 
@@ -15,3 +22,6 @@ export const postPasswordFind = (body: PasswordFindReq) => axiosInstance.post('/
 export const getUserById = (userId: number) => axiosInstance.get(`/api/users/${userId}`);
 
 export const postLogout = () => axiosInstance.post('/api/auth/logout');
+
+export const patchPassword = ({ code, newPassword }: PasswordChangeReq) =>
+  axiosInstance.patch(`/api/auth/password?authCode=${code}`, { newPassword });

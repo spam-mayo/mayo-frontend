@@ -22,4 +22,5 @@ export type PasswordFindReq = EmailCheckReq;
 
 export interface PasswordChangeReq {
   newPassword: string;
+  code: string;
 }

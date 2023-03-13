@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { postLogout } from '@/api/auth/authAPI';
 
 /* baseURL은 .env 파일로 대체 예정 */
 const BASE_URL = 'https://spammayo.shop';
@@ -29,17 +30,28 @@ axiosInstance.interceptors.response.use(
       config,
       response: { status },
     } = error;
-    if (status === 401) {
+    if (status === 421) {
       const originalRequest = config;
       const refresh = localStorage.getItem('refresh');
 
-      const { headers } = await axios.post(
-        'https://spammayo.shop/api/auth/token',
+      const { headers, data } = await axios.post(
+        `${BASE_URL}/api/auth/token`,
         {},
         {
           headers: { Refresh: refresh },
         }
       );
+      // 엑세스토큰 오류
+      if (data.status === 400) {
+        alert('엑세스 토큰 값이 잘못되었습니다.');
+      } else if (data.status === 421) {
+        // 리프레시 토큰 만료
+        alert('세션이 만료되었습니다. 다시 로그인해주세요.');
+        postLogout();
+        localStorage.removeItem('userId');
+        localStorage.removeItem('authorization');
+        localStorage.removeItem('refresh');
+      }
 
       localStorage.setItem('authorization', headers.authorization);
       const newAccessToken = headers.authorization;
