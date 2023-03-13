@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 const Footer: FC = () => {
   return (
-    <>
-      <div className="block">
+    <footer>
+      <div className="container">
         <div className="wrapper">
           <div className="innerLeft">
-            <div className="navigate">
+            <nav>
               <Link to="/sample/button">
                 <Button size="small" color="gray" text>
                   샘플버튼
@@ -40,15 +40,14 @@ const Footer: FC = () => {
                   구인 글 수정
                 </Button>
               </Link>
-            </div>
+            </nav>
           </div>
           <div className="innerRight">
             <p>Copyright 2023. SPAM All rights reserved.</p>
           </div>
         </div>
       </div>
-      <div className="spacer"></div>
-    </>
+    </footer>
   );
 };
 

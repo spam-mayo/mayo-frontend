@@ -20,7 +20,8 @@
 @import 'mixins/flexbox';
 
 /* 컴포넌트 */
-@import 'components/common';
+@import 'components/header';
+@import 'components/footer';
 
 /* 레이아웃 */
 @import 'layouts/grids';

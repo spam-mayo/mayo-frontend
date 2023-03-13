@@ -22,7 +22,7 @@ const Main: FC = () => {
   if (isError) return <div>에러남</div>;
 
   return (
-    <div>
+    <main>
       Main Page
       <div className="cardList">
         {data.map((post) => (
@@ -48,7 +48,7 @@ const Main: FC = () => {
           Next page
         </button>
       </div>
-    </div>
+    </main>
   );
 };
 
