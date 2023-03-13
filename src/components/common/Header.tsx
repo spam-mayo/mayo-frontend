@@ -1,9 +1,8 @@
+import Button from '@/components/common/Button';
 import { postLogout } from '@/api/auth/authAPI';
 import { type FC, useState, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
-import Button from './Button';
-import './style/common.scss';
 
 const Header: FC = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -33,14 +32,14 @@ const Header: FC = () => {
   };
 
   return (
-    <>
-      <div className="block">
+    <header>
+      <div className="container">
         <div className="wrapper">
           <div className="innerLeft">
             <div>
-              <img src="/public/spam.svg" alt="logo" className="logo" />
+              <img src="/spam.svg" alt="logo" className="logo" />
             </div>
-            <div className="navigate">
+            <nav>
               <Link to="/">
                 <Button color="blue" text>
                   스터디 찾기
@@ -49,7 +48,7 @@ const Header: FC = () => {
               <Button color="blue" text>
                 나의 스터디
               </Button>
-            </div>
+            </nav>
           </div>
           <div className="innerRight">
             {isLogin ? (
@@ -73,8 +72,7 @@ const Header: FC = () => {
           </div>
         </div>
       </div>
-      <div className="spacer"></div>
-    </>
+    </header>
   );
 };
 

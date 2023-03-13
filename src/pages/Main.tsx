@@ -1,7 +1,6 @@
 import { type FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/axiosInstance';
-
 import '@/styles/main.scss';
 
 const maxPostPage = 10;
@@ -23,7 +22,7 @@ const Main: FC = () => {
   if (isError) return <div>에러남</div>;
 
   return (
-    <div>
+    <main>
       Main Page
       <div className="cardList">
         {data.map((post) => (
@@ -49,7 +48,7 @@ const Main: FC = () => {
           Next page
         </button>
       </div>
-    </div>
+    </main>
   );
 };
 

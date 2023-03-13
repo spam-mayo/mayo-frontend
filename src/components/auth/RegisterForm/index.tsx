@@ -10,9 +10,9 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import type { RegisterReq } from '@/api/auth/types';
 import { Link, useNavigate } from 'react-router-dom';
-import kakao from '@/assets/images/kakao3.jpeg';
-import google from '@/assets/images/google3.png';
-import OauthIcon from '@/components/auth/OauthIcon';
+// import kakao from '@/assets/images/kakao3.jpeg';
+// import google from '@/assets/images/google3.png';
+// import OauthIcon from '@/components/auth/OauthIcon';
 
 const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -149,8 +149,8 @@ const RegisterForm: FC = () => {
         </div>
         <hr />
         <div className="socialRegister">
-          <OauthIcon href="https://spammayo.shop/oauth2/authorization/kakao" src={kakao} alt="kakao" />
-          <OauthIcon href="https://spammayo.shop/oauth2/authorization/google" src={google} alt="google" />
+          {/* <OauthIcon href="https://spammayo.shop/oauth2/authorization/kakao" src={kakao} alt="kakao" />
+          <OauthIcon href="https://spammayo.shop/oauth2/authorization/google" src={google} alt="google" /> */}
         </div>
       </form>
     </div>

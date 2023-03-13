@@ -1,10 +1,9 @@
 import Button from '@/components/common/Button';
 import type { FC } from 'react';
-import './SampleButton.scss';
 
 const SampleButton: FC = () => {
   return (
-    <div className="sampleBlock">
+    <div className="container">
       <div className="buttons">
         <Button size="large">BUTTON</Button>
         <Button>BUTTON</Button>

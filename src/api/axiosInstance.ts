@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use(
       const refresh = localStorage.getItem('refresh');
 
       const { headers, data } = await axios.post(
-        'https://spammayo.shop/api/auth/token',
+        `${BASE_URL}/api/auth/token`,
         {},
         {
           headers: { Refresh: refresh },
