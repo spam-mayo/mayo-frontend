@@ -10,7 +10,12 @@ const Editor = () => {
 
   return (
     <div>
-      <ReactQuill theme="snow" value={convertedText} onChange={onChange} style={{ minHeight: '500px' }} />
+      <ReactQuill
+        theme="snow"
+        value={convertedText}
+        onChange={onChange}
+        style={{ minHeight: '500px', backgroundColor: 'white' }}
+      />
     </div>
   );
 };
