@@ -4,7 +4,7 @@ export const passwordChangeSchema = yup
   .object({
     newPassword: yup
       .string()
-      .required('기존 비밀번호를 입력해주세요.')
+      .required('새로운 비밀번호를 입력해주세요.')
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/,
         '영문, 특수문자, 숫자 포함한 8자 이상 16자 미만으로 입력해주세요.'
@@ -13,7 +13,7 @@ export const passwordChangeSchema = yup
       .string()
       .required('비밀번호를 확인해주세요.')
       .nullable()
-      .oneOf([yup.ref('firstPassword'), null], '비밀번호가 일치하지 않습니다.'),
+      .oneOf([yup.ref('newPassword'), null], '비밀번호가 일치하지 않습니다.'),
   })
   .required();
 

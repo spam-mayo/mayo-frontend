@@ -24,6 +24,7 @@ const PasswordFindModal: FC<Props> = ({ onClose }: Props) => {
   const { mutate: passwordCheck } = useMutation(postPasswordFind, {
     onSuccess: () => {
       alert('이메일로 비밀번호 변경링크를 전송했습니다. 유효시간은 10분 입니다.');
+      onClose();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
