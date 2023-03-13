@@ -1,12 +1,7 @@
-import InfoForm from '@/components/study/InfoForm';
 import type { FC } from 'react';
 
 const StudyCreate: FC = () => {
-  return (
-    <div>
-      <InfoForm />
-    </div>
-  );
+  return <div>스터디 create</div>;
 };
 
 export default StudyCreate;
