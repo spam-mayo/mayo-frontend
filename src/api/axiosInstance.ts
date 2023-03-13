@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 /* baseURL은 .env 파일로 대체 예정 */
-const BASE_URL = 'https://spammayo.shop/';
+const BASE_URL = 'https://spammayo.shop';
 const config: AxiosRequestConfig = { baseURL: BASE_URL };
 const axiosInstance = axios.create(config);
 
