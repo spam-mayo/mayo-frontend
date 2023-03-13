@@ -11,9 +11,11 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Header />
-        <RoutesSetup />
-        <Footer />
+        <div className="wrapper">
+          <Header />
+          <RoutesSetup />
+          <Footer />
+        </div>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
