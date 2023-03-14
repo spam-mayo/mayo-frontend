@@ -36,7 +36,7 @@ const LoginForm: FC = () => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        if (err.response?.status === 401) alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        if (err.response?.status === 400) alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       }
     },
   });
@@ -87,11 +87,10 @@ const LoginForm: FC = () => {
             <h1>로그인</h1>
             <p>환영합니다!</p>
             <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
-          </div>
-          <hr />
-          <div className="socialLogin">
-            <OauthIcon src={kakao} alt="kakao" onClick={onClickKakao} />
-            <OauthIcon src={google} alt="google" onClick={onClickGoogle} />
+            <div className="social-auth">
+              <OauthIcon src={kakao} alt="kakao" onClick={onClickKakao} />
+              <OauthIcon src={google} alt="google" onClick={onClickGoogle} />
+            </div>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">

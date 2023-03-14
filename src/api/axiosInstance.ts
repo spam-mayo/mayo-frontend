@@ -30,34 +30,38 @@ axiosInstance.interceptors.response.use(
       config,
       response: { status },
     } = error;
+    // access token 만료시
     if (status === 421) {
       const originalRequest = config;
-      const refresh = localStorage.getItem('refresh');
+      try {
+        const refresh = localStorage.getItem('refresh');
 
-      const { headers, data } = await axios.post(
-        `${BASE_URL}/api/auth/token`,
-        {},
-        {
-          headers: { Refresh: refresh },
+        const { headers } = await axios.post(
+          `${BASE_URL}/api/auth/token`,
+          {},
+          {
+            headers: { Refresh: refresh },
+          }
+        );
+
+        localStorage.setItem('authorization', headers.authorization);
+        const newAccessToken = headers.authorization;
+        originalRequest.headers.Authorization = newAccessToken;
+
+        return axiosInstance.request(originalRequest);
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          if (err.response?.status === 400) alert('엑세스 토큰값이 잘못되었습니다.s');
+          if (err.response?.status === 421) {
+            alert('세션이 만료되었습니다. 다시 로그아웃 해주세요.');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('authorization');
+            localStorage.removeItem('refresh');
+            postLogout();
+          }
         }
-      );
-      // 엑세스토큰 오류
-      if (data.status === 400) {
-        alert('엑세스 토큰 값이 잘못되었습니다.');
-      } else if (data.status === 421) {
-        // 리프레시 토큰 만료
-        alert('세션이 만료되었습니다. 다시 로그인해주세요.');
-        postLogout();
-        localStorage.removeItem('userId');
-        localStorage.removeItem('authorization');
-        localStorage.removeItem('refresh');
       }
-
-      localStorage.setItem('authorization', headers.authorization);
-      const newAccessToken = headers.authorization;
-      originalRequest.headers.Authorization = newAccessToken;
-
-      return axiosInstance.request(originalRequest);
+      return Promise.reject(error);
     }
     return Promise.reject(error);
   }

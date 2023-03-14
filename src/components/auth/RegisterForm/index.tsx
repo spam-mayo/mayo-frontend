@@ -97,11 +97,10 @@ const RegisterForm: FC = () => {
           <h1>회원가입</h1>
           <p>환영합니다!</p>
           <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
-        </div>
-        <hr />
-        <div className="socialRegister">
-          <OauthIcon src={kakao} alt="kakao" />
-          <OauthIcon src={google} alt="google" />
+          <div className="social-auth">
+            <OauthIcon src={kakao} alt="kakao" />
+            <OauthIcon src={google} alt="google" />
+          </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">
           <div className="auth">
