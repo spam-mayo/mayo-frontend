@@ -9,10 +9,10 @@ interface Props {
 }
 
 const OauthIcon: FC<Props> = ({ src, alt, onClick }) => {
-  //   const onClick = () => {
-  //     // postKakao();
-  //     console.log('clicked');
-  //   };
+  // const onClick = () => {
+  //   postKakao();
+  //   console.log('clicked');
+  // };
   return (
     // <a href={href}>
     //   <img src={src} alt={alt} />

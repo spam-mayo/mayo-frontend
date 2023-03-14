@@ -12,7 +12,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import kakao from '@/assets/images/kakao3.jpeg';
 import google from '@/assets/images/google3.png';
 import OauthIcon from '@/components/auth/OauthIcon';
-// import { postKakao } from '@/api/auth/authAPI';
+import { postKakao } from '@/api/auth/authAPI';
+import { postGoogle } from '@/api/auth/authAPI';
 
 const LoginForm: FC = () => {
   const {
@@ -39,14 +40,24 @@ const LoginForm: FC = () => {
     },
   });
 
-  // const { mutate: loginKakao } = useMutation(postKakao, {
-  //   onSuccess: (res) => {
-  //     alert(res);
-  //   },
-  //   onError: (err) => {
-  //     alert(err);
-  //   },
-  // });
+  const { mutate: loginKakao } = useMutation(postKakao, {
+    onSuccess: (res) => {
+      alert(JSON.stringify(res));
+      // location 에서 인가 코드 또는 에러 확인
+    },
+    onError: (err) => {
+      alert(JSON.stringify(err));
+    },
+  });
+
+  const { mutate: loginGoogle } = useMutation(postGoogle, {
+    onSuccess: (res) => {
+      alert(JSON.stringify(res));
+    },
+    onError: (err) => {
+      alert(JSON.stringify(err));
+    },
+  });
 
   const [isModalOpened, setIsModalOpened] = useState(false);
   const navigate = useNavigate();
@@ -59,10 +70,13 @@ const LoginForm: FC = () => {
     loginMember(data);
   };
 
-  // const onClickKakao = () => {
-  //   loginKakao();
-  // };
+  const onClickKakao = () => {
+    loginKakao();
+  };
 
+  const onClickGoogle = () => {
+    loginGoogle();
+  };
   return (
     <>
       {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
@@ -94,8 +108,8 @@ const LoginForm: FC = () => {
           </div>
           <hr />
           <div className="socialLogin">
-            <OauthIcon src={kakao} alt="kakao" />
-            <OauthIcon src={google} alt="google" />
+            <OauthIcon src={kakao} alt="kakao" onClick={onClickKakao} />
+            <OauthIcon src={google} alt="google" onClick={onClickGoogle} />
           </div>
         </form>
       </div>
