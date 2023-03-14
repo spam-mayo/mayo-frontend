@@ -1,12 +1,13 @@
-.formContainer {
-  display: flex;
+@import '@/styles/mixins/_flexbox.scss';
+@import '@/styles/constants/_colors.scss';
+
+.form-container {
+  @include flexbox();
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
   gap: 20px;
 
-  .form {
+  .password-change-form {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -14,9 +15,9 @@
     button {
       width: 386px;
       height: 50px;
-      font-weight: bold;
-      background-color: #ffd700;
-      color: white;
+      font-weight: 700;
+      background-color: $yellow;
+      color: $white;
       border-radius: 6px;
       border: none;
     }

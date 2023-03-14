@@ -1,16 +1,13 @@
-.registerContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.inputRow {
+  position: relative;
 
-  .registerForm {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    .inputRow {
-      display: flex;
-    }
+  button {
+    width: 60px;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    margin-right: 5px;
+    z-index: 999;
   }
 
   .socialRegister {
@@ -19,4 +16,10 @@
     justify-content: center;
     gap: 20px;
   }
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  color: black;
 }
