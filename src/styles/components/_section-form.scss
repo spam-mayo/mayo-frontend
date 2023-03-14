@@ -36,10 +36,6 @@
     }
   }
 
-  .required {
-    color: $red;
-  }
-
   .inner {
     display: flex;
     justify-content: space-between;
@@ -57,5 +53,14 @@
     border-top: 1px solid $border;
     padding-right: 30px;
     padding-top: 20px;
+  }
+
+  .content-title {
+    font-weight: 600;
+    margin: 0 0 10px 10px;
+  }
+
+  .required {
+    color: $red;
   }
 }

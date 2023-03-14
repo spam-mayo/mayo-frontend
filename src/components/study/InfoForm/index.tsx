@@ -2,7 +2,26 @@ import type { FC } from 'react';
 import Button from '@/components/common/Button';
 import Radio from '@/components/common/Radio';
 import Input from '@/components/common/Input';
+
+import Select, { SelectOption } from '@/components/auth/Select';
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import InputCalendar from '@/components/study/Calendar/InputCalendar';
+
+const categoryOption: SelectOption[] = [
+  { label: '선택 안 함', value: 'nofield', id: 1 },
+  { label: '프론트엔드', value: 'frontend', id: 2 },
+  { label: '백엔드', value: 'backend', id: 3 },
+  { label: '디자인', value: 'design', id: 4 },
+  { label: '기획', value: 'plan', id: 5 },
+  { label: '기타', value: 'other', id: 6 },
+];
+
+const sizeOption: SelectOption[] = [
+  { label: '인원미정', value: 'nofield', id: 1 },
+  { label: '4명 이하', value: 'frontend', id: 2 },
+  { label: '5명 ~ 10명', value: 'backend', id: 3 },
+  { label: '11명 이상', value: 'design', id: 4 },
+];
 
 const InfoForm: FC = () => {
   return (
@@ -15,7 +34,7 @@ const InfoForm: FC = () => {
       <div className="main-info">
         <div className="subtitle">
           <span>기본 정보</span>
-          <span className="required">*</span>
+          <span className="required"> *</span>
         </div>
         <div className="inner">
           <div className="inner-left">
@@ -24,11 +43,13 @@ const InfoForm: FC = () => {
             <div className="input-group">
               <InputCalendar />
             </div>
-            <Input placeholder="인원 미정" type="text" label="모집인원" />
+            <span className="content-title">
+              모집인원<span className="required"> *</span>
+            </span>
+            <Select options={sizeOption} />
           </div>
           <div className="inner-right">
             <Input placeholder="장소명, 주소를 검색해 주세요" type="text" label="모임장소" />
-            <img></img>
           </div>
         </div>
       </div>
@@ -39,7 +60,8 @@ const InfoForm: FC = () => {
         </div>
         <div className="inner">
           <div className="inner-left">
-            <Input placeholder="선택하세요" type="text" label="활동분야" />
+            <span className="content-title">활동분야</span>
+            <Select options={categoryOption} />
           </div>
           <div className="inner-right">
             <fieldset className="fieldset">
@@ -65,7 +87,9 @@ const InfoForm: FC = () => {
             </fieldset>
           </div>
         </div>
-        <div className="inner">기술스택</div>
+        <div className="inner">
+          <span className="content-title">기술스택</span>
+        </div>
         <div className="button-area">
           <Button size="large" color="gray" outline>
             취소
