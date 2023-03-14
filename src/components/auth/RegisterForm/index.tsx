@@ -11,7 +11,7 @@ import axios from 'axios';
 import type { RegisterReq } from '@/api/auth/types';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@/components/common/Button';
-import BtnInput from '@/components/auth/Input/BtnInput';
+import ButtonInput from '@/components/auth/Input/ButtonInput';
 
 const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -89,7 +89,7 @@ const RegisterForm: FC = () => {
 
   return (
     <div className="container">
-      <div className="row background">
+      <div className="row auth-container">
         <div className="col-lg-6 info">
           <h1>회원가입</h1>
           <p>환영합니다!</p>
@@ -104,7 +104,7 @@ const RegisterForm: FC = () => {
               error={errors.userName?.message}
             />
             <div className="inputRow">
-              <BtnInput
+              <ButtonInput
                 {...register('email')}
                 type="emil"
                 label="이메일"
@@ -117,7 +117,7 @@ const RegisterForm: FC = () => {
             </div>
             {isEmailChecked && (
               <div className="inputRow">
-                <BtnInput
+                <ButtonInput
                   {...register('authCode')}
                   label="인증번호"
                   placeholder="인증번호를 입력해주세요."
@@ -154,7 +154,7 @@ const RegisterForm: FC = () => {
             <div className="btnRow">
               <p>이미 계정이 있으신가요?</p>
               <Link to="/auth/login">
-                <button type="button" className="btnText">
+                <button type="button" className="underline">
                   로그인
                 </button>
               </Link>

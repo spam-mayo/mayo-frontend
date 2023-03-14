@@ -1,6 +1,9 @@
-.background {
-  align-items: center;
-  justify-content: center;
+@import '@/styles/constants/_colors.scss';
+@import '@/styles/mixins/_text-style.scss';
+@import '@/styles/mixins/_flexbox.scss';
+
+.auth-container {
+  @include flexbox();
   background-image: url('@/assets/images/authBackground.jpg');
   background-position: center;
   background-size: cover;
@@ -8,32 +11,30 @@
   height: 800px;
 
   .info {
-    color: white;
+    color: $white;
     text-align: center;
     display: flex;
     flex-direction: column;
     height: 80%;
 
     h1 {
-      font-weight: 800;
       font-size: 50px;
+      font-weight: 800;
       margin-bottom: 90px;
     }
 
     p {
-      font-size: 20px;
+      @include text-style-24();
       font-weight: 600;
       margin-bottom: 20px;
     }
   }
 
   form {
-    background-color: white;
+    background-color: $white;
     opacity: 0.95;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexbox();
 
     .auth {
       display: flex;
@@ -41,22 +42,21 @@
       gap: 22px;
 
       .btnRow {
-        display: flex;
-        justify-content: flex-end;
+        @include flexbox(flex-end, center);
 
         p {
-          color: #797979;
-          font-size: 16px;
+          @include text-style-16();
+          color: $charcoal;
         }
       }
 
-      .btnText {
+      .underline {
+        @include text-style-13();
         text-align: right;
-        color: #797979;
+        color: $charcoal;
         text-decoration: underline;
+        text-decoration-color: $charcoal;
         text-underline-position: under;
-        text-decoration-color: #797979;
-        font-size: 13px;
       }
     }
   }

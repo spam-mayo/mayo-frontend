@@ -51,7 +51,7 @@ const LoginForm: FC = () => {
     <>
       {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
       <div className="container">
-        <div className="row background">
+        <div className="row auth-container">
           <div className="col-lg-6 info">
             <h1>로그인</h1>
             <p>환영합니다!</p>
@@ -73,7 +73,7 @@ const LoginForm: FC = () => {
                 placeholder="비밀번호를 입력해주세요."
                 error={errors.password?.message}
               />
-              <button type="button" onClick={onClickCloseModal} className="btnText">
+              <button type="button" onClick={onClickCloseModal} className="underline">
                 비밀번호 찾기
               </button>
               <Button size="large" color="yellow" type="submit">
@@ -82,7 +82,7 @@ const LoginForm: FC = () => {
               <div className="btnRow">
                 <p>계정이 없으신가요?</p>
                 <Link to="/auth/register">
-                  <button type="button" className="btnText">
+                  <button type="button" className="underline">
                     회원가입
                   </button>
                 </Link>

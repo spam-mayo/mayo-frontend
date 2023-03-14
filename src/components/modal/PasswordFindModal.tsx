@@ -39,8 +39,8 @@ const PasswordFindModal: FC<Props> = ({ onClose }: Props) => {
   };
 
   return (
-    <div className="modalContainer">
-      <form onSubmit={handleSubmit(onSubmit)} className="modalContent">
+    <div className="modal-container">
+      <form onSubmit={handleSubmit(onSubmit)} className="modal-content">
         <p>비밀번호 변경 링크를 받을 이메일을 입력해주세요.</p>
         <Input
           {...register('email')}

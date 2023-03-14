@@ -6,14 +6,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, Props>(({ label, error, ...rest }, ref) => (
+const ButtonInput = forwardRef<HTMLInputElement, Props>(({ label, error, ...rest }, ref) => (
   <div className="input-container">
     <label>{label}</label>
-    <input {...rest} ref={ref} />
+    <input {...rest} ref={ref} className="btn-padding" />
     {error && <p className="err-msg">{error}</p>}
   </div>
 ));
 
-Input.displayName = 'Input';
+ButtonInput.displayName = 'ButtonInput';
 
-export default Input;
+export default ButtonInput;
