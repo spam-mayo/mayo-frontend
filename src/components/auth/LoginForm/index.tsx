@@ -2,13 +2,14 @@ import { useState, type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { type LoginSchema, loginSchema } from '@/constants/schema/loginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Input from '@/components/auth/Input';
+import Input from '@/components/auth/Input/Input';
 import './index.scss';
 import { useMutation } from '@tanstack/react-query';
 import { postLogin } from '@/api/auth/authAPI';
 import axios from 'axios';
 import PasswordFindModal from '@/components/modal/PasswordFindModal';
 import { Link, useNavigate } from 'react-router-dom';
+import Button from '@/components/common/Button';
 
 const LoginForm: FC = () => {
   const {
@@ -49,33 +50,46 @@ const LoginForm: FC = () => {
   return (
     <>
       {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
-      <div className="loginContainer">
-        <form onSubmit={handleSubmit(onSubmit)} className="loginFormContainer">
-          <Input
-            {...register('email')}
-            type="emil"
-            label="이메일"
-            placeholder="이메일을 입력해주세요."
-            error={errors.email?.message}
-          />
-          <Input
-            {...register('password')}
-            type="password"
-            label="비밀번호"
-            placeholder="비밀번호를 입력해주세요."
-            error={errors.password?.message}
-          />
-          <button type="button" onClick={onClickCloseModal}>
-            비밀번호 찾기
-          </button>
-          <button type="submit">로그인</button>
-          <div className="row">
-            <p>계정이 없으신가요?</p>
-            <Link to="/auth/register">
-              <button type="button">회원가입</button>
-            </Link>
+      <div className="container">
+        <div className="row auth-container">
+          <div className="col-lg-6 info">
+            <h1>로그인</h1>
+            <p>환영합니다!</p>
+            <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
           </div>
-        </form>
+          <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">
+            <div className="auth">
+              <Input
+                {...register('email')}
+                type="emil"
+                label="이메일"
+                placeholder="이메일을 입력해주세요."
+                error={errors.email?.message}
+              />
+              <Input
+                {...register('password')}
+                type="password"
+                label="비밀번호"
+                placeholder="비밀번호를 입력해주세요."
+                error={errors.password?.message}
+              />
+              <button type="button" onClick={onClickCloseModal} className="underline">
+                비밀번호 찾기
+              </button>
+              <Button size="large" color="yellow" type="submit">
+                로그인
+              </Button>
+              <div className="btnRow">
+                <p>계정이 없으신가요?</p>
+                <Link to="/auth/register">
+                  <button type="button" className="underline">
+                    회원가입
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

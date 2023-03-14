@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import { RoutesSetup } from './routes/RoutesSetup';
+import '@/styles/main.scss';
 
 const queryClient = new QueryClient();
 
