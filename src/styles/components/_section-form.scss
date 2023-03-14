@@ -40,13 +40,6 @@
     color: $red;
   }
 
-  .button-area {
-    text-align: right;
-    border-top: 1px solid $border;
-    padding-right: 30px;
-    padding-top: 20px;
-  }
-
   .inner {
     display: flex;
     justify-content: space-between;
@@ -57,5 +50,12 @@
       display: flex;
       flex-direction: column;
     }
+  }
+
+  .button-area {
+    text-align: right;
+    border-top: 1px solid $border;
+    padding-right: 30px;
+    padding-top: 20px;
   }
 }
