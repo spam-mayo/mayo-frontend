@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import Button from '@/components/common/Button';
 import Radio from '@/components/common/Radio';
 import Input from '@/components/common/Input';
+import InputCalendar from '@/components/study/Calendar/InputCalendar';
 
 const InfoForm: FC = () => {
   return (
@@ -21,8 +22,7 @@ const InfoForm: FC = () => {
             <Input placeholder="스터디 그룹 명을 정하세요" type="text" label="스터디명" />
             <Input placeholder="구인 글의 제목을 정하세요" type="text" label="스터디 제목" />
             <div className="input-group">
-              <i className="icon-calendar"></i>
-              <Input placeholder="모임 기간을 선택하세요" type="text" label="모임기간" />
+              <InputCalendar />
             </div>
             <Input placeholder="인원 미정" type="text" label="모집인원" />
           </div>
