@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import './index.scss';
+import { MdOutlineModeEditOutline } from 'react-icons/md';
 
 // interface Props {
 //   profileUrl: string;
@@ -30,10 +31,9 @@ const UserProfile: FC<Props> = ({ src, alt, name }) => {
     <div className="proflie">
       <div className="imgContainer">
         <img src={src} alt={alt} />
+        <MdOutlineModeEditOutline className="icon" color="white" />
       </div>
-      <div>
-        <p>{name}</p>
-      </div>
+      <p>{name}</p>
     </div>
   );
 };
