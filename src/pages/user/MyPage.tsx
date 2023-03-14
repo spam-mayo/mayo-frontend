@@ -4,8 +4,14 @@ import type { FC } from 'react';
 import UserProfile from '@/components/mypage/UserProfile';
 import UserInfo from '@/components/mypage/UserInfo/UserInfo';
 import sample from '@/assets/images/sample.jpeg';
+// import ProfileEditModal from '@/components/modal/ProfileEditModal';
 
 const MyPage: FC = () => {
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const onClickOpenModal = () => {
+  //   setIsModalOpen(!isModalOpen);
+  // };
   // const userId = localStorage.getItem('userId');
 
   // if (!userId) {
@@ -14,9 +20,11 @@ const MyPage: FC = () => {
   // const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
 
   return (
-    <div className="container">
-      <div className="row">
-        {/* <UserProfile userName={data?.data.userName} profileUrl={data?.data.profileUrl} />
+    <>
+      {/* {isModalOpen && <ProfileEditModal onClick={onClickOpenModal} />} */}
+      <div className="container">
+        <div className="row">
+          {/* <UserProfile userName={data?.data.userName} profileUrl={data?.data.profileUrl} />
       <UserInfo
         userName={data?.data.userName}
         email={data?.data.email}
@@ -24,15 +32,18 @@ const MyPage: FC = () => {
         stack={data?.data.stack}
       /> */}
 
-        <div className="col-lg-3">
-          <UserProfile src={sample} alt="profile" name="김현정" />
-        </div>
+          <div className="col-lg-3">
+            <UserProfile src={sample} alt="profile" name="김현정" />
+          </div>
 
-        <div className="col-lg-9">
-          <UserInfo />
+          {/* <ProfileEditModal /> */}
+
+          <div className="col-lg-9">
+            <UserInfo />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
