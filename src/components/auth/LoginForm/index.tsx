@@ -30,7 +30,7 @@ const LoginForm: FC = () => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        if (err.response?.status === 401) alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        if (err.response?.status === 400) alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       }
     },
   });

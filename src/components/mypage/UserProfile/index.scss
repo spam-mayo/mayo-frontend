@@ -1,0 +1,16 @@
+.proflie {
+  height: 286px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  background-color: white;
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+}
