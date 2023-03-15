@@ -22,8 +22,10 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        if (err.response?.data.massage === 'Max file size 2MB') alert('파일이 2MB를 초과하였습니다.');
-        if (err.response?.data.massage === 'Invalid Values') alert('파일이 2MB를 초과하였습니다.');
+        const statusCode = err.response?.status;
+        const errorMessage = err.response?.data?.message;
+        if (statusCode === 400 && errorMessage === 'Max file size 2MB') alert('파일이 2MB를 초과하였습니다.');
+        if (err.response?.data.massage === 'Invalid Values') alert('jpg/jpeg, png, gif 파일만 업로드 가능합니다.');
       }
     },
   });
@@ -44,12 +46,12 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
   };
 
   const onClickDeleteImage = () => {
-    URL.revokeObjectURL(profileImg);
-    setProfileImg('');
+    // URL.revokeObjectURL(profileImg);
+    // setProfileImg('');
 
     const userId = localStorage.getItem('userId');
     if (!userId) return;
-    profileImage({ userId });
+    // profileImage({ userId });
   };
 
   const onClickImgUpload = useCallback(() => {
