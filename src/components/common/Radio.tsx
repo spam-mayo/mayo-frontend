@@ -7,10 +7,12 @@ type RadioProps = {
 
 const Radio = ({ children, value, name, defaultChecked }: RadioProps) => {
   return (
-    <label>
-      <input type="radio" value={value} name={name} defaultChecked={defaultChecked} />
-      {children}
-    </label>
+    <div className="radio">
+      <label>
+        <input type="radio" value={value} name={name} defaultChecked={defaultChecked} />
+        {children}
+      </label>
+    </div>
   );
 };
 

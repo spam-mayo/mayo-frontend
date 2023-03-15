@@ -8,7 +8,7 @@ const InputCalendar = () => {
       </label>
       <div className="input-wrapper">
         <i className="icon-calendar" />
-        <input placeholder="모임기간을 선택하세요" type="text" />
+        <input placeholder="모임기간을 선택하세요" />
       </div>
       <div className="calendar-wrapper">
         <CalendarRange />
