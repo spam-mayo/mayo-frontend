@@ -27,5 +27,5 @@ export interface PasswordChangeReq {
 
 export interface ProfileEditReq {
   userId: string;
-  image: File;
+  image?: FormData;
 }

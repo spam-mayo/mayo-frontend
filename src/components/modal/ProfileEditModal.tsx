@@ -3,8 +3,8 @@ import { type FC, useState, useRef, useCallback } from 'react';
 import './profileEditModal.scss';
 import { BsTrash3 } from 'react-icons/bs';
 import { BsCloudUpload } from 'react-icons/bs';
-//import { patchProfileImage } from '@/api/auth/authAPI';
-//import { useMutation } from '@tanstack/react-query';
+import { patchProfileImage } from '@/api/auth/authAPI';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface Props {
@@ -16,36 +16,18 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
   const [profileImg, setProfileImg] = useState(src);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // const { mutate: profileImage } = useMutation(patchProfileImage, {
-  //   onSuccess: (res) => {
-  //     console.log('수정 완료');
-  //     console.log(res);
-  //   },
-  //   onError: (err) => {
-  //     if (axios.isAxiosError(err)) {
-  //       console.log(err);
-  //       if (err.response?.data.massage === 'Max file size 2MB') alert('파일이 2MB를 초과하였습니다.');
-  //       // if (err.response?.data.massage === 'Invalid Values') alert('파일이 2MB를 초과하였습니다.');
-  //     }
-  //   },
-  // });
+  const { mutate: profileImage } = useMutation(patchProfileImage, {
+    onSuccess: () => {
+      alert('수정 완료');
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        if (err.response?.data.massage === 'Max file size 2MB') alert('파일이 2MB를 초과하였습니다.');
+        if (err.response?.data.massage === 'Invalid Values') alert('파일이 2MB를 초과하였습니다.');
+      }
+    },
+  });
 
-  // const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (!event.target.files) {
-  //     return;
-  //   }
-  //   setProfileImg(URL.createObjectURL(event.target.files[0]));
-
-  //   const userId = localStorage.getItem('userId');
-  //   if (!userId) return;
-
-  //   // const image = new FormData();
-  //   // image.append('file', event.target.files[0]);
-
-  //   // profileImage({ userId, image });
-  //   const image = event.target.files[0];
-  //   patchProfileImage({ userId, image });
-  // };
   const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
       return;
@@ -56,27 +38,18 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     if (!userId) return;
 
     const file = event.target.files[0];
-
-    patchProfileImage({ userId, file });
-  };
-
-  const patchProfileImage = async ({ userId, file }: { userId: string; file: File }) => {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    };
-
-    const response = await axios.patch(`/api/users/${userId}/image`, formData, config);
-    return response.data;
+    const image = new FormData();
+    image.append('image', file);
+    profileImage({ userId, image });
   };
 
   const onClickDeleteImage = () => {
     URL.revokeObjectURL(profileImg);
     setProfileImg('');
+
+    const userId = localStorage.getItem('userId');
+    if (!userId) return;
+    profileImage({ userId });
   };
 
   const onClickImgUpload = useCallback(() => {
@@ -85,10 +58,6 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     }
     inputRef.current.click();
   }, []);
-
-  // const onClickPatchImg = () => {
-
-  // };
 
   return (
     <div className="profile-edit-modal-container">
