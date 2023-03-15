@@ -15,8 +15,8 @@ import google from '@/assets/images/google3.png';
 import OauthIcon from '@/components/auth/OauthIcon';
 import Button from '@/components/common/Button';
 import ButtonInput from '@/components/auth/Input/ButtonInput';
-import { postKakao } from '@/api/auth/authAPI';
-import { postGoogle } from '@/api/auth/authAPI';
+// import { postKakao } from '@/api/auth/authAPI';
+// import { postGoogle } from '@/api/auth/authAPI';
 
 const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -72,24 +72,24 @@ const RegisterForm: FC = () => {
     },
   });
 
-  const { mutate: loginKakao } = useMutation(postKakao, {
-    onSuccess: (res) => {
-      alert(JSON.stringify(res));
-      // location 에서 인가 코드 또는 에러 확인
-    },
-    onError: (err) => {
-      alert(JSON.stringify(err));
-    },
-  });
+  // const { mutate: loginKakao } = useMutation(postKakao, {
+  //   onSuccess: (res) => {
+  //     alert(JSON.stringify(res));
+  //     // location 에서 인가 코드 또는 에러 확인
+  //   },
+  //   onError: (err) => {
+  //     alert(JSON.stringify(err));
+  //   },
+  // });
 
-  const { mutate: loginGoogle } = useMutation(postGoogle, {
-    onSuccess: (res) => {
-      alert(JSON.stringify(res));
-    },
-    onError: (err) => {
-      alert(JSON.stringify(err));
-    },
-  });
+  // const { mutate: loginGoogle } = useMutation(postGoogle, {
+  //   onSuccess: (res) => {
+  //     alert(JSON.stringify(res));
+  //   },
+  //   onError: (err) => {
+  //     alert(JSON.stringify(err));
+  //   },
+  // });
 
   const [isEmailChecked, setIsEmailChecked] = useState(false);
   const navigate = useNavigate();
@@ -111,13 +111,13 @@ const RegisterForm: FC = () => {
     registerMember(data);
   };
 
-  const onClickKakao = () => {
-    loginKakao();
-  };
+  // const onClickKakao = () => {
+  //   loginKakao();
+  // };
 
-  const onClickGoogle = () => {
-    loginGoogle();
-  };
+  // const onClickGoogle = () => {
+  //   loginGoogle();
+  // };
 
   return (
     <div className="container">
@@ -127,8 +127,8 @@ const RegisterForm: FC = () => {
           <p>환영합니다!</p>
           <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
           <div className="social-auth">
-            <OauthIcon src={kakao} alt="kakao" onClick={onClickKakao} />
-            <OauthIcon src={google} alt="google" onClick={onClickGoogle} />
+            <OauthIcon src={kakao} alt="kakao" href="kakao" />
+            <OauthIcon src={google} alt="google" href="google" />
           </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">

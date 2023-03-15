@@ -1,0 +1,22 @@
+{
+  "version": 3,
+  "routes": [
+    {
+      "src": "^/[^.]+$",
+      "dest": "/",
+      "status": 200
+    },
+    {
+      "handle": "error"
+    },
+    {
+      "status": 404,
+      "src": "^(?!/api).*$",
+      "dest": "/404.html"
+    }
+  ],
+  "framework": {
+    "version": "4.1.1"
+  },
+  "crons": []
+}

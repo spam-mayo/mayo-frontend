@@ -4,17 +4,18 @@ import './index.scss';
 interface Props {
   src: string;
   alt: string;
-  onClick?: () => void;
+  href: string;
 }
 
-const OauthIcon: FC<Props> = ({ src, alt, onClick }) => {
+const OauthIcon: FC<Props> = ({ src, alt, href }) => {
+  const BASE = 'https://spammayo.shop/oauth2/authorization/';
   return (
-    // <a href={`${BASE}/${href}`}>
-    //   <img src={src} alt={alt} />
-    // </a>
-    <div>
-      <img src={src} alt={alt} onClick={onClick} />
-    </div>
+    <a href={`${BASE}/${href}`}>
+      <img src={src} alt={alt} />
+    </a>
+    // <div>
+    //   <img src={src} alt={alt} onClick={onClick} />
+    // </div>
   );
 };
 

@@ -12,8 +12,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import kakao from '@/assets/images/kakao3.jpeg';
 import google from '@/assets/images/google3.png';
 import OauthIcon from '@/components/auth/OauthIcon';
-import { postKakao } from '@/api/auth/authAPI';
-import { postGoogle } from '@/api/auth/authAPI';
+// import { postKakao } from '@/api/auth/authAPI';
+// import { postGoogle } from '@/api/auth/authAPI';
 import Button from '@/components/common/Button';
 
 const LoginForm: FC = () => {
@@ -41,24 +41,24 @@ const LoginForm: FC = () => {
     },
   });
 
-  const { mutate: loginKakao } = useMutation(postKakao, {
-    onSuccess: (res) => {
-      alert(JSON.stringify(res));
-      // location 에서 인가 코드 또는 에러 확인
-    },
-    onError: (err) => {
-      alert(JSON.stringify(err));
-    },
-  });
+  // const { mutate: loginKakao } = useMutation(postKakao, {
+  //   onSuccess: (res) => {
+  //     alert(JSON.stringify(res));
+  //     // location 에서 인가 코드 또는 에러 확인
+  //   },
+  //   onError: (err) => {
+  //     alert(JSON.stringify(err));
+  //   },
+  // });
 
-  const { mutate: loginGoogle } = useMutation(postGoogle, {
-    onSuccess: (res) => {
-      alert(JSON.stringify(res));
-    },
-    onError: (err) => {
-      alert(JSON.stringify(err));
-    },
-  });
+  // const { mutate: loginGoogle } = useMutation(postGoogle, {
+  //   onSuccess: (res) => {
+  //     alert(JSON.stringify(res));
+  //   },
+  //   onError: (err) => {
+  //     alert(JSON.stringify(err));
+  //   },
+  // });
 
   const [isModalOpened, setIsModalOpened] = useState(false);
   const navigate = useNavigate();
@@ -71,13 +71,14 @@ const LoginForm: FC = () => {
     loginMember(data);
   };
 
-  const onClickKakao = () => {
-    loginKakao();
-  };
+  // const onClickKakao = () => {
+  //   loginKakao();
+  // };
 
-  const onClickGoogle = () => {
-    loginGoogle();
-  };
+  // const onClickGoogle = () => {
+  //   loginGoogle();
+  // };
+
   return (
     <>
       {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
@@ -88,8 +89,8 @@ const LoginForm: FC = () => {
             <p>환영합니다!</p>
             <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
             <div className="social-auth">
-              <OauthIcon src={kakao} alt="kakao" onClick={onClickKakao} />
-              <OauthIcon src={google} alt="google" onClick={onClickGoogle} />
+              <OauthIcon src={kakao} alt="kakao" href="kakao" />
+              <OauthIcon src={google} alt="google" href="google" />
             </div>
           </div>
 
