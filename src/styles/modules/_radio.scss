@@ -1,19 +1,10 @@
-.radio {
-  label {
-    padding: 0.1em 0.4em;
-    font-weight: 400;
-    font-size: 0.9em;
-  }
+label {
+  padding: 0.1em 0.4em;
+  font-weight: 400;
+}
 
-  span {
-    vertical-align: middle;
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+span {
+  vertical-align: middle;
 }
 
 [type='radio'] {
@@ -42,9 +33,15 @@
 
 fieldset {
   display: flex;
-  justify-content: left;
+  justify-content: center;
   border: none;
   margin: 0;
   padding: 20px 20px;
   font-weight: 600;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

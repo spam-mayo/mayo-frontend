@@ -45,7 +45,6 @@
     .inner-left {
       display: flex;
       flex-direction: column;
-      width: 48%;
     }
   }
 
@@ -64,10 +63,4 @@
   .required {
     color: $red;
   }
-}
-
-.dropdown-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
 }

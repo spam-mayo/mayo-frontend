@@ -3,12 +3,11 @@ import Button from '@/components/common/Button';
 import Radio from '@/components/common/Radio';
 import Input from '@/components/common/Input';
 
+import Select, { SelectOption } from '@/components/auth/Select';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import InputCalendar from '@/components/study/Calendar/InputCalendar';
-import Dropdown from '@/components/study/Dropdown/Dropdown';
-import KakaoMap from '@/components/common/Map';
 
-const jobOption = [
+const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
   { label: '프론트엔드', value: 'frontend', id: 2 },
   { label: '백엔드', value: 'backend', id: 3 },
@@ -17,11 +16,11 @@ const jobOption = [
   { label: '기타', value: 'other', id: 6 },
 ];
 
-const peopleNumberOption = [
-  { label: '인원미정', value: '0', id: 1 },
-  { label: '4명 이하', value: 'under4', id: 2 },
-  { label: '5명 ~ 10명', value: '5to10', id: 3 },
-  { label: '11명 이상', value: 'over11', id: 4 },
+const sizeOption: SelectOption[] = [
+  { label: '인원미정', value: 'nofield', id: 1 },
+  { label: '4명 이하', value: 'frontend', id: 2 },
+  { label: '5명 ~ 10명', value: 'backend', id: 3 },
+  { label: '11명 이상', value: 'design', id: 4 },
 ];
 
 const InfoForm: FC = () => {
@@ -44,11 +43,13 @@ const InfoForm: FC = () => {
             <div className="input-group">
               <InputCalendar />
             </div>
+            <span className="content-title">
+              모집인원<span className="required"> *</span>
+            </span>
+            <Select options={sizeOption} />
           </div>
           <div className="inner-right">
-            <Dropdown title="모집인원" options={peopleNumberOption} />
             <Input placeholder="장소명, 주소를 검색해 주세요" type="text" label="모임장소" />
-            <KakaoMap />
           </div>
         </div>
       </div>
@@ -59,7 +60,8 @@ const InfoForm: FC = () => {
         </div>
         <div className="inner">
           <div className="inner-left">
-            <Dropdown title="활동분야" options={jobOption} />
+            <span className="content-title">활동분야</span>
+            <Select options={categoryOption} />
           </div>
           <div className="inner-right">
             <fieldset className="fieldset">
