@@ -37,6 +37,10 @@
     gap: 20px;
     padding: 20px;
 
+    input {
+      display: none;
+    }
+
     p {
       color: $charcoal;
     }

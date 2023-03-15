@@ -25,13 +25,14 @@ interface Props {
   src: string;
   alt: string;
   name: string;
+  onClick: () => void;
 }
-const UserProfile: FC<Props> = ({ src, alt, name }) => {
+const UserProfile: FC<Props> = ({ src, alt, name, onClick }) => {
   return (
     <div className="proflie">
       <div className="imgContainer">
         <img src={src} alt={alt} />
-        <MdOutlineModeEditOutline className="icon" color="white" />
+        <MdOutlineModeEditOutline className="icon" color="white" onClick={onClick} />
       </div>
       <p>{name}</p>
     </div>
