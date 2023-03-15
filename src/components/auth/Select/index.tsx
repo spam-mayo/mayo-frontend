@@ -11,7 +11,7 @@ interface Props extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement
 }
 
 const Select = forwardRef<HTMLSelectElement, Props>(({ options, ...props }, ref) => (
-  <select ref={ref} {...props}>
+  <select className="select" ref={ref} {...props}>
     {options.map(({ label, value, id }) => (
       <option key={id} value={value}>
         {label}
