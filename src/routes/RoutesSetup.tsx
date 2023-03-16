@@ -22,7 +22,7 @@ export const RoutesSetup = () => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="password" element={<PasswordChange />} />
-        <Route path="/loading" element={<LoadingPage />} />
+        <Route path="loading" element={<LoadingPage />} />
       </Route>
       <Route path="/user/mypage" element={<MyPage />} />
       <Route path="/study">
