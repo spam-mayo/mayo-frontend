@@ -14,6 +14,7 @@ interface Props {
 
 const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
   const [profileImg, setProfileImg] = useState(src);
+  const [prevImg, setPrevImg] = useState(src);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const { mutate: profileImage } = useMutation(patchProfileImage, {
@@ -24,8 +25,14 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
       if (axios.isAxiosError(err)) {
         const statusCode = err.response?.status;
         const errorMessage = err.response?.data?.message;
-        if (statusCode === 400 && errorMessage === 'Max file size 2MB') alert('파일이 2MB를 초과하였습니다.');
-        if (err.response?.data.massage === 'Invalid Values') alert('jpg/jpeg, png, gif 파일만 업로드 가능합니다.');
+        if (statusCode === 400 && errorMessage === 'Max file size 2MB') {
+          setProfileImg(prevImg);
+          alert('파일이 2MB를 초과하였습니다.');
+        }
+        if (statusCode === 400 && errorMessage === 'Invalid Values') {
+          setProfileImg(prevImg);
+          alert('jpg/jpeg, png, gif 파일만 업로드 가능합니다.');
+        }
       }
     },
   });
@@ -34,6 +41,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     if (!event.target.files) {
       return;
     }
+    setPrevImg(profileImg);
     setProfileImg(URL.createObjectURL(event.target.files[0]));
 
     const userId = localStorage.getItem('userId');
@@ -46,12 +54,13 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
   };
 
   const onClickDeleteImage = () => {
-    // URL.revokeObjectURL(profileImg);
-    // setProfileImg('');
-
     const userId = localStorage.getItem('userId');
     if (!userId) return;
-    // profileImage({ userId });
+
+    const image = new FormData();
+    image.append('image', '');
+    profileImage({ userId, image });
+    setProfileImg('');
   };
 
   const onClickImgUpload = useCallback(() => {
@@ -83,7 +92,6 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
             </Button>
           </div>
         </div>
-
         <div className="file-form-info">
           <p>jpeg/jpg, png, gif 파일만 업로드 가능합니다. </p>
         </div>
@@ -91,7 +99,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
           <Button color="gray" outline onClick={onClose}>
             취소
           </Button>
-          <Button>등록완료</Button>
+          <Button onClick={onClose}>등록완료</Button>
         </div>
       </div>
     </div>

@@ -2,25 +2,6 @@ import type { FC } from 'react';
 import './index.scss';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
 
-// interface Props {
-//   profileUrl: string;
-//   userName: string;
-// }
-
-// const UserProfile: FC<Props> = (props: Props) => {
-//   const { userName, profileUrl } = props;
-//   return (
-//     <div>
-//       <div>
-//         <img src={profileUrl}></img>
-//       </div>
-//       <div>
-//         <p>{userName}</p>
-//       </div>
-//     </div>
-//   );
-// };
-
 interface Props {
   src: string;
   alt: string;
