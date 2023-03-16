@@ -14,7 +14,6 @@ interface Props {
 
 const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
   const [profileImg, setProfileImg] = useState(src);
-  const [prevImg, setPrevImg] = useState(src);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const { mutate: profileImage } = useMutation(patchProfileImage, {
@@ -26,11 +25,11 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
         const statusCode = err.response?.status;
         const errorMessage = err.response?.data?.message;
         if (statusCode === 400 && errorMessage === 'Max file size 2MB') {
-          setProfileImg(prevImg);
+          setProfileImg(src);
           alert('파일이 2MB를 초과하였습니다.');
         }
         if (statusCode === 400 && errorMessage === 'Invalid Values') {
-          setProfileImg(prevImg);
+          setProfileImg(src);
           alert('jpg/jpeg, png, gif 파일만 업로드 가능합니다.');
         }
       }
@@ -41,7 +40,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     if (!event.target.files) {
       return;
     }
-    setPrevImg(profileImg);
+
     setProfileImg(URL.createObjectURL(event.target.files[0]));
 
     const userId = localStorage.getItem('userId');
@@ -60,7 +59,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     const image = new FormData();
     image.append('image', '');
     profileImage({ userId, image });
-    setProfileImg('');
+    setProfileImg('https://spam-image.s3.ap-northeast-2.amazonaws.com/basic.png');
   };
 
   const onClickImgUpload = useCallback(() => {
