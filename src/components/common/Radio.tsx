@@ -2,15 +2,14 @@ type RadioProps = {
   children: React.ReactNode;
   value: string;
   name: string;
-  defaultChecked?: boolean;
 };
 
-const Radio = ({ children, value, name, defaultChecked }: RadioProps) => {
+const Radio = ({ children, value, name }: RadioProps) => {
   return (
-    <label>
-      <input type="radio" value={value} name={name} defaultChecked={defaultChecked} />
-      {children}
-    </label>
+    <div className="radio">
+      <input type="radio" value={value} name={name} />
+      <span className="radio-input">{children}</span>
+    </div>
   );
 };
 

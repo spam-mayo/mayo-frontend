@@ -36,17 +36,6 @@
     }
   }
 
-  .required {
-    color: $red;
-  }
-
-  .button-area {
-    text-align: right;
-    border-top: 1px solid $border;
-    padding-right: 30px;
-    padding-top: 20px;
-  }
-
   .inner {
     display: flex;
     justify-content: space-between;
@@ -56,6 +45,29 @@
     .inner-left {
       display: flex;
       flex-direction: column;
+      width: 48%;
     }
   }
+
+  .button-area {
+    text-align: right;
+    border-top: 1px solid $border;
+    padding-right: 30px;
+    padding-top: 20px;
+  }
+
+  .content-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .required {
+    color: $red;
+  }
+}
+
+.dropdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
 }

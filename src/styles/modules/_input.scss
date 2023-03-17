@@ -1,4 +1,4 @@
-.inputCountainer {
+.input-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -8,9 +8,13 @@
     font-weight: 600;
   }
 
+  span {
+    color: $red;
+  }
+
   input {
     background-color: $background;
-    width: 386px;
+    width: 100%;
     height: 50px;
     border: 1px solid $border;
     border-radius: 6px;

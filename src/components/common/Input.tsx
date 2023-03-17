@@ -6,8 +6,11 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(({ label, error, ...rest }, ref) => (
-  <div className="inputCountainer">
-    <label>{label}</label>
+  <div className="input-container">
+    <label>
+      {label}
+      <span> *</span>
+    </label>
     <input {...rest} ref={ref} />
     {error && <p className="errMsg">{error}</p>}
   </div>
