@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import './index.scss';
-import { MdOutlineModeEditOutline } from 'react-icons/md';
 
 interface Props {
   src: string;
@@ -8,12 +7,21 @@ interface Props {
   name: string;
   onClick: () => void;
 }
+
+const style = {
+  color: 'white',
+  fontSize: '20px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
 const UserProfile: FC<Props> = ({ src, alt, name, onClick }) => {
   return (
     <div className="proflie">
       <div className="imgContainer">
         <img src={src} alt={alt} />
-        <MdOutlineModeEditOutline className="icon" color="white" onClick={onClick} />
+        <i className="icon-pencil icon" onClick={onClick} style={style} />
       </div>
       <p>{name}</p>
     </div>

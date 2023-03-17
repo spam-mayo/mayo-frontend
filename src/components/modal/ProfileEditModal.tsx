@@ -1,8 +1,6 @@
 import Button from '@/components/common/Button';
 import { type FC, useState, useRef, useCallback } from 'react';
 import './profileEditModal.scss';
-import { BsTrash3 } from 'react-icons/bs';
-import { BsCloudUpload } from 'react-icons/bs';
 import { patchProfileImage } from '@/api/auth/authAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -82,11 +80,11 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
           <input type="file" accept=".gif, .jpg, .jpeg, .png" onChange={onChangeImage} ref={inputRef} />
           <div>
             <Button color="gray" outline onClick={onClickImgUpload}>
-              <BsCloudUpload />
+              <i className="icon-cloud-upload" />
               사진 올리기
             </Button>
             <Button color="gray" outline onClick={onClickDeleteImage}>
-              <BsTrash3 />
+              <i className="icon-bin" />
               사진 지우기
             </Button>
           </div>
