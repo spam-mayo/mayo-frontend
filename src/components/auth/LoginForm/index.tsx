@@ -11,7 +11,7 @@ import PasswordFindModal from '@/components/modal/PasswordFindModal';
 import { Link, useNavigate } from 'react-router-dom';
 import kakao from '@/assets/images/kakao3.jpeg';
 import google from '@/assets/images/google3.png';
-import OauthIcon from '@/components/auth/OauthIcon';
+import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
 
 const LoginForm: FC = () => {
@@ -60,8 +60,8 @@ const LoginForm: FC = () => {
             <p>환영합니다!</p>
             <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
             <div className="social-auth">
-              <OauthIcon src={kakao} alt="kakao" href="kakao" />
-              <OauthIcon src={google} alt="google" href="google" />
+              <OauthButton src={kakao} alt="kakao" href="kakao" />
+              <OauthButton src={google} alt="google" href="google" />
             </div>
           </div>
 

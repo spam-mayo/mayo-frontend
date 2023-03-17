@@ -7,7 +7,7 @@ interface Props {
   href: string;
 }
 
-const OauthIcon: FC<Props> = ({ src, alt, href }) => {
+const OauthButton: FC<Props> = ({ src, alt, href }) => {
   const BASE = 'https://spammayo.shop/oauth2/authorization';
   return (
     <a href={`${BASE}/${href}`}>
@@ -16,4 +16,4 @@ const OauthIcon: FC<Props> = ({ src, alt, href }) => {
   );
 };
 
-export default OauthIcon;
+export default OauthButton;
