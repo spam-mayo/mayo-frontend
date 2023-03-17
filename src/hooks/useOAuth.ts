@@ -15,10 +15,12 @@ const useOAuth = () => {
     localStorage.setItem('authorization', authorization);
     localStorage.setItem('refresh', refresh);
     localStorage.setItem('userId', userId);
+    // 소셜로그인 했을경우 비밀번호 변경이 불가능하기 때문에 소셜 로그인으로 진행한 경우 구분을 위해 추가 저장
+    localStorage.setItem('oauth', 'true');
   }
-  const accessToken = localStorage.getItem('authorization');
+  const refreshToken = localStorage.getItem('refresh');
 
-  if (accessToken && refresh) {
+  if (refreshToken) {
     window.location.replace('/');
   } else {
     // 토큰 없다면 일반 회원가입으로 가입한 계정
