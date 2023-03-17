@@ -4,6 +4,12 @@
 @import 'constants/grids';
 @import 'constants/breakpoints';
 
+/* 믹스인 */
+@import 'mixins/responsive';
+@import 'mixins/text-style';
+@import 'mixins/position';
+@import 'mixins/flexbox';
+
 /* 배경 */
 @import 'base/font';
 @import 'base/normalize';
@@ -16,12 +22,7 @@
 @import 'modules/radio';
 @import 'modules/calendar';
 @import 'modules/select';
-
-/* 믹스인 */
-@import 'mixins/responsive';
-@import 'mixins/text-style';
-@import 'mixins/position';
-@import 'mixins/flexbox';
+@import 'modules/checkbox';
 
 /* 컴포넌트 */
 @import 'components/header';

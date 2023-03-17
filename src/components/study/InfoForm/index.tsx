@@ -7,6 +7,7 @@ import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import InputCalendar from '@/components/study/Calendar/InputCalendar';
 import Dropdown from '@/components/study/Dropdown/Dropdown';
 import KakaoMap from '@/components/common/Map';
+import Stack from '@/components/study/Stack/Stack';
 
 const jobOption = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -79,15 +80,13 @@ const InfoForm: FC = () => {
               <Radio name="period" value="dayily">
                 매일
               </Radio>
-              <Radio name="period" value="etc" defaultChecked>
+              <Radio name="period" value="etc">
                 기타
               </Radio>
             </fieldset>
           </div>
         </div>
-        <div className="inner">
-          <span className="content-title">기술스택</span>
-        </div>
+        <Stack />
         <div className="button-area">
           <Button size="large" color="gray" outline>
             취소
