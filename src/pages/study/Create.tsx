@@ -1,4 +1,4 @@
-import InfoForm from '@/components/study/InfoForm';
+import InfoForm from '@/components/study/InfoForm/test';
 import type { FC } from 'react';
 
 const StudyCreate: FC = () => {
