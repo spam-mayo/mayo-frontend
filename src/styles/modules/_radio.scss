@@ -1,10 +1,9 @@
-label {
-  padding: 0.1em 0.4em;
-  font-weight: 400;
-}
-
-span {
-  vertical-align: middle;
+.radio {
+  .radio-input {
+    padding: 0 10px 0 0;
+    font-weight: 400;
+    font-size: 0.9em;
+  }
 }
 
 [type='radio'] {
@@ -19,11 +18,12 @@ span {
 
 [type='radio']:checked {
   border: 0.4em solid $blue;
+  background-color: $yellow;
 }
 
 [type='radio']:focus-visible {
   outline-offset: max(2px, 0.1em);
-  outline: max(2px, 0.2em) dotted $blue;
+  outline: max(1px, 0.2em) dotted $blue;
 }
 
 [type='radio']:hover {
@@ -33,15 +33,9 @@ span {
 
 fieldset {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   border: none;
   margin: 0;
   padding: 20px 20px;
   font-weight: 600;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
