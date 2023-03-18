@@ -1,34 +1,32 @@
-import { type FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import axiosInstance from '@/api/axiosInstance';
+import RecruitCard from '@/components/main/RecruitCard/RecruitCard';
+import { getRecruits } from '@/api/recruitAPI';
 import '@/styles/main.scss';
 
 const maxPostPage = 10;
 
-const getPosts = (pageNum: number) => axiosInstance.get(`/posts?_limit=12&_page=${pageNum}`).then(({ data }) => data);
-
 const Main: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading, isError } = useQuery<{ id: number; title: string }[]>(
-    ['posts', currentPage],
-    () => getPosts(currentPage),
-    {
-      staleTime: 2000,
-    }
-  );
+  const { data, isLoading, isError } = useQuery({
+    queryFn: () => getRecruits(currentPage),
+    queryKey: ['posts', currentPage],
+    select: ({ data }) => data.data,
+  });
 
   if (isLoading) return <div>loading...</div>;
 
   if (isError) return <div>에러남</div>;
 
   return (
-    <main>
-      Main Page
-      <div className="cardList">
-        {data.map((post) => (
-          <div key={post.id}></div>
+    <main className="container">
+      <ul className="row">
+        {data?.map((post) => (
+          <li key={post.studyId} className="col-lg-3 col-md-4 col-sm-6">
+            <RecruitCard data={post} />
+          </li>
         ))}
-      </div>
+      </ul>
       <div className="pages">
         <button
           disabled={currentPage <= 1}
