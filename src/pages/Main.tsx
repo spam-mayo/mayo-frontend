@@ -20,9 +20,9 @@ const Main: FC = () => {
 
   return (
     <main className="container">
-      <ul className="row">
+      <ul className="row recruit-card-wrapper">
         {data?.map((post) => (
-          <li key={post.studyId} className="col-lg-3 col-md-4 col-sm-6">
+          <li key={post.studyId} className="col-lg-3 col-md-4 col-sm-2">
             <RecruitCard data={post} />
           </li>
         ))}

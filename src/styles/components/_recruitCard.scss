@@ -1,0 +1,54 @@
+.recruit-card-wrapper {
+  margin: 100px 0;
+}
+.recruit-card {
+  border: 2px solid $blue;
+  border-radius: 16px;
+  height: 200px;
+  margin-bottom: 30px;
+  padding: 20px;
+
+  &-stack {
+    overflow: hidden;
+    margin-bottom: 30px;
+    img {
+      display: block;
+      width: 34px;
+    }
+  }
+
+  &-title {
+    margin-bottom: 30px;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-user {
+    color: $charcoal;
+    @include text-style-16;
+  }
+
+  &-date {
+    display: flex;
+    color: $charcoal;
+    @include text-style-14;
+    gap: 5px;
+  }
+
+  &-place {
+    background-color: $blue-light;
+    padding: 0px 5px;
+    border-radius: 6px;
+    @include text-style-14;
+
+    .online {
+      color: $yellow;
+    }
+    .offline {
+      color: $white;
+    }
+  }
+}
