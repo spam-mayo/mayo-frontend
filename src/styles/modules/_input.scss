@@ -8,10 +8,6 @@
     font-weight: 600;
   }
 
-  span {
-    color: $red;
-  }
-
   input {
     background-color: $background;
     width: 100%;
@@ -20,6 +16,9 @@
     border-radius: 6px;
     padding-left: 10px;
 
+    span {
+      color: $black;
+    }
     &:hover,
     &:focus {
       background-color: $white;
@@ -35,6 +34,11 @@
   }
 
   .errMsg {
-    color: red;
+    color: $red;
+  }
+
+  .required::after {
+    content: ' *';
+    color: $red;
   }
 }

@@ -3,12 +3,16 @@ import Select, { SelectOption } from '@/components/auth/Select';
 interface DropdownProps {
   title: string;
   options: SelectOption[];
+  className?: string;
 }
 
-const Dropdown = ({ title, options }: DropdownProps) => {
+const Dropdown = ({ title, options, className }: DropdownProps) => {
   return (
     <div className="dropdown-wrapper">
-      <span className="content-title">{title}</span>
+      <label className="content-title">
+        {title}
+        <span className={className}></span>
+      </label>
       <Select options={options} />
     </div>
   );

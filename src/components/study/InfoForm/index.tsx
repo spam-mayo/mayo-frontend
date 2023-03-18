@@ -41,15 +41,15 @@ const InfoForm: FC = () => {
         </div>
         <div className="inner">
           <div className="inner-left">
-            <Input placeholder="스터디 그룹 명을 정하세요" type="text" label="스터디명" />
-            <Input placeholder="구인 글의 제목을 정하세요" type="text" label="스터디 제목" />
+            <Input placeholder="스터디 그룹 명을 정하세요" type="text" label="스터디명" className="required" />
+            <Input placeholder="구인 글의 제목을 정하세요" type="text" label="스터디 제목" className="required" />
             <div className="input-group">
               <InputCalendar />
             </div>
           </div>
           <div className="inner-right">
-            <Dropdown title="모집인원" options={peopleNumberOption} />
-            <Input placeholder="장소명, 주소를 검색해 주세요" type="text" label="모임장소" />
+            <Dropdown title="모집인원" options={peopleNumberOption} className="required" />
+            <Input placeholder="장소명, 주소를 검색해 주세요" type="text" label="모임장소" className="required" />
             <KakaoMap />
           </div>
         </div>
