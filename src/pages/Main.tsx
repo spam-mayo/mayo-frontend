@@ -2,16 +2,18 @@ import { FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import RecruitCard from '@/components/main/RecruitCard/RecruitCard';
 import { getRecruits } from '@/api/recruitAPI';
+import Pagination from '@/components/common/Pagination';
 import '@/styles/main.scss';
-import Button from '@/components/common/Button';
 
 const Main: FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [activePage, setActivePage] = useState(1);
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getRecruits(currentPage),
-    queryKey: ['posts', currentPage],
+    queryFn: () => getRecruits(activePage),
+    queryKey: ['posts', activePage],
     select: ({ data }) => data,
+    keepPreviousData: true,
   });
+
   const maxPostPage = data?.pageInfo?.totalPages ?? 0;
 
   if (isLoading) return <div>loading...</div>;
@@ -27,27 +29,7 @@ const Main: FC = () => {
           </li>
         ))}
       </ul>
-      <div className="recruit-card-pagination">
-        <Button
-          disabled={currentPage <= 1}
-          onClick={() => {
-            setCurrentPage((previousValue) => previousValue - 1);
-          }}
-          outline
-        >
-          Previous page
-        </Button>
-        <span>Page {currentPage}</span>
-        <Button
-          disabled={currentPage >= maxPostPage}
-          onClick={() => {
-            setCurrentPage((previousValue) => previousValue + 1);
-          }}
-          outline
-        >
-          Next page
-        </Button>
-      </div>
+      <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
     </main>
   );
 };
