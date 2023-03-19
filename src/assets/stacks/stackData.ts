@@ -26,6 +26,7 @@ import typescript from '@/assets/stacks/typescript.svg';
 import vuejs from '@/assets/stacks/vuejs.svg';
 import swift from '@/assets/stacks/swift.svg';
 import zeplin from '@/assets/stacks/zeplin.svg';
+import nextjs from '@/assets/stacks/nextjs.svg';
 
 interface StackDataProps {
   [key: string]: string;
@@ -60,6 +61,7 @@ const StackData: StackDataProps = {
   vuejs,
   swift,
   zeplin,
+  nextjs,
 };
 
 export default StackData;
