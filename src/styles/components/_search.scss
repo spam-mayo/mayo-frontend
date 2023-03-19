@@ -27,7 +27,9 @@
     }
   }
 
-  &-filter {
+  &-filter,
+  &-array,
+  &-view {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -36,19 +38,7 @@
     margin-bottom: 25px;
   }
 
-  &-array {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 20px;
-    gap: 10px;
-  }
-
   &-view {
-    display: flex;
-    align-items: center;
     justify-content: flex-end;
-    padding: 0 20px;
-    gap: 10px;
   }
 }

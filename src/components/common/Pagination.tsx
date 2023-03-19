@@ -10,7 +10,7 @@ const Pagination = ({ activePage, pages, setActivePage }: PaginationProps) => {
     for (let i = 1; i <= pages; i++) {
       elements.push(
         <div className={`${activePage === i ? 'active' : ''}`} onClick={() => setActivePage(i)} key={i}>
-          {i < 10 ? `0${i}` : i}
+          {i < 10 ? `${i}` : i}
         </div>
       );
     }
