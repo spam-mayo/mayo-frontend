@@ -33,6 +33,9 @@
       background: none;
     }
   }
+  &.disabled {
+    visibility: hidden;
+  }
 }
 
 .Button {

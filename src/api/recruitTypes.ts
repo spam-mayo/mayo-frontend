@@ -15,5 +15,6 @@ export interface Recruit {
     userName: string;
     userProfileUrl: string;
   };
+  pageInfo: { totalPages?: number };
   pageNum: number;
 }
