@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import RecruitCard from '@/components/main/RecruitCard/RecruitCard';
-import { getRecruits } from '@/api/recruitAPI';
+import { getRecruits } from '@/api/recruit/recruitAPI';
 import Pagination from '@/components/common/Pagination';
 import '@/styles/main.scss';
 import Search from '@/components/main/Search/Search';
