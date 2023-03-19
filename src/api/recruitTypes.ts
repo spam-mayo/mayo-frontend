@@ -6,7 +6,7 @@ export interface Recruit {
   studyStatus: string;
   online: boolean;
   stack: {
-    stackId: number;
+    stackId: string | number;
     stackName: string;
   }[];
   checkLikes: boolean;

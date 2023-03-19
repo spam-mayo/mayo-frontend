@@ -1,5 +1,5 @@
-import kakao from '@/assets/images/kakao1.png';
 import type { Recruit } from '@/api/recruitTypes';
+import StackData from '@/assets/stacks/stackData';
 
 interface RecruitCardProps {
   data: Recruit;
@@ -9,7 +9,9 @@ const RecruitCard = ({ data }: RecruitCardProps) => {
   return (
     <div className="recruit-card">
       <div className="recruit-card-stack">
-        <img src={kakao} alt="sample"></img>
+        {data?.stack.map((data) => (
+          <img key={data.stackId} src={StackData[data.stackName]} alt={data.stackName}></img>
+        ))}
       </div>
       <h4 className="recruit-card-title">{data.title}</h4>
       <span className="recruit-card-user">{data.owner.userName}</span>
