@@ -4,6 +4,7 @@ import RecruitCard from '@/components/main/RecruitCard/RecruitCard';
 import { getRecruits } from '@/api/recruitAPI';
 import Pagination from '@/components/common/Pagination';
 import '@/styles/main.scss';
+import Search from '@/components/main/Search/Search';
 
 const Main: FC = () => {
   const [activePage, setActivePage] = useState(1);
@@ -22,6 +23,7 @@ const Main: FC = () => {
 
   return (
     <main className="container">
+      <Search />
       <ul className="row recruit-card-wrapper">
         {data?.data?.map((post) => (
           <li key={post.studyId} className="col-lg-3 col-md-6 col-sm-4">
