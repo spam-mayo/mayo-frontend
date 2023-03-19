@@ -10,7 +10,6 @@ interface Props {
   color?: ButtonColor;
   outline?: boolean;
   text?: boolean;
-  disabled?: boolean;
   onClick?: () => void;
   type?: ButtonType;
 }
@@ -22,17 +21,11 @@ const Button: FC<PropsWithChildren<Props>> = ({
   outline = false,
   text = false,
   onClick,
-  disabled,
   type,
   ...rest
 }) => {
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={classNames('Button', size, color, { outline, text, disabled })}
-      {...rest}
-    >
+    <button type={type} onClick={onClick} className={classNames('Button', size, color, { outline, text })} {...rest}>
       {children}
     </button>
   );
