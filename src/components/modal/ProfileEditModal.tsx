@@ -72,8 +72,10 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
       <div className="profile-edit-modal-content">
         <div className="profile-title">
           <p>프로필 사진 등록</p>
-          <hr />
+          <div />
+          <button onClick={onClose}>X</button>
         </div>
+        <hr />
         <div className="profile-edit">
           <p>당신의 프로필 사진을 등록해주세요.</p>
           <img src={profileImg ? profileImg : src} alt="profile" />
@@ -93,10 +95,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
           <p>jpeg/jpg, png, gif 파일만 업로드 가능합니다. </p>
         </div>
         <div className="button-container">
-          <Button color="gray" outline onClick={onClose}>
-            취소
-          </Button>
-          <Button onClick={onClose}>등록완료</Button>
+          <Button onClick={onClose}>확인</Button>
         </div>
       </div>
     </div>

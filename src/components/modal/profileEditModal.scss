@@ -21,9 +21,13 @@
   border: 1px solid $border;
 
   .profile-title {
-    p {
-      padding: 10px;
-      font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: $blue;
+    font-weight: bold;
+
+    button {
       color: $blue;
       font-weight: bold;
     }
