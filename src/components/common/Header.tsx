@@ -1,12 +1,15 @@
 import Button from '@/components/common/Button';
-import { postLogout } from '@/api/auth/authAPI';
+import { getUserById, postLogout } from '@/api/auth/authAPI';
 import { type FC, useState, useEffect } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Header: FC = () => {
   const [isLogin, setIsLogin] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const userId = localStorage.getItem('userId');
+
+  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
 
   useEffect(() => {
     if (userId) {
@@ -31,6 +34,10 @@ const Header: FC = () => {
     logout();
   };
 
+  const onClickMenuOpen = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <header>
       <div className="container">
@@ -52,9 +59,15 @@ const Header: FC = () => {
           </div>
           <div className="innerRight">
             {isLogin ? (
-              <Button color="gray" text onClick={onClickLogout}>
-                로그아웃
-              </Button>
+              <>
+                <img alt="userProfile" src={data?.data.profileUrl} onClick={onClickMenuOpen} />
+                {menuOpen && (
+                  <ul>
+                    <li onClick={() => navigate('/user/mypage')}>마이페이지</li>
+                    <li onClick={onClickLogout}>로그아웃</li>
+                  </ul>
+                )}
+              </>
             ) : (
               <>
                 <Link to="/auth/login">
