@@ -1,0 +1,74 @@
+@import '@/styles/constants/_colors.scss';
+
+.profile-edit-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba($black, 0.4);
+}
+
+.profile-edit-modal-content {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  border-radius: 6px;
+  border: 1px solid $border;
+
+  .profile-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: $blue;
+    font-weight: bold;
+
+    button {
+      color: $blue;
+      font-weight: bold;
+    }
+  }
+
+  .profile-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+
+    input {
+      display: none;
+    }
+
+    p {
+      color: $charcoal;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+  }
+
+  .file-form-info {
+    background-color: rgba($blue, 0.05);
+    padding: 20px;
+
+    p {
+      font-size: 13px;
+      color: rgba($blue, 0.7);
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+}
