@@ -23,11 +23,20 @@
 @import 'modules/calendar';
 @import 'modules/select';
 @import 'modules/checkbox';
+@import 'modules/pagination';
+
+/* 믹스인 */
+@import 'mixins/responsive';
+@import 'mixins/text-style';
+@import 'mixins/position';
+@import 'mixins/flexbox';
 
 /* 컴포넌트 */
 @import 'components/header';
 @import 'components/footer';
 @import 'components/section-form';
+@import 'components/recruitCard';
+@import 'components/search';
 
 /* 레이아웃 */
 @import 'layouts/grids';

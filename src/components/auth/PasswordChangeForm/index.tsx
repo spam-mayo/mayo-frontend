@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import Input from '@/components/auth/Input/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
@@ -43,11 +44,11 @@ const PasswordChangeForm: FC = () => {
     passwordPatch({ code, newPassword });
   };
   return (
-    <div className="formContainer">
+    <div className="form-container">
       <div>
         <h1>비밀번호 변경</h1>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="form">
+      <form onSubmit={handleSubmit(onSubmit)} className="password-change-form">
         <Input
           {...register('newPassword')}
           label="새로운 비밀번호"

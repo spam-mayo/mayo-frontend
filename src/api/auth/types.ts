@@ -24,3 +24,8 @@ export interface PasswordChangeReq {
   newPassword: string;
   code: string;
 }
+
+export interface ProfileEditReq {
+  userId: string;
+  image?: FormData;
+}

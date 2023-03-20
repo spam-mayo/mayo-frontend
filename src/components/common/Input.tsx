@@ -5,14 +5,11 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, Props>(({ className, label, error, ...rest }, ref) => (
+const Input = forwardRef<HTMLInputElement, Props>(({ label, error, ...rest }, ref) => (
   <div className="input-container">
-    <label>
-      {label}
-      <span className={className}></span>
-    </label>
+    <label>{label}</label>
     <input {...rest} ref={ref} />
-    {error && <p className="errMsg">{error}</p>}
+    {error && <p className="err-msg">{error}</p>}
   </div>
 ));
 
