@@ -12,7 +12,7 @@ import StudyList from '@/pages/study/List';
 import StudyDetail from '@/pages/study/Detail';
 import SampleGrid from '@/pages/sample/SampleGrid';
 import MyPage from '@/pages/user/MyPage';
-import LoadingPage from '@/pages/LoadingPage';
+import OauthToken from '@/pages/OauthToken';
 
 export const RoutesSetup = () => {
   return (
@@ -22,7 +22,7 @@ export const RoutesSetup = () => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="password" element={<PasswordChange />} />
-        <Route path="loading" element={<LoadingPage />} />
+        <Route path="loading" element={<OauthToken />} />
       </Route>
       <Route path="/user/mypage" element={<MyPage />} />
       <Route path="/study">
