@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import RoutesSetup from '@/routes/RoutesSetup';
-import '@/styles/main.scss';
 
 const queryClient = new QueryClient();
 

@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 type ButtonSize = 'small' | 'medium' | 'large';
 type ButtonColor = 'blue' | 'gray' | 'yellow';
-type ButtonType = 'submit' | 'button';
 
 interface Props {
   size?: ButtonSize;
@@ -11,7 +10,6 @@ interface Props {
   outline?: boolean;
   text?: boolean;
   onClick?: () => void;
-  type?: ButtonType;
 }
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -21,11 +19,10 @@ const Button: FC<PropsWithChildren<Props>> = ({
   outline = false,
   text = false,
   onClick,
-  type,
   ...rest
 }) => {
   return (
-    <button type={type} onClick={onClick} className={classNames('Button', size, color, { outline, text })} {...rest}>
+    <button onClick={onClick} className={classNames('Button', size, color, { outline, text })} {...rest}>
       {children}
     </button>
   );

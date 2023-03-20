@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import Input from '@/components/auth/Input/Input';
+import Input from '@/components/common/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Select, { type SelectOption } from '@/components/auth/Select';
 import './index.scss';
@@ -10,8 +10,6 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import type { RegisterReq } from '@/api/auth/types';
 import { Link, useNavigate } from 'react-router-dom';
-import Button from '@/components/common/Button';
-import ButtonInput from '@/components/auth/Input/ButtonInput';
 
 const categoryOption: SelectOption[] = [
   { label: '선택 안 함', value: 'nofield', id: 1 },
@@ -88,80 +86,65 @@ const RegisterForm: FC = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row auth-container">
-        <div className="col-lg-6 info">
-          <h1>회원가입</h1>
-          <p>환영합니다!</p>
-          <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
+    <div className="registerContainer">
+      <form onSubmit={handleSubmit(onSubmit)} className="registerForm">
+        <Input
+          {...register('userName')}
+          label="이름"
+          placeholder="이름을 입력해주세요."
+          error={errors.userName?.message}
+        />
+        <div className="inputRow">
+          <Input
+            {...register('email')}
+            type="emil"
+            label="이메일"
+            placeholder="이메일을 입력해주세요."
+            error={errors.email?.message}
+          />
+          <button type="button" onClick={onClickEmailCheck}>
+            인증하기
+          </button>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">
-          <div className="auth">
-            <Input
-              {...register('userName')}
-              label="이름"
-              placeholder="이름을 입력해주세요."
-              error={errors.userName?.message}
-            />
-            <div className="inputRow">
-              <ButtonInput
-                {...register('email')}
-                type="emil"
-                label="이메일"
-                placeholder="이메일을 입력해주세요."
-                error={errors.email?.message}
-              />
-              <Button size="small" outline type="button" color="yellow" onClick={onClickEmailCheck}>
-                인증
-              </Button>
-            </div>
-            {isEmailChecked && (
-              <div className="inputRow">
-                <ButtonInput
-                  {...register('authCode')}
-                  label="인증번호"
-                  placeholder="인증번호를 입력해주세요."
-                  error={errors.authCode?.message}
-                />
-                <Button size="small" outline type="button" color="yellow" onClick={onClickEmailCheckComfirm}>
-                  확인
-                </Button>
-              </div>
-            )}
-            <Input
-              {...register('password')}
-              type="password"
-              label="비밀번호"
-              placeholder="비밀번호를 입력해주세요."
-              error={errors.password?.message}
-            />
-            <Input
-              {...register('password_check')}
-              type="password"
-              label="비밀번호 확인"
-              placeholder="비밀번호를 확인해주세요."
-              error={errors.password_check?.message}
-            />
-            <div className="select">
-              <label>활동분야(선택)</label>
-              <Select {...register('field')} options={categoryOption} />
-            </div>
 
-            <Button size="large" color="yellow" type="submit">
-              회원가입
-            </Button>
-
-            <div className="btnRow">
-              <p>이미 계정이 있으신가요?</p>
-              <Link to="/auth/login">
-                <button type="button" className="underline">
-                  로그인
-                </button>
-              </Link>
-            </div>
+        {isEmailChecked && (
+          <div className="inputRow">
+            <Input
+              {...register('authCode')}
+              label=""
+              placeholder="인증번호를 입력해주세요."
+              error={errors.authCode?.message}
+            />
+            <button type="button" onClick={onClickEmailCheckComfirm}>
+              인증확인
+            </button>
           </div>
-        </form>
-      </div>
+        )}
+        <Input
+          {...register('password')}
+          type="password"
+          label="비밀번호"
+          placeholder="비밀번호를 입력해주세요."
+          error={errors.password?.message}
+        />
+        <Input
+          {...register('password_check')}
+          type="password"
+          label="비밀번호 확인"
+          placeholder="비밀번호를 확인해주세요."
+          error={errors.password_check?.message}
+        />
+        <Select {...register('field')} options={categoryOption} />
+
+        <button type="submit">회원가입</button>
+
+        <div className="inputRow">
+          <p>이미 계정이 있으신가요?</p>
+          <Link to="/auth/login">
+            <button type="button">로그인</button>
+          </Link>
+        </div>
+      </form>
     </div>
   );
 };

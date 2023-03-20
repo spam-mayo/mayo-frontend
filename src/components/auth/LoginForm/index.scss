@@ -1,63 +1,18 @@
-@import '@/styles/constants/_colors.scss';
-@import '@/styles/mixins/_text-style.scss';
-@import '@/styles/mixins/_flexbox.scss';
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
 
-.auth-container {
-  @include flexbox();
-  background-image: url('@/assets/images/authBackground.jpg');
-  background-position: center;
-  background-size: cover;
-  opacity: 0.9;
-  height: 800px;
-
-  .info {
-    color: $white;
-    text-align: center;
+  .loginFormContainer {
+    border: 1px solid black;
     display: flex;
     flex-direction: column;
-    height: 80%;
+    gap: 30px;
 
-    h1 {
-      font-size: 50px;
-      font-weight: 800;
-      margin-bottom: 90px;
-    }
-
-    p {
-      @include text-style-24();
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-  }
-
-  form {
-    background-color: $white;
-    opacity: 0.95;
-    height: 100%;
-    @include flexbox();
-
-    .auth {
+    .row {
       display: flex;
-      flex-direction: column;
-      gap: 22px;
-
-      .btnRow {
-        @include flexbox(flex-end, center);
-
-        p {
-          @include text-style-16();
-          color: $charcoal;
-        }
-      }
-
-      .underline {
-        @include text-style-13();
-        text-align: right;
-        color: $charcoal;
-        text-decoration: underline;
-        text-decoration-color: $charcoal;
-        text-underline-position: under;
-      }
     }
   }
 }

@@ -1,5 +1,4 @@
 import { forwardRef, type DetailedHTMLProps, type SelectHTMLAttributes } from 'react';
-import './index.scss';
 
 export interface SelectOption {
   label: string;
