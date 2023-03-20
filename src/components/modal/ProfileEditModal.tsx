@@ -11,10 +11,11 @@ interface Props {
 }
 
 const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
+  const BASE_PROFILE_URL = 'https://spam-image.s3.ap-northeast-2.amazonaws.com/basic.png';
   const [profileImg, setProfileImg] = useState(src);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const { mutate: profileImage } = useMutation(patchProfileImage, {
+  const { mutate: patchProfileImg } = useMutation(patchProfileImage, {
     onSuccess: () => {
       alert('수정 완료');
     },
@@ -47,7 +48,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     const file = event.target.files[0];
     const image = new FormData();
     image.append('image', file);
-    profileImage({ userId, image });
+    patchProfileImg({ userId, image });
   };
 
   const onClickDeleteImage = () => {
@@ -56,8 +57,8 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
 
     const image = new FormData();
     image.append('image', '');
-    profileImage({ userId, image });
-    setProfileImg('https://spam-image.s3.ap-northeast-2.amazonaws.com/basic.png');
+    patchProfileImg({ userId, image });
+    setProfileImg(BASE_PROFILE_URL);
   };
 
   const onClickImgUpload = useCallback(() => {
