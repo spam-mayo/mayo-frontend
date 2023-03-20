@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import RecruitCard from '@/components/main/RecruitCard/RecruitCard';
 import { getRecruits } from '@/api/recruit/recruitAPI';
@@ -27,7 +27,7 @@ const Main: FC = () => {
       <ul className="row recruit-card-wrapper">
         {data?.data?.map((post) => (
           <li key={post.studyId} className="col-lg-3 col-md-6 col-sm-4">
-            <RecruitCard data={post} />
+            <RecruitCard recruit={post} />
           </li>
         ))}
       </ul>
