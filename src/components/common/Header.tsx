@@ -33,9 +33,15 @@ const Header: FC = () => {
 
   const onClickLogout = () => {
     logout();
+    setMenuOpen(!menuOpen);
   };
 
   const onClickMenuOpen = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const onClickGoMypage = () => {
+    navigate('/user/mypage');
     setMenuOpen(!menuOpen);
   };
 
@@ -64,7 +70,13 @@ const Header: FC = () => {
                 <div onClick={onClickMenuOpen}>
                   <img alt="userProfile" src={data?.data.profileUrl} />
                 </div>
-                {menuOpen && <HeaderProfile onClickLogout={onClickLogout} />}
+                {menuOpen && (
+                  <HeaderProfile
+                    onClickLogout={onClickLogout}
+                    onClickGoMypage={onClickGoMypage}
+                    setMenuOpen={setMenuOpen}
+                  />
+                )}
               </>
             ) : (
               <>
