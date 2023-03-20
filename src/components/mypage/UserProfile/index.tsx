@@ -1,20 +1,29 @@
 import type { FC } from 'react';
+import './index.scss';
 
 interface Props {
-  profileUrl: string;
-  userName: string;
+  src: string;
+  alt: string;
+  name: string;
+  onClick: () => void;
 }
 
-const UserProfile: FC<Props> = (props: Props) => {
-  const { userName, profileUrl } = props;
+const style = {
+  color: 'white',
+  fontSize: '20px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+const UserProfile: FC<Props> = ({ src, alt, name, onClick }) => {
   return (
-    <div>
-      <div>
-        <img src={profileUrl}></img>
+    <div className="proflie">
+      <div className="imgContainer">
+        <img src={src} alt={alt} />
+        <i className="icon-pencil icon" onClick={onClick} style={style} />
       </div>
-      <div>
-        <p>{userName}</p>
-      </div>
+      <p>{name}</p>
     </div>
   );
 };
