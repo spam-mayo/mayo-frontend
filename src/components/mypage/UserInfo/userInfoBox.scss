@@ -1,0 +1,43 @@
+.info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  padding: 30px;
+
+  .info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &-top {
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        font-size: 24px;
+      }
+
+      .button-container {
+        display: flex;
+      }
+    }
+
+    .line {
+      border: 1px solid #797979;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 50px;
+
+      .input {
+        display: flex;
+        align-items: center;
+      }
+
+      .name {
+        width: 100px;
+      }
+    }
+  }
+}

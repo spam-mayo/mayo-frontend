@@ -34,3 +34,19 @@
     @include text-style-13();
   }
 }
+
+.edit-input-container {
+  display: flex;
+  align-items: center;
+
+  label {
+    width: 100px;
+  }
+
+  input {
+    border: 1px solid black;
+    width: 350px;
+    height: 40px;
+    border-radius: 6px;
+  }
+}

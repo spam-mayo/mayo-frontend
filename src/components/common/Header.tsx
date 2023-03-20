@@ -74,6 +74,7 @@ const Header: FC = () => {
                   <HeaderProfile
                     onClickLogout={onClickLogout}
                     onClickGoMypage={onClickGoMypage}
+                    menuOpen={menuOpen}
                     setMenuOpen={setMenuOpen}
                   />
                 )}
