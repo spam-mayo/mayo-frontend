@@ -3,6 +3,7 @@ import { getUserById, postLogout } from '@/api/auth/authAPI';
 import { type FC, useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
+import HeaderProfile from '@/components/common/HeaderProfile';
 
 const Header: FC = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -60,13 +61,10 @@ const Header: FC = () => {
           <div className="innerRight">
             {isLogin ? (
               <>
-                <img alt="userProfile" src={data?.data.profileUrl} onClick={onClickMenuOpen} />
-                {menuOpen && (
-                  <ul>
-                    <li onClick={() => navigate('/user/mypage')}>마이페이지</li>
-                    <li onClick={onClickLogout}>로그아웃</li>
-                  </ul>
-                )}
+                <div onClick={onClickMenuOpen}>
+                  <img alt="userProfile" src={data?.data.profileUrl} />
+                </div>
+                {menuOpen && <HeaderProfile onClickLogout={onClickLogout} />}
               </>
             ) : (
               <>
