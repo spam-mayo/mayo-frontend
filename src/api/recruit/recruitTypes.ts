@@ -1,20 +1,24 @@
-export interface Recruit {
+export interface RecruitStack {
+  stack: {
+    stackId: string | number;
+    stackName: string;
+  }[];
+}
+
+export interface RecruitOwner {
+  owner: {
+    userId: number;
+    userName: string;
+    userProfileUrl: string;
+  };
+}
+
+export interface Recruit extends RecruitStack, RecruitOwner {
   studyId: number;
   title: string;
   startDate: string;
   endDate: string;
   studyStatus: string;
   online: boolean;
-  stack: {
-    stackId: string | number;
-    stackName: string;
-  }[];
   checkLikes: boolean;
-  owner: {
-    userId: number;
-    userName: string;
-    userProfileUrl: string;
-  };
-  pageInfo: { totalPages?: number };
-  pageNum: number;
 }
