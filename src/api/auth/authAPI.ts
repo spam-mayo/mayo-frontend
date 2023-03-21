@@ -8,7 +8,6 @@ import type {
   PasswordChangeReq,
   ProfileEditReq,
   UserInfoReq,
-  UserStudyGet,
 } from './types';
 
 export const postMember = (body: RegisterReq) => axiosInstance.post('/api/users/join', body);
@@ -34,5 +33,4 @@ export const patchProfileImage = ({ userId, image }: ProfileEditReq) =>
 
 export const patchUserInfo = ({ userId, ...body }: UserInfoReq) => axiosInstance.patch(`/api/users/${userId}`, body);
 
-export const getUserStudy = ({ tab, status, page, size }: UserStudyGet) =>
-  axiosInstance.get(`/api/study/my-page?tab=${tab}&status=${status}&page=${page}&size=${size}`);
+export const deleteUser = (userId: number) => axiosInstance.delete(`api/users/${userId}`);
