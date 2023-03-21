@@ -1,4 +1,3 @@
-import EditInput from '@/components/auth/Input/EditInput';
 import EditButton from '@/components/mypage/UserInfo/EditButton';
 import { type FC, useState } from 'react';
 import './info.scss';
@@ -8,6 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { nameSchema, NameSchema } from '@/constants/schema/nameSchema';
+import Input from '@/components/auth/Input/Input';
 
 interface Props {
   name: string;
@@ -61,7 +61,7 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
       <div className="userInfo-container-content">
         {isEdit ? (
           <>
-            <EditInput
+            <Input
               label="이름"
               placeholder="이름을 입력하세요"
               {...register('userName')}

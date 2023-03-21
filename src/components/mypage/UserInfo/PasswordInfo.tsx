@@ -1,13 +1,13 @@
 import EditButton from '@/components/mypage/UserInfo/EditButton';
 import { type FC, useState } from 'react';
 import './info.scss';
-import EditInput from '@/components/auth/Input/EditInput';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
 import { useMutation } from '@tanstack/react-query';
 import { patchUserInfo } from '@/api/auth/authAPI';
 import axios from 'axios';
+import Input from '@/components/auth/Input/Input';
 
 interface Props {
   userId: string;
@@ -59,14 +59,14 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
       </div>
       {isEdit ? (
         <div className="userInfo-container-content">
-          <EditInput
+          <Input
             {...register('newPassword')}
             label="비밀번호"
             type="password"
             placeholder="새로운 비밀번호를 입력하세요."
             error={errors.newPassword?.message}
           />
-          <EditInput
+          <Input
             {...register('newPasswordCheck')}
             label="비밀번호 확인"
             type="password"
