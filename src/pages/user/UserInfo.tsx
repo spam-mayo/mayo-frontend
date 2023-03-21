@@ -3,7 +3,6 @@ import BasicInfo from '@/components/mypage/UserInfo/BasicInfo';
 import ExtraInfo from '@/components/mypage/UserInfo/ExtraInfo';
 import PasswordInfo from '@/components/mypage/UserInfo/PasswordInfo';
 import { useQuery } from '@tanstack/react-query';
-import './userInfo.scss';
 
 const UserInfo = () => {
   const userId = localStorage.getItem('userId');

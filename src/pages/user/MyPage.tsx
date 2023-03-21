@@ -3,19 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
 import UserProfile from '@/components/mypage/UserProfile';
 import ProfileEditModal from '@/components/modal/ProfileEditModal';
-import ApplyStudy from '@/components/mypage/ApplyStudy';
-import CreateStudy from '@/components/mypage/CreateStudy';
-import InterestStudy from '@/components/mypage/InterestStudy';
-import MyStudy from '@/components/mypage/MyStudy';
-import UserInfo from '@/components/mypage/UserInfo/UserInfo';
 import './myPage.scss';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const tabs = [
-  { index: 0, name: '내 정보', content: <UserInfo /> },
-  { index: 1, name: '나의 스터디', content: <MyStudy /> },
-  { index: 2, name: '신청한 스터디', content: <ApplyStudy /> },
-  { index: 3, name: '생성한 스터디', content: <CreateStudy /> },
-  { index: 4, name: '관심 스터디', content: <InterestStudy /> },
+  { index: 0, name: '내 정보', navigate: '/user/mypage/info' },
+  { index: 1, name: '나의 스터디', navigate: '/user/mypage/study' },
+  { index: 2, name: '신청한 스터디', navigate: '/user/mypage/apply' },
+  { index: 3, name: '생성한 스터디', navigate: '/user/mypage/create' },
+  { index: 4, name: '관심 스터디', navigate: '/user/mypage/like' },
 ];
 
 const MyPage: FC = () => {
@@ -33,6 +29,7 @@ const MyPage: FC = () => {
   const onClickOpenModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -51,7 +48,10 @@ const MyPage: FC = () => {
                 return (
                   <li
                     key={tab.index}
-                    onClick={() => setCurrentTab(idx)}
+                    onClick={() => {
+                      setCurrentTab(idx);
+                      navigate(tab.navigate);
+                    }}
                     className={idx === currentTab ? 'selected' : ''}
                   >
                     {tab.name}
@@ -60,7 +60,9 @@ const MyPage: FC = () => {
               })}
             </ul>
           </div>
-          <div className="col-lg-9">{tabs[currentTab].content}</div>
+          <div className="col-lg-9">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

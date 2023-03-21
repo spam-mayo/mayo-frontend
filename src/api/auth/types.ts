@@ -39,3 +39,10 @@ export interface UserInfoReq {
   field?: string;
   userStacks?: UserStack[];
 }
+
+export interface UserStudyGet {
+  tab: string;
+  status?: string;
+  page: string;
+  size: string;
+}
