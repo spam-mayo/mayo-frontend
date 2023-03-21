@@ -28,11 +28,11 @@ export const RoutesSetup = () => {
         <Route path="password" element={<PasswordChange />} />
       </Route>
       <Route path="/user/mypage" element={<MyPage />}>
-        <Route path="/user/mypage/info" element={<UserInfo />} />
-        <Route path="/user/mypage/study" element={<UserStudy />} />
-        <Route path="/user/mypage/apply" element={<UserApplyStudy />} />
-        <Route path="/user/mypage/create" element={<UserCreateStudy />} />
-        <Route path="/user/mypage/like" element={<UserLikeStudy />} />
+        <Route path="" element={<UserInfo />} />
+        <Route path="study" element={<UserStudy />} />
+        <Route path="apply" element={<UserApplyStudy />} />
+        <Route path="create" element={<UserCreateStudy />} />
+        <Route path="like" element={<UserLikeStudy />} />
       </Route>
       <Route path="/study">
         <Route index element={<StudyList />} />
