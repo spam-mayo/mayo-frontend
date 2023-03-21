@@ -1,0 +1,13 @@
+.user-container {
+  background-color: white;
+  border-radius: 6px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+
+  .unregister {
+    color: red;
+    font-weight: bold;
+  }
+}

@@ -29,3 +29,13 @@ export interface ProfileEditReq {
   userId: string;
   image?: FormData;
 }
+
+type UserStack = { stackId: string };
+
+export interface UserInfoReq {
+  userId: string;
+  userName?: string;
+  password?: string;
+  field?: string;
+  userStacks?: UserStack[];
+}

@@ -1,7 +1,9 @@
 import { getUserById } from '@/api/auth/authAPI';
+import BasicInfo from '@/components/mypage/UserInfo/BasicInfo';
+import ExtraInfo from '@/components/mypage/UserInfo/ExtraInfo';
 import PasswordInfo from '@/components/mypage/UserInfo/PasswordInfo';
-import UserInfoBox from '@/components/mypage/UserInfo/UserInfoBox';
 import { useQuery } from '@tanstack/react-query';
+import './userInfo.scss';
 
 const UserInfo = () => {
   const userId = localStorage.getItem('userId');
@@ -12,12 +14,11 @@ const UserInfo = () => {
 
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
   return (
-    <div className="study-container">
-      <UserInfoBox name={data?.data.userName} email={data?.data.email} />
-      <PasswordInfo />
-      <div>
-        <p>회원 탈퇴</p>
-      </div>
+    <div className="user-container">
+      <BasicInfo name={data?.data.userName} email={data?.data.email} />
+      <ExtraInfo field={data?.data.field} stack={data?.data.stack} />
+      <PasswordInfo userId={userId} />
+      <div className="unregister">회원 탈퇴</div>
     </div>
   );
 };

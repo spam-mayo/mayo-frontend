@@ -9,8 +9,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 const EditInput = forwardRef<HTMLInputElement, Props>(({ label, error, value, ...rest }, ref) => (
   <div className="edit-input-container">
     <label>{label}</label>
-    <input {...rest} ref={ref} value={value} />
-    {error && <p>{error}</p>}
+    <div className="edit-input">
+      <input {...rest} ref={ref} value={value} />
+      {error && <p>{error}</p>}
+    </div>
   </div>
 ));
 

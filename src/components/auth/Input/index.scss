@@ -41,12 +41,32 @@
 
   label {
     width: 100px;
+    @include text-style-16();
+    color: black;
   }
 
-  input {
-    border: 1px solid black;
-    width: 350px;
-    height: 40px;
-    border-radius: 6px;
+  .edit-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    input {
+      border: 1px solid $charcoal;
+      background-color: $white;
+      width: 350px;
+      height: 40px;
+      border-radius: 6px;
+
+      &::placeholder {
+        @include text-style-16();
+        text-indent: 8px;
+        color: $gray;
+      }
+    }
+
+    p {
+      color: $red;
+      @include text-style-13();
+    }
   }
 }

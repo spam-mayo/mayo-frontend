@@ -7,6 +7,7 @@ import type {
   PasswordFindReq,
   PasswordChangeReq,
   ProfileEditReq,
+  UserInfoReq,
 } from './types';
 
 export const postMember = (body: RegisterReq) => axiosInstance.post('/api/users/join', body);
@@ -29,3 +30,5 @@ export const patchPassword = ({ code, newPassword }: PasswordChangeReq) =>
 
 export const patchProfileImage = ({ userId, image }: ProfileEditReq) =>
   axiosInstance.patch(`/api/users/${userId}/image`, image);
+
+export const patchUserInfo = ({ userId, ...body }: UserInfoReq) => axiosInstance.patch(`/api/users/${userId}`, body);

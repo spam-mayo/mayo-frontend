@@ -14,7 +14,7 @@ const EditButton: FC<Props> = ({ isEdit, onClick }) => {
           <Button size="small" outline color="gray" onClick={onClick}>
             취소
           </Button>
-          <Button size="small" outline color="gray">
+          <Button size="small" outline color="blue" type="submit">
             저장
           </Button>
         </div>
