@@ -15,7 +15,7 @@ const UserInfo = () => {
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
   return (
     <div className="user-container">
-      <BasicInfo name={data?.data.userName} email={data?.data.email} />
+      <BasicInfo name={data?.data.userName} email={data?.data.email} userId={userId} />
       <ExtraInfo field={data?.data.field} stack={data?.data.stack} />
       <PasswordInfo userId={userId} />
       <div className="unregister">회원 탈퇴</div>

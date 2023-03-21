@@ -42,6 +42,7 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
 
   const onClickEdit = () => {
     setIsEdit(!isEdit);
+    reset();
   };
 
   const onSubmit: SubmitHandler<PasswordChangeSchema> = (data) => {
