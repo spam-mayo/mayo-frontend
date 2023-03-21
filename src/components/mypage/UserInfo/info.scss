@@ -1,36 +1,4 @@
-.basic-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  &-top {
-    display: flex;
-    justify-content: space-between;
-
-    p {
-      font-size: 24px;
-    }
-  }
-
-  &-content {
-    border: 1px solid black;
-    border-radius: 6px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    .row {
-      display: flex;
-
-      .key {
-        width: 100px;
-      }
-    }
-  }
-}
-
-.extra-container {
+.userInfo-container {
   display: flex;
   flex-direction: column;
   gap: 10px;

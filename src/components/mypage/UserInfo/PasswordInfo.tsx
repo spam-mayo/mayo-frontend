@@ -1,6 +1,6 @@
 import EditButton from '@/components/mypage/UserInfo/EditButton';
 import { type FC, useState } from 'react';
-import './passwordInfo.scss';
+import './info.scss';
 import EditInput from '@/components/auth/Input/EditInput';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -52,13 +52,13 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="password-container">
-      <div className="password-container-top">
+    <form onSubmit={handleSubmit(onSubmit)} className="userInfo-container">
+      <div className="userInfo-container-top">
         <p>비밀번호</p>
         <EditButton onClick={onClickEdit} isEdit={isEdit} />
       </div>
       {isEdit ? (
-        <div className="password-container-content">
+        <div className="userInfo-container-content">
           <EditInput
             {...register('newPassword')}
             label="비밀번호"

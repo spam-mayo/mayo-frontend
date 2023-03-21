@@ -29,12 +29,12 @@ const ExtraInfo: FC<Props> = ({ field, stack }) => {
   };
 
   return (
-    <div className="extra-container">
-      <div className="extra-container-top">
+    <div className="userInfo-container">
+      <div className="userInfo-container-top">
         <p>추가 정보</p>
         <EditButton onClick={onClickEdit} isEdit={isEdit} />
       </div>
-      <div className="extra-container-content">
+      <div className="userInfo-container-content">
         {isEdit ? (
           <>
             <div className="row">

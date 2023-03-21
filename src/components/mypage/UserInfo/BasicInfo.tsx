@@ -53,12 +53,12 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="basic-container">
-      <div className="basic-container-top">
+    <form onSubmit={handleSubmit(onSubmit)} className="userInfo-container">
+      <div className="userInfo-container-top">
         <p>기본 정보</p>
         <EditButton onClick={onClickEdit} isEdit={isEdit} />
       </div>
-      <div className="basic-container-content">
+      <div className="userInfo-container-content">
         {isEdit ? (
           <>
             <EditInput

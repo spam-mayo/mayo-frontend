@@ -13,6 +13,7 @@ const UserInfo = () => {
   }
 
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
+
   return (
     <div className="user-container">
       <BasicInfo name={data?.data.userName} email={data?.data.email} userId={userId} />

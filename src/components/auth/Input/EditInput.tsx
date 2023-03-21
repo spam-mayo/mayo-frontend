@@ -3,14 +3,13 @@ import { type InputHTMLAttributes, forwardRef } from 'react';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
-  value?: string;
 }
 
-const EditInput = forwardRef<HTMLInputElement, Props>(({ label, error, value, ...rest }, ref) => (
+const EditInput = forwardRef<HTMLInputElement, Props>(({ label, error, ...rest }, ref) => (
   <div className="edit-input-container">
     <label>{label}</label>
     <div className="edit-input">
-      <input {...rest} ref={ref} value={value} />
+      <input {...rest} ref={ref} />
       {error && <p>{error}</p>}
     </div>
   </div>
