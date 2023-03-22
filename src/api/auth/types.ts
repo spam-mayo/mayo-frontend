@@ -39,3 +39,17 @@ export interface UserInfoReq {
   field?: string;
   userStacks?: UserStack[];
 }
+
+export type Stack = {
+  stackId: number;
+  stackName: string;
+};
+
+export interface GetUserRes {
+  userId: number;
+  userName: string;
+  email: string;
+  profileUrl: string;
+  field: string;
+  stack: Stack[];
+}

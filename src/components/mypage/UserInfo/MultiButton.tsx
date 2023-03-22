@@ -6,7 +6,7 @@ interface Props {
   onClick: () => void;
 }
 
-const EditButton: FC<Props> = ({ isEdit, onClick }) => {
+const MultiButton: FC<Props> = ({ isEdit, onClick }) => {
   return (
     <>
       {isEdit ? (
@@ -28,4 +28,4 @@ const EditButton: FC<Props> = ({ isEdit, onClick }) => {
   );
 };
 
-export default EditButton;
+export default MultiButton;
