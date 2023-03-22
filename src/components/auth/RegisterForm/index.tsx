@@ -2,7 +2,7 @@ import { type FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Input from '@/components/auth/Input/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Select, { type SelectOption } from '@/components/auth/Select';
+import Select from '@/components/auth/Select';
 import './index.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
 import { postEmailCheck, postEmailCheckConfirm, postMember } from '@/api/auth/authAPI';
@@ -12,15 +12,7 @@ import type { RegisterReq } from '@/api/auth/types';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@/components/common/Button';
 import ButtonInput from '@/components/auth/Input/ButtonInput';
-
-const categoryOption: SelectOption[] = [
-  { label: '선택 안 함', value: 'NO_FIELD', id: 1 },
-  { label: '프론트엔드', value: 'FRONTEND', id: 2 },
-  { label: '백엔드', value: 'BACKEND', id: 3 },
-  { label: '디자인', value: 'DESIGN', id: 4 },
-  { label: '기획', value: 'PLAN', id: 5 },
-  { label: '기타', value: 'OTHER', id: 6 },
-];
+import { categoryOption } from '@/constants/categoryOption';
 
 const RegisterForm: FC = () => {
   const {

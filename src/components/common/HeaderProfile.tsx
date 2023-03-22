@@ -1,18 +1,19 @@
 import { type FC, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   onClickLogout: () => void;
-  onClickGoMypage: () => void;
+  onClickMenu: () => void;
   menuOpen: boolean;
-  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HeaderProfile: FC<Props> = ({ onClickLogout, onClickGoMypage, setMenuOpen, menuOpen }) => {
+const HeaderProfile: FC<Props> = ({ onClickLogout, menuOpen, onClickMenu }) => {
   const menuRef = useRef<HTMLUListElement | null>(null);
+  const navigate = useNavigate();
 
   const onMouseOut = (e: MouseEvent) => {
     if (menuRef.current !== null && !menuRef.current.contains(e.target as Node)) {
-      setMenuOpen(!menuOpen);
+      onClickMenu();
     }
   };
 
@@ -25,7 +26,14 @@ const HeaderProfile: FC<Props> = ({ onClickLogout, onClickGoMypage, setMenuOpen,
 
   return (
     <ul ref={menuRef}>
-      <li onClick={onClickGoMypage}>마이페이지</li>
+      <li
+        onClick={() => {
+          onClickMenu();
+          navigate('/user/mypage');
+        }}
+      >
+        마이페이지
+      </li>
       <li onClick={onClickLogout}>로그아웃</li>
     </ul>
   );

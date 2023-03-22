@@ -12,12 +12,19 @@ const UserInfo = () => {
     throw new Error('no user');
   }
 
-  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
+  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)), {
+    select: (data) => data.data,
+  });
+
+  const userName = data?.userName ?? '';
+  const email = data?.email ?? '';
+  const field = data?.field ?? '';
+  const stack = data?.stack ?? [];
 
   return (
     <div className="user-container">
-      <BasicInfo name={data?.data.userName} email={data?.data.email} userId={userId} />
-      <ExtraInfo field={data?.data.field} stack={data?.data.stack} />
+      <BasicInfo name={userName} email={email} userId={userId} />
+      <ExtraInfo field={field} stack={stack} />
       <PasswordInfo userId={userId} />
       <div className="unregister">회원 탈퇴</div>
     </div>

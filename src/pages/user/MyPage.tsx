@@ -19,6 +19,7 @@ const tabs = [
 ];
 
 const MyPage: FC = () => {
+  const BASE_PROFILE_URL = 'https://spam-image.s3.ap-northeast-2.amazonaws.com/basic.png';
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -36,14 +37,14 @@ const MyPage: FC = () => {
 
   return (
     <>
-      {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={data?.data.profileUrl} />}
+      {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={data?.data.profileUrl ?? BASE_PROFILE_URL} />}
       <div className="container">
         <div className="row">
           <div className="col-lg-3 box">
             <UserProfile
-              src={data?.data.profileUrl}
+              src={data?.data.profileUrl ?? BASE_PROFILE_URL}
               alt="profile"
-              name={data?.data.userName}
+              name={data?.data.userName ?? ''}
               onClick={onClickOpenModal}
             />
             <ul className="tab-container">

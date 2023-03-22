@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import HeaderProfile from '@/components/common/HeaderProfile';
 
 const Header: FC = () => {
+  const BASE_PROFILE_URL = 'https://spam-image.s3.ap-northeast-2.amazonaws.com/basic.png';
   const [isLogin, setIsLogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const userId = localStorage.getItem('userId');
@@ -33,16 +34,11 @@ const Header: FC = () => {
 
   const onClickLogout = () => {
     logout();
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
   const onClickMenuOpen = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const onClickGoMypage = () => {
-    navigate('/user/mypage');
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
   return (
@@ -68,15 +64,10 @@ const Header: FC = () => {
             {isLogin ? (
               <>
                 <div onClick={onClickMenuOpen}>
-                  <img alt="userProfile" src={data?.data.profileUrl} />
+                  <img alt="userProfile" src={data?.data.profileUrl ?? BASE_PROFILE_URL} />
                 </div>
                 {menuOpen && (
-                  <HeaderProfile
-                    onClickLogout={onClickLogout}
-                    onClickGoMypage={onClickGoMypage}
-                    menuOpen={menuOpen}
-                    setMenuOpen={setMenuOpen}
-                  />
+                  <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />
                 )}
               </>
             ) : (

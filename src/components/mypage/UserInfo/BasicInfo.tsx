@@ -1,4 +1,4 @@
-import EditButton from '@/components/mypage/UserInfo/EditButton';
+import MultiButton from '@/components/mypage/UserInfo/MultiButton';
 import { type FC, useState } from 'react';
 import './info.scss';
 import { patchUserInfo } from '@/api/auth/authAPI';
@@ -27,7 +27,7 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
     resolver: yupResolver(nameSchema),
   });
 
-  const { mutate: userInfoPatch } = useMutation(patchUserInfo, {
+  const { mutate: patchToUserInfo } = useMutation(patchUserInfo, {
     onSuccess: () => {
       alert('이름이 변경되었습니다!');
       reset();
@@ -43,8 +43,8 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
   });
 
   const onSubmit: SubmitHandler<NameSchema> = (data) => {
-    const userName = data.userName;
-    userInfoPatch({ userId, userName });
+    const { userName } = data;
+    patchToUserInfo({ userId, userName });
   };
 
   const onClickEdit = () => {
@@ -56,7 +56,7 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
     <form onSubmit={handleSubmit(onSubmit)} className="userInfo-container">
       <div className="userInfo-container-top">
         <p>기본 정보</p>
-        <EditButton onClick={onClickEdit} isEdit={isEdit} />
+        <MultiButton onClick={onClickEdit} isEdit={isEdit} />
       </div>
       <div className="userInfo-container-content">
         {isEdit ? (
@@ -70,12 +70,12 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
           </>
         ) : (
           <div className="row">
-            <p className="key">이름</p>
+            <p className="label">이름</p>
             <p className="value">{name}</p>
           </div>
         )}
         <div className="row">
-          <p className="key">이메일</p>
+          <p className="label">이메일</p>
           <p className="value">{email}</p>
         </div>
       </div>

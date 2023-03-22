@@ -8,6 +8,7 @@ import type {
   PasswordChangeReq,
   ProfileEditReq,
   UserInfoReq,
+  GetUserRes,
 } from './types';
 
 export const postMember = (body: RegisterReq) => axiosInstance.post('/api/users/join', body);
@@ -21,7 +22,7 @@ export const postLogin = (body: LoginReq) => axiosInstance.post('/api/auth/login
 
 export const postPasswordFind = (body: PasswordFindReq) => axiosInstance.post('/api/auth/password', body);
 
-export const getUserById = (userId: number) => axiosInstance.get(`/api/users/${userId}`);
+export const getUserById = (userId: number) => axiosInstance.get<GetUserRes>(`/api/users/${userId}`);
 
 export const postLogout = () => axiosInstance.post('/api/auth/logout');
 

@@ -1,4 +1,4 @@
-import EditButton from '@/components/mypage/UserInfo/EditButton';
+import MultiButton from '@/components/mypage/UserInfo/MultiButton';
 import { type FC, useState } from 'react';
 import './info.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -25,7 +25,7 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
     resolver: yupResolver(passwordChangeSchema),
   });
 
-  const { mutate: userInfoPatch } = useMutation(patchUserInfo, {
+  const { mutate: patchToUserInfo } = useMutation(patchUserInfo, {
     onSuccess: () => {
       alert('비밀번호 변경이 완료되었습니다!');
       reset();
@@ -48,14 +48,14 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
   const onSubmit: SubmitHandler<PasswordChangeSchema> = (data) => {
     const password = data.newPassword;
 
-    userInfoPatch({ userId, password });
+    patchToUserInfo({ userId, password });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="userInfo-container">
       <div className="userInfo-container-top">
         <p>비밀번호</p>
-        <EditButton onClick={onClickEdit} isEdit={isEdit} />
+        <MultiButton onClick={onClickEdit} isEdit={isEdit} />
       </div>
       {isEdit ? (
         <div className="userInfo-container-content">

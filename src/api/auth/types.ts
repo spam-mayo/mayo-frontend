@@ -40,11 +40,16 @@ export interface UserInfoReq {
   userStacks?: UserStack[];
 }
 
+export type Stack = {
+  stackId: number;
+  stackName: string;
+};
+
 export interface GetUserRes {
   userId: number;
   userName: string;
   email: string;
   profileUrl: string;
   field: string;
-  stack: { stackId: number; stackName: string }[];
+  stack: Stack[];
 }
