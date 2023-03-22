@@ -4,6 +4,7 @@ import BasicInfo from '@/components/mypage/UserInfo/BasicInfo';
 import ExtraInfo from '@/components/mypage/UserInfo/ExtraInfo';
 import PasswordInfo from '@/components/mypage/UserInfo/PasswordInfo';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { type FC, useState } from 'react';
 import './userInfo.scss';
 
@@ -24,6 +25,12 @@ const UserInfo: FC = () => {
       localStorage.removeItem('authorization');
       localStorage.removeItem('refresh');
       window.location.href = '/';
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        if (err.response?.status === 409) alert('참여중인 스터디가 있을 경우 탈퇴가 불가능합니다.');
+        if (err.response?.status === 404) alert('존재하지 않는 회원입니다.');
+      }
     },
   });
 
