@@ -1,5 +1,5 @@
 import { deleteUser, getUserById } from '@/api/auth/authAPI';
-import ConfirmModal from '@/components/modal/confirmModal';
+import ConfirmModal from '@/components/modal/ConfirmModal';
 import BasicInfo from '@/components/mypage/UserInfo/BasicInfo';
 import ExtraInfo from '@/components/mypage/UserInfo/ExtraInfo';
 import PasswordInfo from '@/components/mypage/UserInfo/PasswordInfo';

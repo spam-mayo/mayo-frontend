@@ -7,16 +7,16 @@ import './myPage.scss';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 const tabs = [
-  { index: 0, name: '내 정보', navigate: '/user/mypage/info' },
-  { index: 1, name: '나의 스터디', navigate: '/user/mypage/study' },
-  { index: 2, name: '신청한 스터디', navigate: '/user/mypage/apply' },
-  { index: 3, name: '생성한 스터디', navigate: '/user/mypage/create' },
-  { index: 4, name: '관심 스터디', navigate: '/user/mypage/like' },
+  { name: '내 정보', path: '/user/mypage' },
+  { name: '나의 스터디', path: '/user/mypage/study' },
+  { name: '신청한 스터디', path: '/user/mypage/apply' },
+  { name: '생성한 스터디', path: '/user/mypage/create' },
+  { name: '관심 스터디', path: '/user/mypage/like' },
 ];
 
 const MyPage: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentTab, setCurrentTab] = useState(0);
+  const [currentTab, setCurrentTab] = useState('내 정보');
 
   const userId = localStorage.getItem('userId');
 
@@ -44,20 +44,18 @@ const MyPage: FC = () => {
               onClick={onClickOpenModal}
             />
             <ul className="tab-container">
-              {tabs.map((tab, idx) => {
-                return (
-                  <li
-                    key={tab.index}
-                    onClick={() => {
-                      setCurrentTab(idx);
-                      navigate(tab.navigate);
-                    }}
-                    className={idx === currentTab ? 'selected' : ''}
-                  >
-                    {tab.name}
-                  </li>
-                );
-              })}
+              {tabs.map((tab) => (
+                <li
+                  key={tab.name}
+                  onClick={() => {
+                    setCurrentTab(tab.name);
+                    navigate(tab.path);
+                  }}
+                  className={tab.name === currentTab ? 'selected' : ''}
+                >
+                  {tab.name}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="col-lg-9">

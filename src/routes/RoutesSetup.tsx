@@ -28,7 +28,7 @@ export const RoutesSetup = () => {
         <Route path="password" element={<PasswordChange />} />
       </Route>
       <Route path="/user/mypage" element={<MyPage />}>
-        <Route path="" element={<UserInfo />} />
+        <Route index element={<UserInfo />} />
         <Route path="study" element={<UserStudy />} />
         <Route path="apply" element={<UserApplyStudy />} />
         <Route path="create" element={<UserCreateStudy />} />
