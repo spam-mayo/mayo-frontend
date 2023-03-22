@@ -18,7 +18,7 @@ const UserInfo: FC = () => {
 
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
 
-  const { mutate: userDelete } = useMutation(deleteUser, {
+  const { mutate: deleteMember } = useMutation(deleteUser, {
     onSuccess: () => {
       alert('회원탈퇴 완료');
       localStorage.removeItem('userId');
@@ -39,7 +39,7 @@ const UserInfo: FC = () => {
   };
 
   const onClickUnregister = () => {
-    userDelete(Number(userId));
+    deleteMember(Number(userId));
   };
 
   return (
