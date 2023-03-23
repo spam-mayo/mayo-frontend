@@ -50,6 +50,11 @@
       .label {
         width: 100px;
       }
+
+      .stack-box {
+        display: flex;
+        gap: 5px;
+      }
     }
   }
 }

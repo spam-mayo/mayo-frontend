@@ -16,8 +16,9 @@ interface Props {
 }
 
 const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
+  const userStack = stack.map((el) => el.stackName);
   const [isEdit, setIsEdit] = useState(false);
-  const [checked, setChecked] = useState<string[]>([]);
+  const [checked, setChecked] = useState<string[]>([...userStack]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const { mutate: patchToUserInfo } = useMutation(patchUserInfo, {
@@ -79,7 +80,12 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
           <>
             <div className="row">
               <p className="label">활동 분야</p>
-              <Select options={categoryOption} value={selectedCategory} onChange={onChangeSelect} />
+              <Select
+                defaultValue={field}
+                options={categoryOption}
+                value={selectedCategory}
+                onChange={onChangeSelect}
+              />
             </div>
             <div className="row">
               <p className="label">관심 분야</p>
