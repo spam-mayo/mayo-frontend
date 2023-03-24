@@ -1,13 +1,12 @@
 import MultiButton from '@/components/mypage/UserInfo/MultiButton';
-import { type FC, useState, ChangeEvent, FormEvent } from 'react';
+import { type FC, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Select from '@/components/auth/Select';
-import { categoryOption } from '@/constants/categoryOption';
-import { stackOption } from '@/constants/stackOption';
+import { fieldOption } from '@/constants/fieldOption';
 import type { Stack } from '@/api/auth/types';
-import Checkbox from '@/components/common/Checkbox';
 import { useMutation } from '@tanstack/react-query';
 import { patchUserInfo } from '@/api/auth/authAPI';
 import axios from 'axios';
+import StackForm from '@/components/study/Stack';
 
 interface Props {
   field: string;
@@ -15,12 +14,15 @@ interface Props {
   userId: string;
 }
 
-const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
-  const userStack = stack.map((el) => el.stackName);
-  const [isEdit, setIsEdit] = useState(false);
-  const [checked, setChecked] = useState<string[]>([...userStack]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+const tmp = (categoryLabel: string) => {
+  const res = fieldOption.find(({ label }) => label === categoryLabel);
+  return res;
+};
 
+const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const [checked, setChecked] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const { mutate: patchToUserInfo } = useMutation(patchUserInfo, {
     onSuccess: () => {
       alert('추가 정보가 저장되었습니다!');
@@ -31,6 +33,9 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
         if (err.response?.status === 404) {
           alert('일치하는 정보가 없습니다.');
         }
+        if (err.response?.status === 400) {
+          alert('변경할 항목을 선택해주세요.');
+        }
       }
     },
   });
@@ -39,7 +44,7 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
     setSelectedCategory(event.target.value);
   };
 
-  const handleCheck = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeCheckList = (event: ChangeEvent<HTMLInputElement>) => {
     let updatedList = [...checked];
     if (event.target.checked) {
       updatedList = [...checked, event.target.value];
@@ -48,12 +53,6 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
     }
     setChecked(updatedList);
   };
-
-  const checkedItems = checked.length
-    ? checked.reduce((total, item) => {
-        return total + ', ' + item;
-      })
-    : '';
 
   const onClickEdit = () => {
     setIsEdit((prev) => !prev);
@@ -65,9 +64,12 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
 
     const field = selectedCategory;
     const userStacks = checked;
-
     patchToUserInfo({ userId, field, userStacks });
   };
+
+  useEffect(() => {
+    setSelectedCategory(tmp(field)?.value ?? '');
+  }, [field]);
 
   return (
     <form className="userInfo-container" onSubmit={onSubmit}>
@@ -80,65 +82,11 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
           <>
             <div className="row">
               <p className="label">활동 분야</p>
-              <Select
-                defaultValue={field}
-                options={categoryOption}
-                value={selectedCategory}
-                onChange={onChangeSelect}
-              />
+              <Select options={fieldOption} value={selectedCategory} onChange={onChangeSelect} />
             </div>
             <div className="row">
               <p className="label">관심 분야</p>
-
-              <div className="stack-container">
-                <div className="checked-stacks">
-                  {checkedItems.length === 0 ? '아래 목록 중 스택을 선택하세요' : `${checkedItems}`}
-                </div>
-
-                <ul className="checkbox-container">
-                  <span className="stack-title">프론트엔드</span>
-                  <div>
-                    {stackOption.front.map((item) => (
-                      <Checkbox value={item.value} key={item.id} onChange={handleCheck}>
-                        {item.label}
-                      </Checkbox>
-                    ))}
-                  </div>
-                </ul>
-
-                <ul className="checkbox-container">
-                  <span className="stack-title">백엔드</span>
-                  <div>
-                    {stackOption.back.map((item) => (
-                      <Checkbox value={item.value} key={item.id} onChange={handleCheck}>
-                        {item.label}
-                      </Checkbox>
-                    ))}
-                  </div>
-                </ul>
-
-                <ul className="checkbox-container">
-                  <span className="stack-title">디자인</span>
-                  <div>
-                    {stackOption.design.map((item) => (
-                      <Checkbox value={item.value} key={item.id} onChange={handleCheck}>
-                        <span>{item.label}</span>
-                      </Checkbox>
-                    ))}
-                  </div>
-                </ul>
-
-                <ul className="checkbox-container">
-                  <span className="stack-title">기타</span>
-                  <div>
-                    {stackOption.other.map((item) => (
-                      <Checkbox value={item.value} key={item.id} onChange={handleCheck}>
-                        {item.label}
-                      </Checkbox>
-                    ))}
-                  </div>
-                </ul>
-              </div>
+              <StackForm onChange={onChangeCheckList} checked={checked} />
             </div>
           </>
         ) : (
