@@ -1,4 +1,7 @@
 import Select, { type SelectOption } from '@/components/auth/Select';
+interface Props {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 const categoryOption: SelectOption[] = [
   { label: '분야', value: 'nofield', id: 1 },
@@ -28,12 +31,12 @@ const arrayOption: SelectOption[] = [
   { label: '조회수순', value: 'views', id: 4 },
 ];
 
-const Search = () => {
+const Search = ({ onChange }: Props) => {
   return (
     <div className="search">
       <div className="search-input col-lg-8 col-md-8">
         <i className="icon-search" />
-        <input placeholder="내가 찾는 스터디!" />
+        <input placeholder="내가 찾는 스터디!" onChange={onChange} />
       </div>
       <div className="search-filter col-lg-4 col-md-4">
         <span>필터</span>
