@@ -23,6 +23,7 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [checked, setChecked] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+
   const { mutate: patchToUserInfo } = useMutation(patchUserInfo, {
     onSuccess: () => {
       alert('추가 정보가 저장되었습니다!');
@@ -64,7 +65,12 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
 
     const field = selectedCategory;
     const userStacks = checked;
-    patchToUserInfo({ userId, field, userStacks });
+
+    if (field === '') {
+      patchToUserInfo({ userId, userStacks });
+    } else {
+      patchToUserInfo({ userId, field, userStacks });
+    }
   };
 
   useEffect(() => {
