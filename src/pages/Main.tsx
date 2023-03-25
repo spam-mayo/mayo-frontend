@@ -44,19 +44,18 @@ const Main: FC = () => {
   };
 
   const onChangeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (activePage !== 1) {
+      setActivePage(1);
+    }
     setSort(e.target.value);
   };
 
   const onChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (activePage !== 1) {
+      setActivePage(1);
+    }
     setCategory(e.target.value);
   };
-
-  // I want to render as soon as onChageSort or onChangeCategory is called.
-  // But it doesn't work.
-  // I think it's because the query is not called again.
-  // how to fix it?
-
-  // I tried to use useQueryClient, but it didn't work.
 
   return (
     <main className="container">

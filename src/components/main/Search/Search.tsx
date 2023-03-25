@@ -6,7 +6,7 @@ interface Props {
 }
 
 const categoryOption: SelectOption[] = [
-  { label: '분야', value: 'nofield', id: 1 },
+  { label: '분야', value: '', id: 1 },
   { label: '프론트엔드', value: 'frontend', id: 2 },
   { label: '백엔드', value: 'backend', id: 3 },
   { label: '디자인', value: 'design', id: 4 },
