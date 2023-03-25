@@ -11,13 +11,15 @@ import type { Recruit } from '@/api/recruit/recruitTypes';
 
 const Main: FC = () => {
   const [search, setSearch] = useState<string | null>('');
+  const [sort, setSort] = useState<string>('latest');
+  const [category, setCategory] = useState<string>('');
   const [activePage, setActivePage] = useState(1);
 
   const debouncedSearch = useDebounce(search, 500);
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['search', debouncedSearch, activePage],
-    queryFn: () => getSearch(search, activePage),
+    queryKey: ['search', sort, category, debouncedSearch, activePage],
+    queryFn: () => getSearch(activePage, category, sort, search),
     select: ({ data }) => data,
     keepPreviousData: true,
   });
@@ -35,9 +37,24 @@ const Main: FC = () => {
     }
   };
 
+  const onChangeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSort(e.target.value);
+  };
+
+  const onChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value);
+  };
+
+  // I want to render as soon as onChageSort or onChangeCategory is called.
+  // But it doesn't work.
+  // I think it's because the query is not called again.
+  // how to fix it?
+
+  // I tried to use useQueryClient, but it didn't work.
+
   return (
     <main className="container">
-      <Search onChange={onChange} />
+      <Search onChange={onChange} onChangeSort={onChangeSort} onChangeCategory={onChangeCategory} />
       <ul className="row recruit-card-wrapper">
         {data?.data?.map((post: Recruit) => (
           <li key={post.studyId} className="col-lg-3 col-md-6 col-sm-4">

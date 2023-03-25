@@ -12,5 +12,5 @@ interface PaginationResponse<T> {
 export const getRecruits = (pageNum: number) =>
   axiosInstance.get<PaginationResponse<Recruit[]>>(`/api/study?page=${pageNum}&size=12`);
 
-export const getSearch = (search: string | null, pageNum: number) =>
-  axiosInstance.get(`api/study?page=${pageNum}&size=12&search=${search}`);
+export const getSearch = (pageNum: number, field: string, sort: string, search: string | null) =>
+  axiosInstance.get(`api/study?page=${pageNum}&size=12&field=${field}&sort=${sort}&search=${search}`);
