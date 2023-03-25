@@ -30,6 +30,9 @@ const Main: FC = () => {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+    if (search !== '' && activePage !== 1) {
+      setActivePage(1);
+    }
   };
 
   return (
