@@ -14,3 +14,6 @@ export const getRecruits = (pageNum: number) =>
 
 export const getSearch = (pageNum: number, field: string, sort: string, search: string | null) =>
   axiosInstance.get(`api/study?page=${pageNum}&size=12&field=${field}&sort=${sort}&search=${search}`);
+
+export const getSearchNofield = (pageNum: number, sort: string, search: string | null) =>
+  axiosInstance.get(`api/study?page=${pageNum}&size=12&sort=${sort}&search=${search}`);
