@@ -10,7 +10,7 @@ import useDebounce from '@/hooks/useDebounce';
 import type { Recruit } from '@/api/recruit/recruitTypes';
 
 const Main: FC = () => {
-  const [search, setSearch] = useState<string | null>(null);
+  const [search, setSearch] = useState<string | null>('');
   const [activePage, setActivePage] = useState(1);
 
   const debouncedSearch = useDebounce(search, 500);
