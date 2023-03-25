@@ -10,7 +10,7 @@ interface Props {
 const OauthButton: FC<Props> = ({ src, alt, href }) => {
   const BASE = 'https://spammayo.shop/oauth2/authorization';
   return (
-    <a href={`${BASE}/${href}`}>
+    <a href={`${BASE}/${href}`} className="auth-button">
       <img src={src} alt={alt} />
     </a>
   );
