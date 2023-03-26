@@ -21,7 +21,7 @@ const tmp = (categoryLabel: string) => {
 
 const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [checked, setChecked] = useState<string[]>([]);
+  const [checkedList, setCheckedList] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const { mutate: patchToUserInfo } = useMutation(patchUserInfo, {
@@ -46,31 +46,23 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
   };
 
   const onChangeCheckList = (event: ChangeEvent<HTMLInputElement>) => {
-    let updatedList = [...checked];
-    if (event.target.checked) {
-      updatedList = [...checked, event.target.value];
-    } else {
-      updatedList.splice(checked.indexOf(event.target.value), 1);
-    }
-    setChecked(updatedList);
+    const { value } = event.target;
+    setCheckedList((prev) => (prev.includes(value) ? prev.filter((p) => p === value) : [...prev, value]));
   };
 
   const onClickEdit = () => {
     setIsEdit((prev) => !prev);
-    setChecked([]);
+    setCheckedList(stack.map(({ stackName }) => stackName));
   };
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const field = selectedCategory;
-    const userStacks = checked;
-
-    if (field === '') {
-      patchToUserInfo({ userId, userStacks });
-    } else {
-      patchToUserInfo({ userId, field, userStacks });
-    }
+    patchToUserInfo({
+      userId,
+      userStacks: checkedList,
+      field: selectedCategory || undefined,
+    });
   };
 
   useEffect(() => {
@@ -92,7 +84,7 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
             </div>
             <div className="row">
               <p className="label">관심 분야</p>
-              <StackForm onChange={onChangeCheckList} checked={checked} />
+              <StackForm onChange={onChangeCheckList} checked={checkedList} />
             </div>
           </>
         ) : (
