@@ -13,49 +13,18 @@ const StackForm: FC<Props> = ({ checked, onChange }: Props) => {
       <span className="content-title">기술스택</span>
       <div className="checked-stacks">{checked.length ? checked.join(', ') : '아래 목록 중 스택을 선택하세요'}</div>
 
-      <ul className="checkbox-container">
-        <span className="stack-title">프론트엔드</span>
-        <div>
-          {stackOption.front.map((item) => (
-            <Checkbox value={item.value} key={item.id} onChange={onChange} checked={checked.includes(item.value)}>
-              {item.label}
-            </Checkbox>
-          ))}
-        </div>
-      </ul>
-
-      <ul className="checkbox-container">
-        <span className="stack-title">백엔드</span>
-        <div>
-          {stackOption.back.map((item) => (
-            <Checkbox value={item.value} key={item.id} onChange={onChange} checked={checked.includes(item.value)}>
-              {item.label}
-            </Checkbox>
-          ))}
-        </div>
-      </ul>
-
-      <ul className="checkbox-container">
-        <span className="stack-title">디자인</span>
-        <div>
-          {stackOption.design.map((item) => (
-            <Checkbox value={item.value} key={item.id} onChange={onChange} checked={checked.includes(item.value)}>
-              <span>{item.label}</span>
-            </Checkbox>
-          ))}
-        </div>
-      </ul>
-
-      <ul className="checkbox-container">
-        <span className="stack-title">기타</span>
-        <div>
-          {stackOption.other.map((item) => (
-            <Checkbox value={item.value} key={item.id} onChange={onChange} checked={checked.includes(item.value)}>
-              {item.label}
-            </Checkbox>
-          ))}
-        </div>
-      </ul>
+      {Object.entries(stackOption).map(([key, values]) => (
+        <ul className="checkbox-container" key={key}>
+          <span className="stack-title">{key}</span>
+          <div>
+            {values.map((item) => (
+              <Checkbox value={item.value} key={item.id} onChange={onChange} checked={checked.includes(item.value)}>
+                {item.label}
+              </Checkbox>
+            ))}
+          </div>
+        </ul>
+      ))}
     </div>
   );
 };

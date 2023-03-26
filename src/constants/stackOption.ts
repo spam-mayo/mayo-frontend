@@ -1,5 +1,27 @@
-export const stackOption = {
-  front: [
+export enum StackType {
+  FRONT = '프론트엔드',
+  BACK = '백엔드',
+  DESIGN = '디자인',
+  OTHER = '기타',
+}
+
+// export const stackLabel: Record<StackType, string> = {
+//   [StackType.FRONT]: '프론트엔드',
+//   [StackType.BACK]: '백엔드',
+//   [StackType.DESIGN]: '디자인',
+//   [StackType.OTHER]: '기타',
+// };
+
+export type StackOption = {
+  [key in StackType]: {
+    label: string;
+    value: string;
+    id: number;
+  }[];
+};
+
+export const stackOption: StackOption = {
+  [StackType.FRONT]: [
     { label: 'JavaScript', value: 'javascript', id: 1 },
     { label: 'TypeScript', value: 'typescript', id: 2 },
     { label: 'React', value: 'react', id: 3 },
@@ -8,7 +30,7 @@ export const stackOption = {
     { label: 'Nextjs', value: 'nextjs', id: 6 },
     { label: 'Jest', value: 'jest', id: 7 },
   ],
-  back: [
+  [StackType.BACK]: [
     { label: 'Java', value: 'java', id: 8 },
     { label: 'Spring', value: 'spring', id: 9 },
     { label: 'Nodejs', value: 'nodejs', id: 10 },
@@ -24,11 +46,11 @@ export const stackOption = {
     { label: 'Firebase', value: 'firebase', id: 20 },
     { label: 'GraphQL', value: 'graphql', id: 21 },
   ],
-  design: [
+  [StackType.DESIGN]: [
     { label: 'Figma', value: 'figma', id: 22 },
     { label: 'Zeplin', value: 'zeplin', id: 23 },
   ],
-  other: [
+  [StackType.OTHER]: [
     { label: 'Flutter', value: 'flutter', id: 24 },
     { label: 'Kubernetes', value: 'kubernetes', id: 25 },
     { label: 'Git', value: 'git', id: 26 },
