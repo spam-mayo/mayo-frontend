@@ -50,7 +50,7 @@ const StackForm: FC<Props> = ({ checked, onChange }: Props) => {
         <span className="stack-title">기타</span>
         <div>
           {stackOption.other.map((item) => (
-            <Checkbox value={item.value} key={item.id} onChange={onChange}>
+            <Checkbox value={item.value} key={item.id} onChange={onChange} checked={checked.includes(item.value)}>
               {item.label}
             </Checkbox>
           ))}
