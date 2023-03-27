@@ -26,6 +26,16 @@
     }
   }
 
+  .visible {
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 16px;
+      right: 10px;
+    }
+  }
+
   .btn-padding {
     padding-right: 65px;
   }

@@ -16,6 +16,7 @@ import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
 import ButtonInput from '@/components/auth/Input/ButtonInput';
 import { fieldOption } from '@/constants/fieldOption';
+import PasswordInput from '@/components/auth/Input/PasswordInput';
 
 const RegisterForm: FC = () => {
   const {
@@ -130,20 +131,32 @@ const RegisterForm: FC = () => {
                 </Button>
               </div>
             )}
-            <Input
+            {/* <Input
               {...register('password')}
               type="password"
               label="비밀번호"
               placeholder="비밀번호를 입력해주세요."
               error={errors.password?.message}
+            /> */}
+            <PasswordInput
+              {...register('password')}
+              label="비밀번호"
+              placeholder="비밀번호를 입력해주세요."
+              error={errors.password?.message}
             />
-            <Input
+            <PasswordInput
+              {...register('password_check')}
+              label="비밀번호 확인"
+              placeholder="비밀번호를 확인해주세요."
+              error={errors.password_check?.message}
+            />
+            {/* <Input
               {...register('password_check')}
               type="password"
               label="비밀번호 확인"
               placeholder="비밀번호를 확인해주세요."
               error={errors.password_check?.message}
-            />
+            /> */}
             <div className="select">
               <label>활동분야(선택)</label>
               <Select {...register('field')} options={fieldOption} />

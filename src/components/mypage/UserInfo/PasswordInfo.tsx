@@ -7,7 +7,7 @@ import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/p
 import { useMutation } from '@tanstack/react-query';
 import { patchUserInfo } from '@/api/auth/authAPI';
 import axios from 'axios';
-import Input from '@/components/auth/Input/Input';
+import PasswordInput from '@/components/auth/Input/PasswordInput';
 
 interface Props {
   userId: string;
@@ -15,7 +15,6 @@ interface Props {
 
 const PasswordInfo: FC<Props> = ({ userId }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [isShowPw, setIsShowPw] = useState(false);
 
   const {
     handleSubmit,
@@ -46,10 +45,6 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
     reset();
   };
 
-  const onClickToggleShowPw = () => {
-    setIsShowPw((prev) => !prev);
-  };
-
   const onSubmit: SubmitHandler<PasswordChangeSchema> = (data) => {
     const password = data.newPassword;
 
@@ -64,32 +59,18 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
       </div>
       {isEdit ? (
         <div className="userInfo-container-content">
-          <div className="show-input">
-            <Input
-              {...register('newPassword')}
-              label="비밀번호"
-              type={isShowPw ? 'text' : 'password'}
-              placeholder="새로운 비밀번호를 입력하세요."
-              error={errors.newPassword?.message}
-            />
-            <i
-              className={isShowPw ? 'icon-checkbox-checked' : 'icon-checkbox-unchecked'}
-              onClick={onClickToggleShowPw}
-            />
-          </div>
-          <div className="show-input">
-            <Input
-              {...register('newPasswordCheck')}
-              label="비밀번호 확인"
-              type={isShowPw ? 'text' : 'password'}
-              placeholder="비밀번호를 확인해주세요."
-              error={errors.newPasswordCheck?.message}
-            />
-            <i
-              className={isShowPw ? 'icon-checkbox-checked' : 'icon-checkbox-unchecked'}
-              onClick={onClickToggleShowPw}
-            />
-          </div>
+          <PasswordInput
+            {...register('newPassword')}
+            label="비밀번호"
+            placeholder="새로운 비밀번호를 입력하세요."
+            error={errors.newPassword?.message}
+          />
+          <PasswordInput
+            {...register('newPasswordCheck')}
+            label="비밀번호 확인"
+            placeholder="비밀번호를 확인해주세요."
+            error={errors.newPasswordCheck?.message}
+          />
         </div>
       ) : null}
     </form>
