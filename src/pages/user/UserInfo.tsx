@@ -16,7 +16,13 @@ const UserInfo: FC = () => {
     throw new Error('no user');
   }
 
-  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
+  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)), {
+    select: (data) => data.data,
+  });
+  const userName = data?.userName ?? '';
+  const email = data?.email ?? '';
+  const field = data?.field ?? '';
+  const stack = data?.stack ?? [];
 
   const { mutate: deleteMember } = useMutation(deleteUser, {
     onSuccess: () => {
@@ -52,8 +58,8 @@ const UserInfo: FC = () => {
         />
       )}
       <div className="user-container">
-        <BasicInfo name={data?.data.userName} email={data?.data.email} userId={userId} />
-        <ExtraInfo field={data?.data.field} stack={data?.data.stack} />
+        <BasicInfo name={userName} email={email} userId={userId} />
+        <ExtraInfo field={field} stack={stack} userId={userId} />
         <PasswordInfo userId={userId} />
         <div onClick={onClickOpenModal}>
           <button>회원 탈퇴</button>
