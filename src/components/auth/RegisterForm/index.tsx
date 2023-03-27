@@ -12,7 +12,7 @@ import type { RegisterReq } from '@/api/auth/types';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@/components/common/Button';
 import ButtonInput from '@/components/auth/Input/ButtonInput';
-import { categoryOption } from '@/constants/categoryOption';
+import { fieldOption } from '@/constants/fieldOption';
 
 const RegisterForm: FC = () => {
   const {
@@ -76,6 +76,9 @@ const RegisterForm: FC = () => {
   };
 
   const onSubmit: SubmitHandler<RegisterReq> = async (data) => {
+    if (data.field === '') {
+      delete data.field;
+    }
     registerMember(data);
   };
 
@@ -136,7 +139,7 @@ const RegisterForm: FC = () => {
             />
             <div className="select">
               <label>활동분야(선택)</label>
-              <Select {...register('field')} options={categoryOption} />
+              <Select {...register('field')} options={fieldOption} />
             </div>
 
             <Button size="large" color="yellow" type="submit">

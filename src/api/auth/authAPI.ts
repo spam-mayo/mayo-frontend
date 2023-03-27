@@ -33,3 +33,5 @@ export const patchProfileImage = ({ userId, image }: ProfileEditReq) =>
   axiosInstance.patch(`/api/users/${userId}/image`, image);
 
 export const patchUserInfo = ({ userId, ...body }: UserInfoReq) => axiosInstance.patch(`/api/users/${userId}`, body);
+
+export const deleteUser = (userId: number) => axiosInstance.delete(`api/users/${userId}`);

@@ -30,14 +30,12 @@ export interface ProfileEditReq {
   image?: FormData;
 }
 
-type UserStack = { stackId: string };
-
 export interface UserInfoReq {
   userId: string;
   userName?: string;
   password?: string;
   field?: string;
-  userStacks?: UserStack[];
+  userStacks?: string[];
 }
 
 export type Stack = {
