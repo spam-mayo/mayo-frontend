@@ -5,13 +5,6 @@ export enum StackType {
   OTHER = '기타',
 }
 
-// export const stackLabel: Record<StackType, string> = {
-//   [StackType.FRONT]: '프론트엔드',
-//   [StackType.BACK]: '백엔드',
-//   [StackType.DESIGN]: '디자인',
-//   [StackType.OTHER]: '기타',
-// };
-
 export type StackOption = {
   [key in StackType]: {
     label: string;

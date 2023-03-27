@@ -18,9 +18,13 @@ const StackForm: FC<Props> = ({ checked, onChange }: Props) => {
           <span className="stack-title">{key}</span>
           <div>
             {values.map((item) => (
-              <Checkbox value={item.value} key={item.id} onChange={onChange} checked={checked.includes(item.value)}>
-                {item.label}
-              </Checkbox>
+              <Checkbox
+                value={item.value}
+                key={item.id}
+                onChange={onChange}
+                checked={checked.includes(item.value)}
+                label={item.label}
+              />
             ))}
           </div>
         </ul>
