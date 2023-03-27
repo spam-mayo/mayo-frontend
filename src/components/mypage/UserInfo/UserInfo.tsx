@@ -24,7 +24,7 @@ const UserInfo = () => {
   return (
     <div className="user-container">
       <BasicInfo name={userName} email={email} userId={userId} />
-      <ExtraInfo field={field} stack={stack} userId={userId} />
+      <ExtraInfo field={field} stack={stack} />
       <PasswordInfo userId={userId} />
       <div className="unregister">회원 탈퇴</div>
     </div>

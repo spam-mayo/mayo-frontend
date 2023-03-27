@@ -1,6 +1,6 @@
 import Select, { type SelectOption } from '@/components/auth/Select';
 
-const fieldOption: SelectOption[] = [
+const categoryOption: SelectOption[] = [
   { label: '분야', value: 'nofield', id: 1 },
   { label: '프론트엔드', value: 'frontend', id: 2 },
   { label: '백엔드', value: 'backend', id: 3 },
@@ -37,7 +37,7 @@ const Search = () => {
       </div>
       <div className="search-filter col-lg-4 col-md-4">
         <span>필터</span>
-        <Select options={fieldOption} />
+        <Select options={categoryOption} />
         <Select options={placeOption} />
       </div>
       <div className="search-array col-lg-6 col-md-6">

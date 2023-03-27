@@ -61,7 +61,12 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
       <div className="userInfo-container-content">
         {isEdit ? (
           <>
-            <Input label="이름" defaultValue={name} {...register('userName')} error={errors.userName?.message} />
+            <Input
+              label="이름"
+              placeholder="이름을 입력하세요"
+              {...register('userName')}
+              error={errors.userName?.message}
+            />
           </>
         ) : (
           <div className="row">
