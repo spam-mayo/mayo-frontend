@@ -131,13 +131,6 @@ const RegisterForm: FC = () => {
                 </Button>
               </div>
             )}
-            {/* <Input
-              {...register('password')}
-              type="password"
-              label="비밀번호"
-              placeholder="비밀번호를 입력해주세요."
-              error={errors.password?.message}
-            /> */}
             <PasswordInput
               {...register('password')}
               label="비밀번호"
@@ -150,13 +143,6 @@ const RegisterForm: FC = () => {
               placeholder="비밀번호를 확인해주세요."
               error={errors.password_check?.message}
             />
-            {/* <Input
-              {...register('password_check')}
-              type="password"
-              label="비밀번호 확인"
-              placeholder="비밀번호를 확인해주세요."
-              error={errors.password_check?.message}
-            /> */}
             <div className="select">
               <label>활동분야(선택)</label>
               <Select {...register('field')} options={fieldOption} />
