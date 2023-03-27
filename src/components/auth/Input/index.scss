@@ -17,6 +17,7 @@
     border: 1px solid $charcoal;
     border-radius: 6px;
     background-color: $white;
+    text-indent: 8px;
 
     &::placeholder {
       @include text-style-16();

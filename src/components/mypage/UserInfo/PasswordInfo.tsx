@@ -77,13 +77,19 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
               onClick={onClickToggleShowPw}
             />
           </div>
-          <Input
-            {...register('newPasswordCheck')}
-            label="비밀번호 확인"
-            type={isShowPw ? 'text' : 'password'}
-            placeholder="비밀번호를 확인해주세요."
-            error={errors.newPasswordCheck?.message}
-          />
+          <div className="show-input">
+            <Input
+              {...register('newPasswordCheck')}
+              label="비밀번호 확인"
+              type={isShowPw ? 'text' : 'password'}
+              placeholder="비밀번호를 확인해주세요."
+              error={errors.newPasswordCheck?.message}
+            />
+            <i
+              className={isShowPw ? 'icon-checkbox-checked' : 'icon-checkbox-unchecked'}
+              onClick={onClickToggleShowPw}
+            />
+          </div>
         </div>
       ) : null}
     </form>

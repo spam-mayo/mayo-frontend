@@ -4,11 +4,11 @@
 
 .auth-container {
   @include flexbox();
-  background-image: url('@/assets/images/authBackground.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('@/assets/images/authBackground.jpg');
   background-position: center;
   background-size: cover;
-  opacity: 0.9;
   height: 800px;
+  margin-top: 80px;
 
   .info {
     color: $white;
