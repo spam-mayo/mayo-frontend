@@ -17,6 +17,7 @@ import UserApplyStudy from '@/pages/user/UserApplyStudy';
 import UserCreateStudy from '@/pages/user/UserCreateStudy';
 import UserStudy from '@/pages/user/UserStudy';
 import UserLikeStudy from '@/pages/user/UserLikeStudy';
+import OauthToken from '@/pages/OauthToken';
 
 export const RoutesSetup = () => {
   return (
@@ -26,6 +27,7 @@ export const RoutesSetup = () => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="password" element={<PasswordChange />} />
+        <Route path="loading" element={<OauthToken />} />
       </Route>
       <Route path="/user/mypage" element={<MyPage />}>
         <Route index element={<UserInfo />} />

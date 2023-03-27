@@ -10,6 +10,9 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import type { RegisterReq } from '@/api/auth/types';
 import { Link, useNavigate } from 'react-router-dom';
+import kakao from '@/assets/images/kakao3.jpeg';
+import google from '@/assets/images/google3.png';
+import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
 import ButtonInput from '@/components/auth/Input/ButtonInput';
 import { fieldOption } from '@/constants/fieldOption';
@@ -89,6 +92,10 @@ const RegisterForm: FC = () => {
           <h1>회원가입</h1>
           <p>환영합니다!</p>
           <p>스터디 패밀리에서 함께 할 친구를 찾아봐요!</p>
+          <div className="social-auth">
+            <OauthButton src={kakao} alt="kakao" href="kakao" />
+            <OauthButton src={google} alt="google" href="google" />
+          </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">
           <div className="auth">
@@ -145,7 +152,6 @@ const RegisterForm: FC = () => {
             <Button size="large" color="yellow" type="submit">
               회원가입
             </Button>
-
             <div className="btnRow">
               <p>이미 계정이 있으신가요?</p>
               <Link to="/auth/login">
