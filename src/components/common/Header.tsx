@@ -55,9 +55,11 @@ const Header: FC = () => {
                   스터디 찾기
                 </Button>
               </Link>
-              <Button color="blue" text>
-                나의 스터디
-              </Button>
+              <Link to="/user/mypage/study">
+                <Button color="blue" text>
+                  나의 스터디
+                </Button>
+              </Link>
             </nav>
           </div>
           <div className="innerRight">
