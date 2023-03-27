@@ -15,6 +15,7 @@ interface Props {
 
 const PasswordInfo: FC<Props> = ({ userId }) => {
   const [isEdit, setIsEdit] = useState(false);
+  const [isShowPw, setIsShowPw] = useState(false);
 
   const {
     handleSubmit,
@@ -45,6 +46,10 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
     reset();
   };
 
+  const onClickToggleShowPw = () => {
+    setIsShowPw((prev) => !prev);
+  };
+
   const onSubmit: SubmitHandler<PasswordChangeSchema> = (data) => {
     const password = data.newPassword;
 
@@ -59,17 +64,23 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
       </div>
       {isEdit ? (
         <div className="userInfo-container-content">
-          <Input
-            {...register('newPassword')}
-            label="비밀번호"
-            type="password"
-            placeholder="새로운 비밀번호를 입력하세요."
-            error={errors.newPassword?.message}
-          />
+          <div className="show-input">
+            <Input
+              {...register('newPassword')}
+              label="비밀번호"
+              type={isShowPw ? 'text' : 'password'}
+              placeholder="새로운 비밀번호를 입력하세요."
+              error={errors.newPassword?.message}
+            />
+            <i
+              className={isShowPw ? 'icon-checkbox-checked' : 'icon-checkbox-unchecked'}
+              onClick={onClickToggleShowPw}
+            />
+          </div>
           <Input
             {...register('newPasswordCheck')}
             label="비밀번호 확인"
-            type="password"
+            type={isShowPw ? 'text' : 'password'}
             placeholder="비밀번호를 확인해주세요."
             error={errors.newPasswordCheck?.message}
           />

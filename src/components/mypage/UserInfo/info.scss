@@ -56,5 +56,15 @@
         gap: 5px;
       }
     }
+
+    .show-input {
+      position: relative;
+
+      i {
+        position: absolute;
+        top: 12px;
+        right: 255px;
+      }
+    }
   }
 }
