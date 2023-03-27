@@ -1,4 +1,4 @@
-import { type InputHTMLAttributes, forwardRef, useState } from 'react';
+import { type InputHTMLAttributes, forwardRef, useState, useCallback } from 'react';
 import './index.scss';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
@@ -9,9 +9,9 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 const PasswordInput = forwardRef<HTMLInputElement, Props>(({ label, error, ...rest }, ref) => {
   const [visible, setVisible] = useState(false);
 
-  const onClickShowPw = () => {
+  const onClickShowPw = useCallback(() => {
     setVisible((prev) => !prev);
-  };
+  }, []);
 
   return (
     <div className="input-container">
