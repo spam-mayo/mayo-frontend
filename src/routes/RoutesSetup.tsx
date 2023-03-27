@@ -12,6 +12,11 @@ import StudyList from '@/pages/study/List';
 import StudyDetail from '@/pages/study/Detail';
 import SampleGrid from '@/pages/sample/SampleGrid';
 import MyPage from '@/pages/user/MyPage';
+import UserInfo from '@/pages/user/UserInfo';
+import UserApplyStudy from '@/pages/user/UserApplyStudy';
+import UserCreateStudy from '@/pages/user/UserCreateStudy';
+import UserStudy from '@/pages/user/UserStudy';
+import UserLikeStudy from '@/pages/user/UserLikeStudy';
 import OauthToken from '@/pages/OauthToken';
 
 export const RoutesSetup = () => {
@@ -24,7 +29,13 @@ export const RoutesSetup = () => {
         <Route path="password" element={<PasswordChange />} />
         <Route path="loading" element={<OauthToken />} />
       </Route>
-      <Route path="/user/mypage" element={<MyPage />} />
+      <Route path="/user/mypage" element={<MyPage />}>
+        <Route index element={<UserInfo />} />
+        <Route path="study" element={<UserStudy />} />
+        <Route path="apply" element={<UserApplyStudy />} />
+        <Route path="create" element={<UserCreateStudy />} />
+        <Route path="like" element={<UserLikeStudy />} />
+      </Route>
       <Route path="/study">
         <Route index element={<StudyList />} />
         <Route path=":studyId" element={<StudyDetail />} />

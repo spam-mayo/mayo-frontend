@@ -4,6 +4,7 @@ import { type FC, useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderProfile from '@/components/common/HeaderProfile';
+import UserProfileImg from '@/components/common/UserProfileImg';
 
 const Header: FC = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -33,10 +34,11 @@ const Header: FC = () => {
 
   const onClickLogout = () => {
     logout();
+    setMenuOpen((prev) => !prev);
   };
 
   const onClickMenuOpen = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
   return (
@@ -62,9 +64,11 @@ const Header: FC = () => {
             {isLogin ? (
               <>
                 <div onClick={onClickMenuOpen}>
-                  <img alt="userProfile" src={data?.data.profileUrl} />
+                  <UserProfileImg src={data?.data.profileUrl} />
                 </div>
-                {menuOpen && <HeaderProfile onClickLogout={onClickLogout} />}
+                {menuOpen && (
+                  <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />
+                )}
               </>
             ) : (
               <>

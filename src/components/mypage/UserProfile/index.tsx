@@ -1,9 +1,9 @@
+import UserProfileImg from '@/components/common/UserProfileImg';
 import type { FC } from 'react';
 import './index.scss';
 
 interface Props {
-  src: string;
-  alt: string;
+  src?: string;
   name: string;
   onClick: () => void;
 }
@@ -16,11 +16,11 @@ const style = {
   justifyContent: 'center',
 };
 
-const UserProfile: FC<Props> = ({ src, alt, name, onClick }) => {
+const UserProfile: FC<Props> = ({ src, name, onClick }) => {
   return (
     <div className="proflie">
       <div className="imgContainer">
-        <img src={src} alt={alt} />
+        <UserProfileImg src={src} />
         <i className="icon-pencil icon" onClick={onClick} style={style} />
       </div>
       <p>{name}</p>
