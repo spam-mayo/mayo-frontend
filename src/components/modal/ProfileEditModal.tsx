@@ -1,17 +1,18 @@
 import Button from '@/components/common/Button';
-import { type FC, useRef, useCallback } from 'react';
+import { type FC, useState, useRef, useCallback } from 'react';
 import './profileEditModal.scss';
 import { patchProfileImage } from '@/api/auth/authAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import UserProfileImg from '@/components/common/UserProfileImg';
 
 interface Props {
   onClose: () => void;
-  src?: string;
+  src: string;
 }
 
 const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
+  const BASE_PROFILE_URL = 'https://spam-image.s3.ap-northeast-2.amazonaws.com/basic.png';
+  const [profileImg, setProfileImg] = useState(src);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const { mutate: patchProfileImg } = useMutation(patchProfileImage, {
@@ -23,9 +24,11 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
         const statusCode = err.response?.status;
         const errorMessage = err.response?.data?.message;
         if (statusCode === 400 && errorMessage === 'Max file size 2MB') {
+          setProfileImg(src);
           alert('파일이 2MB를 초과하였습니다.');
         }
         if (statusCode === 400 && errorMessage === 'Invalid Values') {
+          setProfileImg(src);
           alert('jpg/jpeg, png, gif 파일만 업로드 가능합니다.');
         }
       }
@@ -37,7 +40,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
       return;
     }
 
-    src = URL.createObjectURL(event.target.files[0]);
+    setProfileImg(URL.createObjectURL(event.target.files[0]));
 
     const userId = localStorage.getItem('userId');
     if (!userId) return;
@@ -55,6 +58,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     const image = new FormData();
     image.append('image', '');
     patchProfileImg({ userId, image });
+    setProfileImg(BASE_PROFILE_URL);
   };
 
   const onClickImgUpload = useCallback(() => {
@@ -75,7 +79,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
         <hr />
         <div className="profile-edit">
           <p>당신의 프로필 사진을 등록해주세요.</p>
-          <UserProfileImg src={src} />
+          <img src={profileImg ? profileImg : src} alt="profile" />
           <input type="file" accept=".gif, .jpg, .jpeg, .png" onChange={onChangeImage} ref={inputRef} />
           <div>
             <Button color="gray" outline onClick={onClickImgUpload}>

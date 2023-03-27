@@ -4,9 +4,9 @@ import { type FC, useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderProfile from '@/components/common/HeaderProfile';
-import UserProfileImg from '@/components/common/UserProfileImg';
 
 const Header: FC = () => {
+  const BASE_PROFILE_URL = 'https://spam-image.s3.ap-northeast-2.amazonaws.com/basic.png';
   const [isLogin, setIsLogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const userId = localStorage.getItem('userId');
@@ -64,7 +64,7 @@ const Header: FC = () => {
             {isLogin ? (
               <>
                 <div onClick={onClickMenuOpen}>
-                  <UserProfileImg src={data?.data.profileUrl} />
+                  <img alt="userProfile" src={data?.data.profileUrl ?? BASE_PROFILE_URL} />
                 </div>
                 {menuOpen && (
                   <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />
