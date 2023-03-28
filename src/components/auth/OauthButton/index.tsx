@@ -11,7 +11,7 @@ const OauthButton: FC<Props> = ({ src, alt, href }) => {
   const BASE = 'https://spammayo.shop/oauth2/authorization';
   return (
     <a href={`${BASE}/${href}`}>
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt} className="social-icon" />
     </a>
   );
 };

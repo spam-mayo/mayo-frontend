@@ -37,9 +37,9 @@ const MyPage: FC = () => {
   return (
     <>
       {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={data?.data.profileUrl} />}
-      <div className="container">
+      <div className="container box">
         <div className="row">
-          <div className="col-lg-3 box">
+          <div className="col-lg-3 column">
             <UserProfile src={data?.data.profileUrl} name={data?.data.userName ?? ''} onClick={onClickOpenModal} />
             <ul className="tab-container">
               {tabs.map((tab) => (

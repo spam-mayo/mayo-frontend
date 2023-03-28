@@ -7,7 +7,7 @@ import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/p
 import { useMutation } from '@tanstack/react-query';
 import { patchUserInfo } from '@/api/auth/authAPI';
 import axios from 'axios';
-import Input from '@/components/auth/Input/Input';
+import PasswordInput from '@/components/auth/Input/PasswordInput';
 
 interface Props {
   userId: string;
@@ -59,17 +59,15 @@ const PasswordInfo: FC<Props> = ({ userId }) => {
       </div>
       {isEdit ? (
         <div className="userInfo-container-content">
-          <Input
+          <PasswordInput
             {...register('newPassword')}
             label="비밀번호"
-            type="password"
             placeholder="새로운 비밀번호를 입력하세요."
             error={errors.newPassword?.message}
           />
-          <Input
+          <PasswordInput
             {...register('newPasswordCheck')}
             label="비밀번호 확인"
-            type="password"
             placeholder="비밀번호를 확인해주세요."
             error={errors.newPasswordCheck?.message}
           />

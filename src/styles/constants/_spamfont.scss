@@ -1,5 +1,4 @@
-// scss-lint:disable all
-
+// // scss-lint:disable all
 @font-face {
   font-family: 'spamfont';
   src: url('@/assets/fonts/spamfont.eot');
@@ -73,11 +72,29 @@ i {
 .icon-user-tie:before {
   content: '\e976';
 }
+.icon-spinner11:before {
+  content: '\e984';
+}
+.icon-search:before {
+  content: '\e986';
+}
+.icon-enlarge2:before {
+  content: '\e98b';
+}
+.icon-shrink2:before {
+  content: '\e98c';
+}
 .icon-cogs:before {
   content: '\e995';
 }
+.icon-fire:before {
+  content: '\e9a9';
+}
 .icon-bin:before {
   content: '\e9ac';
+}
+.icon-list:before {
+  content: '\e9ba';
 }
 .icon-menu:before {
   content: '\e9bd';
@@ -87,6 +104,12 @@ i {
 }
 .icon-cloud-check:before {
   content: '\e9c4';
+}
+.icon-eye:before {
+  content: '\e9ce';
+}
+.icon-eye-blocked:before {
+  content: '\e9d1';
 }
 .icon-brightness-contrast:before {
   content: '\e9d6';
@@ -144,7 +167,4 @@ i {
 }
 .icon-github:before {
   content: '\eab0';
-}
-.icon-search:before {
-  content: '\e986';
 }
