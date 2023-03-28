@@ -38,7 +38,7 @@ const MyPage: FC = () => {
     <>
       {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={data?.data.profileUrl} />}
       <div className="container box">
-        <div className="row ">
+        <div className="row">
           <div className="col-lg-3 column">
             <UserProfile src={data?.data.profileUrl} name={data?.data.userName ?? ''} onClick={onClickOpenModal} />
             <ul className="tab-container">
