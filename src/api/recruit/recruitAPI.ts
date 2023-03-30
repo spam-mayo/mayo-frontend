@@ -9,11 +9,26 @@ interface PaginationResponse<T> {
   };
 }
 
-export const getRecruits = (pageNum: number) =>
-  axiosInstance.get<PaginationResponse<Recruit[]>>(`/api/study?page=${pageNum}&size=12`);
+export const getRecruits = async (pageNum: number, category: string | null, sort: string, search: string | null) => {
+  let url = `/api/study?page=${pageNum}&size=12&sort=${sort}`;
 
-export const getSearch = (pageNum: number, field: string, sort: string, search: string | null) =>
-  axiosInstance.get(`api/study?page=${pageNum}&size=12&field=${field}&sort=${sort}&search=${search}`);
+  if (category) {
+    url += `&field=${category}&search=${search}`;
+  }
 
-export const getSearchNofield = (pageNum: number, sort: string, search: string | null) =>
-  axiosInstance.get(`api/study?page=${pageNum}&size=12&sort=${sort}&search=${search}`);
+  if (search) {
+    url += `&search=${search}`;
+  }
+
+  const response = await axiosInstance.get<PaginationResponse<Recruit[]>>(url);
+  return response.data;
+};
+
+// export const getRecruits = (pageNum: number) =>
+//   axiosInstance.get<PaginationResponse<Recruit[]>>(`/api/study?page=${pageNum}&size=12`);
+
+// export const getSearch = (pageNum: number, field: string, sort: string, search: string | null) =>
+//   axiosInstance.get(`api/study?page=${pageNum}&size=12&field=${field}&sort=${sort}&search=${search}`);
+
+// export const getSearchNofield = (pageNum: number, sort: string, search: string | null) =>
+//   axiosInstance.get(`api/study?page=${pageNum}&size=12&sort=${sort}&search=${search}`);

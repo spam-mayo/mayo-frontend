@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import RecruitCard from '@/components/main/RecruitCard/RecruitCard';
-import { getSearch, getSearchNofield } from '@/api/recruit/recruitAPI';
+import { getRecruits } from '@/api/recruit/recruitAPI';
 import Pagination from '@/components/common/Pagination';
 import '@/styles/main.scss';
 import Search from '@/components/main/Search/Search';
@@ -20,15 +20,23 @@ const Main: FC = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['search', sort, category, debouncedSearch, activePage],
     queryFn: async () => {
-      if (category === '') {
-        return await getSearchNofield(activePage, sort, search);
-      }
-      return await getSearch(activePage, category, sort, search);
+      return await getRecruits(activePage, category, sort, debouncedSearch);
     },
-
-    select: ({ data }) => data,
+    select: (data) => data,
     keepPreviousData: true,
   });
+  // const { data, isLoading, isError } = useQuery({
+  //   queryKey: ['search', sort, category, debouncedSearch, activePage],
+  //   queryFn: async () => {
+  //     if (category === '') {
+  //       return await getSearchNofield(activePage, sort, search);
+  //     }
+  //     return await getSearch(activePage, category, sort, search);
+  //   },
+
+  //   select: ({ data }) => data,
+  //   keepPreviousData: true,
+  // });
 
   const maxPostPage = data?.pageInfo?.totalPages ?? 0;
 
