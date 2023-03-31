@@ -46,9 +46,11 @@ const Header: FC = () => {
       <div className="container">
         <div className="wrapper">
           <div className="innerLeft">
-            <div>
-              <img src="/spam.svg" alt="logo" className="logo" />
-            </div>
+            <Link to="/">
+              <div>
+                <img src="/spam.svg" alt="logo" className="logo" />
+              </div>
+            </Link>
             <nav>
               <Link to="/">
                 <Button color="blue" text>
