@@ -47,9 +47,7 @@ const Header: FC = () => {
         <div className="wrapper">
           <div className="innerLeft">
             <Link to="/">
-              <div>
-                <img src="/spam.svg" alt="logo" className="logo" />
-              </div>
+              <img src="/spam.svg" alt="logo" className="logo" />
             </Link>
             <nav>
               <Link to="/">
