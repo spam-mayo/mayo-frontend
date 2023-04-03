@@ -5,7 +5,7 @@ interface Props {
   stacks: { stackId: number; stackName: string }[];
 }
 
-const Title: FC<Props> = ({ title, stacks = [] }: Props) => {
+const StudyIntro: FC<Props> = ({ title, stacks = [] }: Props) => {
   return (
     <div className="title-container">
       <div className="title">{title}</div>
@@ -18,4 +18,4 @@ const Title: FC<Props> = ({ title, stacks = [] }: Props) => {
   );
 };
 
-export default Title;
+export default StudyIntro;

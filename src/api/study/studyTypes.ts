@@ -1,14 +1,8 @@
 import type { Stack } from '@/api/auth/types';
 
-export interface GetMyStudyReq {
-  page: number;
-  studyStatus?: string;
-  tab?: string;
-}
-
+// recruit type 에 있는거 갖다쓰기
 export interface PaginationRes<T> {
   data: T[];
-  pageNum: number;
   pageInfo: {
     totalPages: number;
   };

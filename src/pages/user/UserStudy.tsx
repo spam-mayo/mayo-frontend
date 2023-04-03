@@ -10,8 +10,9 @@ import { mystudyOption } from '@/constants/mypageOption';
 const UserStudy: FC = () => {
   const [activePage, setActivePage] = useState(1);
   const [selectOption, setSelectOption] = useState('');
+
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getMypageStudy({ page: activePage, studyStatus: selectOption, tab: 'crew' }),
+    queryFn: () => getMypageStudy(activePage, { status: selectOption !== '' ? selectOption : undefined, tab: 'crew' }),
     queryKey: ['mystudy', activePage, selectOption],
     select: ({ data }) => data,
     keepPreviousData: true,
@@ -30,15 +31,18 @@ const UserStudy: FC = () => {
   return (
     <div className="study-container">
       <div>
-        <Select options={mystudyOption} onChange={onChangeSelect} />
+        <Select options={mystudyOption} onChange={onChangeSelect} value={selectOption} />
       </div>
       <div>
-        {data.data.map(({ studyId, endDate, startDate, title, stack }) => (
-          <StudyBlock key={studyId} endDate={endDate} startDate={startDate} stack={stack} title={title} />
-        ))}
+        {data.data.map(({ studyId, endDate, startDate, title, stack }) => {
+          const studyData = { endDate, startDate, title, stack };
+          return <StudyBlock key={studyId} studyData={studyData} />;
+        })}
       </div>
       <div>
-        <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
+        {data.data.length !== 0 && (
+          <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
+        )}
       </div>
     </div>
   );

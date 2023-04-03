@@ -5,7 +5,7 @@ interface Props {
   endDate: string;
 }
 
-const Date: FC<Props> = ({ startDate, endDate }: Props) => {
+const StudyPeriod: FC<Props> = ({ startDate, endDate }: Props) => {
   return (
     <div className="date-container">
       <p className="start-date">시작일 : {startDate}</p>
@@ -14,4 +14,4 @@ const Date: FC<Props> = ({ startDate, endDate }: Props) => {
   );
 };
 
-export default Date;
+export default StudyPeriod;

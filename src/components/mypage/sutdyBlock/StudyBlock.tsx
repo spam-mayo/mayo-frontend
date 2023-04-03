@@ -1,19 +1,23 @@
-import Date from '@/components/mypage/sutdyBlock/Date';
+import StudyPeriod from '@/components/mypage/sutdyBlock/StudyPeriod';
 import type { FC } from 'react';
-import Title from '@/components/mypage/sutdyBlock/Title';
+import StudyIntro from '@/components/mypage/sutdyBlock/StudyIntro';
+import type { Stack } from '@/api/auth/types';
 
 interface Props {
-  title: string;
-  stack: { stackId: number; stackName: string }[];
-  startDate: string;
-  endDate: string;
+  studyData: {
+    endDate: string;
+    startDate: string;
+    title: string;
+    stack: Stack[];
+  };
 }
 
-const StudyBlock: FC<Props> = ({ title, stack = [], startDate, endDate }: Props) => {
+const StudyBlock: FC<Props> = ({ studyData }: Props) => {
+  const { endDate, startDate, title, stack } = studyData;
   return (
     <div className="studyBlock-container">
-      <Title title={title} stacks={stack} />
-      <Date startDate={startDate} endDate={endDate} />
+      <StudyIntro title={title} stacks={stack} />
+      <StudyPeriod startDate={startDate} endDate={endDate} />
     </div>
   );
 };
