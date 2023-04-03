@@ -1,4 +1,4 @@
-import StudyBlock from '@/components/mypage/sutdy/StudyBlock';
+import StudyBlock from '@/components/mypage/sutdyBlock/StudyBlock';
 
 const MyStudy = () => {
   return (
