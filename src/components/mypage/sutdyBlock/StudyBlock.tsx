@@ -1,6 +1,5 @@
 import Date from '@/components/mypage/sutdyBlock/Date';
 import type { FC } from 'react';
-// import classNames from 'classnames';
 import Title from '@/components/mypage/sutdyBlock/Title';
 
 interface Props {
