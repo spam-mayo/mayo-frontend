@@ -29,11 +29,17 @@ const UserStudy: FC = () => {
 
   return (
     <div className="study-container">
-      <Select options={mystudyOption} onChange={onChangeSelect} />
-      {data.data.map(({ studyId, endDate, startDate, title, stack }) => (
-        <StudyBlock key={studyId} endDate={endDate} startDate={startDate} stack={stack} title={title} />
-      ))}
-      <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
+      <div>
+        <Select options={mystudyOption} onChange={onChangeSelect} />
+      </div>
+      <div>
+        {data.data.map(({ studyId, endDate, startDate, title, stack }) => (
+          <StudyBlock key={studyId} endDate={endDate} startDate={startDate} stack={stack} title={title} />
+        ))}
+      </div>
+      <div>
+        <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
+      </div>
     </div>
   );
 };
