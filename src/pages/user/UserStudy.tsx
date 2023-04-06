@@ -9,10 +9,11 @@ import { mystudyOption } from '@/constants/mypageOption';
 
 const UserStudy: FC = () => {
   const [activePage, setActivePage] = useState(1);
-  const [selectOption, setSelectOption] = useState('');
+  const [selectOption, setSelectOption] = useState('all');
 
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getMypageStudy(activePage, { status: selectOption !== '' ? selectOption : undefined, tab: 'crew' }),
+    queryFn: () =>
+      getMypageStudy(activePage, { status: selectOption !== 'all' ? selectOption : undefined, tab: 'crew' }),
     queryKey: ['mystudy', activePage, selectOption],
     select: ({ data }) => data,
     keepPreviousData: true,
@@ -33,11 +34,15 @@ const UserStudy: FC = () => {
       <div>
         <Select options={mystudyOption} onChange={onChangeSelect} value={selectOption} />
       </div>
-      <div>
-        {data.data.map(({ studyId, endDate, startDate, title, stack }) => {
-          const studyData = { endDate, startDate, title, stack };
-          return <StudyBlock key={studyId} studyData={studyData} />;
-        })}
+      <div className="study-container-content">
+        {data.data.length === 0 ? (
+          <div className="no-data">아직 관련된 스터디가 없네요 ..</div>
+        ) : (
+          data.data.map(({ studyId, endDate, startDate, title, stack }) => {
+            const studyData = { endDate, startDate, title, stack };
+            return <StudyBlock key={studyId} studyData={studyData} />;
+          })
+        )}
       </div>
       <div>
         {data.data.length !== 0 && (
