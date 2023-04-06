@@ -11,6 +11,7 @@ import './userInfo.scss';
 const UserInfo: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userId = localStorage.getItem('userId');
+  const oauth = localStorage.getItem('oauth');
 
   if (!userId) {
     throw new Error('no user');
@@ -60,7 +61,7 @@ const UserInfo: FC = () => {
       <div className="user-container">
         <BasicInfo name={userName} email={email} userId={userId} />
         <ExtraInfo field={field} stack={stack} userId={userId} />
-        <PasswordInfo userId={userId} />
+        {!oauth && <PasswordInfo userId={userId} />}
         <div onClick={onClickOpenModal}>
           <button>회원 탈퇴</button>
         </div>
