@@ -14,4 +14,5 @@ export interface GetMyStudyRes {
   endDate: string;
   studyStatus: string;
   stack: Stack[];
+  approvalStatus?: string;
 }
