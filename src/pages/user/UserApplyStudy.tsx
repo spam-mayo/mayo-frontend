@@ -3,7 +3,7 @@ import Select from '@/components/auth/Select';
 import Pagination from '@/components/common/Pagination';
 import StudyBlock from '@/components/mypage/sutdyBlock/StudyBlock';
 import { useQuery } from '@tanstack/react-query';
-import { type FC, useState, ChangeEvent, useMemo } from 'react';
+import { type FC, useState, ChangeEvent, useMemo, useEffect } from 'react';
 
 const option = [
   { label: '전체', value: 'all' },
@@ -28,6 +28,10 @@ const UserApplyStudy: FC = () => {
     if (selectOption === 'all') return list;
     return list.filter(({ approvalStatus }) => approvalStatus === selectOption);
   }, [data, selectOption]);
+
+  useEffect(() => {
+    setActivePage(1);
+  }, [selectOption]);
 
   const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectOption(e.target.value);
