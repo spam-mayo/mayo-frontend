@@ -35,7 +35,7 @@ const UserStudy: FC = () => {
         <Select options={mystudyOption} onChange={onChangeSelect} value={selectOption} />
       </div>
       <div className="study-container-content">
-        {data.data.length === 0 ? (
+        {!data?.data.length ? (
           <div className="no-data">아직 관련된 스터디가 없네요 ..</div>
         ) : (
           data.data.map(({ studyId, endDate, startDate, title, stack }) => {
