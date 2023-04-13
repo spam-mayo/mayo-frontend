@@ -49,7 +49,9 @@ const UserApplyStudy: FC = () => {
         )}
       </div>
       <div>
-        {data.data.length && <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />}
+        {data.data.length !== 0 && (
+          <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
+        )}
       </div>
     </div>
   );
