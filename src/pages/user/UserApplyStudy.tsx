@@ -2,15 +2,9 @@ import { getMypageStudy } from '@/api/study/studyAPI';
 import Select from '@/components/auth/Select';
 import Pagination from '@/components/common/Pagination';
 import StudyBlock from '@/components/mypage/sutdyBlock/StudyBlock';
+import { applyStudyOption } from '@/constants/mypageOption';
 import { useQuery } from '@tanstack/react-query';
-import { type FC, useState, ChangeEvent, useMemo, useEffect } from 'react';
-
-const option = [
-  { label: '전체', value: 'all' },
-  { label: '대기중', value: '대기중' },
-  { label: '승인', value: '승인' },
-  { label: '거절', value: '거절' },
-];
+import { type FC, useState, ChangeEvent, useMemo } from 'react';
 
 const UserApplyStudy: FC = () => {
   const [activePage, setActivePage] = useState(1);
@@ -29,12 +23,9 @@ const UserApplyStudy: FC = () => {
     return list.filter(({ approvalStatus }) => approvalStatus === selectOption);
   }, [data, selectOption]);
 
-  useEffect(() => {
-    setActivePage(1);
-  }, [selectOption]);
-
   const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectOption(e.target.value);
+    setActivePage(1);
   };
 
   if (isLoading) return <div>loading...</div>;
@@ -46,7 +37,7 @@ const UserApplyStudy: FC = () => {
   return (
     <div className="study-container">
       <div>
-        <Select options={option} onChange={onChangeSelect} value={selectOption} />
+        <Select options={applyStudyOption} onChange={onChangeSelect} value={selectOption} />
       </div>
       <div className="study-container-content">
         {!filteredData.length ? (
