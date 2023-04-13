@@ -31,6 +31,7 @@ const UserInfo: FC = () => {
       localStorage.removeItem('userId');
       localStorage.removeItem('authorization');
       localStorage.removeItem('refresh');
+      localStorage.removeItem('oauth');
       window.location.href = '/';
     },
     onError: (err) => {
