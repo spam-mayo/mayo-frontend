@@ -4,24 +4,23 @@ import Pagination from '@/components/common/Pagination';
 import StudyBlock from '@/components/mypage/sutdyBlock/StudyBlock';
 import { applyStudyOption } from '@/constants/mypageOption';
 import { useQuery } from '@tanstack/react-query';
-import { type FC, useState, ChangeEvent, useMemo } from 'react';
+import { type FC, useState, ChangeEvent } from 'react';
 
 const UserApplyStudy: FC = () => {
   const [activePage, setActivePage] = useState(1);
   const [selectOption, setSelectOption] = useState('all');
 
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getMypageStudy(activePage, { status: undefined, tab: 'apply' }),
-    queryKey: ['applyStudy', activePage],
+    queryFn: () =>
+      getMypageStudy(activePage, {
+        status: undefined,
+        tab: 'apply',
+        approvalStatus: selectOption !== 'all' ? selectOption : undefined,
+      }),
+    queryKey: ['applyStudy', activePage, selectOption],
     select: ({ data }) => data,
     keepPreviousData: true,
   });
-
-  const filteredData = useMemo(() => {
-    const list = data?.data ?? [];
-    if (selectOption === 'all') return list;
-    return list.filter(({ approvalStatus }) => approvalStatus === selectOption);
-  }, [data, selectOption]);
 
   const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectOption(e.target.value);
@@ -40,15 +39,13 @@ const UserApplyStudy: FC = () => {
         <Select options={applyStudyOption} onChange={onChangeSelect} value={selectOption} />
       </div>
       <div className="study-container-content">
-        {!filteredData.length ? (
+        {!data?.data.length ? (
           <div className="no-data">아직 관련된 스터디가 없네요 ..</div>
         ) : (
-          <>
-            {filteredData?.map(({ studyId, endDate, startDate, title, stack }) => {
-              const studyData = { endDate, startDate, title, stack };
-              return <StudyBlock key={studyId} studyData={studyData} />;
-            })}
-          </>
+          data.data.map(({ studyId, endDate, startDate, title, stack }) => {
+            const studyData = { endDate, startDate, title, stack };
+            return <StudyBlock key={studyId} studyData={studyData} />;
+          })
         )}
       </div>
       <div>

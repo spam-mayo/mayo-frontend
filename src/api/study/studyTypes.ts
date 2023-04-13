@@ -14,5 +14,4 @@ export interface GetMyStudyRes {
   endDate: string;
   studyStatus: string;
   stack: Stack[];
-  approvalStatus?: '대기중' | '승인' | '거절';
 }

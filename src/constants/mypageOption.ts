@@ -11,7 +11,7 @@ export const mystudyOption: SelectOption[] = [
 
 export const applyStudyOption: SelectOption[] = [
   { label: '전체', value: 'all' },
-  { label: '대기중', value: '대기중' },
-  { label: '승인', value: '승인' },
-  { label: '거절', value: '거절' },
+  { label: '대기중', value: 'waiting' },
+  { label: '승인', value: 'approval' },
+  { label: '거절', value: 'reject' },
 ];
