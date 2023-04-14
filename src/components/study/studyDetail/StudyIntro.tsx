@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import './studyIntro.scss';
 import StackData from '@/assets/stacks/stackData';
 import StudyOwner from '@/components/study/studyDetail/StudyOwner';
 import MeetingDetail from '@/components/study/studyDetail/MeetingDetail';
@@ -23,7 +22,7 @@ const StudyIntro: FC = () => {
     <div className="studyIntro-container">
       <div className="studyIntro-top">
         <div className="studyIntro-top-title">
-          바닐라 JS의 중요성 ! 기초 다지기 <i className="icon-share2"></i>
+          바닐라 JS의 중요성! 기초 다지기 <i className="icon-share2"></i>
         </div>
         <div className="studyIntro-top-stack">
           {stack.map(({ stackId, stackName }) => (

@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 const MeetingDetail: FC = () => {
   return (
-    <div className="studyIntro-bottom-left">
+    <div className="meeting-info">
       <p>
         모임 기간<span>2023.2.14 (화) 13:00 ~ 2023.5.30 (수) 17:00</span>
       </p>
