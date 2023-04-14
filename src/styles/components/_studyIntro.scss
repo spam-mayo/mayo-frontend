@@ -72,10 +72,10 @@
       display: flex;
       gap: 15px;
 
-      i {
-        font-size: 65px;
+      img {
+        width: 65px;
+        height: 65px;
         border-radius: 50%;
-        color: $charcoal;
       }
 
       .studyOwner-info {
