@@ -24,6 +24,7 @@ const Header: FC = () => {
       localStorage.removeItem('userId');
       localStorage.removeItem('authorization');
       localStorage.removeItem('refresh');
+      localStorage.removeItem('oauth');
       setIsLogin(false);
       alert('로그아웃 완료!');
       navigate('/');
