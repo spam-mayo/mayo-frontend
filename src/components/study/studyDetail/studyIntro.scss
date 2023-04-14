@@ -1,0 +1,91 @@
+.studyIntro-container {
+  border: 1px solid #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  padding: 30px;
+  gap: 30px;
+  border-radius: 16px;
+  background-color: white;
+  margin: auto;
+
+  .studyIntro-top {
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      width: fit-content;
+      font-size: 46px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      i {
+        font-size: 20px;
+      }
+    }
+
+    &-stack {
+      display: flex;
+      gap: 10px;
+      width: fit-content;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  .studyIntro-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-left {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      p {
+        font-weight: 600;
+      }
+
+      span {
+        margin-left: 34px;
+        font-weight: 400;
+        color: #797979;
+      }
+    }
+  }
+
+  .studyOwner-container {
+    width: 377px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .hypertext {
+      border-width: 1px 0 0 0;
+    }
+
+    .studyOwner-intro {
+      display: flex;
+      gap: 15px;
+
+      img {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+      }
+
+      .studyOwner-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        color: #797979;
+      }
+    }
+  }
+}
