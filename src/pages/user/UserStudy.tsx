@@ -21,6 +21,7 @@ const UserStudy: FC = () => {
 
   const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectOption(e.target.value);
+    setActivePage(1);
   };
 
   if (isLoading) return <div>loading...</div>;
