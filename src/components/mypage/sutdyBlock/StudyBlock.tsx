@@ -12,15 +12,17 @@ interface Props {
     title: string;
     stack: Stack[];
   };
+  detail?: boolean;
 }
 
-const StudyBlock: FC<Props> = ({ studyData }: Props) => {
+const StudyBlock: FC<Props> = ({ studyData, detail }: Props) => {
   const { endDate, startDate, title, stack, studyId } = studyData;
 
   const navigate = useNavigate();
 
   const onClickMoveToStudyDetail = () => {
-    navigate(`/study/${studyId}`);
+    // detail 값 없으면 구인글로 이동 (구인글 페이지 완성 후 수정 예정)
+    navigate(detail ? `/study/${studyId}` : '/');
   };
   return (
     <div className="studyBlock-container">
