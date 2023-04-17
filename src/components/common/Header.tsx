@@ -21,10 +21,7 @@ const Header: FC = () => {
 
   const { mutate: logout } = useMutation(postLogout, {
     onSuccess: () => {
-      localStorage.removeItem('userId');
-      localStorage.removeItem('authorization');
-      localStorage.removeItem('refresh');
-      localStorage.removeItem('oauth');
+      localStorage.clear();
       setIsLogin(false);
       alert('로그아웃 완료!');
       navigate('/');
