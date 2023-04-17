@@ -3,7 +3,7 @@ import StackData from '@/assets/stacks/stackData';
 import StudyOwner from '@/components/common/studyDetail/StudyOwner';
 import MeetingDetail from '@/components/common/studyDetail/MeetingDetail';
 import { useQuery } from '@tanstack/react-query';
-import { getStudyDetail } from '@/api/study/studyApi';
+import { getStudyDetail } from '@/api/study/studyAPI';
 
 const StudyIntro: FC = () => {
   const { data, isLoading, isError } = useQuery({
