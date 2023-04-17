@@ -28,5 +28,6 @@
     "editor.formatOnSave": true
   },
   "workbench.settings.useSplitJSON": true,
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -1,0 +1,40 @@
+.studyBlock-container {
+  @include flexbox(space-between, center);
+  border-bottom: 1px solid rgba($primary, 0.2);
+  padding: 10px 15px;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: fit-content;
+  @include text-style-14();
+
+  .start-date {
+    color: rgba($primary, 0.5);
+  }
+
+  .end-date {
+    color: $charcoal;
+  }
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  .title {
+    font-weight: 700;
+    @include text-style-16();
+    color: rgba($primary, 0.7);
+  }
+
+  .stacks {
+    display: flex;
+    gap: 9px;
+    @include text-style-12();
+    color: rgba($primary, 0.5);
+  }
+}
