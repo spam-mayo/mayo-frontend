@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
       response: { status },
     } = error;
     // access token 만료시
-    if (status === 421 || status === 404) {
+    if (status === 421 || status === 404 || status === 403) {
       const originalRequest = config;
       try {
         const refresh = localStorage.getItem('refresh');
