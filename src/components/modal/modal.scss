@@ -1,0 +1,24 @@
+@import '@/styles/mixins/_flexbox.scss';
+@import '@/styles/constants/_colors.scss';
+
+.modal-container {
+  @include flexbox();
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba($black, 0.4);
+
+  .modal-content {
+    @include flexbox();
+    flex-direction: column;
+    width: 450px;
+    height: 250px;
+    background-color: $white;
+    border-radius: 6px;
+    color: $black;
+    gap: 20px;
+  }
+}
