@@ -16,7 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "importsNotUsedAsValues": "error",
-    "verbatimModuleSyntax": true,
     "types": ["node", "kakao.maps.d.ts"],
     "baseUrl": ".",
     "paths": {
