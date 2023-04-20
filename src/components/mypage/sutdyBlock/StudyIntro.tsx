@@ -1,15 +1,23 @@
 import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   title: string;
   stacks: { stackId: number; stackName: string }[];
-  onClick: () => void;
+  studyId: number;
+  isDetail?: boolean;
 }
 
-const StudyIntro: FC<Props> = ({ title, stacks, onClick }: Props) => {
+const StudyIntro: FC<Props> = ({ title, stacks, isDetail, studyId }: Props) => {
+  const navigate = useNavigate();
+
+  const onClickMoveToStudyDetail = () => {
+    navigate(isDetail ? `/study/${studyId}` : '/');
+  };
+
   return (
     <div className="title-container">
-      <div className="title" onClick={onClick}>
+      <div className="title" onClick={onClickMoveToStudyDetail}>
         {title}
       </div>
       <div className="stacks">
