@@ -15,3 +15,25 @@ export interface GetMyStudyRes {
   studyStatus: string;
   stack: Stack[];
 }
+
+type StudyOwner = {
+  userId: number;
+  userName: string;
+  email: string;
+  field: string;
+  userProfileUrl: string;
+};
+
+export interface GetStudyDetailRes {
+  studyId: number;
+  studyName: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  personnel: string;
+  place: string;
+  latitude: number;
+  longitude: number;
+  stack: Stack[];
+  owner: StudyOwner;
+}

@@ -5,18 +5,19 @@ import type { Stack } from '@/api/auth/types';
 
 interface Props {
   studyData: {
+    studyId: number;
     endDate: string;
     startDate: string;
     title: string;
     stack: Stack[];
   };
+  isDetail?: boolean;
 }
 
-const StudyBlock: FC<Props> = ({ studyData }: Props) => {
-  const { endDate, startDate, title, stack } = studyData;
+const StudyBlock: FC<Props> = ({ studyData: { endDate, startDate, title, stack, studyId }, isDetail }: Props) => {
   return (
     <div className="studyBlock-container">
-      <StudyIntro title={title} stacks={stack} />
+      <StudyIntro title={title} stacks={stack} isDetail={isDetail} studyId={studyId} />
       <StudyPeriod startDate={startDate} endDate={endDate} />
     </div>
   );

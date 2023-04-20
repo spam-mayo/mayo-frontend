@@ -29,6 +29,11 @@
     font-weight: 700;
     @include text-style-16();
     color: rgba($primary, 0.7);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .stacks {
