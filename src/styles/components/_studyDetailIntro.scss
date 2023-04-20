@@ -1,4 +1,4 @@
-.studyIntro-container {
+.study-intro-container {
   border: 1px solid #f2f2f2;
   border-radius: 16px;
   display: flex;
@@ -9,7 +9,7 @@
   background-color: $white;
   margin: auto;
 
-  .studyIntro-top {
+  .study-intro-top {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -36,7 +36,7 @@
     }
   }
 
-  .studyIntro-bottom {
+  .study-intro-bottom {
     @include flexbox(space-between, center);
 
     .meeting-info {
@@ -56,19 +56,19 @@
     }
   }
 
-  .studyOwner-container {
+  .study-owner-container {
     width: 377px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 
-    .studyOwner-title {
+    .study-owner-title {
       border-bottom: 1px solid rgba($charcoal, 0.2);
       padding-bottom: 2px;
       font-weight: 500;
     }
 
-    .studyOwner-intro {
+    .study-owner-intro {
       display: flex;
       gap: 15px;
 
@@ -78,7 +78,7 @@
         border-radius: 50%;
       }
 
-      .studyOwner-info {
+      .study-owner-info {
         display: flex;
         flex-direction: column;
         gap: 5px;

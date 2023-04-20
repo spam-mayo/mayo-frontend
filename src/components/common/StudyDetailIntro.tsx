@@ -12,19 +12,19 @@ const StudyDetailIntro: FC<Props> = ({ detailData }: Props) => {
   const { title, stack, studyName, startDate, endDate, place, personnel, owner } = detailData;
 
   return (
-    <div className="studyIntro-container">
-      <div className="studyIntro-top">
-        <div className="studyIntro-top-title">
+    <div className="study-intro-container">
+      <div className="study-intro-top">
+        <div className="study-intro-top-title">
           {title}
-          <i className="icon-share2"></i>
+          <i className="icon-share2" />
         </div>
-        <div className="studyIntro-top-stack">
+        <div className="study-intro-top-stack">
           {stack.map(({ stackId, stackName }) => (
-            <img key={stackId} src={StackData[stackName]} alt={stackName}></img>
+            <img key={stackId} src={StackData[stackName]} alt={stackName} />
           ))}
         </div>
       </div>
-      <div className="studyIntro-bottom">
+      <div className="study-intro-bottom">
         <div className="meeting-info">
           <p>
             스터디 명<span>{studyName}</span>
@@ -45,13 +45,13 @@ const StudyDetailIntro: FC<Props> = ({ detailData }: Props) => {
             모집 인원<span>{personnel}</span>
           </p>
         </div>
-        <div className="studyOwner-container">
-          <div className="studyOwner-title">
+        <div className="study-owner-container">
+          <div className="study-owner-title">
             <p>개설자 정보</p>
           </div>
-          <div className="studyOwner-intro">
+          <div className="study-owner-intro">
             <UserProfileImg src={owner.userProfileUrl} />
-            <div className="studyOwner-info">
+            <div className="study-owner-info">
               <p>{owner.userName}</p>
               <p>{owner.email}</p>
               <p>{owner.field}</p>
