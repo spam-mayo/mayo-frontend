@@ -1,0 +1,173 @@
+.adminMode-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 20px;
+  background-color: white;
+  border-radius: 6px;
+  width: 600px;
+
+  .lists-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      font-size: 24px;
+      color: #115173;
+      font-weight: 500;
+    }
+
+    span {
+      font-size: 16px;
+      color: rgba(#115173, 0.5);
+    }
+  }
+
+  .lists-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .list-box {
+      background-color: rgba(#ffd700, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 15px;
+      border-radius: 6px;
+
+      .people-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        p {
+          color: black;
+        }
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+      }
+
+      .apply-date {
+        color: #797979;
+      }
+
+      .list-button-container {
+        display: flex;
+        gap: 4px;
+
+        button {
+          color: white;
+          border-radius: 24px;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .approve {
+          background-color: #115173;
+        }
+
+        .refuse {
+          background-color: #022c43;
+        }
+      }
+    }
+  }
+}
+
+.notice-container {
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+  width: 500px;
+
+  .notice-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .notice-content {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+
+    p {
+      color: #022c43;
+      color: black;
+      font-weight: 500;
+    }
+
+    .notice-button-container {
+      display: flex;
+      gap: 10px;
+
+      button {
+        font-size: 12px;
+        border: 1px solid rgba(#115173, 0.5);
+        border-radius: 6px;
+        color: rgba(#115173, 0.5);
+      }
+
+      .notice-delete {
+        color: rgba(#eb4335, 0.5);
+        border: 1px solid rgba(#eb4335, 0.5);
+      }
+    }
+  }
+}
+
+.manage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .management-group {
+    display: flex;
+    gap: 10px;
+
+    span {
+      border-bottom: 1px solid rgba(#115173, 0.6);
+      color: rgba(#115173, 0.6);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 5px;
+
+      button {
+        border-radius: 6px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(#115173, 0.5);
+        color: rgba(#115173, 0.5);
+      }
+
+      .btn-delete {
+        color: rgba(#eb4335, 0.5);
+        border: 1px solid rgba(#eb4335, 0.5);
+      }
+    }
+  }
+
+  .ha {
+    display: flex;
+  }
+  p {
+    color: #022c43;
+    font-weight: 600;
+    width: 100px;
+  }
+}
