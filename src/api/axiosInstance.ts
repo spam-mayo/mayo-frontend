@@ -59,9 +59,7 @@ axiosInstance.interceptors.response.use(
           if (err.response?.status === 400) alert('엑세스 토큰값이 잘못되었습니다.s');
           if (err.response?.status === 421) {
             alert('세션이 만료되었습니다. 다시 로그아웃 해주세요.');
-            localStorage.removeItem('userId');
-            localStorage.removeItem('authorization');
-            localStorage.removeItem('refresh');
+            localStorage.clear();
             postLogout();
           }
         }
