@@ -1,4 +1,4 @@
-import { getStudyDetail } from '@/api/study/studyAPI';
+import { getStudyDetail } from '@/api/study/studyApi';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import AdminMode from '@/components/study/adminMode/AdminMode';
 import StudySchedule from '@/components/study/studySchedule/StudySchedule';
