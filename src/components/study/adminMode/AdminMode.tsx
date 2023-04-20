@@ -3,7 +3,6 @@ import Management from '@/components/study/adminMode/Management';
 import Notice from '@/components/study/adminMode/Notice';
 import ParticipatingList from '@/components/study/adminMode/ParticipatingList';
 import type { FC } from 'react';
-import './admin.scss';
 
 const AdminMode: FC = () => {
   return (

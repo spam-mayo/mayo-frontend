@@ -1,4 +1,4 @@
-import { getMypageStudy } from '@/api/study/studyApI';
+import { getMypageStudy } from '@/api/study/studyAPI';
 import Select from '@/components/auth/Select';
 import Pagination from '@/components/common/Pagination';
 import StudyBlock from '@/components/mypage/sutdyBlock/StudyBlock';

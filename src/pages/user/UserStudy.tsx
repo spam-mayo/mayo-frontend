@@ -2,7 +2,7 @@ import StudyBlock from '@/components/mypage/sutdyBlock/StudyBlock';
 import { useQuery } from '@tanstack/react-query';
 import { type FC, useState, ChangeEvent } from 'react';
 import './userStudy.scss';
-import { getMypageStudy } from '@/api/study/studyApI';
+import { getMypageStudy } from '@/api/study/studyAPI';
 import Pagination from '@/components/common/Pagination';
 import Select from '@/components/auth/Select';
 import { mystudyOption } from '@/constants/mypageOption';

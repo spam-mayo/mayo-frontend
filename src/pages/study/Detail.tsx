@@ -1,4 +1,4 @@
-import { getStudyDetail } from '@/api/study/studyApI';
+import { getStudyDetail } from '@/api/study/studyAPI';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import AdminMode from '@/components/study/adminMode/AdminMode';
 import StudySchedule from '@/components/study/studySchedule/StudySchedule';
@@ -32,8 +32,8 @@ const StudyDetail: FC = () => {
   return (
     <div className="container">
       <div className="row">
-        <StudyDetailIntro detailData={data} />
         <div className="col-lg-12">
+          <StudyDetailIntro detailData={data} />
           <ul className="detail-tab-container">
             {tabs.map((tab, index) => (
               <li key={index} onClick={() => onClickCurrentTab(index)}>
