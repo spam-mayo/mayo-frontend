@@ -41,7 +41,7 @@ const UserStudy: FC = () => {
         ) : (
           data.data.map(({ studyId, endDate, startDate, title, stack }) => {
             const studyData = { endDate, startDate, title, stack, studyId };
-            return <StudyBlock key={studyId} studyData={studyData} detail />;
+            return <StudyBlock key={studyId} studyData={studyData} isDetail />;
           })
         )}
       </div>

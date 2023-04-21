@@ -18,9 +18,12 @@ const StudyDetail: FC = () => {
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getStudyDetail(Number(studyId)),
     queryKey: ['studyDetail', studyId],
+    queryFn: () => getStudyDetail(Number(studyId)),
+    queryKey: ['studyDetail', studyId],
     select: ({ data }) => data,
   });
 
+  if (isLoading) return <div>loading...</div>;
   if (isLoading) return <div>loading...</div>;
 
   if (isError) return <div>에러남</div>;
