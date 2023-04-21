@@ -1,3 +1,4 @@
+import { StorageKeys } from '@/constants/storageKeys';
 import { useLocation } from 'react-router-dom';
 
 const useOAuth = () => {
@@ -12,15 +13,14 @@ const useOAuth = () => {
   const userId = getURLSearchParams('userId');
 
   if (authorization && refresh && userId) {
-    localStorage.setItem('authorization', authorization);
-    localStorage.setItem('refresh', refresh);
-    localStorage.setItem('userId', userId);
+    localStorage.setItem(StorageKeys.AT, authorization);
+    localStorage.setItem(StorageKeys.RT, refresh);
+    localStorage.setItem(StorageKeys.UserID, userId);
     // 소셜로그인 했을경우 비밀번호 변경이 불가능하기 때문에 소셜 로그인으로 진행한 경우 구분을 위해 추가 저장
-    localStorage.setItem('oauth', 'true');
+    localStorage.setItem(StorageKeys.OAuth, 'true');
   }
-  const refreshToken = localStorage.getItem('refresh');
 
-  if (refreshToken) {
+  if (refresh) {
     window.location.replace('/');
   } else {
     // 토큰 없다면 일반 회원가입으로 가입한 계정

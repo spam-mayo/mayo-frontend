@@ -4,17 +4,16 @@ import { type LoginSchema, loginSchema } from '@/constants/schema/loginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from '@/components/auth/Input/Input';
 import './index.scss';
-import { useMutation } from '@tanstack/react-query';
-import { postLogin } from '@/api/auth/authAPI';
-import axios from 'axios';
 import PasswordFindModal from '@/components/modal/PasswordFindModal';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import kakao from '@/assets/images/kakao3.jpeg';
 import google from '@/assets/images/google3.png';
 import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
+import useAuth from '@/hooks/useAuth';
 
 const LoginForm: FC = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
   const {
     handleSubmit,
     register,
@@ -23,31 +22,14 @@ const LoginForm: FC = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const { mutate: loginMember } = useMutation(postLogin, {
-    onSuccess: (res) => {
-      const { data, headers } = res;
-      alert('로그인 성공!');
-      localStorage.setItem('userId', data.userId);
-      localStorage.setItem('authorization', headers.authorization);
-      localStorage.setItem('refresh', headers.refresh);
-      navigate('/');
-    },
-    onError: (err) => {
-      if (axios.isAxiosError(err)) {
-        if (err.response?.status === 400) alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-      }
-    },
-  });
-
-  const [isModalOpened, setIsModalOpened] = useState(false);
-  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const onClickCloseModal = () => {
     setIsModalOpened(!isModalOpened);
   };
 
   const onSubmit = (data: LoginSchema) => {
-    loginMember(data);
+    login(data);
   };
 
   return (
