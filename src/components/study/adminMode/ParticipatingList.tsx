@@ -3,10 +3,10 @@ import { BASE_PROFILE_URL } from '@/constants/profileUrl';
 import UserProfileImg from '@/components/common/UserProfileImg';
 
 const participatingLists = [
-  { name: '김형진', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: true },
-  { name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
-  { name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
-  { name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
+  { id: 1, name: '김형진', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: true },
+  { id: 2, name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
+  { id: 3, name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
+  { id: 4, name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
 ];
 
 const ParticipatingList: FC = () => {
@@ -18,7 +18,7 @@ const ParticipatingList: FC = () => {
       </div>
       <div className="lists-box">
         {participatingLists.map((list) => (
-          <div key={list.name} className="list-box participating">
+          <div key={list.id} className="list-box participating">
             <div className="people-profile">
               <UserProfileImg src={list.profileUrl} />
               <p>{list.name}</p>
