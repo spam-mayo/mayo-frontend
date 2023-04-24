@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getStudyUser } from '@/api/study/studyAPI';
 import Pagination from '@/components/common/Pagination';
 import type { StudyOwner } from '@/api/study/studyTypes';
+import crown from '@/assets/images/crown.png';
 
 interface Props {
   ownerData: StudyOwner;
@@ -26,13 +27,14 @@ const ParticipatingList: FC<Props> = ({ ownerData }: Props) => {
     <div className="lists-container">
       <div className="lists-title">
         <p>현 스터디원 목록</p>
-        <span>총 {data?.data.length}명</span>
+        <span>총 {data?.data?.length ? data.data.length + 1 : 1}명</span>
       </div>
       <div className="lists-box">
         <div key={ownerData.userId} className="list-box host">
           <div className="people-profile">
             <UserProfileImg src={ownerData.userProfileUrl} />
             <p className="host-name">{ownerData.userName}</p>
+            <img src={crown} />
           </div>
         </div>
         {data?.data.map((list) => (
