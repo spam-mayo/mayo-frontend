@@ -37,3 +37,9 @@ export interface GetStudyDetailRes {
   stack: Stack[];
   owner: StudyOwner;
 }
+
+export interface GetStudyUserRes {
+  userName: string;
+  profileUrl: string;
+  applicationDate: string;
+}
