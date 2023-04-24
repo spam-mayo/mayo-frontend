@@ -28,7 +28,7 @@ const ApplicantList: FC = () => {
       ) : (
         <div className="lists-box">
           {data?.data.map((list) => (
-            <div key={list.userName} className="list-box">
+            <div key={list.userId} className="list-box">
               <div className="people-profile">
                 <UserProfileImg src={list.profileUrl} />
                 <p>{list.userName}</p>

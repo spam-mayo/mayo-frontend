@@ -1,29 +1,47 @@
-import type { FC } from 'react';
-import { BASE_PROFILE_URL } from '@/constants/profileUrl';
+import { FC, useState } from 'react';
 import UserProfileImg from '@/components/common/UserProfileImg';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getStudyUser } from '@/api/study/studyAPI';
+import Pagination from '@/components/common/Pagination';
+import type { StudyOwner } from '@/api/study/studyTypes';
 
-const participatingLists = [
-  { id: 1, name: '김형진', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: true },
-  { id: 2, name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
-  { id: 3, name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
-  { id: 4, name: '최진우', profileUrl: BASE_PROFILE_URL, date: '2023년 3월 15일', admin: false },
-];
+interface Props {
+  ownerData: StudyOwner;
+}
 
-const ParticipatingList: FC = () => {
+const ParticipatingList: FC<Props> = ({ ownerData }: Props) => {
+  const [activePage, setActivePage] = useState(1);
+  const { studyId = '' } = useParams();
+
+  const { data } = useQuery({
+    queryFn: () => getStudyUser(studyId, { page: activePage, status: 'approval' }),
+    queryKey: ['studyParticipatingLists'],
+    select: ({ data }) => data,
+  });
+
+  const maxPostPage = data?.pageInfo?.totalPages ?? 0;
+
   return (
     <div className="lists-container">
       <div className="lists-title">
         <p>현 스터디원 목록</p>
-        <span>총 {participatingLists.length + 1}명</span>
+        <span>총 {data?.data.length}명</span>
       </div>
       <div className="lists-box">
-        {participatingLists.map((list) => (
-          <div key={list.id} className="list-box participating">
+        <div key={ownerData.userId} className="list-box host">
+          <div className="people-profile">
+            <UserProfileImg src={ownerData.userProfileUrl} />
+            <p className="host-name">{ownerData.userName}</p>
+          </div>
+        </div>
+        {data?.data.map((list) => (
+          <div key={list.userId} className="list-box participating">
             <div className="people-profile">
               <UserProfileImg src={list.profileUrl} />
-              <p>{list.name}</p>
+              <p>{list.userName}</p>
             </div>
-            <p className="study-date">가입일 : {list.date}</p>
+            <p className="study-date">가입일 : {list.applicationDate}</p>
             <div className="list-button-container participating">
               <button className="light">추방</button>
               <button className="light">방장 권한 위임</button>
@@ -31,6 +49,9 @@ const ParticipatingList: FC = () => {
           </div>
         ))}
       </div>
+      {data?.data.length !== 0 && (
+        <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
+      )}
     </div>
   );
 };

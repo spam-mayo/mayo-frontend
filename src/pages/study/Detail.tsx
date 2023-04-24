@@ -1,4 +1,5 @@
 import { getStudyDetail } from '@/api/study/studyApi';
+import type { StudyOwner } from '@/api/study/studyTypes';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import AdminMode from '@/components/study/adminMode/AdminMode';
 import StudySchedule from '@/components/study/studySchedule/StudySchedule';
@@ -6,11 +7,6 @@ import { useQuery } from '@tanstack/react-query';
 import { type FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './detail.scss';
-
-const tabs = [
-  { name: '스터디 일정', content: <StudySchedule /> },
-  { name: '관리자 모드', content: <AdminMode /> },
-];
 
 const StudyDetail: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -20,6 +16,11 @@ const StudyDetail: FC = () => {
     queryKey: ['studyDetail', studyId],
     select: ({ data }) => data,
   });
+
+  const tabs = [
+    { name: '스터디 일정', content: <StudySchedule /> },
+    { name: '관리자 모드', content: <AdminMode ownerData={data?.owner as StudyOwner} /> },
+  ];
 
   if (isLoading) return <div>loading...</div>;
 

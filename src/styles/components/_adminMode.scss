@@ -46,6 +46,15 @@
         }
       }
 
+      &.host {
+        background-color: $blue;
+
+        .host-name {
+          color: $white;
+          font-weight: 600;
+        }
+      }
+
       .people-profile {
         @include flexbox(center, center);
         gap: 10px;
