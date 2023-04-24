@@ -1,4 +1,4 @@
-import { getStudyDetail } from '@/api/study/studyApi';
+import { getStudyDetail } from '@/api/study/studyAPI';
 import type { StudyOwner } from '@/api/study/studyTypes';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import AdminMode from '@/components/study/adminMode/AdminMode';
