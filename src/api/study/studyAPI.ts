@@ -21,3 +21,9 @@ export const putStudyApproval = ({ studyId, userId }: PutStudyUser) =>
 
 export const putStudyReject = ({ studyId, userId }: PutStudyUser) =>
   axiosInstance.put(`/api/study/${studyId}/users/${userId}/reject`);
+
+export const putStudyExpulsion = ({ studyId, userId }: PutStudyUser) =>
+  axiosInstance.put(`/api/study/${studyId}/users/${userId}/expulsion`);
+
+export const putStudyDelegation = ({ studyId, userId }: PutStudyUser) =>
+  axiosInstance.put(`/api/study/${studyId}/users/${userId}/delegation`);
