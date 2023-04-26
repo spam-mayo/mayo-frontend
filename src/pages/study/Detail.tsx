@@ -11,6 +11,7 @@ import './detail.scss';
 const StudyDetail: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const { studyId } = useParams();
+  const userId = localStorage.getItem('userId');
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getStudyDetail(Number(studyId)),
     queryKey: ['studyDetail', studyId],
@@ -19,8 +20,13 @@ const StudyDetail: FC = () => {
 
   const tabs = [
     { name: '스터디 일정', content: <StudySchedule /> },
-    { name: '관리자 모드', content: <AdminMode ownerData={data?.owner as StudyOwner} /> },
-  ];
+    Number(userId) === data?.owner.userId
+      ? {
+          name: '관리자 모드',
+          content: <AdminMode ownerData={data?.owner as StudyOwner} />,
+        }
+      : null,
+  ].filter(Boolean);
 
   if (isLoading) return <div>loading...</div>;
 
@@ -36,13 +42,16 @@ const StudyDetail: FC = () => {
         <div className="col-lg-12">
           <StudyDetailIntro detailData={data} />
           <ul className="detail-tab-container">
-            {tabs.map((tab, index) => (
-              <li key={index} onClick={() => onClickCurrentTab(index)}>
-                {tab.name}
-              </li>
-            ))}
+            {tabs.map(
+              (tab, index) =>
+                tab && (
+                  <li key={index} onClick={() => onClickCurrentTab(index)}>
+                    {tab.name}
+                  </li>
+                )
+            )}
           </ul>
-          <div>{tabs[currentTab].content}</div>
+          <div>{tabs[currentTab]?.content}</div>
         </div>
       </div>
     </div>
