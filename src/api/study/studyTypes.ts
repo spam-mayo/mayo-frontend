@@ -44,3 +44,8 @@ export interface GetStudyUserRes {
   profileUrl: string;
   applicationDate: string;
 }
+
+export interface PutStudyUser {
+  studyId: number;
+  userId: number;
+}
