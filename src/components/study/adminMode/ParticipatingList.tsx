@@ -48,12 +48,15 @@ const ParticipatingList: FC<Props> = ({ ownerData }: Props) => {
     expulsionUser({ studyId: Number(studyId), userId: selectedUserId });
   };
 
-  const onClickOpenModal = (userId: number, userName: string, modalType: 'delegation' | 'expulsion') => {
+  const onClickOpenModal = (
+    { userId, userName }: { userId: number; userName: string },
+    modalType: 'delegation' | 'expulsion'
+  ) => {
     setSelectedUserId(userId);
     setSelectedUserName(userName);
     if (modalType === 'delegation') {
       setDelegationModalOpen(true);
-    } else if (modalType === 'expulsion') {
+    } else {
       setExpulsionModalOpen(true);
     }
   };
@@ -94,18 +97,18 @@ const ParticipatingList: FC<Props> = ({ ownerData }: Props) => {
               <img src={crown} />
             </div>
           </div>
-          {data?.data.map((list) => (
-            <div key={list.userId} className="list-box participating">
+          {data?.data.map(({ userId, userName, profileUrl, applicationDate }) => (
+            <div key={userId} className="list-box participating">
               <div className="people-profile">
-                <UserProfileImg src={list.profileUrl} />
-                <p>{list.userName}</p>
+                <UserProfileImg src={profileUrl} />
+                <p>{userName}</p>
               </div>
-              <p className="study-date">가입일 : {list.applicationDate}</p>
+              <p className="study-date">가입일 : {applicationDate}</p>
               <div className="list-button-container participating">
-                <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'expulsion')}>
+                <button className="light" onClick={() => onClickOpenModal({ userId, userName }, 'expulsion')}>
                   추방
                 </button>
-                <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'delegation')}>
+                <button className="light" onClick={() => onClickOpenModal({ userId, userName }, 'delegation')}>
                   방장 권한 위임
                 </button>
               </div>
