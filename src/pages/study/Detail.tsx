@@ -42,14 +42,11 @@ const StudyDetail: FC = () => {
         <div className="col-lg-12">
           <StudyDetailIntro detailData={data} />
           <ul className="detail-tab-container">
-            {tabs.map(
-              (tab, index) =>
-                tab && (
-                  <li key={index} onClick={() => onClickCurrentTab(index)}>
-                    {tab.name}
-                  </li>
-                )
-            )}
+            {tabs.map((tab, index) => (
+              <li key={index} onClick={() => onClickCurrentTab(index)}>
+                {tab?.name}
+              </li>
+            ))}
           </ul>
           <div>{tabs[currentTab]?.content}</div>
         </div>

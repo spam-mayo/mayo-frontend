@@ -44,12 +44,15 @@ const ApplicantList: FC = () => {
     rejectUser({ studyId: Number(studyId), userId: selectedUserId });
   };
 
-  const onClickOpenModal = (userId: number, userName: string, modalType: 'approval' | 'refuse') => {
+  const onClickOpenModal = (
+    { userId, userName }: { userId: number; userName: string },
+    modalType: 'approval' | 'refuse'
+  ) => {
     setSelectedUserId(userId);
     setSelectedUserName(userName);
     if (modalType === 'approval') {
       setApprovalModalOpen(true);
-    } else if (modalType === 'refuse') {
+    } else {
       setRejectModalOpen(true);
     }
   };
@@ -84,22 +87,20 @@ const ApplicantList: FC = () => {
           <div>아직 신청자가 없어용</div>
         ) : (
           <div className="lists-box">
-            {data?.data.map((list) => (
-              <div key={list.userId} className="list-box">
+            {data?.data.map(({ userId, profileUrl, userName, applicationDate }) => (
+              <div key={userId} className="list-box">
                 <div className="people-profile">
-                  <UserProfileImg src={list.profileUrl} />
-                  <p>{list.userName}</p>
+                  <UserProfileImg src={profileUrl} />
+                  <p>{userName}</p>
                 </div>
-                <div className="list-date-button">
-                  <p className="study-date">신청일 : {list.applicationDate}</p>
-                  <div className="list-button-container">
-                    <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'approval')}>
-                      승인
-                    </button>
-                    <button className="dark" onClick={() => onClickOpenModal(list.userId, list.userName, 'refuse')}>
-                      거절
-                    </button>
-                  </div>
+                <p className="study-date">신청일 : {applicationDate}</p>
+                <div className="list-button-container">
+                  <button className="light" onClick={() => onClickOpenModal({ userId, userName }, 'approval')}>
+                    승인
+                  </button>
+                  <button className="dark" onClick={() => onClickOpenModal({ userId, userName }, 'refuse')}>
+                    거절
+                  </button>
                 </div>
               </div>
             ))}
