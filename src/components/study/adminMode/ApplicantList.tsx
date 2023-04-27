@@ -90,14 +90,16 @@ const ApplicantList: FC = () => {
                   <UserProfileImg src={list.profileUrl} />
                   <p>{list.userName}</p>
                 </div>
-                <p className="study-date">신청일 : {list.applicationDate}</p>
-                <div className="list-button-container">
-                  <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'approval')}>
-                    승인
-                  </button>
-                  <button className="dark" onClick={() => onClickOpenModal(list.userId, list.userName, 'refuse')}>
-                    거절
-                  </button>
+                <div className="list-date-button">
+                  <p className="study-date">신청일 : {list.applicationDate}</p>
+                  <div className="list-button-container">
+                    <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'approval')}>
+                      승인
+                    </button>
+                    <button className="dark" onClick={() => onClickOpenModal(list.userId, list.userName, 'refuse')}>
+                      거절
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

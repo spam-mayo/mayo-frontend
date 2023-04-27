@@ -100,14 +100,16 @@ const ParticipatingList: FC<Props> = ({ ownerData }: Props) => {
                 <UserProfileImg src={list.profileUrl} />
                 <p>{list.userName}</p>
               </div>
-              <p className="study-date">가입일 : {list.applicationDate}</p>
-              <div className="list-button-container participating">
-                <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'expulsion')}>
-                  추방
-                </button>
-                <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'delegation')}>
-                  방장 권한 위임
-                </button>
+              <div className="list-date-button">
+                <p className="study-date">가입일 : {list.applicationDate}</p>
+                <div className="list-button-container participating">
+                  <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'expulsion')}>
+                    추방
+                  </button>
+                  <button className="light" onClick={() => onClickOpenModal(list.userId, list.userName, 'delegation')}>
+                    방장 권한 위임
+                  </button>
+                </div>
               </div>
             </div>
           ))}

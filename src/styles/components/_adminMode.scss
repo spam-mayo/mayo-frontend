@@ -70,6 +70,12 @@
         }
       }
 
+      .list-date-button {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
       .study-date {
         color: $charcoal;
       }
