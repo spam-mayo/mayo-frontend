@@ -1,5 +1,8 @@
 .study-schedule-container {
   background-color: $white;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
 .announcement-container {
@@ -23,17 +26,12 @@
   }
 }
 
-.comment-title {
-  @include text-style-24;
-  border-bottom: 1px solid rgba($blue, 0.3);
-  margin-bottom: 20px;
-}
-
 .calender-todo-list {
   display: flex;
+  gap: 10px;
 }
 
 .todo-container {
-  background-color: $charcoal;
+  border: 1px solid black;
   flex: 1;
 }

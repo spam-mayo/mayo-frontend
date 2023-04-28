@@ -14,7 +14,7 @@ const Comment: FC = () => {
   };
 
   return (
-    <form className="comment-container" onSubmit={onSubmitComment}>
+    <form className="comment-input-container" onSubmit={onSubmitComment}>
       <UserProfileImg />
       <input placeholder="내용을 입력하세요." value={text} onChange={onChaneInputText} />
       <button type="submit">등록하기</button>
