@@ -1,0 +1,28 @@
+.comment-container {
+  @include flexbox();
+  gap: 20px;
+
+  img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+  }
+
+  input {
+    border: 1px solid rgba($blue, 0.2);
+    border-radius: 6px;
+    height: 80px;
+    flex: 1;
+    text-indent: 10px;
+  }
+
+  button {
+    background-color: rgba($primary, 0.5);
+    border-radius: 6px;
+    color: $white;
+    width: fit-content;
+    height: 60px;
+    padding: 30px 10px;
+    @include flexbox();
+  }
+}
