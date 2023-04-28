@@ -5,9 +5,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 const Calendar: FC = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
 
+  const onChageDate = (date: Date) => {
+    setStartDate(date);
+    // console.log(startDate);
+    // console.log(startDate?.getFullYear() + '-' + startDate?.getDay() + '-' + startDate?.getDate());
+  };
+
   return (
     <>
-      <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} inline />
+      <DatePicker selected={startDate} onChange={onChageDate} inline />
     </>
   );
 };
