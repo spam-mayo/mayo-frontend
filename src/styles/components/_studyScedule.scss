@@ -1,5 +1,9 @@
+.study-schedule-container {
+  background-color: rgba($blue, 0.05);
+}
+
 .announcement-container {
-  background-color: $white;
+  //   background-color: $white;
   display: flex;
   flex-direction: column;
   gap: 20px;
