@@ -84,9 +84,6 @@ const RegisterForm: FC = () => {
   };
 
   const onSubmit: SubmitHandler<RegisterReq> = async (data) => {
-    if (data.field === 'NO_FIELD') {
-      delete data.field;
-    }
     registerMember(data);
   };
 

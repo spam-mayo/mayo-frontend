@@ -28,7 +28,10 @@ const UserInfo: FC = () => {
   const { mutate: deleteMember } = useMutation(deleteUser, {
     onSuccess: () => {
       alert('회원탈퇴 완료');
-      localStorage.clear();
+      localStorage.removeItem('userId');
+      localStorage.removeItem('authorization');
+      localStorage.removeItem('refresh');
+      localStorage.removeItem('oauth');
       window.location.href = '/';
     },
     onError: (err) => {

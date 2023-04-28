@@ -1,49 +1,35 @@
-import { getStudyDetail } from '@/api/study/studyAPI';
-import StudyDetailIntro from '@/components/common/StudyDetailIntro';
-import AdminMode from '@/components/study/adminMode/AdminMode';
-import StudySchedule from '@/components/study/studySchedule/StudySchedule';
+import { getStudy } from '@/api/mockAPI';
 import { useQuery } from '@tanstack/react-query';
-import { type FC, useState } from 'react';
+import type { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import './detail.scss';
-
-const tabs = [
-  { name: '스터디 일정', content: <StudySchedule /> },
-  { name: '관리자 모드', content: <AdminMode /> },
-];
 
 const StudyDetail: FC = () => {
-  const [currentTab, setCurrentTab] = useState(0);
   const { studyId } = useParams();
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getStudyDetail(Number(studyId)),
-    queryKey: ['studyDetail', studyId],
+    queryFn: () => getStudy(Number(studyId)),
+    queryKey: ['studies', studyId],
     select: ({ data }) => data,
   });
 
-  if (isLoading) return <div>loading...</div>;
+  if (isError) {
+    return <div>Error</div>;
+  }
 
-  if (isError) return <div>에러남</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  const onClickCurrentTab = (index: number) => {
-    setCurrentTab(index);
-  };
+  if (!data) {
+    return <div>404 Not Found</div>;
+  }
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12">
-          <StudyDetailIntro detailData={data} />
-          <ul className="detail-tab-container">
-            {tabs.map((tab, index) => (
-              <li key={index} onClick={() => onClickCurrentTab(index)}>
-                {tab.name}
-              </li>
-            ))}
-          </ul>
-          <div>{tabs[currentTab].content}</div>
-        </div>
-      </div>
+    <div>
+      <div>{`제목: ${data.title}`}</div>
+      <div>{`모집자: ${data.userName}`}</div>
+      <div>{`시작일자: ${data.startDate}`}</div>
+      <div>{`모집상태: ${data.studyStatus}`}</div>
+      <div>{`기술스택: ${data.stack.map(({ stackName }) => stackName).join(', ')}`}</div>
     </div>
   );
 };
