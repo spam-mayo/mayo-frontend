@@ -14,11 +14,14 @@ const Comment: FC = () => {
   };
 
   return (
-    <form className="comment-input-container" onSubmit={onSubmitComment}>
-      <UserProfileImg />
-      <input placeholder="내용을 입력하세요." value={text} onChange={onChaneInputText} />
-      <button type="submit">등록하기</button>
-    </form>
+    <div className="comment-container">
+      <p className="comment-title">댓글</p>
+      <form className="comment-input-container" onSubmit={onSubmitComment}>
+        <UserProfileImg />
+        <input placeholder="내용을 입력하세요." value={text} onChange={onChaneInputText} />
+        <button type="submit">등록하기</button>
+      </form>
+    </div>
   );
 };
 

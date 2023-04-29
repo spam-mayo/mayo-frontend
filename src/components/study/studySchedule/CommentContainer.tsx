@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import Comment from '@/components/common/Comment';
 import UserProfileImg from '@/components/common/UserProfileImg';
 
 const commentList = [
@@ -19,23 +18,19 @@ const commentList = [
 
 const CommentContainer: FC = () => {
   return (
-    <div className="comment-container">
-      <p className="comment-title">댓글</p>
-      <Comment />
-      <div className="comment-list-container">
-        {commentList.map(({ index, name, date, content }) => (
-          <div key={index} className="comment-list">
-            <UserProfileImg />
-            <div className="comment-content-container">
-              <div className="comment-top">
-                <p className="comment-top-name">{name}</p>
-                <p>{date}</p>
-              </div>
-              <p>{content}</p>
+    <div className="comment-list-container">
+      {commentList.map(({ index, name, date, content }) => (
+        <div key={index} className="comment-list">
+          <UserProfileImg />
+          <div className="comment-content-container">
+            <div className="comment-top">
+              <p className="comment-top-name">{name}</p>
+              <p>{date}</p>
             </div>
+            <p>{content}</p>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };

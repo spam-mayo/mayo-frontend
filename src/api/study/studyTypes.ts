@@ -37,3 +37,17 @@ export interface GetStudyDetailRes {
   stack: Stack[];
   owner: StudyOwner;
 }
+
+export interface GetStudyTaskRes {
+  taskId: number;
+  taskDate: string;
+  task: string;
+}
+
+export interface GetStudyTaskCommentRes {
+  userName: string;
+  profileUrl: string;
+  createdAt: string;
+  studyCommentId: number;
+  comment: string;
+}

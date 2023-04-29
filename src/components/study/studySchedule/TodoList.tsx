@@ -1,14 +1,15 @@
 import type { FC } from 'react';
 
 interface Props {
-  date: string | undefined;
+  taskDate: string;
+  task: string;
 }
 
-const TodoList: FC<Props> = ({ date }: Props) => {
+const TodoList: FC<Props> = ({ taskDate, task }: Props) => {
   return (
     <div className="todo-container">
-      This is to do list.
-      <p>{date}</p>
+      <p>{taskDate}</p>
+      <p>{task}</p>
     </div>
   );
 };
