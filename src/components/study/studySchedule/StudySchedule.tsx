@@ -11,6 +11,7 @@ import { getUserById } from '@/api/auth/authAPI';
 
 const StudySchedule: FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date());
+  const [taskId, setTaskId] = useState(0);
   const { studyId } = useParams();
   const userId = localStorage.getItem('userId');
 
@@ -32,9 +33,14 @@ const StudySchedule: FC = () => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar date={startDate} onDateChange={handleDateChange} />
-            <TodoList taskDate={formdate} studyId={Number(studyId)} />
+            <TodoList taskDate={formdate} studyId={Number(studyId)} setTaskId={setTaskId} />
           </div>
-          <Comment profileUrl={data?.data.profileUrl ?? ''} />
+          <Comment
+            profileUrl={data?.data.profileUrl ?? ''}
+            studyId={Number(studyId)}
+            todoDate={formdate}
+            taskId={taskId}
+          />
           <CommentContainer taskDate={formdate} studyId={Number(studyId)} />
         </div>
       </div>
