@@ -1,10 +1,15 @@
+import type { StudyOwner } from '@/api/study/studyTypes';
 import ApplicantList from '@/components/study/adminMode/ApplicantList';
 import Management from '@/components/study/adminMode/Management';
 import Notice from '@/components/study/adminMode/Notice';
 import ParticipatingList from '@/components/study/adminMode/ParticipatingList';
 import type { FC } from 'react';
 
-const AdminMode: FC = () => {
+interface Props {
+  ownerData: StudyOwner;
+}
+
+const AdminMode: FC<Props> = ({ ownerData }: Props) => {
   return (
     <div className="adminMode-container">
       <div>
@@ -12,7 +17,7 @@ const AdminMode: FC = () => {
         <Notice />
       </div>
       <div>
-        <ParticipatingList />
+        <ParticipatingList ownerData={ownerData} />
         <ApplicantList />
       </div>
     </div>

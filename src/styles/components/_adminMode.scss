@@ -46,6 +46,15 @@
         }
       }
 
+      &.host {
+        background-color: $blue;
+
+        .host-name {
+          color: $white;
+          font-weight: 600;
+        }
+      }
+
       .people-profile {
         @include flexbox(center, center);
         gap: 10px;
@@ -59,6 +68,12 @@
           height: 30px;
           border-radius: 50%;
         }
+      }
+
+      .list-date-button {
+        display: flex;
+        align-items: center;
+        gap: 20px;
       }
 
       .study-date {
