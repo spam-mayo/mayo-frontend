@@ -16,7 +16,7 @@ export interface GetMyStudyRes {
   stack: Stack[];
 }
 
-type StudyOwner = {
+export type StudyOwner = {
   userId: number;
   userName: string;
   email: string;
@@ -36,4 +36,16 @@ export interface GetStudyDetailRes {
   longitude: number;
   stack: Stack[];
   owner: StudyOwner;
+}
+
+export interface GetStudyUserRes {
+  userId: number;
+  userName: string;
+  profileUrl: string;
+  applicationDate: string;
+}
+
+export interface PutStudyUser {
+  studyId: number;
+  userId: number;
 }
