@@ -56,14 +56,11 @@ axiosInstance.interceptors.response.use(
         return axiosInstance.request(originalRequest);
       } catch (err) {
         if (axios.isAxiosError(err)) {
-          if (err.response?.status === 400) {
-            alert('엑세스 토큰값이 잘못되었습니다.');
-          }
+          if (err.response?.status === 400) alert('엑세스 토큰값이 잘못되었습니다.');
           if (err.response?.status === 421) {
             alert('세션이 만료되었습니다. 다시 로그아웃 해주세요.');
             localStorage.clear();
             postLogout();
-            // window.location.href('/');
           }
         }
       }
