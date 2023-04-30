@@ -69,3 +69,8 @@ export interface StudyCommentReq {
   todoDate: string;
   comment: string;
 }
+
+export interface StudyCommentEdit extends StudyCommentReq {
+  studyCommentId: number;
+  userId: number;
+}

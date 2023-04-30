@@ -36,14 +36,17 @@
 }
 
 .comment-list {
-  @include flexbox(flex-start, center);
+  border: 1px solid black;
+  @include flexbox(space-around, center);
   gap: 20px;
 
   .comment-content-container {
+    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 10px;
     color: rgba($blue, 0.5);
+    flex: 1;
   }
 
   .comment-top {
