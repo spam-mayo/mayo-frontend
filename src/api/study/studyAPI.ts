@@ -17,4 +17,4 @@ export const getStudyTask = (studyId: number, taskDate: string) =>
   axiosInstance.get<GetStudyTaskRes>(`/api/tasks/study/${studyId}`, { params: { taskDate } });
 
 export const getStudyTaskComment = (studyId: number, taskDate: string) =>
-  axiosInstance.get<GetStudyTaskCommentRes>(`/api/study-comment/study/${studyId}`, { params: { taskDate } });
+  axiosInstance.get<GetStudyTaskCommentRes[]>(`/api/study-comment/study/${studyId}`, { params: { taskDate } });

@@ -1,3 +1,9 @@
+.comment-title {
+  @include text-style-24;
+  border-bottom: 1px solid rgba($blue, 0.3);
+  margin-bottom: 20px;
+}
+
 .comment-input-container {
   @include flexbox();
   gap: 20px;

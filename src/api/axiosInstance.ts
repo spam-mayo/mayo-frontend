@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
       response: { status },
     } = error;
     // access token 만료시
-    if ([403, 404, 421].includes(status)) {
+    if ([403, 401, 421].includes(status)) {
       const originalRequest = config;
       try {
         const refresh = localStorage.getItem('refresh');
@@ -63,6 +63,7 @@ axiosInstance.interceptors.response.use(
             alert('세션이 만료되었습니다. 다시 로그아웃 해주세요.');
             localStorage.clear();
             postLogout();
+            // window.location.href('/');
           }
         }
       }
