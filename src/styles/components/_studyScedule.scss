@@ -35,21 +35,6 @@
   display: flex;
 }
 
-.react-datepicker__month-container {
-  width: 400px;
-  font-size: 20px;
-}
-
-.react-datepicker__header > .react-datepicker__current-month {
-  font-size: 24px;
-}
-
-.react-datepicker__day-names,
-.react-datepicker__week {
-  height: 50px;
-  @include flexbox(space-around, center);
-}
-
 .todo-container {
   border: 1px solid black;
   flex: 1;

@@ -19,7 +19,7 @@ const StudyDetail: FC = () => {
   });
 
   const tabs = [
-    { name: '스터디 일정', content: <StudySchedule /> },
+    { name: '스터디 일정', content: <StudySchedule doDate={data?.startDate ?? ''} endDate={data?.endDate ?? ''} /> },
     Number(userId) === data?.owner.userId
       ? {
           name: '관리자 모드',
