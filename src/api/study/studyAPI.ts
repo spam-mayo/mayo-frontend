@@ -7,6 +7,7 @@ import type {
   PutStudyUser,
   GetStudyTaskCommentRes,
   GetStudyTaskRes,
+  PostStudyTaskReq,
 } from '@/api/study/studyTypes';
 
 export const getMypageStudy = (page: number, params?: { status?: string; tab?: string; approvalStatus?: string }) => {
@@ -35,3 +36,6 @@ export const getStudyTask = (studyId: number, taskDate: string) =>
 
 export const getStudyTaskComment = (studyId: number, taskDate: string) =>
   axiosInstance.get<GetStudyTaskCommentRes[]>(`/api/study-comment/study/${studyId}`, { params: { taskDate } });
+
+export const postStudyTask = ({ studyId, body }: { studyId: number; body: PostStudyTaskReq }) =>
+  axiosInstance.post(`/api/tasks/study/${studyId}`, body);
