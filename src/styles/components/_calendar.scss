@@ -3,16 +3,22 @@
     background-color: $white;
     border-bottom: none;
   }
-  .react-datepicker__month-container {
-    width: 400px;
-    font-size: 20px;
-  }
 
   .custom-header {
     @include flexbox();
     gap: 20px;
     height: 70px;
     @include text-style-24;
+  }
+  .react-datepicker__month-container {
+    width: 400px;
+    font-size: 20px;
+  }
+
+  .react-datepicker__day-names,
+  .react-datepicker__week {
+    height: 50px;
+    @include flexbox(space-around, center);
   }
 
   .react-datepicker__day {
@@ -23,12 +29,6 @@
 
   .react-datepicker__day--today {
     font-weight: 400;
-  }
-
-  .react-datepicker__day-names,
-  .react-datepicker__week {
-    height: 50px;
-    @include flexbox(space-around, center);
   }
 
   .react-datepicker__day--selected {

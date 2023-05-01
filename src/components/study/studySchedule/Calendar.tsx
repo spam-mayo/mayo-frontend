@@ -20,7 +20,6 @@ const Calendar: FC<Props> = ({ date, onDateChange, doDate, endDate }) => {
       maxDate={new Date(endDate)}
       calendarClassName="date-picker-calendar"
       inline
-      disabledKeyboardNavigation
       renderCustomHeader={({
         monthDate,
         decreaseMonth,
@@ -32,7 +31,7 @@ const Calendar: FC<Props> = ({ date, onDateChange, doDate, endDate }) => {
           <button onClick={() => decreaseMonth()} disabled={prevMonthButtonDisabled}>
             <i className="icon-circle-left" />
           </button>
-          <div className="custom-month">
+          <div>
             {monthDate.getFullYear()}년 {monthDate.getMonth() + 1}월
           </div>
           <button onClick={() => increaseMonth()} disabled={nextMonthButtonDisabled}>
