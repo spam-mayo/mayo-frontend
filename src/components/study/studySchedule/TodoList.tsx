@@ -86,22 +86,22 @@ const TodoList: FC<Props> = ({ taskDate, studyId }: Props) => {
       <p>{taskDate}</p>
       <div className="todo-content">
         {data ? (
-          <div className="todo-content-container">
+          <form className="todo-content-container" onSubmit={onSubmitPatchTask}>
             {isEdit ? (
-              <form className="edit-todo-task" onSubmit={onSubmitPatchTask}>
+              <div className="edit-todo-task">
                 <input placeholder={data.data.task} onChange={onChangeEditTask} />
-              </form>
+              </div>
             ) : (
               <div className="todo-task">
                 <div>{data.data.task}</div>
-                <button onClick={onClickDeleteTask}>
+                <button type="button" onClick={onClickDeleteTask}>
                   <i className="icon-bin" />
                   삭제
                 </button>
               </div>
             )}
             <MultiButton isEdit={isEdit} onClick={onClickEditTask} />
-          </div>
+          </form>
         ) : (
           <>
             {plusTask ? (
