@@ -68,7 +68,6 @@ export interface patchStudyTaskReq {
   task: string;
 }
 
-export interface PostStudyTaskReq {
-  task: string;
+export interface PostStudyTaskReq extends patchStudyTaskReq {
   taskDate: string;
 }
