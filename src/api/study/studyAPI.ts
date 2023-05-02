@@ -8,6 +8,7 @@ import type {
   GetStudyTaskCommentRes,
   GetStudyTaskRes,
   PostStudyTaskReq,
+  patchStudyTaskReq,
 } from '@/api/study/studyTypes';
 
 export const getMypageStudy = (page: number, params?: { status?: string; tab?: string; approvalStatus?: string }) => {
@@ -39,3 +40,8 @@ export const getStudyTaskComment = (studyId: number, taskDate: string) =>
 
 export const postStudyTask = ({ studyId, body }: { studyId: number; body: PostStudyTaskReq }) =>
   axiosInstance.post(`/api/tasks/study/${studyId}`, body);
+
+export const patchStudyTask = ({ taskId, body }: { taskId: number; body: patchStudyTaskReq }) =>
+  axiosInstance.patch(`/api/tasks/${taskId}`, body);
+
+export const deleteStudyTask = (taskId: number) => axiosInstance.delete(`/api/tasks/${taskId}`);
