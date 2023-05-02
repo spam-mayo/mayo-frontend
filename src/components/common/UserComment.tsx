@@ -2,7 +2,7 @@ import UserProfileImg from '@/components/common/UserProfileImg';
 import { type FC, useState } from 'react';
 
 interface Props {
-  profileUrl: string;
+  profileUrl?: string;
 }
 
 const UserComment: FC<Props> = ({ profileUrl }) => {

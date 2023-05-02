@@ -18,8 +18,6 @@ const CommentBox: FC<Props> = ({ taskDate, studyId }) => {
   return (
     <div className="comment-list-container">
       {data?.data.map(({ userName, comment, createdAt, profileUrl, studyCommentId }) => {
-        // const newDate = new Date(createdAt);
-        // const newDateForm = format(newDate, 'yyyy-MM-dd HH:mm');
         const { newDateFormHour } = dateForm(createdAt);
 
         return (

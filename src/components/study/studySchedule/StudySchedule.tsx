@@ -33,7 +33,7 @@ const StudySchedule: FC = () => {
             <Calendar date={startDate} onDateChange={handleDateChange} />
             <TodoList taskDate={newDateForm} studyId={Number(studyId)} />
           </div>
-          <UserComment profileUrl={data?.data.profileUrl ?? ''} />
+          <UserComment profileUrl={data?.data.profileUrl} />
           <CommentBox taskDate={newDateForm} studyId={Number(studyId)} />
         </div>
       </div>
