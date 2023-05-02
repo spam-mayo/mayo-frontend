@@ -5,7 +5,7 @@ interface Props {
   profileUrl: string;
 }
 
-const Comment: FC<Props> = ({ profileUrl }) => {
+const UserComment: FC<Props> = ({ profileUrl }) => {
   const [text, setText] = useState('');
 
   const onChaneInputText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,4 +29,4 @@ const Comment: FC<Props> = ({ profileUrl }) => {
   );
 };
 
-export default Comment;
+export default UserComment;

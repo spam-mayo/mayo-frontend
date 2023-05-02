@@ -2,15 +2,16 @@ import { FC, useState } from 'react';
 import Announcement from '@/components/study/studySchedule/Announcement';
 import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
-import { format } from 'date-fns';
 import TodoList from '@/components/study/studySchedule/TodoList';
-import CommentContainer from '@/components/study/studySchedule/CommentContainer';
-import Comment from '@/components/common/Comment';
+import CommentBox from '@/components/study/studySchedule/CommentBox';
+import UserComment from '@/components/common/UserComment';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
+import dateForm from '@/utils/dateForm';
 
 const StudySchedule: FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date());
+  const { newDateForm } = dateForm(startDate);
   const { studyId } = useParams();
   const userId = localStorage.getItem('userId');
 
@@ -23,8 +24,6 @@ const StudySchedule: FC = () => {
     if (date) setStartDate(date);
   };
 
-  const formdate = format(startDate, 'yyyy-MM-dd');
-
   return (
     <div className="container">
       <div className="row">
@@ -32,10 +31,10 @@ const StudySchedule: FC = () => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar date={startDate} onDateChange={handleDateChange} />
-            <TodoList taskDate={formdate} studyId={Number(studyId)} />
+            <TodoList taskDate={newDateForm} studyId={Number(studyId)} />
           </div>
-          <Comment profileUrl={data?.data.profileUrl ?? ''} />
-          <CommentContainer taskDate={formdate} studyId={Number(studyId)} />
+          <UserComment profileUrl={data?.data.profileUrl ?? ''} />
+          <CommentBox taskDate={newDateForm} studyId={Number(studyId)} />
         </div>
       </div>
     </div>
