@@ -1,3 +1,5 @@
+import CalendarRange from '@/components/common/Calendar';
+
 const InputCalendar = () => {
   return (
     <div className="input-calendar-container">
@@ -8,7 +10,9 @@ const InputCalendar = () => {
         <i className="icon-calendar" />
         <input placeholder="모임기간을 선택하세요" />
       </div>
-      <div className="calendar-wrapper"></div>
+      <div className="calendar-wrapper">
+        <CalendarRange />
+      </div>
     </div>
   );
 };
