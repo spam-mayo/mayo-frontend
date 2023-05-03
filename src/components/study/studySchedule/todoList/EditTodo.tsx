@@ -1,7 +1,9 @@
 import { deleteStudyTask, patchStudyTask } from '@/api/study/studyAPI';
+import type { PatchStudyTaskReq } from '@/api/study/studyTypes';
 import MultiButton from '@/components/mypage/UserInfo/MultiButton';
 import { useMutation } from '@tanstack/react-query';
-import { useState, type FC } from 'react';
+import type { FC } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   isEdit: boolean;
@@ -11,13 +13,13 @@ interface Props {
 }
 
 const EditTodo: FC<Props> = ({ isEdit, task, taskId, onClick }: Props) => {
-  const [editTaskText, setEditTaskText] = useState('');
+  const { handleSubmit, register, reset } = useForm<PatchStudyTaskReq>({ defaultValues: { task } });
 
   const { mutate: patchTask } = useMutation(patchStudyTask, {
     onSuccess: () => {
       alert('수정되었습니다!');
+      reset();
       onClick();
-      setEditTaskText('');
     },
   });
 
@@ -27,29 +29,21 @@ const EditTodo: FC<Props> = ({ isEdit, task, taskId, onClick }: Props) => {
     },
   });
 
-  const onChangeEditTask = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditTaskText(e.target.value);
-  };
-
   const onClickDeleteTask = () => {
     deleteTask(taskId);
   };
 
-  const onSubmitPatchTask = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const body = {
-      task: editTaskText,
-    };
-
-    patchTask({ taskId: taskId, body });
+  const onSubmitPatchTask: SubmitHandler<PatchStudyTaskReq> = (data) => {
+    const { task } = data;
+    patchTask({ taskId: taskId, body: { task } });
   };
 
   return (
     <>
-      <form className="todo-content-container" onSubmit={onSubmitPatchTask}>
+      <form className="todo-content-container" onSubmit={handleSubmit(onSubmitPatchTask)}>
         {isEdit ? (
           <div className="edit-todo-task">
-            <input defaultValue={task} onChange={onChangeEditTask} />
+            <input {...register('task')} />
           </div>
         ) : (
           <div className="todo-task">
