@@ -1,7 +1,8 @@
 import { postStudyTask } from '@/api/study/studyAPI';
 import Button from '@/components/common/Button';
 import { useMutation } from '@tanstack/react-query';
-import { useState, type FC } from 'react';
+import type { FC } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   taskDate: string;
@@ -10,26 +11,26 @@ interface Props {
   plusTask: boolean;
 }
 
+interface FormValue {
+  todo: string;
+}
+
 const PlusTodo: FC<Props> = ({ taskDate, studyId, onClick, plusTask }: Props) => {
-  const [taskText, setTaskText] = useState('');
+  const { handleSubmit, register, reset } = useForm<FormValue>();
 
   const { mutate: postTask } = useMutation(postStudyTask, {
     onSuccess: () => {
       alert('등록되었습니다!');
-      setTaskText('');
+      reset();
       onClick();
     },
   });
 
-  const onChangeTaskText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTaskText(e.target.value);
-  };
-
-  const onSubmitTask = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmitTask: SubmitHandler<FormValue> = (data) => {
+    const { todo } = data;
     const body = {
       taskDate: taskDate,
-      task: taskText,
+      task: todo,
     };
     postTask({ studyId, body });
   };
@@ -37,8 +38,8 @@ const PlusTodo: FC<Props> = ({ taskDate, studyId, onClick, plusTask }: Props) =>
   return (
     <>
       {plusTask ? (
-        <form className="todo-form-container" onSubmit={onSubmitTask}>
-          <input placeholder="할 일을 적어주세요." value={taskText} onChange={onChangeTaskText} />
+        <form className="todo-form-container" onSubmit={handleSubmit(onSubmitTask)}>
+          <input {...register('todo')} />
           <div className="todo-form-buttons">
             <Button color="gray" outline onClick={onClick}>
               취소
