@@ -3,7 +3,7 @@ import Announcement from '@/components/study/studySchedule/Announcement';
 import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
-import TodoList from '@/components/study/studySchedule/TodoList';
+import TodoList from '@/components/study/studySchedule/todoList/TodoList';
 // import CommentContainer from '@/components/study/studySchedule/CommentContainer';
 import Comment from '@/components/common/Comment';
 import { useQuery } from '@tanstack/react-query';
