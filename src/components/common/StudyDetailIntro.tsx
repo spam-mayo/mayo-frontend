@@ -6,9 +6,10 @@ import type { GetStudyDetailRes } from '@/api/study/studyTypes';
 
 interface Props {
   detailData: GetStudyDetailRes;
+  onClick: () => void;
 }
 
-const StudyDetailIntro: FC<Props> = ({ detailData }: Props) => {
+const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {
   const { title, stack, studyName, startDate, endDate, place, personnel, owner } = detailData;
 
   return (
@@ -38,7 +39,10 @@ const StudyDetailIntro: FC<Props> = ({ detailData }: Props) => {
           <p>
             모임 장소
             <span>
-              {place} <Button size="small">지도보기</Button>
+              {place}{' '}
+              <Button size="small" onClick={onClick}>
+                지도보기
+              </Button>
             </span>
           </p>
           <p>
