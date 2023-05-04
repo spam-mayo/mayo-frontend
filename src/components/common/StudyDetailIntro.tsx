@@ -39,7 +39,7 @@ const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {
           <p>
             모임 장소
             <span>
-              {place}{' '}
+              {place}
               <Button size="small" onClick={onClick}>
                 지도보기
               </Button>
