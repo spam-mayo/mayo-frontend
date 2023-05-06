@@ -26,6 +26,7 @@ const EditTodo: FC<Props> = ({ isEdit, task, taskId, onClick }: Props) => {
   const { mutate: deleteTask } = useMutation(deleteStudyTask, {
     onSuccess: () => {
       alert('삭제되었습니다!');
+      window.location.reload();
     },
   });
 
