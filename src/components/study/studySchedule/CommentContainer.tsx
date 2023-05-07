@@ -18,6 +18,8 @@ const CommentContainer: FC<Props> = ({ taskDate, studyId }) => {
     queryKey: ['studyComments', taskDate],
   });
 
+  // console.log('data :', data);
+
   const { mutate: deleteComment } = useMutation(deleteStudyComment, {
     onSuccess: () => {
       // console.log(res);

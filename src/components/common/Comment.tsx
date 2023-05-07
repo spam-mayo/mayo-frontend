@@ -27,7 +27,7 @@ const Comment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) => {
     e.preventDefault();
     const body = {
       taskId: taskId,
-      todoDate: todoDate,
+      taskDate: todoDate,
       comment: text,
     };
     postComment({ studyId, body });

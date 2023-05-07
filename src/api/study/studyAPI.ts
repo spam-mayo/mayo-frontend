@@ -39,7 +39,7 @@ export const getStudyTaskComment = (studyId: number, taskDate: string) =>
   axiosInstance.get<GetStudyTaskCommentRes[]>(`/api/study-comment/study/${studyId}`, { params: { taskDate } });
 
 export const postStudyComment = ({ studyId, body }: { studyId: number; body: StudyCommentReq }) =>
-  axiosInstance.post(`/api/study-comment/task/${studyId}`, body);
+  axiosInstance.post(`/api/study-comment/study/${studyId}`, body);
 
 export const deleteStudyComment = (studyCommentId: number) =>
   axiosInstance.delete(`/api/study-comment/${studyCommentId}`);

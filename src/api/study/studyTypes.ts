@@ -66,7 +66,7 @@ export interface GetStudyTaskCommentRes {
 
 export interface StudyCommentReq {
   taskId: number;
-  todoDate: string;
+  taskDate: string;
   comment: string;
 }
 
