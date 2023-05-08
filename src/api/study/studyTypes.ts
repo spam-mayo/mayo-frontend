@@ -64,13 +64,11 @@ export interface GetStudyTaskCommentRes {
   comment: string;
 }
 
-export interface StudyCommentReq {
-  taskId: number;
+export interface StudyCommentEdit {
   taskDate: string;
   comment: string;
 }
 
-export interface StudyCommentEdit extends StudyCommentReq {
-  studyCommentId: number;
-  userId: number;
+export interface StudyCommentReq extends StudyCommentEdit {
+  taskId: number;
 }
