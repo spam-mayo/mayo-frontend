@@ -5,7 +5,7 @@ import type { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
-  profileUrl: string;
+  profileUrl?: string;
   studyId: number;
   todoDate: string;
   taskId: number;
@@ -15,7 +15,7 @@ interface FormValue {
   comment: string;
 }
 
-const Comment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) => {
+const AddUserComment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) => {
   const { handleSubmit, register, reset } = useForm<FormValue>();
 
   const { mutate: postComment } = useMutation(postStudyComment, {
@@ -47,4 +47,4 @@ const Comment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) => {
   );
 };
 
-export default Comment;
+export default AddUserComment;

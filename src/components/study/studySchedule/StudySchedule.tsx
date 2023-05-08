@@ -2,12 +2,12 @@ import { FC, useState } from 'react';
 import Announcement from '@/components/study/studySchedule/Announcement';
 import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
-import { format } from 'date-fns';
 import TodoList from '@/components/study/studySchedule/TodoList';
 import CommentContainer from '@/components/study/studySchedule/comment/CommentContainer';
-import Comment from '@/components/common/Comment';
+import AddUserComment from '@/components/common/AddUserComment';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
+import { yearToDate } from '@/utils/dateForm';
 
 const StudySchedule: FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date());
@@ -24,7 +24,7 @@ const StudySchedule: FC = () => {
     if (date) setStartDate(date);
   };
 
-  const formdate = format(startDate, 'yyyy-MM-dd');
+  const taskDate = yearToDate(startDate);
 
   return (
     <div className="container">
@@ -33,15 +33,15 @@ const StudySchedule: FC = () => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar date={startDate} onDateChange={handleDateChange} />
-            <TodoList taskDate={formdate} studyId={Number(studyId)} setTaskId={setTaskId} />
+            <TodoList taskDate={taskDate} studyId={Number(studyId)} setTaskId={setTaskId} />
           </div>
-          <Comment
-            profileUrl={data?.data.profileUrl ?? ''}
+          <AddUserComment
+            profileUrl={data?.data.profileUrl}
             studyId={Number(studyId)}
-            todoDate={formdate}
+            todoDate={taskDate}
             taskId={taskId}
           />
-          <CommentContainer taskDate={formdate} studyId={Number(studyId)} />
+          <CommentContainer taskDate={taskDate} studyId={Number(studyId)} />
         </div>
       </div>
     </div>

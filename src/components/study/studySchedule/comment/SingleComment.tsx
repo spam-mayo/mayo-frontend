@@ -4,7 +4,7 @@ import MultiButton from '@/components/mypage/UserInfo/MultiButton';
 import { deleteStudyComment, patchStudyComment } from '@/api/study/studyAPI';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { yearToDate } from '@/utils/dateForm';
+import { yeartToHour } from '@/utils/dateForm';
 
 interface Props {
   commentData: {
@@ -25,7 +25,7 @@ const SingleComment: FC<Props> = ({ commentData, taskDate }) => {
   const [isEdit, setIsEdit] = useState(false);
   const { userName, comment, createdAt, profileUrl, studyCommentId } = commentData;
 
-  const commentDate = yearToDate(new Date(createdAt));
+  const commentDate = yeartToHour(new Date(createdAt));
 
   const { handleSubmit, register, reset } = useForm<FormValue>();
 
