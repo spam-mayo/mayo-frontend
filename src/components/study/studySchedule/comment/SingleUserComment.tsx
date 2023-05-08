@@ -15,19 +15,20 @@ interface Props {
     studyCommentId: number;
   };
   taskDate: string;
+  loginUser: string;
 }
 
 interface FormValue {
   editComment: string;
 }
 
-const SingleUserComment: FC<Props> = ({ commentData, taskDate }) => {
+const SingleUserComment: FC<Props> = ({ commentData, taskDate, loginUser }) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const { userName, comment, createdAt, profileUrl, studyCommentId } = commentData;
   const { handleSubmit, register, reset } = useForm<FormValue>({ defaultValues: { editComment: comment } });
 
-  const commentDate = yeartToHour(new Date(createdAt));
+  const commentDateForm = yeartToHour(new Date(createdAt));
 
   const { mutate: deleteComment } = useMutation(deleteStudyComment, {
     onSuccess: () => {
@@ -62,16 +63,20 @@ const SingleUserComment: FC<Props> = ({ commentData, taskDate }) => {
       <div className="comment-content-container">
         <div className="comment-top">
           <p className="comment-top-name">{userName}</p>
-          <p>{commentDate}</p>
+          <p>{commentDateForm}</p>
         </div>
         {isEdit ? <input {...register('editComment')} /> : <p className="comment-content">{comment}</p>}
       </div>
       <div className="comment-button-container">
-        <MultiButton isEdit={isEdit} onClick={onClickEditButton} />
-        <button type="button" onClick={() => deleteComment(studyCommentId)} className="delete-button">
-          <i className="icon-bin" />
-          삭제
-        </button>
+        {loginUser === userName && (
+          <>
+            <MultiButton isEdit={isEdit} onClick={onClickEditButton} />
+            <button type="button" onClick={() => deleteComment(studyCommentId)} className="delete-button">
+              <i className="icon-bin" />
+              삭제
+            </button>
+          </>
+        )}
       </div>
     </form>
   );

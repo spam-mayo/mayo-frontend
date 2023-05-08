@@ -7,9 +7,10 @@ import SingleUserComment from '@/components/study/studySchedule/comment/SingleUs
 interface Props {
   taskDate: string;
   studyId: number;
+  loginUser: string;
 }
 
-const CommentContainer: FC<Props> = ({ taskDate, studyId }) => {
+const CommentContainer: FC<Props> = ({ taskDate, studyId, loginUser }) => {
   const { data } = useQuery({
     queryFn: () => getStudyTaskComment(Number(studyId), taskDate),
     queryKey: ['studyComments', taskDate],
@@ -18,7 +19,9 @@ const CommentContainer: FC<Props> = ({ taskDate, studyId }) => {
   return (
     <div className="comment-list-container">
       {data?.data.map((data) => {
-        return <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentData={data} />;
+        return (
+          <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentData={data} loginUser={loginUser} />
+        );
       })}
     </div>
   );

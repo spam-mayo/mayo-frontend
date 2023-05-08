@@ -41,7 +41,7 @@ const StudySchedule: FC = () => {
             todoDate={taskDate}
             taskId={taskId}
           />
-          <CommentContainer taskDate={taskDate} studyId={Number(studyId)} />
+          <CommentContainer taskDate={taskDate} studyId={Number(studyId)} loginUser={data?.data.userName ?? ''} />
         </div>
       </div>
     </div>
