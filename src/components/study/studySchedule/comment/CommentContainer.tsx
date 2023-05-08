@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getStudyTaskComment } from '@/api/study/studyAPI';
 
-import SingleComment from '@/components/study/studySchedule/comment/SingleComment';
+import SingleUserComment from '@/components/study/studySchedule/comment/SingleUserComment';
 
 interface Props {
   taskDate: string;
@@ -18,7 +18,7 @@ const CommentContainer: FC<Props> = ({ taskDate, studyId }) => {
   return (
     <div className="comment-list-container">
       {data?.data.map((data) => {
-        return <SingleComment key={data.studyCommentId} taskDate={taskDate} commentData={data} />;
+        return <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentData={data} />;
       })}
     </div>
   );

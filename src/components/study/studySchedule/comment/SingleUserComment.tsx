@@ -18,16 +18,16 @@ interface Props {
 }
 
 interface FormValue {
-  text: string;
+  editComment: string;
 }
 
-const SingleComment: FC<Props> = ({ commentData, taskDate }) => {
+const SingleUserComment: FC<Props> = ({ commentData, taskDate }) => {
   const [isEdit, setIsEdit] = useState(false);
+
   const { userName, comment, createdAt, profileUrl, studyCommentId } = commentData;
+  const { handleSubmit, register, reset } = useForm<FormValue>({ defaultValues: { editComment: comment } });
 
   const commentDate = yeartToHour(new Date(createdAt));
-
-  const { handleSubmit, register, reset } = useForm<FormValue>();
 
   const { mutate: deleteComment } = useMutation(deleteStudyComment, {
     onSuccess: () => {
@@ -48,10 +48,10 @@ const SingleComment: FC<Props> = ({ commentData, taskDate }) => {
   };
 
   const onSubmitPatchComment: SubmitHandler<FormValue> = (data) => {
-    const { text } = data;
+    const { editComment } = data;
     const body = {
       taskDate: taskDate,
-      comment: text,
+      comment: editComment,
     };
     patchComment({ studyCommentId, body });
   };
@@ -64,11 +64,12 @@ const SingleComment: FC<Props> = ({ commentData, taskDate }) => {
           <p className="comment-top-name">{userName}</p>
           <p>{commentDate}</p>
         </div>
-        {isEdit ? <input {...register('text')} /> : <p className="comment-content">{comment}</p>}
+        {isEdit ? <input {...register('editComment')} /> : <p className="comment-content">{comment}</p>}
       </div>
       <div className="comment-button-container">
         <MultiButton isEdit={isEdit} onClick={onClickEditButton} />
-        <button type="button" onClick={() => deleteComment(studyCommentId)}>
+        <button type="button" onClick={() => deleteComment(studyCommentId)} className="delete-button">
+          <i className="icon-bin" />
           삭제
         </button>
       </div>
@@ -76,4 +77,4 @@ const SingleComment: FC<Props> = ({ commentData, taskDate }) => {
   );
 };
 
-export default SingleComment;
+export default SingleUserComment;

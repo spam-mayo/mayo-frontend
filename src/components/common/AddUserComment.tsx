@@ -12,7 +12,7 @@ interface Props {
 }
 
 interface FormValue {
-  comment: string;
+  newComment: string;
 }
 
 const AddUserComment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) => {
@@ -26,11 +26,11 @@ const AddUserComment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) =>
   });
 
   const onSubmitComment: SubmitHandler<FormValue> = (data) => {
-    const { comment } = data;
+    const { newComment } = data;
     const body = {
       taskId: taskId,
       taskDate: todoDate,
-      comment: comment,
+      comment: newComment,
     };
     postComment({ studyId, body });
   };
@@ -40,7 +40,7 @@ const AddUserComment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) =>
       <p className="comment-title">댓글</p>
       <form className="comment-input-container" onSubmit={handleSubmit(onSubmitComment)}>
         <UserProfileImg src={profileUrl} />
-        <input {...register('comment')} />
+        <input {...register('newComment')} />
         <button type="submit">등록하기</button>
       </form>
     </>
