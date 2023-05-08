@@ -41,7 +41,6 @@
   gap: 20px;
 
   .comment-content-container {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -56,10 +55,6 @@
     &-name {
       color: $blue;
     }
-  }
-
-  .comment-content {
-    border: 1px solid blue;
   }
 
   input {

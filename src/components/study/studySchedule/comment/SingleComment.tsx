@@ -1,11 +1,10 @@
 import UserProfileImg from '@/components/common/UserProfileImg';
 import { type FC, useState } from 'react';
-import { format } from 'date-fns';
 import MultiButton from '@/components/mypage/UserInfo/MultiButton';
-
 import { deleteStudyComment, patchStudyComment } from '@/api/study/studyAPI';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import { yearToDate } from '@/utils/dateForm';
 
 interface Props {
   commentData: {
@@ -25,8 +24,8 @@ interface FormValue {
 const SingleComment: FC<Props> = ({ commentData, taskDate }) => {
   const [isEdit, setIsEdit] = useState(false);
   const { userName, comment, createdAt, profileUrl, studyCommentId } = commentData;
-  const newDate = new Date(createdAt);
-  const newDateForm = format(newDate, 'yyyy-MM-dd HH:mm');
+
+  const commentDate = yearToDate(new Date(createdAt));
 
   const { handleSubmit, register, reset } = useForm<FormValue>();
 
@@ -63,7 +62,7 @@ const SingleComment: FC<Props> = ({ commentData, taskDate }) => {
       <div className="comment-content-container">
         <div className="comment-top">
           <p className="comment-top-name">{userName}</p>
-          <p>{newDateForm}</p>
+          <p>{commentDate}</p>
         </div>
         {isEdit ? <input {...register('text')} /> : <p className="comment-content">{comment}</p>}
       </div>
