@@ -4,7 +4,7 @@ import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import TodoList from '@/components/study/studySchedule/todoList/TodoList';
-// import CommentContainer from '@/components/study/studySchedule/CommentContainer';
+import CommentContainer from '@/components/study/studySchedule/CommentContainer';
 import Comment from '@/components/common/Comment';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
@@ -40,7 +40,7 @@ const StudySchedule: FC<Props> = ({ doDate, endDate }) => {
             <TodoList taskDate={formdate} studyId={Number(studyId)} />
           </div>
           <Comment profileUrl={data?.data.profileUrl ?? ''} />
-          {/* <CommentContainer taskDate={formdate} studyId={Number(studyId)} /> */}
+          <CommentContainer taskDate={formdate} studyId={Number(studyId)} />
         </div>
       </div>
     </div>

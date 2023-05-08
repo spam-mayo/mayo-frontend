@@ -1,6 +1,6 @@
 import { getStudyTask } from '@/api/study/studyAPI';
 import EditTodo from '@/components/study/studySchedule/todoList/EditTodo';
-import PlusTodo from '@/components/study/studySchedule/todoList/PlusTodo';
+import AddTodo from '@/components/study/studySchedule/todoList/AddTodo';
 import { useQuery } from '@tanstack/react-query';
 import { type FC, useState } from 'react';
 
@@ -11,7 +11,7 @@ interface Props {
 
 const TodoList: FC<Props> = ({ taskDate, studyId }: Props) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [plusTask, setPlusTask] = useState(false);
+  const [addTask, setAddTask] = useState(false);
 
   const { data } = useQuery({
     queryFn: () => getStudyTask(Number(studyId), taskDate),
@@ -20,7 +20,7 @@ const TodoList: FC<Props> = ({ taskDate, studyId }: Props) => {
   });
 
   const onClickPlusTask = () => {
-    setPlusTask((prev) => !prev);
+    setAddTask((prev) => !prev);
   };
 
   const onClickEditTask = () => {
@@ -34,7 +34,7 @@ const TodoList: FC<Props> = ({ taskDate, studyId }: Props) => {
         {data ? (
           <EditTodo isEdit={isEdit} onClick={onClickEditTask} task={data.data.task} taskId={data.data.taskId} />
         ) : (
-          <PlusTodo taskDate={taskDate} studyId={studyId} onClick={onClickPlusTask} plusTask={plusTask} />
+          <AddTodo taskDate={taskDate} studyId={studyId} onClick={onClickPlusTask} addTask={addTask} />
         )}
       </div>
     </div>

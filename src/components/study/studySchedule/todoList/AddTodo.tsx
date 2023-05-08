@@ -8,14 +8,14 @@ interface Props {
   taskDate: string;
   studyId: number;
   onClick: () => void;
-  plusTask: boolean;
+  addTask: boolean;
 }
 
 interface FormValue {
   todo: string;
 }
 
-const PlusTodo: FC<Props> = ({ taskDate, studyId, onClick, plusTask }: Props) => {
+const AddTodo: FC<Props> = ({ taskDate, studyId, onClick, addTask }: Props) => {
   const { handleSubmit, register, reset } = useForm<FormValue>();
 
   const { mutate: postTask } = useMutation(postStudyTask, {
@@ -37,7 +37,7 @@ const PlusTodo: FC<Props> = ({ taskDate, studyId, onClick, plusTask }: Props) =>
 
   return (
     <>
-      {plusTask ? (
+      {addTask ? (
         <form className="todo-form-container" onSubmit={handleSubmit(onSubmitTask)}>
           <input {...register('todo')} />
           <div className="todo-form-buttons">
@@ -56,4 +56,4 @@ const PlusTodo: FC<Props> = ({ taskDate, studyId, onClick, plusTask }: Props) =>
   );
 };
 
-export default PlusTodo;
+export default AddTodo;
