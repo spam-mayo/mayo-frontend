@@ -1,18 +1,20 @@
 import { getStudyTask } from '@/api/study/studyAPI';
+import { formatDate } from '@/utils/dateForm';
 import { useQuery } from '@tanstack/react-query';
 import { type Dispatch, type FC, SetStateAction, useEffect } from 'react';
 
 interface Props {
-  taskDate: string;
+  startDate: Date;
   studyId?: string;
   setTaskId: Dispatch<SetStateAction<number>>;
 }
 
-const TodoList: FC<Props> = ({ taskDate, studyId, setTaskId }: Props) => {
+const TodoList: FC<Props> = ({ startDate, studyId, setTaskId }: Props) => {
+  const taskDate = formatDate(startDate, 'yyyy-MM-dd');
+
   const { data } = useQuery({
     queryFn: () => getStudyTask(Number(studyId), taskDate),
     queryKey: ['studyTasks', taskDate],
-    retry: 1,
   });
 
   useEffect(() => {

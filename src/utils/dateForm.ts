@@ -1,4 +1,7 @@
 import { format } from 'date-fns';
 
-export const yeartToHour = (date: Date) => format(date, 'yyyy-MM-dd HH:mm');
-export const yearToDate = (date: Date) => format(date, 'yyyy-MM-dd');
+export const formatDate = (date: string | number | Date, dateFormat: string) => {
+  const formattedDate = typeof date === 'string' ? new Date(date) : date;
+
+  return format(formattedDate, dateFormat);
+};

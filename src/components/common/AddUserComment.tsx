@@ -1,5 +1,6 @@
 import { postStudyComment } from '@/api/study/studyAPI';
 import UserProfileImg from '@/components/common/UserProfileImg';
+import { formatDate } from '@/utils/dateForm';
 import { useMutation } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
@@ -7,7 +8,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 interface Props {
   profileUrl?: string;
   studyId?: string;
-  todoDate: string;
+  startDate: Date;
   taskId: number;
 }
 
@@ -15,7 +16,9 @@ export interface CommentFormValue {
   commnet: string;
 }
 
-const AddUserComment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) => {
+const AddUserComment: FC<Props> = ({ profileUrl, studyId, startDate, taskId }) => {
+  const taskDate = formatDate(startDate, 'yyyy-MM-dd');
+
   const { handleSubmit, register, reset } = useForm<CommentFormValue>();
 
   const { mutate: postComment } = useMutation(postStudyComment, {
@@ -28,7 +31,7 @@ const AddUserComment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) =>
   const onSubmitComment: SubmitHandler<CommentFormValue> = ({ commnet }) => {
     const body = {
       taskId: taskId,
-      taskDate: todoDate,
+      taskDate: taskDate,
       comment: commnet,
     };
 

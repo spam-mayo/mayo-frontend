@@ -4,8 +4,8 @@ import MultiButton from '@/components/mypage/UserInfo/MultiButton';
 import { deleteStudyComment, patchStudyComment } from '@/api/study/studyAPI';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { yeartToHour } from '@/utils/dateForm';
 import type { CommentFormValue } from '@/components/common/AddUserComment';
+import { formatDate } from '@/utils/dateForm';
 
 interface Props {
   commentData: {
@@ -14,18 +14,19 @@ interface Props {
     createdAt: string;
     profileUrl: string;
     studyCommentId: number;
+    userId: number;
   };
   taskDate: string;
-  loginUser: string;
 }
 
-const SingleUserComment: FC<Props> = ({ commentData, taskDate, loginUser }) => {
+const SingleUserComment: FC<Props> = ({ commentData, taskDate }) => {
   const [isEdit, setIsEdit] = useState(false);
 
-  const { userName, comment, createdAt, profileUrl, studyCommentId } = commentData;
+  const { userName, comment, createdAt, profileUrl, studyCommentId, userId } = commentData;
   const { handleSubmit, register, reset } = useForm<CommentFormValue>({ defaultValues: { commnet: comment } });
 
-  const commentDateForm = yeartToHour(new Date(createdAt));
+  const commentDateForm = formatDate(createdAt, 'yyyy-MM-dd HH:mm');
+  const idOfUser = localStorage.getItem('userId');
 
   const { mutate: deleteComment } = useMutation(deleteStudyComment, {
     onSuccess: () => {
@@ -64,7 +65,7 @@ const SingleUserComment: FC<Props> = ({ commentData, taskDate, loginUser }) => {
         {isEdit ? <input {...register('commnet')} /> : <p className="comment-content">{comment}</p>}
       </div>
       <div className="comment-button-container">
-        {loginUser === userName && (
+        {Number(idOfUser) === userId && (
           <>
             <MultiButton isEdit={isEdit} onClick={onClickEditButton} />
             <button type="button" onClick={() => deleteComment(studyCommentId)} className="delete-button">

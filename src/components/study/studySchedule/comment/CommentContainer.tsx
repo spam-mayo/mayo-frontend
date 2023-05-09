@@ -3,14 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 import { getStudyTaskComment } from '@/api/study/studyAPI';
 
 import SingleUserComment from '@/components/study/studySchedule/comment/SingleUserComment';
+import { formatDate } from '@/utils/dateForm';
 
 interface Props {
-  taskDate: string;
+  startDate: Date;
   studyId?: string;
-  loginUser: string;
 }
 
-const CommentContainer: FC<Props> = ({ taskDate, studyId, loginUser }) => {
+const CommentContainer: FC<Props> = ({ startDate, studyId }) => {
+  const taskDate = formatDate(startDate, 'yyyy-MM-dd');
   const { data } = useQuery({
     queryFn: () => getStudyTaskComment(Number(studyId), taskDate),
     queryKey: ['studyComments', taskDate],
@@ -18,11 +19,9 @@ const CommentContainer: FC<Props> = ({ taskDate, studyId, loginUser }) => {
 
   return (
     <div className="comment-list-container">
-      {data?.data.map((data) => {
-        return (
-          <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentData={data} loginUser={loginUser} />
-        );
-      })}
+      {data?.data.map((data) => (
+        <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentData={data} />
+      ))}
     </div>
   );
 };

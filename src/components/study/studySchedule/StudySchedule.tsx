@@ -7,7 +7,6 @@ import CommentContainer from '@/components/study/studySchedule/comment/CommentCo
 import AddUserComment from '@/components/common/AddUserComment';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
-import { yearToDate } from '@/utils/dateForm';
 
 const StudySchedule: FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date());
@@ -24,8 +23,6 @@ const StudySchedule: FC = () => {
     if (date) setStartDate(date);
   };
 
-  const taskDate = yearToDate(startDate);
-
   return (
     <div className="container">
       <div className="row">
@@ -33,10 +30,10 @@ const StudySchedule: FC = () => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar date={startDate} onDateChange={handleDateChange} />
-            <TodoList taskDate={taskDate} studyId={studyId} setTaskId={setTaskId} />
+            <TodoList startDate={startDate} studyId={studyId} setTaskId={setTaskId} />
           </div>
-          <AddUserComment profileUrl={data?.data.profileUrl} studyId={studyId} todoDate={taskDate} taskId={taskId} />
-          <CommentContainer taskDate={taskDate} studyId={studyId} loginUser={data?.data.userName ?? ''} />
+          <AddUserComment profileUrl={data?.data.profileUrl} studyId={studyId} startDate={startDate} taskId={taskId} />
+          <CommentContainer startDate={startDate} studyId={studyId} />
         </div>
       </div>
     </div>
