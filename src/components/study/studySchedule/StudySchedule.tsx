@@ -23,6 +23,10 @@ const StudySchedule: FC = () => {
     if (date) setStartDate(date);
   };
 
+  const onChangeTaskId = (taskId: number) => {
+    setTaskId(taskId);
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -30,7 +34,7 @@ const StudySchedule: FC = () => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar date={startDate} onDateChange={handleDateChange} />
-            <TodoList startDate={startDate} studyId={studyId} setTaskId={setTaskId} />
+            <TodoList startDate={startDate} studyId={studyId} onChange={onChangeTaskId} />
           </div>
           <AddUserComment profileUrl={data?.data.profileUrl} studyId={studyId} startDate={startDate} taskId={taskId} />
           <CommentContainer startDate={startDate} studyId={studyId} />
