@@ -4,20 +4,20 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
 
 interface Props {
-  date: Date;
+  curDate: Date;
   onDateChange: (date: Date | null) => void;
-  doDate: string;
-  endDate: string;
+  startDate?: string;
+  endDate?: string;
 }
 
-const Calendar: FC<Props> = ({ date, onDateChange, doDate, endDate }) => {
+const Calendar: FC<Props> = ({ curDate, onDateChange, startDate, endDate }) => {
   return (
     <DatePicker
       locale={ko}
-      selected={date}
+      selected={curDate}
       onChange={onDateChange}
-      minDate={new Date(doDate)}
-      maxDate={new Date(endDate)}
+      minDate={new Date(startDate ?? '')}
+      maxDate={new Date(endDate ?? '')}
       calendarClassName="date-picker-calendar"
       inline
       renderCustomHeader={({

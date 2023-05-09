@@ -6,7 +6,7 @@ import { type FC, useState } from 'react';
 
 interface Props {
   taskDate: string;
-  studyId: number;
+  studyId?: string;
 }
 
 const TodoList: FC<Props> = ({ taskDate, studyId }: Props) => {

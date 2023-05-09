@@ -2,11 +2,11 @@ import { postStudyTask } from '@/api/study/studyAPI';
 import Button from '@/components/common/Button';
 import { useMutation } from '@tanstack/react-query';
 import type { FC } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   taskDate: string;
-  studyId: number;
+  studyId?: string;
   onClick: () => void;
   addTask: boolean;
 }
@@ -15,7 +15,7 @@ interface FormValue {
   todo: string;
 }
 
-const AddTodo: FC<Props> = ({ taskDate, studyId, onClick, addTask }: Props) => {
+const AddTodo: FC<Props> = ({ taskDate, studyId, onClick, addTask }) => {
   const { handleSubmit, register, reset } = useForm<FormValue>();
 
   const { mutate: postTask } = useMutation(postStudyTask, {
@@ -32,7 +32,7 @@ const AddTodo: FC<Props> = ({ taskDate, studyId, onClick, addTask }: Props) => {
       taskDate: taskDate,
       task: todo,
     };
-    postTask({ studyId, body });
+    postTask({ studyId: Number(studyId), body });
   };
 
   return (
