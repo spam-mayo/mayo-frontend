@@ -20,7 +20,7 @@ const CommentContainer: FC<Props> = ({ startDate, studyId }) => {
   return (
     <div className="comment-list-container">
       {data?.data.map((data) => (
-        <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentData={data} />
+        <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentItem={data} />
       ))}
     </div>
   );

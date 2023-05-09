@@ -8,7 +8,7 @@ import type { CommentFormValue } from '@/components/common/AddUserComment';
 import { formatDate } from '@/utils/dateForm';
 
 interface Props {
-  commentData: {
+  commentItem: {
     userName: string;
     comment: string;
     createdAt: string;
@@ -19,10 +19,10 @@ interface Props {
   taskDate: string;
 }
 
-const SingleUserComment: FC<Props> = ({ commentData, taskDate }) => {
+const SingleUserComment: FC<Props> = ({ commentItem, taskDate }) => {
   const [isEdit, setIsEdit] = useState(false);
 
-  const { userName, comment, createdAt, profileUrl, studyCommentId, userId } = commentData;
+  const { userName, comment, createdAt, profileUrl, studyCommentId, userId } = commentItem;
   const { handleSubmit, register, reset } = useForm<CommentFormValue>({ defaultValues: { commnet: comment } });
 
   const commentDateForm = formatDate(createdAt, 'yyyy-MM-dd HH:mm');
