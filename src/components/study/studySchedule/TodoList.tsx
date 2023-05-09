@@ -4,7 +4,7 @@ import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 
 interface Props {
   taskDate: string;
-  studyId: number;
+  studyId?: string;
   setTaskId: Dispatch<SetStateAction<number>>;
 }
 

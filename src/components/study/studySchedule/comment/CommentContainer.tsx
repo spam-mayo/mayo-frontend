@@ -6,7 +6,7 @@ import SingleUserComment from '@/components/study/studySchedule/comment/SingleUs
 
 interface Props {
   taskDate: string;
-  studyId: number;
+  studyId?: string;
   loginUser: string;
 }
 

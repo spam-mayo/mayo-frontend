@@ -33,15 +33,10 @@ const StudySchedule: FC = () => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar date={startDate} onDateChange={handleDateChange} />
-            <TodoList taskDate={taskDate} studyId={Number(studyId)} setTaskId={setTaskId} />
+            <TodoList taskDate={taskDate} studyId={studyId} setTaskId={setTaskId} />
           </div>
-          <AddUserComment
-            profileUrl={data?.data.profileUrl}
-            studyId={Number(studyId)}
-            todoDate={taskDate}
-            taskId={taskId}
-          />
-          <CommentContainer taskDate={taskDate} studyId={Number(studyId)} loginUser={data?.data.userName ?? ''} />
+          <AddUserComment profileUrl={data?.data.profileUrl} studyId={studyId} todoDate={taskDate} taskId={taskId} />
+          <CommentContainer taskDate={taskDate} studyId={studyId} loginUser={data?.data.userName ?? ''} />
         </div>
       </div>
     </div>
