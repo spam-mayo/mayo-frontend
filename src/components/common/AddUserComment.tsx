@@ -11,12 +11,12 @@ interface Props {
   taskId: number;
 }
 
-interface FormValue {
+export interface CommentFormValue {
   commnet: string;
 }
 
 const AddUserComment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) => {
-  const { handleSubmit, register, reset } = useForm<FormValue>();
+  const { handleSubmit, register, reset } = useForm<CommentFormValue>();
 
   const { mutate: postComment } = useMutation(postStudyComment, {
     onSuccess: () => {
@@ -25,7 +25,7 @@ const AddUserComment: FC<Props> = ({ profileUrl, studyId, todoDate, taskId }) =>
     },
   });
 
-  const onSubmitComment: SubmitHandler<FormValue> = ({ commnet }) => {
+  const onSubmitComment: SubmitHandler<CommentFormValue> = ({ commnet }) => {
     const body = {
       taskId: taskId,
       taskDate: todoDate,

@@ -1,6 +1,6 @@
 import { getStudyTask } from '@/api/study/studyAPI';
 import { useQuery } from '@tanstack/react-query';
-import { Dispatch, FC, SetStateAction, useEffect } from 'react';
+import { type Dispatch, type FC, SetStateAction, useEffect } from 'react';
 
 interface Props {
   taskDate: string;
@@ -16,7 +16,7 @@ const TodoList: FC<Props> = ({ taskDate, studyId, setTaskId }: Props) => {
   });
 
   useEffect(() => {
-    if (data?.data) setTaskId(data?.data.taskId);
+    if (data?.data) setTaskId(data.data.taskId);
   }, [data]);
 
   return (

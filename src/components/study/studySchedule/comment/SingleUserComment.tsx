@@ -2,9 +2,10 @@ import UserProfileImg from '@/components/common/UserProfileImg';
 import { type FC, useState } from 'react';
 import MultiButton from '@/components/mypage/UserInfo/MultiButton';
 import { deleteStudyComment, patchStudyComment } from '@/api/study/studyAPI';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { yeartToHour } from '@/utils/dateForm';
+import type { CommentFormValue } from '@/components/common/AddUserComment';
 
 interface Props {
   commentData: {
@@ -18,15 +19,11 @@ interface Props {
   loginUser: string;
 }
 
-interface FormValue {
-  editComment: string;
-}
-
 const SingleUserComment: FC<Props> = ({ commentData, taskDate, loginUser }) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const { userName, comment, createdAt, profileUrl, studyCommentId } = commentData;
-  const { handleSubmit, register, reset } = useForm<FormValue>({ defaultValues: { editComment: comment } });
+  const { handleSubmit, register, reset } = useForm<CommentFormValue>({ defaultValues: { commnet: comment } });
 
   const commentDateForm = yeartToHour(new Date(createdAt));
 
@@ -48,11 +45,10 @@ const SingleUserComment: FC<Props> = ({ commentData, taskDate, loginUser }) => {
     setIsEdit((prev) => !prev);
   };
 
-  const onSubmitPatchComment: SubmitHandler<FormValue> = (data) => {
-    const { editComment } = data;
+  const onSubmitPatchComment: SubmitHandler<CommentFormValue> = ({ commnet }) => {
     const body = {
       taskDate: taskDate,
-      comment: editComment,
+      comment: commnet,
     };
     patchComment({ studyCommentId, body });
   };
@@ -65,7 +61,7 @@ const SingleUserComment: FC<Props> = ({ commentData, taskDate, loginUser }) => {
           <p className="comment-top-name">{userName}</p>
           <p>{commentDateForm}</p>
         </div>
-        {isEdit ? <input {...register('editComment')} /> : <p className="comment-content">{comment}</p>}
+        {isEdit ? <input {...register('commnet')} /> : <p className="comment-content">{comment}</p>}
       </div>
       <div className="comment-button-container">
         {loginUser === userName && (
