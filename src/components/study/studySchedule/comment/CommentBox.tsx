@@ -9,7 +9,7 @@ interface Props {
   studyId?: string;
 }
 
-const CommentContainer: FC<Props> = ({ startDate, studyId }) => {
+const CommentBox: FC<Props> = ({ startDate, studyId }) => {
   const taskDate = formatDate(startDate, 'yyyy-MM-dd');
   const { data } = useQuery({
     queryFn: () => getStudyTaskComment(Number(studyId), taskDate),
@@ -25,4 +25,4 @@ const CommentContainer: FC<Props> = ({ startDate, studyId }) => {
   );
 };
 
-export default CommentContainer;
+export default CommentBox;

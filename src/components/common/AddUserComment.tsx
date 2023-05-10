@@ -8,7 +8,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 interface Props {
   profileUrl?: string;
   studyId?: string;
-  startDate: Date;
+  selectedDate: Date;
   taskId: number;
 }
 
@@ -16,8 +16,8 @@ export interface CommentFormValue {
   commnet: string;
 }
 
-const AddUserComment: FC<Props> = ({ profileUrl, studyId, startDate, taskId }) => {
-  const taskDate = formatDate(startDate, 'yyyy-MM-dd');
+const AddUserComment: FC<Props> = ({ profileUrl, studyId, selectedDate, taskId }) => {
+  const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
 
   const { handleSubmit, register, reset } = useForm<CommentFormValue>();
 

@@ -3,10 +3,10 @@ import Announcement from '@/components/study/studySchedule/Announcement';
 import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
 import TodoList from '@/components/study/studySchedule/todoList/TodoList';
-import CommentContainer from '@/components/study/studySchedule/comment/CommentContainer';
 import AddUserComment from '@/components/common/AddUserComment';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
+import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
 
 interface Props {
   startDate?: string;
@@ -44,10 +44,10 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
           <AddUserComment
             profileUrl={data?.data.profileUrl}
             studyId={studyId}
-            startDate={selectedDate}
+            selectedDate={selectedDate}
             taskId={taskId}
           />
-          <CommentContainer startDate={selectedDate} studyId={studyId} />
+          <CommentBox startDate={selectedDate} studyId={studyId} />
         </div>
       </div>
     </div>
