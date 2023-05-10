@@ -73,3 +73,10 @@ export interface StudyCommentEditReq {
 export interface StudyCommentReq extends StudyCommentEditReq {
   taskId: number;
 }
+
+export interface PatchStudyTaskReq {
+  task: string;
+}
+export interface PostStudyTaskReq extends PatchStudyTaskReq {
+  taskDate: string;
+}
