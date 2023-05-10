@@ -1,11 +1,7 @@
 import { format } from 'date-fns';
 
-const dateForm = (date: string | Date) => {
-  const newDate = new Date(date);
-  const newDateFormHour = format(newDate, 'yyyy-MM-dd HH:mm');
-  const newDateForm = format(newDate, 'yyyy-MM-dd');
+export const formatDate = (date: string | number | Date, dateFormat: string) => {
+  const formattedDate = typeof date === 'string' ? new Date(date) : date;
 
-  return { newDateForm, newDateFormHour };
+  return format(formattedDate, dateFormat);
 };
-
-export default dateForm;

@@ -1,15 +1,17 @@
 import type { FC } from 'react';
 import UserProfileImg from '@/components/common/UserProfileImg';
+import { format } from 'date-fns';
 import { useQuery } from '@tanstack/react-query';
 import { getStudyTaskComment } from '@/api/study/studyAPI';
-import dateForm from '@/utils/dateForm';
+import { formatDate } from '@/utils/dateForm';
 
 interface Props {
-  taskDate: string;
+  selectedDate: Date;
   studyId: number;
 }
 
-const CommentBox: FC<Props> = ({ taskDate, studyId }) => {
+const CommentBox: FC<Props> = ({ selectedDate, studyId }) => {
+  const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
   const { data } = useQuery({
     queryFn: () => getStudyTaskComment(Number(studyId), taskDate),
     queryKey: ['studyComments', taskDate],
@@ -18,7 +20,8 @@ const CommentBox: FC<Props> = ({ taskDate, studyId }) => {
   return (
     <div className="comment-list-container">
       {data?.data.map(({ userName, comment, createdAt, profileUrl, studyCommentId }) => {
-        const { newDateFormHour } = dateForm(createdAt);
+        const newDate = new Date(createdAt);
+        const newDateForm = format(newDate, 'yyyy-MM-dd HH:mm');
 
         return (
           <div key={studyCommentId} className="comment-list">
@@ -26,7 +29,7 @@ const CommentBox: FC<Props> = ({ taskDate, studyId }) => {
             <div className="comment-content-container">
               <div className="comment-top">
                 <p className="comment-top-name">{userName}</p>
-                <p>{newDateFormHour}</p>
+                <p>{newDateForm}</p>
               </div>
               <p>{comment}</p>
             </div>
