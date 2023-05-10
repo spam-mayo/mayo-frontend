@@ -63,3 +63,10 @@ export interface GetStudyTaskCommentRes {
   studyCommentId: number;
   comment: string;
 }
+
+export interface PatchStudyTaskReq {
+  task: string;
+}
+export interface PostStudyTaskReq extends PatchStudyTaskReq {
+  taskDate: string;
+}
