@@ -49,3 +49,34 @@ export interface PutStudyUser {
   studyId: number;
   userId: number;
 }
+
+export interface GetStudyTaskRes {
+  taskId: number;
+  taskDate: string;
+  task: string;
+}
+
+export interface GetStudyTaskCommentRes {
+  userName: string;
+  profileUrl: string;
+  createdAt: string;
+  studyCommentId: number;
+  comment: string;
+  userId: number;
+}
+
+export interface StudyCommentEditReq {
+  taskDate: string;
+  comment: string;
+}
+
+export interface StudyCommentReq extends StudyCommentEditReq {
+  taskId: number;
+}
+
+export interface PatchStudyTaskReq {
+  task: string;
+}
+export interface PostStudyTaskReq extends PatchStudyTaskReq {
+  taskDate: string;
+}
