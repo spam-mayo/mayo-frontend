@@ -2,7 +2,6 @@ import { FC, useState } from 'react';
 import Announcement from '@/components/study/studySchedule/Announcement';
 import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
-import { format } from 'date-fns';
 import TodoList from '@/components/study/studySchedule/todoList/TodoList';
 import CommentContainer from '@/components/study/studySchedule/CommentContainer';
 import Comment from '@/components/common/Comment';
@@ -28,8 +27,6 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     if (date) setSelectedDate(date);
   };
 
-  const formdate = format(selectedDate, 'yyyy-MM-dd');
-
   return (
     <div className="container">
       <div className="row">
@@ -37,10 +34,10 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar curDate={selectedDate} onDateChange={handleDateChange} startDate={startDate} endDate={endDate} />
-            <TodoList taskDate={formdate} studyId={studyId} />
+            <TodoList selectedDate={selectedDate} studyId={studyId} />
           </div>
           <Comment profileUrl={data?.data.profileUrl ?? ''} />
-          <CommentContainer taskDate={formdate} studyId={Number(studyId)} />
+          <CommentContainer selectedDate={selectedDate} studyId={Number(studyId)} />
         </div>
       </div>
     </div>

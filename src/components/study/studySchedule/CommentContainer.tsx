@@ -3,13 +3,15 @@ import UserProfileImg from '@/components/common/UserProfileImg';
 import { format } from 'date-fns';
 import { useQuery } from '@tanstack/react-query';
 import { getStudyTaskComment } from '@/api/study/studyAPI';
+import { formatDate } from '@/utils/dateForm';
 
 interface Props {
-  taskDate: string;
+  selectedDate: Date;
   studyId: number;
 }
 
-const CommentContainer: FC<Props> = ({ taskDate, studyId }) => {
+const CommentContainer: FC<Props> = ({ selectedDate, studyId }) => {
+  const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
   const { data } = useQuery({
     queryFn: () => getStudyTaskComment(Number(studyId), taskDate),
     queryKey: ['studyComments', taskDate],
