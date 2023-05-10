@@ -43,24 +43,22 @@ const EditTodo: FC<Props> = ({ task, taskId }: Props) => {
   };
 
   return (
-    <>
-      <form className="todo-content-container" onSubmit={handleSubmit(onSubmitPatchTask)}>
-        {isEdit ? (
-          <div className="edit-todo-task">
-            <input {...register('task')} />
-          </div>
-        ) : (
-          <div className="todo-task">
-            <div>{task}</div>
-            <button type="button" onClick={onClickDeleteTask}>
-              <i className="icon-bin" />
-              삭제
-            </button>
-          </div>
-        )}
-        <MultiButton isEdit={isEdit} onClick={onClickToggleEditTask} />
-      </form>
-    </>
+    <form className="todo-content-container" onSubmit={handleSubmit(onSubmitPatchTask)}>
+      {isEdit ? (
+        <div className="edit-todo-task">
+          <input {...register('task')} />
+        </div>
+      ) : (
+        <div className="todo-task">
+          <div>{task}</div>
+          <button type="button" onClick={onClickDeleteTask}>
+            <i className="icon-bin" />
+            삭제
+          </button>
+        </div>
+      )}
+      <MultiButton isEdit={isEdit} onClick={onClickToggleEditTask} />
+    </form>
   );
 };
 

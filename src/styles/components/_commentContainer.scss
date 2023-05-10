@@ -30,13 +30,13 @@
 .comment-list-container {
   flex-direction: column;
   display: flex;
-  gap: 20px;
+  gap: 30px;
   margin-top: 30px;
   margin-bottom: 70px;
 }
 
 .comment-list {
-  @include flexbox(flex-start, center);
+  @include flexbox(space-around, center);
   gap: 20px;
 
   .comment-content-container {
@@ -44,6 +44,7 @@
     flex-direction: column;
     gap: 10px;
     color: rgba($blue, 0.5);
+    flex: 1;
   }
 
   .comment-top {
@@ -52,6 +53,28 @@
 
     &-name {
       color: $blue;
+    }
+  }
+
+  input {
+    border: 1px solid rgba($blue, 0.2);
+    border-radius: 6px;
+    text-indent: 10px;
+    height: 50px;
+  }
+
+  .comment-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .delete-button {
+      padding: 5px 16px;
+
+      &:hover {
+        border-radius: 6px;
+        background-color: rgba($border, 0.2);
+      }
     }
   }
 }

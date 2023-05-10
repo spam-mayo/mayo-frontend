@@ -1,12 +1,12 @@
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import Announcement from '@/components/study/studySchedule/Announcement';
 import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
 import TodoList from '@/components/study/studySchedule/todoList/TodoList';
-import CommentBox from '@/components/study/studySchedule/CommentBox';
-import UserComment from '@/components/common/UserComment';
+import AddUserComment from '@/components/common/AddUserComment';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
+import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
 
 interface Props {
   startDate?: string;
@@ -15,6 +15,7 @@ interface Props {
 
 const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [taskId, setTaskId] = useState(0);
   const { studyId } = useParams();
   const userId = localStorage.getItem('userId');
 
@@ -27,6 +28,10 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     if (date) setSelectedDate(date);
   };
 
+  const onChangeTaskId = (taskId: number) => {
+    setTaskId(taskId);
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -34,10 +39,15 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar curDate={selectedDate} onDateChange={handleDateChange} startDate={startDate} endDate={endDate} />
-            <TodoList selectedDate={selectedDate} studyId={studyId} />
+            <TodoList selectedDate={selectedDate} studyId={studyId} onChange={onChangeTaskId} />
           </div>
-          <UserComment profileUrl={data?.data.profileUrl ?? ''} />
-          <CommentBox selectedDate={selectedDate} studyId={Number(studyId)} />
+          <AddUserComment
+            profileUrl={data?.data.profileUrl}
+            studyId={studyId}
+            selectedDate={selectedDate}
+            taskId={taskId}
+          />
+          <CommentBox startDate={selectedDate} studyId={studyId} />
         </div>
       </div>
     </div>

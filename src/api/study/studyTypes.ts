@@ -62,6 +62,16 @@ export interface GetStudyTaskCommentRes {
   createdAt: string;
   studyCommentId: number;
   comment: string;
+  userId: number;
+}
+
+export interface StudyCommentEditReq {
+  taskDate: string;
+  comment: string;
+}
+
+export interface StudyCommentReq extends StudyCommentEditReq {
+  taskId: number;
 }
 
 export interface PatchStudyTaskReq {

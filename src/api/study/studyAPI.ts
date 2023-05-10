@@ -7,6 +7,8 @@ import type {
   PutStudyUser,
   GetStudyTaskCommentRes,
   GetStudyTaskRes,
+  StudyCommentReq,
+  StudyCommentEditReq,
   PostStudyTaskReq,
   PatchStudyTaskReq,
 } from '@/api/study/studyTypes';
@@ -45,3 +47,12 @@ export const patchStudyTask = ({ taskId, body }: { taskId: number; body: PatchSt
   axiosInstance.patch(`/api/tasks/${taskId}`, body);
 
 export const deleteStudyTask = (taskId: number) => axiosInstance.delete(`/api/tasks/${taskId}`);
+
+export const postStudyComment = ({ studyId, body }: { studyId: number; body: StudyCommentReq }) =>
+  axiosInstance.post(`/api/study-comment/study/${studyId}`, body);
+
+export const deleteStudyComment = (studyCommentId: number) =>
+  axiosInstance.delete(`/api/study-comment/${studyCommentId}`);
+
+export const patchStudyComment = ({ studyCommentId, body }: { studyCommentId: number; body: StudyCommentEditReq }) =>
+  axiosInstance.patch(`/api/study-comment/${studyCommentId}`, body);
