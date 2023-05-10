@@ -2,26 +2,29 @@ import { deleteStudyTask, patchStudyTask } from '@/api/study/studyAPI';
 import type { PatchStudyTaskReq } from '@/api/study/studyTypes';
 import MultiButton from '@/components/mypage/UserInfo/MultiButton';
 import { useMutation } from '@tanstack/react-query';
-import type { FC } from 'react';
+import { type FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
-  isEdit: boolean;
   task: string;
   taskId: number;
-  onClick: () => void;
 }
 
-const EditTodo: FC<Props> = ({ isEdit, task, taskId, onClick }: Props) => {
+const EditTodo: FC<Props> = ({ task, taskId }: Props) => {
+  const [isEdit, setIsEdit] = useState(false);
   const { handleSubmit, register, reset } = useForm<PatchStudyTaskReq>({ defaultValues: { task } });
 
   const { mutate: patchTask } = useMutation(patchStudyTask, {
     onSuccess: () => {
       alert('수정되었습니다!');
       reset();
-      onClick();
+      setIsEdit(false);
     },
   });
+
+  const onClickToggleEditTask = () => {
+    setIsEdit((prev) => !prev);
+  };
 
   const { mutate: deleteTask } = useMutation(deleteStudyTask, {
     onSuccess: () => {
@@ -55,7 +58,7 @@ const EditTodo: FC<Props> = ({ isEdit, task, taskId, onClick }: Props) => {
             </button>
           </div>
         )}
-        <MultiButton isEdit={isEdit} onClick={onClick} />
+        <MultiButton isEdit={isEdit} onClick={onClickToggleEditTask} />
       </form>
     </>
   );
