@@ -1,3 +1,4 @@
+import createMap from '@/utils/createMap';
 import { type FC, useEffect } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
@@ -7,23 +8,9 @@ interface Props {
   onClick: () => void;
 }
 
-const KakaoMap: FC<Props> = ({ latitude, longitude, onClick }: Props) => {
+const KakaoMap: FC<Props> = ({ latitude, longitude, onClick }) => {
   useEffect(() => {
-    const container = document.getElementById('map') as HTMLElement;
-    const options = {
-      center: new kakao.maps.LatLng(latitude, longitude),
-      level: 3,
-    };
-
-    const map = new kakao.maps.Map(container, options);
-
-    const markerPosition = new kakao.maps.LatLng(latitude, longitude);
-
-    const marker = new kakao.maps.Marker({
-      position: markerPosition,
-    });
-
-    marker.setMap(map);
+    createMap(latitude, longitude);
   }, []);
 
   return (
