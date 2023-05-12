@@ -43,7 +43,7 @@ const UserApplyStudy: FC = () => {
           <div className="no-data">아직 관련된 스터디가 없네요 ..</div>
         ) : (
           data.data.map(({ studyId, endDate, startDate, title, stack }) => {
-            const studyData = { endDate, startDate, title, stack };
+            const studyData = { endDate, startDate, title, stack, studyId };
             return <StudyBlock key={studyId} studyData={studyData} />;
           })
         )}
