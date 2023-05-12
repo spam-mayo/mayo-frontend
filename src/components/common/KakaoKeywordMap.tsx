@@ -22,7 +22,7 @@ const KakaoKeywordMap = () => {
             <div className="option">
               <div>
                 <div id="map_title">
-                  <div>단짠맛집</div>
+                  <div>장소 검색</div>
                 </div>
 
                 <div id="form">
