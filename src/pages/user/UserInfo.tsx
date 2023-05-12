@@ -4,6 +4,7 @@ import BasicInfo from '@/components/mypage/UserInfo/BasicInfo';
 import ExtraInfo from '@/components/mypage/UserInfo/ExtraInfo';
 import PasswordInfo from '@/components/mypage/UserInfo/PasswordInfo';
 import useAuth from '@/hooks/useAuth';
+import { initAuthStorage } from '@/utils';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { type FC, useState } from 'react';
@@ -11,7 +12,7 @@ import './userInfo.scss';
 
 const UserInfo: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { userId, logout } = useAuth();
+  const { userId } = useAuth();
   const oauth = localStorage.getItem('oauth');
 
   if (!userId) {
@@ -29,7 +30,8 @@ const UserInfo: FC = () => {
   const { mutate: deleteMember } = useMutation(deleteUser, {
     onSuccess: () => {
       alert('회원탈퇴 완료');
-      logout();
+      initAuthStorage();
+      window.location.href = '/';
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
