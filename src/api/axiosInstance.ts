@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { postLogout } from '@/api/auth/authAPI';
 import { StorageKeys } from '@/constants/storageKeys';
-import { initAuthStorage } from '@/uitls';
+import { initAuthStorage } from '@/utils';
 
 /* baseURL은 .env 파일로 대체 예정 */
 const BASE_URL = 'https://spammayo.shop';

@@ -1,6 +1,6 @@
 import { postLogin, postLogout } from '@/api/auth/authAPI';
 import { StorageKeys } from '@/constants/storageKeys';
-import { initAuthStorage } from '@/uitls';
+import { initAuthStorage } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';

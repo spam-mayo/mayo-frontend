@@ -12,7 +12,7 @@ import Input from '@/components/auth/Input/Input';
 interface Props {
   name: string;
   email: string;
-  userId: string;
+  userId: number;
 }
 
 const BasicInfo: FC<Props> = ({ name, email, userId }) => {
