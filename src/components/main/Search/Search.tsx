@@ -50,8 +50,8 @@ const Search = ({ onChangeCategory, onChangeSort, onChange }: Props) => {
         <Select options={arrayOption} onChange={onChangeSort} />
       </div>
       <div className="search-view col-lg-6 col-md-6">
-        <button>카드형</button>
-        <button>목록형</button>
+        {/* <button>카드형</button>
+        <button>목록형</button> */}
       </div>
     </div>
   );
