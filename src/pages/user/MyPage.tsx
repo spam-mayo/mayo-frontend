@@ -1,26 +1,25 @@
 import { type FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
-import UserProfile from '@/components/mypage/UserProfile';
 import ProfileEditModal from '@/components/modal/ProfileEditModal';
-import ApplyStudy from '@/components/mypage/ApplyStudy';
-import CreateStudy from '@/components/mypage/CreateStudy';
-import InterestStudy from '@/components/mypage/InterestStudy';
-import MyStudy from '@/components/mypage/MyStudy';
-import UserInfo from '@/components/mypage/UserInfo/UserInfo';
 import './myPage.scss';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
+import UserProfile from '@/components/mypage/UserProfile';
+
+const rootPath = '/user/mypage';
 
 const tabs = [
-  { index: 0, name: '내 정보', content: <UserInfo /> },
-  { index: 1, name: '나의 스터디', content: <MyStudy /> },
-  { index: 2, name: '신청한 스터디', content: <ApplyStudy /> },
-  { index: 3, name: '생성한 스터디', content: <CreateStudy /> },
-  { index: 4, name: '관심 스터디', content: <InterestStudy /> },
+  { name: '내 정보', path: rootPath },
+  { name: '나의 스터디', path: `${rootPath}/study` },
+  { name: '신청한 스터디', path: `${rootPath}/apply` },
+  { name: '생성한 스터디', path: `${rootPath}/create` },
+  { name: '관심 스터디', path: `${rootPath}/like` },
 ];
 
 const MyPage: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentTab, setCurrentTab] = useState(0);
+  const { pathname } = useLocation();
 
   const userId = localStorage.getItem('userId');
 
@@ -33,34 +32,32 @@ const MyPage: FC = () => {
   const onClickOpenModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+  const navigate = useNavigate();
 
   return (
     <>
       {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={data?.data.profileUrl} />}
-      <div className="container">
+      <div className="container box">
         <div className="row">
-          <div className="col-lg-3 box">
-            <UserProfile
-              src={data?.data.profileUrl}
-              alt="profile"
-              name={data?.data.userName}
-              onClick={onClickOpenModal}
-            />
+          <div className="col-lg-3 column">
+            <UserProfile src={data?.data.profileUrl} name={data?.data.userName ?? ''} onClick={onClickOpenModal} />
             <ul className="tab-container">
-              {tabs.map((tab, idx) => {
-                return (
-                  <li
-                    key={tab.index}
-                    onClick={() => setCurrentTab(idx)}
-                    className={idx === currentTab ? 'selected' : ''}
-                  >
-                    {tab.name}
-                  </li>
-                );
-              })}
+              {tabs.map((tab) => (
+                <li
+                  key={tab.name}
+                  onClick={() => {
+                    navigate(tab.path);
+                  }}
+                  className={classNames({ selected: tab.path === pathname })}
+                >
+                  {tab.name}
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="col-lg-9">{tabs[currentTab].content}</div>
+          <div className="col-lg-9">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

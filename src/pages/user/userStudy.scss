@@ -1,0 +1,21 @@
+.study-container {
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px 30px;
+  min-height: 821px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+
+  &-content {
+    flex: 1;
+
+    .no-data {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 636px;
+    }
+  }
+}

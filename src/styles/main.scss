@@ -13,6 +13,7 @@
 @import 'modules/avatars';
 @import 'modules/button';
 @import 'modules/pagination';
+@import 'modules/checkbox';
 
 /* 믹스인 */
 @import 'mixins/responsive';
@@ -25,6 +26,13 @@
 @import 'components/footer';
 @import 'components/recruitCard';
 @import 'components/search';
+@import 'components/studyBlock';
+@import 'components/studyDetailIntro';
+@import 'components/adminMode';
+@import 'components/studyScedule';
+@import 'components/commentContainer';
+@import 'components/calendar';
+@import 'components/todoList';
 
 /* 레이아웃 */
 @import 'layouts/grids';

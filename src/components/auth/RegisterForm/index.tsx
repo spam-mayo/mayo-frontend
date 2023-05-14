@@ -2,7 +2,7 @@ import { type FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Input from '@/components/auth/Input/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Select, { type SelectOption } from '@/components/auth/Select';
+import Select from '@/components/auth/Select';
 import './index.scss';
 import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
 import { postEmailCheck, postEmailCheckConfirm, postMember } from '@/api/auth/authAPI';
@@ -15,15 +15,8 @@ import google from '@/assets/images/google3.png';
 import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
 import ButtonInput from '@/components/auth/Input/ButtonInput';
-
-const categoryOption: SelectOption[] = [
-  { label: '선택 안 함', value: 'nofield', id: 1 },
-  { label: '프론트엔드', value: 'frontend', id: 2 },
-  { label: '백엔드', value: 'backend', id: 3 },
-  { label: '디자인', value: 'design', id: 4 },
-  { label: '기획', value: 'plan', id: 5 },
-  { label: '기타', value: 'other', id: 6 },
-];
+import { fieldOption } from '@/constants/fieldOption';
+import PasswordInput from '@/components/auth/Input/PasswordInput';
 
 const RegisterForm: FC = () => {
   const {
@@ -87,6 +80,9 @@ const RegisterForm: FC = () => {
   };
 
   const onSubmit: SubmitHandler<RegisterReq> = async (data) => {
+    if (data.field === 'NO_FIELD') {
+      delete data.field;
+    }
     registerMember(data);
   };
 
@@ -135,23 +131,21 @@ const RegisterForm: FC = () => {
                 </Button>
               </div>
             )}
-            <Input
+            <PasswordInput
               {...register('password')}
-              type="password"
               label="비밀번호"
               placeholder="비밀번호를 입력해주세요."
               error={errors.password?.message}
             />
-            <Input
+            <PasswordInput
               {...register('password_check')}
-              type="password"
               label="비밀번호 확인"
               placeholder="비밀번호를 확인해주세요."
               error={errors.password_check?.message}
             />
             <div className="select">
               <label>활동분야(선택)</label>
-              <Select {...register('field')} options={categoryOption} />
+              <Select {...register('field')} options={fieldOption} />
             </div>
 
             <Button size="large" color="yellow" type="submit">

@@ -4,6 +4,7 @@ import { type FC, useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderProfile from '@/components/common/HeaderProfile';
+import UserProfileImg from '@/components/common/UserProfileImg';
 
 const Header: FC = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -20,9 +21,7 @@ const Header: FC = () => {
 
   const { mutate: logout } = useMutation(postLogout, {
     onSuccess: () => {
-      localStorage.removeItem('userId');
-      localStorage.removeItem('authorization');
-      localStorage.removeItem('refresh');
+      localStorage.clear();
       setIsLogin(false);
       alert('로그아웃 완료!');
       navigate('/');
@@ -33,10 +32,11 @@ const Header: FC = () => {
 
   const onClickLogout = () => {
     logout();
+    setMenuOpen((prev) => !prev);
   };
 
   const onClickMenuOpen = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
   return (
@@ -44,27 +44,33 @@ const Header: FC = () => {
       <div className="container">
         <div className="wrapper">
           <div className="innerLeft">
-            <div>
+            <Link to="/">
               <img src="/spam.svg" alt="logo" className="logo" />
-            </div>
+            </Link>
             <nav>
               <Link to="/">
                 <Button color="blue" text>
                   스터디 찾기
                 </Button>
               </Link>
-              <Button color="blue" text>
-                나의 스터디
-              </Button>
+              {isLogin && (
+                <Link to="/user/mypage/study">
+                  <Button color="blue" text>
+                    나의 스터디
+                  </Button>
+                </Link>
+              )}
             </nav>
           </div>
           <div className="innerRight">
             {isLogin ? (
               <>
                 <div onClick={onClickMenuOpen}>
-                  <img alt="userProfile" src={data?.data.profileUrl} />
+                  <UserProfileImg src={data?.data.profileUrl} />
                 </div>
-                {menuOpen && <HeaderProfile onClickLogout={onClickLogout} />}
+                {menuOpen && (
+                  <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />
+                )}
               </>
             ) : (
               <>

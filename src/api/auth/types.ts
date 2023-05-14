@@ -29,3 +29,25 @@ export interface ProfileEditReq {
   userId: string;
   image?: FormData;
 }
+
+export interface UserInfoReq {
+  userId: string;
+  userName?: string;
+  password?: string;
+  field?: string;
+  userStacks?: string[];
+}
+
+export type Stack = {
+  stackId: number;
+  stackName: string;
+};
+
+export interface GetUserRes {
+  userId: number;
+  userName: string;
+  email: string;
+  profileUrl: string;
+  field: string;
+  stack: Stack[];
+}

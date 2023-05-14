@@ -1,0 +1,60 @@
+.userInfo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &-top {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      font-size: 24px;
+    }
+  }
+
+  &-content {
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    p {
+      color: black;
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      label {
+        width: 95px;
+      }
+
+      .input-box {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        input {
+          height: 40px;
+        }
+      }
+    }
+
+    .row {
+      display: flex;
+
+      .label {
+        width: 100px;
+      }
+
+      .stack-box {
+        display: flex;
+        gap: 5px;
+      }
+    }
+  }
+}

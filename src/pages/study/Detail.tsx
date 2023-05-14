@@ -1,35 +1,56 @@
-import { getStudy } from '@/api/mockAPI';
+import { getStudyDetail } from '@/api/study/studyAPI';
+import type { StudyOwner } from '@/api/study/studyTypes';
+import StudyDetailIntro from '@/components/common/StudyDetailIntro';
+import AdminMode from '@/components/study/adminMode/AdminMode';
+import StudySchedule from '@/components/study/studySchedule/StudySchedule';
 import { useQuery } from '@tanstack/react-query';
-import type { FC } from 'react';
+import { type FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import './detail.scss';
 
 const StudyDetail: FC = () => {
+  const [currentTab, setCurrentTab] = useState(0);
   const { studyId } = useParams();
+  const userId = localStorage.getItem('userId');
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getStudy(Number(studyId)),
-    queryKey: ['studies', studyId],
+    queryFn: () => getStudyDetail(Number(studyId)),
+    queryKey: ['studyDetail', studyId],
     select: ({ data }) => data,
   });
 
-  if (isError) {
-    return <div>Error</div>;
-  }
+  const tabs = [
+    { name: '스터디 일정', content: <StudySchedule startDate={data?.startDate} endDate={data?.endDate} /> },
+    Number(userId) === data?.owner.userId
+      ? {
+          name: '관리자 모드',
+          content: <AdminMode ownerData={data?.owner as StudyOwner} />,
+        }
+      : null,
+  ].filter(Boolean);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <div>loading...</div>;
 
-  if (!data) {
-    return <div>404 Not Found</div>;
-  }
+  if (isError) return <div>에러남</div>;
+
+  const onClickCurrentTab = (index: number) => {
+    setCurrentTab(index);
+  };
 
   return (
-    <div>
-      <div>{`제목: ${data.title}`}</div>
-      <div>{`모집자: ${data.userName}`}</div>
-      <div>{`시작일자: ${data.startDate}`}</div>
-      <div>{`모집상태: ${data.studyStatus}`}</div>
-      <div>{`기술스택: ${data.stack.map(({ stackName }) => stackName).join(', ')}`}</div>
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-12">
+          <StudyDetailIntro detailData={data} />
+          <ul className="detail-tab-container">
+            {tabs.map((tab, index) => (
+              <li key={index} onClick={() => onClickCurrentTab(index)}>
+                {tab?.name}
+              </li>
+            ))}
+          </ul>
+          <div>{tabs[currentTab]?.content}</div>
+        </div>
+      </div>
     </div>
   );
 };

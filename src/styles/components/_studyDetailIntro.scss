@@ -1,0 +1,88 @@
+.study-intro-container {
+  border: 1px solid #f2f2f2;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+  background-color: $white;
+  margin: auto;
+
+  .study-intro-top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &-title {
+      @include text-style-46();
+      @include flexbox(flex-start, center);
+      font-weight: bold;
+      gap: 10px;
+
+      i {
+        font-size: 20px;
+      }
+    }
+
+    &-stack {
+      display: flex;
+      gap: 5px;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  .study-intro-bottom {
+    @include flexbox(space-between, center);
+
+    .meeting-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      p {
+        font-weight: 500;
+      }
+
+      span {
+        margin-left: 34px;
+        font-weight: 400;
+        color: $charcoal;
+      }
+    }
+  }
+
+  .study-owner-container {
+    width: 377px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .study-owner-title {
+      border-bottom: 1px solid rgba($charcoal, 0.2);
+      padding-bottom: 2px;
+      font-weight: 500;
+    }
+
+    .study-owner-intro {
+      display: flex;
+      gap: 15px;
+
+      img {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+      }
+
+      .study-owner-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        color: $charcoal;
+      }
+    }
+  }
+}

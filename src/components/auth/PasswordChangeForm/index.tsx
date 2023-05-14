@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import Input from '@/components/auth/Input/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
@@ -8,6 +7,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { patchPassword } from '@/api/auth/authAPI';
 import axios from 'axios';
+import PasswordInput from '@/components/auth/Input/PasswordInput';
 
 const PasswordChangeForm: FC = () => {
   const [searchParams] = useSearchParams();
@@ -48,14 +48,14 @@ const PasswordChangeForm: FC = () => {
         <h1>비밀번호 변경</h1>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="password-change-form">
-        <Input
+        <PasswordInput
           {...register('newPassword')}
           label="새로운 비밀번호"
           type="password"
           placeholder="새로운 비밀번호를 입력해주세요."
           error={errors.newPassword?.message}
         />
-        <Input
+        <PasswordInput
           {...register('newPasswordCheck')}
           label="비밀번호 확인"
           type="password"
