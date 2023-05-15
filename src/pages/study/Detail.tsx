@@ -11,7 +11,7 @@ import './detail.scss';
 
 const StudyDetail: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
-  const [isMapOpen, setIsMapOpen] = useState(false);
+  const [isMapToggle, setIsMapToggle] = useState(false);
 
   const { studyId } = useParams();
   const userId = localStorage.getItem('userId');
@@ -40,12 +40,12 @@ const StudyDetail: FC = () => {
   };
 
   const onClickMapModal = () => {
-    setIsMapOpen((prev) => !prev);
+    setIsMapToggle((prev) => !prev);
   };
 
   return (
     <>
-      {isMapOpen && (
+      {isMapToggle && (
         <KakaoMap latitude={data?.latitude ?? 0} longitude={data?.longitude ?? 0} onClick={onClickMapModal} />
       )}
       <div className="container">

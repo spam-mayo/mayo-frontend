@@ -1,62 +1,65 @@
-#map {
-  width: 900px;
-  height: 600px;
-  position: absolute;
-  overflow: hidden;
-  border-radius: 20px;
+.map_wrap {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
 
+  #map {
+    width: 900px;
+    height: 600px;
+    position: absolute;
+    overflow: hidden;
+  }
   #menuDiv {
     display: flex;
     position: relative;
     z-index: 2;
-    font-size: 12px;
   }
 
   #menu_wrap {
     position: relative;
     width: 400px;
     height: 600px;
-    border-radius: 20px;
+    border-radius: 10px;
+    padding: 10px;
     overflow-y: auto;
     background: rgba(255, 255, 255, 0.7);
   }
 
   #map_title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox();
     width: 100%;
     padding: 10px;
+    font-size: 20px;
   }
 
   #form {
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 15px 10px 15px;
+    @include flexbox(space-between, center);
+    gap: 10px;
   }
 
   #keyword {
     width: 100%;
-    border: none;
     outline: none;
+    height: 40px;
+    text-indent: 10px;
   }
 
   #submit_btn {
-    background-color: #ff6e30;
+    background-color: $yellow;
     border: none;
-    outline: none;
+    width: 50px;
+    height: 40px;
+    @include text-style-14();
+    color: $white;
+    font-weight: 500;
   }
 
   #placesList h5 {
-    color: #ff6e30;
-  }
-
-  #placesList li {
-    list-style: square;
+    color: $black;
   }
 
   #placesList .item {
-    border-bottom: 1px solid #888;
+    border-bottom: 1px solid $charcoal;
     overflow: hidden;
     cursor: pointer;
   }
@@ -78,12 +81,6 @@
     color: #009900;
   }
 
-  #btnDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   #pagination {
     margin: 10px auto;
     text-align: center;
@@ -92,28 +89,31 @@
   #pagination a {
     display: inline-block;
     margin-right: 10px;
-    color: #7b7b7b;
+    color: $charcoal;
   }
 
   #pagination .on {
     font-weight: bold;
     cursor: default;
-    color: #ff6e30;
+    color: $yellow;
+  }
+
+  #btnDiv {
+    @include flexbox();
+    flex-direction: column;
+    height: 600px;
   }
 
   #btnOn {
-    height: 600px;
-    display: flex;
+    @include flexbox(center);
     flex-direction: column;
-    justify-content: center;
   }
 
   #searchBtn {
     width: 20px;
-    padding: 0px;
     height: 70px;
-    background-color: #ffa230;
+    padding: 0px;
+    background-color: $yellow;
     border: none;
-    outline: none;
   }
 }
