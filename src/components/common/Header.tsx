@@ -46,7 +46,7 @@ const Header: FC = () => {
             </nav>
           </div>
           <div className="innerRight">
-            {isLogin && data ? (
+            {isLogin ? (
               <>
                 <div onClick={onClickMenuOpen}>
                   <UserProfileImg src={data?.data.profileUrl} />

@@ -12,7 +12,7 @@ import Input from '@/components/auth/Input/Input';
 interface Props {
   name: string;
   email: string;
-  userId: number;
+  userId?: number;
 }
 
 const BasicInfo: FC<Props> = ({ name, email, userId }) => {
@@ -42,8 +42,8 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
     },
   });
 
-  const onSubmit: SubmitHandler<NameSchema> = (data) => {
-    const { userName } = data;
+  const onSubmit: SubmitHandler<NameSchema> = ({ userName }) => {
+    if (!userId) return;
     patchToUserInfo({ userId, userName });
   };
 

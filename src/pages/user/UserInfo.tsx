@@ -15,10 +15,6 @@ const UserInfo: FC = () => {
   const { userId } = useAuth();
   const oauth = localStorage.getItem('oauth');
 
-  if (!userId) {
-    throw new Error('no user');
-  }
-
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)), {
     select: (data) => data.data,
   });
@@ -48,6 +44,8 @@ const UserInfo: FC = () => {
   const onClickUnregister = () => {
     deleteMember(Number(userId));
   };
+
+  if (userId === null) return null;
 
   return (
     <>
