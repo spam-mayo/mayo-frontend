@@ -59,7 +59,7 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
     event.preventDefault();
 
     patchToUserInfo({
-      userId: userId,
+      userId,
       userStacks: checkedList,
       field: selectedCategory || undefined,
     });
