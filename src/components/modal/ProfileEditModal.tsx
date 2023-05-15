@@ -5,6 +5,7 @@ import { patchProfileImage } from '@/api/auth/authAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import UserProfileImg from '@/components/common/UserProfileImg';
+import useAuth from '@/hooks/useAuth';
 
 interface Props {
   onClose: () => void;
@@ -13,6 +14,7 @@ interface Props {
 
 const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const { userId } = useAuth();
 
   const { mutate: patchProfileImg } = useMutation(patchProfileImage, {
     onSuccess: () => {
@@ -39,7 +41,6 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
 
     src = URL.createObjectURL(event.target.files[0]);
 
-    const userId = localStorage.getItem('userId');
     if (!userId) return;
 
     const file = event.target.files[0];
@@ -49,7 +50,6 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
   };
 
   const onClickDeleteImage = () => {
-    const userId = localStorage.getItem('userId');
     if (!userId) return;
 
     const image = new FormData();

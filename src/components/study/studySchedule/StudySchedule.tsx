@@ -7,6 +7,7 @@ import AddUserComment from '@/components/common/AddUserComment';
 import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
 import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
+import useAuth from '@/hooks/useAuth';
 
 interface Props {
   startDate?: string;
@@ -17,7 +18,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [taskId, setTaskId] = useState(0);
   const { studyId } = useParams();
-  const userId = localStorage.getItem('userId');
+  const { userId } = useAuth();
 
   const { data } = useQuery({
     queryFn: () => getUserById(Number(userId)),

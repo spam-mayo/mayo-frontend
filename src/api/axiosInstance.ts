@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { postLogout } from '@/api/auth/authAPI';
+import { StorageKeys } from '@/constants/storageKeys';
+import { initAuthStorage } from '@/utils';
 
 /* baseURL은 .env 파일로 대체 예정 */
 const BASE_URL = 'https://spammayo.shop';
@@ -7,7 +9,7 @@ const config: AxiosRequestConfig = { baseURL: BASE_URL };
 const axiosInstance = axios.create(config);
 
 const getAccessToken = () => {
-  const accessToken = localStorage.getItem('authorization');
+  const accessToken = localStorage.getItem(StorageKeys.AT);
   return accessToken;
 };
 
@@ -39,7 +41,7 @@ axiosInstance.interceptors.response.use(
     if ([403, 401, 421].includes(status)) {
       const originalRequest = config;
       try {
-        const refresh = localStorage.getItem('refresh');
+        const refresh = localStorage.getItem(StorageKeys.RT);
 
         const { headers } = await axios.post(
           `${BASE_URL}/api/auth/token`,
@@ -49,7 +51,7 @@ axiosInstance.interceptors.response.use(
           }
         );
 
-        localStorage.setItem('authorization', headers.authorization);
+        localStorage.setItem(StorageKeys.AT, headers.authorization);
         const newAccessToken = headers.authorization;
         originalRequest.headers.Authorization = newAccessToken;
 
@@ -59,7 +61,7 @@ axiosInstance.interceptors.response.use(
           if (err.response?.status === 400) alert('엑세스 토큰값이 잘못되었습니다.');
           if (err.response?.status === 421) {
             alert('세션이 만료되었습니다. 다시 로그아웃 해주세요.');
-            localStorage.clear();
+            initAuthStorage();
             postLogout();
           }
         }

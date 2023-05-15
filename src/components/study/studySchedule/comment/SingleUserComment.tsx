@@ -6,6 +6,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import type { CommentFormValue } from '@/components/common/AddUserComment';
 import { formatDate } from '@/utils/dateForm';
+import useAuth from '@/hooks/useAuth';
 
 interface Props {
   commentItem: {
@@ -26,7 +27,8 @@ const SingleUserComment: FC<Props> = ({ commentItem, taskDate }) => {
   const { handleSubmit, register, reset } = useForm<CommentFormValue>({ defaultValues: { commnet: comment } });
 
   const commentDateForm = formatDate(createdAt, 'yyyy-MM-dd HH:mm');
-  const idOfUser = localStorage.getItem('userId');
+
+  const { userId: idOfUser } = useAuth();
 
   const { mutate: deleteComment } = useMutation(deleteStudyComment, {
     onSuccess: () => {
@@ -65,7 +67,7 @@ const SingleUserComment: FC<Props> = ({ commentItem, taskDate }) => {
         {isEdit ? <input {...register('commnet')} /> : <p className="comment-content">{comment}</p>}
       </div>
       <div className="comment-button-container">
-        {Number(idOfUser) === userId && (
+        {idOfUser === userId && (
           <>
             <MultiButton isEdit={isEdit} onClick={onClickEditButton} />
             <button type="button" onClick={() => deleteComment(studyCommentId)} className="delete-button">
