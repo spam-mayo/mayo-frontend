@@ -1,6 +1,5 @@
 import { type FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import Input from '@/components/auth/Input/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Select from '@/components/auth/Select';
 import './index.scss';
@@ -14,9 +13,8 @@ import kakao from '@/assets/images/kakao3.jpeg';
 import google from '@/assets/images/google3.png';
 import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
-import ButtonInput from '@/components/auth/Input/ButtonInput';
 import { fieldOption } from '@/constants/fieldOption';
-import PasswordInput from '@/components/auth/Input/PasswordInput';
+import CommonInput from '@/components/common/CommonInput';
 
 const RegisterForm: FC = () => {
   const {
@@ -100,14 +98,14 @@ const RegisterForm: FC = () => {
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">
           <div className="auth">
-            <Input
+            <CommonInput
               {...register('userName')}
               label="이름"
               placeholder="이름을 입력해주세요."
               error={errors.userName?.message}
             />
             <div className="inputRow">
-              <ButtonInput
+              <CommonInput
                 {...register('email')}
                 type="emil"
                 label="이메일"
@@ -120,7 +118,7 @@ const RegisterForm: FC = () => {
             </div>
             {isEmailChecked && (
               <div className="inputRow">
-                <ButtonInput
+                <CommonInput
                   {...register('authCode')}
                   label="인증번호"
                   placeholder="인증번호를 입력해주세요."
@@ -131,17 +129,19 @@ const RegisterForm: FC = () => {
                 </Button>
               </div>
             )}
-            <PasswordInput
+            <CommonInput
               {...register('password')}
               label="비밀번호"
               placeholder="비밀번호를 입력해주세요."
               error={errors.password?.message}
+              isVisible
             />
-            <PasswordInput
+            <CommonInput
               {...register('password_check')}
               label="비밀번호 확인"
               placeholder="비밀번호를 확인해주세요."
               error={errors.password_check?.message}
+              isVisible
             />
             <div className="select">
               <label>활동분야(선택)</label>
