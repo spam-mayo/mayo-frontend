@@ -10,9 +10,9 @@ import { nameSchema, NameSchema } from '@/constants/schema/nameSchema';
 import Input from '@/components/auth/Input/Input';
 
 interface Props {
-  name: string;
-  email: string;
-  userId?: number;
+  name?: string;
+  email?: string;
+  userId: number;
 }
 
 const BasicInfo: FC<Props> = ({ name, email, userId }) => {
