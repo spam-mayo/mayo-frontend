@@ -11,7 +11,7 @@ import StackForm from '@/components/study/Stack';
 interface Props {
   field: string;
   stack?: Stack[];
-  userId: string;
+  userId: number;
 }
 
 const tmp = (categoryLabel: string) => {

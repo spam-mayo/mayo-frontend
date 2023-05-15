@@ -1,34 +1,17 @@
 import Button from '@/components/common/Button';
-import { getUserById, postLogout } from '@/api/auth/authAPI';
-import { type FC, useState, useEffect } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { Link, useNavigate } from 'react-router-dom';
+import { getUserById } from '@/api/auth/authAPI';
+import { type FC, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import HeaderProfile from '@/components/common/HeaderProfile';
 import UserProfileImg from '@/components/common/UserProfileImg';
+import useAuth from '@/hooks/useAuth';
 
 const Header: FC = () => {
-  const [isLogin, setIsLogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const userId = localStorage.getItem('userId');
+  const { logout, userId, isLogin } = useAuth();
 
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
-
-  useEffect(() => {
-    if (userId) {
-      setIsLogin(true);
-    }
-  }, [userId]);
-
-  const { mutate: logout } = useMutation(postLogout, {
-    onSuccess: () => {
-      localStorage.clear();
-      setIsLogin(false);
-      alert('로그아웃 완료!');
-      navigate('/');
-    },
-  });
-
-  const navigate = useNavigate();
 
   const onClickLogout = () => {
     logout();

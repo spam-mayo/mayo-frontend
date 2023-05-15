@@ -10,7 +10,7 @@ import axios from 'axios';
 import PasswordInput from '@/components/auth/Input/PasswordInput';
 
 interface Props {
-  userId: string;
+  userId: number;
 }
 
 const PasswordInfo: FC<Props> = ({ userId }) => {

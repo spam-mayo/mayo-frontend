@@ -6,6 +6,7 @@ import './myPage.scss';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import UserProfile from '@/components/mypage/UserProfile';
+import useAuth from '@/hooks/useAuth';
 
 const rootPath = '/user/mypage';
 
@@ -21,7 +22,7 @@ const MyPage: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { pathname } = useLocation();
 
-  const userId = localStorage.getItem('userId');
+  const { userId } = useAuth();
 
   if (!userId) {
     throw new Error('no user');

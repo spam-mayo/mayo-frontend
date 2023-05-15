@@ -3,6 +3,7 @@ import type { StudyOwner } from '@/api/study/studyTypes';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import AdminMode from '@/components/study/adminMode/AdminMode';
 import StudySchedule from '@/components/study/studySchedule/StudySchedule';
+import useAuth from '@/hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { type FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -11,7 +12,7 @@ import './detail.scss';
 const StudyDetail: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const { studyId } = useParams();
-  const userId = localStorage.getItem('userId');
+  const { userId } = useAuth();
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getStudyDetail(Number(studyId)),
     queryKey: ['studyDetail', studyId],

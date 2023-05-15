@@ -26,12 +26,12 @@ export interface PasswordChangeReq {
 }
 
 export interface ProfileEditReq {
-  userId: string;
+  userId: number;
   image?: FormData;
 }
 
 export interface UserInfoReq {
-  userId: string;
+  userId: number;
   userName?: string;
   password?: string;
   field?: string;
