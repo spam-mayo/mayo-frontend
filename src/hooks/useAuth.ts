@@ -15,6 +15,8 @@ const useAuth = () => {
       localStorage.setItem(StorageKeys.AT, authorization);
       localStorage.setItem(StorageKeys.RT, refresh);
       localStorage.setItem(StorageKeys.UserID, userId);
+      setUserId(Number(userId));
+      navigate('/');
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
@@ -34,8 +36,10 @@ const useAuth = () => {
 
   useEffect(() => {
     const id = localStorage.getItem(StorageKeys.UserID);
-    if (id) setUserId(Number(id));
-  }, []);
+    if (id !== null) {
+      setUserId(Number(id));
+    }
+  }, [navigate]);
 
   return { login, logout, isLogin: Boolean(userId), userId };
 };
