@@ -100,13 +100,7 @@
 
   #btnDiv {
     @include flexbox();
-    flex-direction: column;
     height: 600px;
-  }
-
-  #btnOn {
-    @include flexbox(center);
-    flex-direction: column;
   }
 
   #searchBtn {
