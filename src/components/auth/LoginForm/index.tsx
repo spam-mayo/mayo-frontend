@@ -10,7 +10,7 @@ import google from '@/assets/images/google3.png';
 import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
 import useAuth from '@/hooks/useAuth';
-import CommonInput from '@/components/common/CommonInput';
+import Input from '@/components/common/Input';
 
 const LoginForm: FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -49,14 +49,14 @@ const LoginForm: FC = () => {
 
           <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">
             <div className="auth">
-              <CommonInput
+              <Input
                 {...register('email')}
-                type="emil"
+                type="email"
                 label="이메일"
                 placeholder="이메일을 입력해주세요."
                 error={errors.email?.message}
               />
-              <CommonInput
+              <Input
                 {...register('password')}
                 type="password"
                 label="비밀번호"

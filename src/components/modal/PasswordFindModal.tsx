@@ -7,7 +7,7 @@ import './modal.scss';
 import { type EmailSchema, emailSchema } from '@/constants/schema/emailSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@/components/common/Button';
-import CommonInput from '@/components/common/CommonInput';
+import Input from '@/components/common/Input';
 
 interface Props {
   onClose: () => void;
@@ -42,9 +42,9 @@ const PasswordFindModal: FC<Props> = ({ onClose }: Props) => {
     <div className="modal-container">
       <form onSubmit={handleSubmit(onSubmit)} className="modal-content">
         <p>비밀번호 변경 링크를 받을 이메일을 입력해주세요.</p>
-        <CommonInput
+        <Input
           {...register('email')}
-          type="emil"
+          type="email"
           label=""
           placeholder="이메일을 입력해주세요."
           error={errors.email?.message}

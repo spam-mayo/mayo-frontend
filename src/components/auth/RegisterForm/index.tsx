@@ -14,7 +14,7 @@ import google from '@/assets/images/google3.png';
 import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
 import { fieldOption } from '@/constants/fieldOption';
-import CommonInput from '@/components/common/CommonInput';
+import Input from '@/components/common/Input';
 
 const RegisterForm: FC = () => {
   const {
@@ -98,16 +98,16 @@ const RegisterForm: FC = () => {
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="col-lg-6">
           <div className="auth">
-            <CommonInput
+            <Input
               {...register('userName')}
               label="이름"
               placeholder="이름을 입력해주세요."
               error={errors.userName?.message}
             />
             <div className="inputRow">
-              <CommonInput
+              <Input
                 {...register('email')}
-                type="emil"
+                type="email"
                 label="이메일"
                 placeholder="이메일을 입력해주세요."
                 error={errors.email?.message}
@@ -118,7 +118,7 @@ const RegisterForm: FC = () => {
             </div>
             {isEmailChecked && (
               <div className="inputRow">
-                <CommonInput
+                <Input
                   {...register('authCode')}
                   label="인증번호"
                   placeholder="인증번호를 입력해주세요."
@@ -129,19 +129,19 @@ const RegisterForm: FC = () => {
                 </Button>
               </div>
             )}
-            <CommonInput
+            <Input
               {...register('password')}
               label="비밀번호"
+              type="password"
               placeholder="비밀번호를 입력해주세요."
               error={errors.password?.message}
-              isVisible
             />
-            <CommonInput
+            <Input
               {...register('password_check')}
               label="비밀번호 확인"
+              type="password"
               placeholder="비밀번호를 확인해주세요."
               error={errors.password_check?.message}
-              isVisible
             />
             <div className="select">
               <label>활동분야(선택)</label>

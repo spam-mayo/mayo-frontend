@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { nameSchema, NameSchema } from '@/constants/schema/nameSchema';
-import CommonInput from '@/components/common/CommonInput';
+import Input from '@/components/common/Input';
 
 interface Props {
   name?: string;
@@ -61,7 +61,7 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
       <div className="userInfo-container-content">
         {isEdit ? (
           <>
-            <CommonInput label="이름" defaultValue={name} {...register('userName')} error={errors.userName?.message} />
+            <Input label="이름" defaultValue={name} {...register('userName')} error={errors.userName?.message} />
           </>
         ) : (
           <div className="row">
