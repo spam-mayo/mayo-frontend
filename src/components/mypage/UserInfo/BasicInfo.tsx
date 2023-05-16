@@ -43,7 +43,6 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
   });
 
   const onSubmit: SubmitHandler<NameSchema> = ({ userName }) => {
-    if (!userId) return;
     patchToUserInfo({ userId, userName });
   };
 

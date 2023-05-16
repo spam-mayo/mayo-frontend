@@ -16,6 +16,10 @@ const UserInfo: FC = () => {
   const { userId } = useAuth();
   const oauth = localStorage.getItem(StorageKeys.OAuth);
 
+  if (!userId) {
+    throw new Error('no user');
+  }
+
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)), {
     select: (data) => data.data,
   });
@@ -37,8 +41,6 @@ const UserInfo: FC = () => {
       }
     },
   });
-
-  if (userId === null) return null;
 
   const onClickOpenModal = () => {
     setIsModalOpen(!isModalOpen);
