@@ -42,8 +42,7 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
     },
   });
 
-  const onSubmit: SubmitHandler<NameSchema> = (data) => {
-    const { userName } = data;
+  const onSubmit: SubmitHandler<NameSchema> = ({ userName }) => {
     patchToUserInfo({ userId, userName });
   };
 
