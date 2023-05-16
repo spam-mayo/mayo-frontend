@@ -8,9 +8,3 @@ export const userIdState = atom<number | null>({
   default: null,
   effects_UNSTABLE: [persistAtom],
 });
-
-export const isLoginState = atom<boolean>({
-  key: 'isLoginState',
-  default: false,
-  effects_UNSTABLE: [persistAtom],
-});
