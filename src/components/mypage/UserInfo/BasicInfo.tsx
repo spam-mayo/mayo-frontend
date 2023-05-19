@@ -7,11 +7,11 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { nameSchema, NameSchema } from '@/constants/schema/nameSchema';
-import Input from '@/components/auth/Input/Input';
+import Input from '@/components/common/Input';
 
 interface Props {
-  name: string;
-  email: string;
+  name?: string;
+  email?: string;
   userId: number;
 }
 

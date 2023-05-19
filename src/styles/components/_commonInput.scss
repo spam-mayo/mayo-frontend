@@ -1,14 +1,10 @@
-@import '@/styles/constants/_colors.scss';
-@import '@/styles/mixins/_text-style.scss';
-
 .input-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
 
   label {
-    @include text-style-16();
-    color: black;
+    color: $black;
   }
 
   input {
@@ -20,7 +16,6 @@
     text-indent: 8px;
 
     &::placeholder {
-      @include text-style-16();
       text-indent: 8px;
       color: $gray;
     }
@@ -35,10 +30,6 @@
       right: 10px;
       cursor: pointer;
     }
-  }
-
-  .btn-padding {
-    padding-right: 65px;
   }
 
   .err-msg {

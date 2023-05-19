@@ -1,6 +1,5 @@
 import { type FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import Input from '@/components/auth/Input/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Select from '@/components/auth/Select';
 import './index.scss';
@@ -14,9 +13,8 @@ import kakao from '@/assets/images/kakao3.jpeg';
 import google from '@/assets/images/google3.png';
 import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
-import ButtonInput from '@/components/auth/Input/ButtonInput';
 import { fieldOption } from '@/constants/fieldOption';
-import PasswordInput from '@/components/auth/Input/PasswordInput';
+import Input from '@/components/common/Input';
 
 const RegisterForm: FC = () => {
   const {
@@ -107,9 +105,9 @@ const RegisterForm: FC = () => {
               error={errors.userName?.message}
             />
             <div className="inputRow">
-              <ButtonInput
+              <Input
                 {...register('email')}
-                type="emil"
+                type="email"
                 label="이메일"
                 placeholder="이메일을 입력해주세요."
                 error={errors.email?.message}
@@ -120,7 +118,7 @@ const RegisterForm: FC = () => {
             </div>
             {isEmailChecked && (
               <div className="inputRow">
-                <ButtonInput
+                <Input
                   {...register('authCode')}
                   label="인증번호"
                   placeholder="인증번호를 입력해주세요."
@@ -131,15 +129,17 @@ const RegisterForm: FC = () => {
                 </Button>
               </div>
             )}
-            <PasswordInput
+            <Input
               {...register('password')}
               label="비밀번호"
+              type="password"
               placeholder="비밀번호를 입력해주세요."
               error={errors.password?.message}
             />
-            <PasswordInput
+            <Input
               {...register('password_check')}
               label="비밀번호 확인"
+              type="password"
               placeholder="비밀번호를 확인해주세요."
               error={errors.password_check?.message}
             />

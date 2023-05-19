@@ -3,6 +3,7 @@ import ConfirmModal from '@/components/modal/ConfirmModal';
 import BasicInfo from '@/components/mypage/UserInfo/BasicInfo';
 import ExtraInfo from '@/components/mypage/UserInfo/ExtraInfo';
 import PasswordInfo from '@/components/mypage/UserInfo/PasswordInfo';
+import { StorageKeys } from '@/constants/storageKeys';
 import useAuth from '@/hooks/useAuth';
 import { initAuthStorage } from '@/utils';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -13,7 +14,7 @@ import './userInfo.scss';
 const UserInfo: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { userId } = useAuth();
-  const oauth = localStorage.getItem('oauth');
+  const oauth = localStorage.getItem(StorageKeys.OAuth);
 
   if (!userId) {
     throw new Error('no user');
@@ -22,10 +23,10 @@ const UserInfo: FC = () => {
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)), {
     select: (data) => data.data,
   });
-  const userName = data?.userName ?? '';
-  const email = data?.email ?? '';
-  const field = data?.field ?? '';
-  const stack = data?.stack ?? [];
+  const userName = data?.userName;
+  const email = data?.email;
+  const field = data?.field;
+  const stack = data?.stack;
 
   const { mutate: deleteMember } = useMutation(deleteUser, {
     onSuccess: () => {
@@ -46,7 +47,7 @@ const UserInfo: FC = () => {
   };
 
   const onClickUnregister = () => {
-    deleteMember(Number(userId));
+    deleteMember(userId);
   };
 
   return (
