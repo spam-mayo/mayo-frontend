@@ -1,5 +1,6 @@
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
+import KakaoKeywordMap from '@/components/common/KakaoKeywordMap';
 import CalendarPeriod from '@/components/study/createForm/CalendarPeriod';
 import Dropdown from '@/components/study/createForm/Dropdown';
 import StackForm from '@/components/study/Stack';
@@ -7,9 +8,15 @@ import { fieldOption } from '@/constants/fieldOption';
 import { peopleNumberOption, studyPeriodOption } from '@/constants/studyCreateOption';
 import { type FC, useState, ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const StudyCreateForm: FC = () => {
   const [checked, setChecked] = useState<string[]>([]);
+  const navigate = useNavigate();
+
+  const onClickGoBack = () => {
+    navigate(-1);
+  };
 
   const onChangeCheckList = (event: ChangeEvent<HTMLInputElement>) => {
     let updatedList = [...checked];
@@ -23,7 +30,6 @@ const StudyCreateForm: FC = () => {
 
   const {
     register,
-    // handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -41,6 +47,14 @@ const StudyCreateForm: FC = () => {
 
   return (
     <form className="section-form">
+      <div className="title-area">
+        <button onClick={onClickGoBack}>
+          <i className="icon-arrow-left"></i>
+        </button>
+        <p>스터디 생성하기</p>
+        <div />
+      </div>
+
       <div className="main-info">
         <div className="subtitle">
           <span>기본 정보</span>
@@ -51,25 +65,35 @@ const StudyCreateForm: FC = () => {
               placeholder="스터디 그룹 명을 정하세요"
               label="스터디명"
               className="required"
-              error="최소 2자 이상 죄대 20자 이하"
-              {...register('studyName', { required: true, minLength: 2, maxLength: 20 })}
+              {...register('studyName')}
             />
             <Input
               placeholder="구인 글의 제목을 정하세요"
               label="스터디 제목"
               className="required"
-              error="최소 2자 이상 죄대 10자 이하"
-              {...register('title', { required: true, minLength: 2, maxLength: 10 })}
+              {...register('title')}
             />
-            <CalendarPeriod />
-          </div>
-          <div className="inner-right">
+            <div>
+              <span>모집 기간</span>
+              <CalendarPeriod />
+            </div>
             <Dropdown
               title="모집인원"
               {...register('personnel', { required: true })}
               options={peopleNumberOption}
               className="required"
             />
+          </div>
+          <div className="inner-right">
+            <div>
+              <Input
+                label="모임 장소"
+                placeholder="모임 장소를 검색해하세요"
+                {...register('place')}
+                className="required"
+              />
+            </div>
+            <KakaoKeywordMap />
           </div>
         </div>
       </div>
@@ -78,9 +102,11 @@ const StudyCreateForm: FC = () => {
         <div className="subtitle">
           <span>추가 정보</span>
         </div>
-        <div className="inner">
-          <div className="inner-left">
-            <Dropdown title="활동분야" {...register('activity')} options={fieldOption} />
+        <div className="inner additional">
+          <div className="additional-top">
+            <div className="inner-left">
+              <Dropdown title="활동분야" {...register('activity')} options={fieldOption} />
+            </div>
             <div className="inner-right">
               <span>모임 주기</span>
               <div className="fieldset">
@@ -100,9 +126,10 @@ const StudyCreateForm: FC = () => {
             </div>
           </div>
 
-          <label>기술 스택</label>
-          <input {...register('studyStacks')}></input>
-          <StackForm onChange={onChangeCheckList} checked={checked} />
+          <div className="additional-bottom">
+            {/* <input {...register('studyStacks')}></input> */}
+            <StackForm onChange={onChangeCheckList} checked={checked} />
+          </div>
         </div>
 
         <div className="button-area">

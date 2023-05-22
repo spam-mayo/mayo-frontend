@@ -1,12 +1,14 @@
 import { forwardRef, InputHTMLAttributes, useCallback, useState } from 'react';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   error?: string;
   type?: string;
+  className?: string;
+  onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, ...rest }, ref) => {
+const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, className, onSearch, ...rest }, ref) => {
   const [visible, setVisible] = useState(false);
 
   const onToggleVisble = useCallback(() => {
@@ -15,10 +17,13 @@ const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, ...rest
 
   return (
     <div className="input-container">
-      <label>{label}</label>
+      <label>
+        {label}
+        <span className={className}></span>
+      </label>
       {type === 'password' ? (
         <div className="input-box visible">
-          <input {...rest} ref={ref} type={visible ? 'text' : type} />
+          <input {...rest} ref={ref} type={visible ? 'text' : type} onChange={onSearch} />
           <i className={visible ? 'icon-eye' : 'icon-eye-blocked'} onClick={onToggleVisble} />
           {error && <p className="err-msg">{error}</p>}
         </div>

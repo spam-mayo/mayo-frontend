@@ -7,7 +7,7 @@ const CalendarPeriod: FC = () => {
   const [endDate, setEndDate] = useState(new Date());
 
   return (
-    <>
+    <div className="calender-container">
       <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(new Date(date ?? ''))}
@@ -15,16 +15,19 @@ const CalendarPeriod: FC = () => {
         startDate={startDate}
         minDate={startDate}
         endDate={endDate}
+        calendarClassName="period-calendar"
       />
+
       <DatePicker
-        selected={endDate}
+        selected={startDate}
         onChange={(date) => setEndDate(new Date(date ?? ''))}
-        selectsEnd
+        selectsStart
         startDate={startDate}
-        endDate={endDate}
         minDate={startDate}
+        endDate={endDate}
+        calendarClassName="period-calendar"
       />
-    </>
+    </div>
   );
 };
 
