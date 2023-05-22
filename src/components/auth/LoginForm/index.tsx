@@ -2,7 +2,6 @@ import { useState, type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { type LoginSchema, loginSchema } from '@/constants/schema/loginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Input from '@/components/auth/Input/Input';
 import './index.scss';
 import PasswordFindModal from '@/components/modal/PasswordFindModal';
 import { Link } from 'react-router-dom';
@@ -11,6 +10,7 @@ import google from '@/assets/images/google3.png';
 import OauthButton from '@/components/auth/OauthButton';
 import Button from '@/components/common/Button';
 import useAuth from '@/hooks/useAuth';
+import Input from '@/components/common/Input';
 
 const LoginForm: FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -51,7 +51,7 @@ const LoginForm: FC = () => {
             <div className="auth">
               <Input
                 {...register('email')}
-                type="emil"
+                type="email"
                 label="이메일"
                 placeholder="이메일을 입력해주세요."
                 error={errors.email?.message}

@@ -28,6 +28,8 @@
     "react-kakao-maps-sdk": "^1.1.9",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.8.2",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^4.2.0",
     "sass": "^1.59.2",
     "vite-plugin-html-env": "^1.2.7",
     "yup": "^1.0.2"

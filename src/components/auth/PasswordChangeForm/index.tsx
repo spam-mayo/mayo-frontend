@@ -7,7 +7,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { patchPassword } from '@/api/auth/authAPI';
 import axios from 'axios';
-import PasswordInput from '@/components/auth/Input/PasswordInput';
+import Input from '@/components/common/Input';
 
 const PasswordChangeForm: FC = () => {
   const [searchParams] = useSearchParams();
@@ -48,14 +48,14 @@ const PasswordChangeForm: FC = () => {
         <h1>비밀번호 변경</h1>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="password-change-form">
-        <PasswordInput
+        <Input
           {...register('newPassword')}
           label="새로운 비밀번호"
           type="password"
           placeholder="새로운 비밀번호를 입력해주세요."
           error={errors.newPassword?.message}
         />
-        <PasswordInput
+        <Input
           {...register('newPasswordCheck')}
           label="비밀번호 확인"
           type="password"

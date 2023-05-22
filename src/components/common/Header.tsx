@@ -9,7 +9,7 @@ import useAuth from '@/hooks/useAuth';
 
 const Header: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { logout, userId, isLogin } = useAuth();
+  const { logout, isLogin, userId } = useAuth();
 
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
 

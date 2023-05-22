@@ -7,11 +7,11 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { nameSchema, NameSchema } from '@/constants/schema/nameSchema';
-import Input from '@/components/auth/Input/Input';
+import Input from '@/components/common/Input';
 
 interface Props {
-  name: string;
-  email: string;
+  name?: string;
+  email?: string;
   userId: number;
 }
 
@@ -42,8 +42,7 @@ const BasicInfo: FC<Props> = ({ name, email, userId }) => {
     },
   });
 
-  const onSubmit: SubmitHandler<NameSchema> = (data) => {
-    const { userName } = data;
+  const onSubmit: SubmitHandler<NameSchema> = ({ userName }) => {
     patchToUserInfo({ userId, userName });
   };
 

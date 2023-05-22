@@ -1,20 +1,23 @@
 import { postLogin, postLogout } from '@/api/auth/authAPI';
+import { userIdState } from '@/atom/atom';
 import { StorageKeys } from '@/constants/storageKeys';
 import { initAuthStorage } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
 const useAuth = () => {
-  const [userId, setUserId] = useState<number | null>(null);
+  const [userId, setUserId] = useRecoilState(userIdState);
   const navigate = useNavigate();
 
   const { mutate: login } = useMutation(postLogin, {
     onSuccess: ({ headers: { authorization, refresh }, data: { userId } }) => {
       localStorage.setItem(StorageKeys.AT, authorization);
       localStorage.setItem(StorageKeys.RT, refresh);
-      localStorage.setItem(StorageKeys.UserID, userId);
+      setUserId(userId);
+      navigate('/');
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {

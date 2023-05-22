@@ -24,10 +24,6 @@ const MyPage: FC = () => {
 
   const { userId } = useAuth();
 
-  if (!userId) {
-    throw new Error('no user');
-  }
-
   const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
 
   const onClickOpenModal = () => {

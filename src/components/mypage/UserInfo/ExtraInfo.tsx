@@ -9,7 +9,7 @@ import axios from 'axios';
 import StackForm from '@/components/study/Stack';
 
 interface Props {
-  field: string;
+  field?: string;
   stack?: Stack[];
   userId: number;
 }
@@ -66,7 +66,7 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
   };
 
   useEffect(() => {
-    setSelectedCategory(tmp(field)?.value ?? '');
+    setSelectedCategory(tmp(field ?? '')?.value ?? '');
   }, [field]);
 
   return (
