@@ -1,0 +1,113 @@
+.map_wrap {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+
+  #map {
+    width: 900px;
+    height: 600px;
+    position: absolute;
+    overflow: hidden;
+  }
+  #menuDiv {
+    display: flex;
+    position: relative;
+    z-index: 2;
+  }
+
+  #menu_wrap {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    border-radius: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  #map_title {
+    @include flexbox();
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  #form {
+    @include flexbox(space-between, center);
+    gap: 10px;
+  }
+
+  #keyword {
+    width: 100%;
+    outline: none;
+    height: 40px;
+    text-indent: 10px;
+  }
+
+  #submit_btn {
+    background-color: $yellow;
+    border: none;
+    width: 50px;
+    height: 40px;
+    @include text-style-14();
+    color: $white;
+    font-weight: 500;
+  }
+
+  #placesList h5 {
+    color: $black;
+  }
+
+  #placesList .item {
+    border-bottom: 1px solid $charcoal;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  #placesList .item .info {
+    padding: 10px 0 10px 5px;
+  }
+
+  #placesList > .item span {
+    display: block;
+    margin-top: 4px;
+  }
+
+  #placesList .info .gray {
+    color: #8a8a8a;
+  }
+
+  #placesList .info .tel {
+    color: #009900;
+  }
+
+  #pagination {
+    margin: 10px auto;
+    text-align: center;
+  }
+
+  #pagination a {
+    display: inline-block;
+    margin-right: 10px;
+    color: $charcoal;
+  }
+
+  #pagination .on {
+    font-weight: bold;
+    cursor: default;
+    color: $yellow;
+  }
+
+  #btnDiv {
+    @include flexbox();
+    height: 600px;
+  }
+
+  #searchBtn {
+    width: 20px;
+    height: 70px;
+    padding: 0px;
+    background-color: $yellow;
+    border: none;
+  }
+}

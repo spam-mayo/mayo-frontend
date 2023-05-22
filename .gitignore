@@ -16,6 +16,7 @@ dist-ssr
 .idea
 .DS_Store
 .vercel
+.env
 *.suo
 *.ntvs*
 *.njsproj
