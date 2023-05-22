@@ -42,10 +42,6 @@ const StudyDetail: FC = () => {
 
   if (isError) return <div>에러남</div>;
 
-  // const onClickCurrentTab = (index: number) => {
-  //   setCurrentTab(index);
-  // };
-
   const onClickMapModal = () => {
     setIsMapModalOpen((prev) => !prev);
   };
@@ -61,15 +57,12 @@ const StudyDetail: FC = () => {
             <StudyDetailIntro detailData={data} onClick={onClickMapModal} />
             <ul className="detail-tab-container">
               {tabs.map((tab, index) => (
-                // <li key={index} onClick={() => onClickCurrentTab(index)}>
-                //   {tab?.name}
-                // </li>
                 <li key={index} onClick={onClickCurrentTab(index)}>
                   {tab?.name}
                 </li>
               ))}
             </ul>
-            <div>{tabs[currentTab]?.content}</div>
+            {tabs[currentTab]?.content ? <div>{tabs[currentTab]?.content}</div> : <div>No data</div>}
           </div>
         </div>
       </div>

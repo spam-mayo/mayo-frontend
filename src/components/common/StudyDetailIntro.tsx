@@ -5,11 +5,15 @@ import Button from '@/components/common/Button';
 import type { GetStudyDetailRes } from '@/api/study/studyTypes';
 
 interface Props {
-  detailData: GetStudyDetailRes;
+  detailData?: GetStudyDetailRes;
   onClick: () => void;
 }
 
 const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {
+  if (!detailData) {
+    return <div>...Loading</div>;
+  }
+
   const { title, stack, studyName, startDate, endDate, place, personnel, owner } = detailData;
 
   return (
