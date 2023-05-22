@@ -1,13 +1,13 @@
 import keywordMap from '@/utils/keywordMap';
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useState, useCallback } from 'react';
 
 const KakaoKeywordMap: FC = () => {
-  const [search, setSearch] = useState('');
+  const [keyword, setKeyword] = useState('');
   const [isOpen, setIsOpen] = useState(true);
 
-  const onChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
+  const onChangeSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(event.target.value);
+  }, []);
 
   const onClickToggleListBox = () => {
     setIsOpen((prev) => !prev);
@@ -22,10 +22,10 @@ const KakaoKeywordMap: FC = () => {
       <div id="menuDiv">
         <div id="menu_wrap" style={{ display: isOpen ? 'block' : 'none' }}>
           <div id="map_title">
-            <div>장소 검색</div>
+            <p>장소 검색</p>
           </div>
           <div id="form">
-            <input type="text" value={search} id="keyword" onChange={onChangeSearch} />
+            <input type="text" value={keyword} id="keyword" onChange={onChangeSearch} />
             <button id="submit_btn" type="submit">
               검색
             </button>

@@ -6,13 +6,13 @@ import AdminMode from '@/components/study/adminMode/AdminMode';
 import StudySchedule from '@/components/study/studySchedule/StudySchedule';
 import useAuth from '@/hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
-import { type FC, useState } from 'react';
+import React, { type FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './detail.scss';
 
 const StudyDetail: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
-  const [isMapToggle, setIsMapToggle] = useState(false);
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
 
   const { studyId } = useParams();
   const { userId } = useAuth();
@@ -32,22 +32,28 @@ const StudyDetail: FC = () => {
       : null,
   ].filter(Boolean);
 
+  const onClickCurrentTab =
+    (index: number): (() => void) =>
+    () => {
+      setCurrentTab(index);
+    };
+
   if (isLoading) return <div>loading...</div>;
 
   if (isError) return <div>에러남</div>;
 
-  const onClickCurrentTab = (index: number) => {
-    setCurrentTab(index);
-  };
+  // const onClickCurrentTab = (index: number) => {
+  //   setCurrentTab(index);
+  // };
 
   const onClickMapModal = () => {
-    setIsMapToggle((prev) => !prev);
+    setIsMapModalOpen((prev) => !prev);
   };
 
   return (
     <>
-      {isMapToggle && (
-        <KakaoMap latitude={data?.latitude ?? 0} longitude={data?.longitude ?? 0} onClick={onClickMapModal} />
+      {isMapModalOpen && (
+        <KakaoMap latitude={data?.latitude ?? 0} longitude={data?.longitude ?? 0} onClose={onClickMapModal} />
       )}
       <div className="container">
         <div className="row">
@@ -55,7 +61,10 @@ const StudyDetail: FC = () => {
             <StudyDetailIntro detailData={data} onClick={onClickMapModal} />
             <ul className="detail-tab-container">
               {tabs.map((tab, index) => (
-                <li key={index} onClick={() => onClickCurrentTab(index)}>
+                // <li key={index} onClick={() => onClickCurrentTab(index)}>
+                //   {tab?.name}
+                // </li>
+                <li key={index} onClick={onClickCurrentTab(index)}>
                   {tab?.name}
                 </li>
               ))}

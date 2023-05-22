@@ -5,10 +5,10 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 interface Props {
   latitude: number;
   longitude: number;
-  onClick: () => void;
+  onClose: () => void;
 }
 
-const KakaoMap: FC<Props> = ({ latitude, longitude, onClick }) => {
+const KakaoMap: FC<Props> = ({ latitude, longitude, onClose }) => {
   useEffect(() => {
     createMap(latitude, longitude);
   }, []);
@@ -20,7 +20,7 @@ const KakaoMap: FC<Props> = ({ latitude, longitude, onClick }) => {
           <MapMarker position={{ lat: latitude, lng: longitude }} />
         </Map>
       </div>
-      <button onClick={onClick}>닫기</button>
+      <button onClick={onClose}>닫기</button>
     </div>
   );
 };
