@@ -86,12 +86,7 @@ const StudyCreateForm: FC = () => {
           </div>
           <div className="inner-right">
             <div>
-              <Input
-                label="모임 장소"
-                placeholder="모임 장소를 검색해하세요"
-                {...register('place')}
-                className="required"
-              />
+              <span>모임 장소</span>
             </div>
             <KakaoKeywordMap />
           </div>
@@ -127,7 +122,6 @@ const StudyCreateForm: FC = () => {
           </div>
 
           <div className="additional-bottom">
-            {/* <input {...register('studyStacks')}></input> */}
             <StackForm onChange={onChangeCheckList} checked={checked} />
           </div>
         </div>

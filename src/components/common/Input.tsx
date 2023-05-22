@@ -5,10 +5,9 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   type?: string;
   className?: string;
-  onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, className, onSearch, ...rest }, ref) => {
+const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, className, ...rest }, ref) => {
   const [visible, setVisible] = useState(false);
 
   const onToggleVisble = useCallback(() => {
@@ -23,7 +22,7 @@ const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, classNa
       </label>
       {type === 'password' ? (
         <div className="input-box visible">
-          <input {...rest} ref={ref} type={visible ? 'text' : type} onChange={onSearch} />
+          <input {...rest} ref={ref} type={visible ? 'text' : type} />
           <i className={visible ? 'icon-eye' : 'icon-eye-blocked'} onClick={onToggleVisble} />
           {error && <p className="err-msg">{error}</p>}
         </div>
