@@ -4,7 +4,6 @@ import './index.scss';
 export interface SelectOption {
   label: string;
   value: string;
-  id: number;
 }
 
 interface Props extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {

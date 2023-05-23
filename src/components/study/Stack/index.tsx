@@ -1,17 +1,19 @@
 import Checkbox from '@/components/common/Checkbox';
 import { stackOption } from '@/constants/stackOption';
-import type { FC } from 'react';
+import { type ChangeEventHandler, type FC, forwardRef, Ref } from 'react';
 
 interface Props {
-  checked: string[];
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  checkedStackList?: string[];
+  onChangeCheckList: ChangeEventHandler<HTMLInputElement>;
 }
 
-const StackForm: FC<Props> = ({ checked, onChange }: Props) => {
+const StackForm: FC<Props> = forwardRef(({ checkedStackList, onChangeCheckList }: Props, ref: Ref<HTMLDivElement>) => {
+  const checkedItems = (checkedStackList ?? []).join(', ');
+
   return (
-    <div className="stack-container">
+    <div className="stack-container" ref={ref}>
       <span className="content-title">기술스택</span>
-      <div className="checked-stacks">{checked.length ? checked.join(', ') : '아래 목록 중 스택을 선택하세요'}</div>
+      <div className="checked-stacks">{checkedItems.length ? checkedItems : '아래 목록 중 스택을 선택하세요'}</div>
 
       {Object.entries(stackOption).map(([key, values]) => (
         <ul className="checkbox-container" key={key}>
@@ -21,8 +23,8 @@ const StackForm: FC<Props> = ({ checked, onChange }: Props) => {
               <Checkbox
                 value={item.value}
                 key={item.id}
-                onChange={onChange}
-                checked={checked.includes(item.value)}
+                onChange={onChangeCheckList}
+                checked={checkedItems.includes(item.value)}
                 label={item.label}
               />
             ))}
@@ -31,6 +33,8 @@ const StackForm: FC<Props> = ({ checked, onChange }: Props) => {
       ))}
     </div>
   );
-};
+});
+
+StackForm.displayName = 'StackForm';
 
 export default StackForm;

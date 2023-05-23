@@ -1,14 +1,15 @@
 .map_wrap {
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  width: 500px;
+  height: 300px;
 
   #map {
-    width: 900px;
-    height: 600px;
     position: absolute;
     overflow: hidden;
+    width: 500px;
+    height: 300px;
   }
+
   #menuDiv {
     display: flex;
     position: relative;
@@ -17,8 +18,7 @@
 
   #menu_wrap {
     position: relative;
-    width: 400px;
-    height: 600px;
+    height: 300px;
     border-radius: 10px;
     padding: 10px;
     overflow-y: auto;
@@ -100,7 +100,7 @@
 
   #btnDiv {
     @include flexbox();
-    height: 600px;
+    height: 300px;
   }
 
   #searchBtn {

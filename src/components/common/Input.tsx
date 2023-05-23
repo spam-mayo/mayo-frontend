@@ -1,7 +1,7 @@
 import { forwardRef, InputHTMLAttributes, useCallback, useState } from 'react';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   error?: string;
   type?: string;
 }
@@ -15,7 +15,10 @@ const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, ...rest
 
   return (
     <div className="input-container">
-      <label>{label}</label>
+      <label>
+        {label}
+        <span></span>
+      </label>
       {type === 'password' ? (
         <div className="input-box visible">
           <input {...rest} ref={ref} type={visible ? 'text' : type} />
