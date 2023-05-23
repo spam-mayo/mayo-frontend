@@ -1,10 +1,10 @@
 import Checkbox from '@/components/common/Checkbox';
 import { stackOption } from '@/constants/stackOption';
-import type { FC } from 'react';
+import type { ChangeEventHandler, FC } from 'react';
 
 interface Props {
   checkedStackList?: string[];
-  onChangeCheckList: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeCheckList: ChangeEventHandler<HTMLInputElement>;
 }
 
 const StackForm: FC<Props> = ({ checkedStackList, onChangeCheckList }: Props) => {
