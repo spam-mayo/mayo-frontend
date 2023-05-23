@@ -18,13 +18,8 @@ const StudyCreate: FC = () => {
   };
 
   const onChangeCheckList = (event: ChangeEvent<HTMLInputElement>) => {
-    let updatedList = [...checked];
-    if (event.target.checked) {
-      updatedList = [...checked, event.target.value];
-    } else {
-      updatedList.splice(checked.indexOf(event.target.value), 1);
-    }
-    setChecked(updatedList);
+    const { value } = event.target;
+    setChecked((prev) => (prev.includes(value) ? prev.filter((p) => p !== value) : [...prev, value]));
   };
 
   return (

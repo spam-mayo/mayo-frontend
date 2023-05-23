@@ -47,7 +47,7 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
 
   const onChangeCheckList = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setCheckedList((prev) => (prev.includes(value) ? prev.filter((p) => p === value) : [...prev, value]));
+    setCheckedList((prev) => (prev.includes(value) ? prev.filter((p) => p !== value) : [...prev, value]));
   };
 
   const onClickEdit = () => {
