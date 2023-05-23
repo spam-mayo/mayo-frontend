@@ -1,17 +1,17 @@
 import Checkbox from '@/components/common/Checkbox';
 import { stackOption } from '@/constants/stackOption';
-import type { ChangeEventHandler, FC } from 'react';
+import { ChangeEventHandler, type FC, forwardRef, Ref } from 'react';
 
 interface Props {
   checkedStackList?: string[];
   onChangeCheckList: ChangeEventHandler<HTMLInputElement>;
 }
 
-const StackForm: FC<Props> = ({ checkedStackList, onChangeCheckList }: Props) => {
+const StackForm: FC<Props> = forwardRef(({ checkedStackList, onChangeCheckList }: Props, ref: Ref<HTMLDivElement>) => {
   const checkedItems = (checkedStackList ?? []).join(', ');
 
   return (
-    <div className="stack-container">
+    <div className="stack-container" ref={ref}>
       <span className="content-title">기술스택</span>
       <div className="checked-stacks">{checkedItems.length ? checkedItems : '아래 목록 중 스택을 선택하세요'}</div>
 
@@ -33,6 +33,8 @@ const StackForm: FC<Props> = ({ checkedStackList, onChangeCheckList }: Props) =>
       ))}
     </div>
   );
-};
+});
+
+StackForm.displayName = 'StackForm';
 
 export default StackForm;

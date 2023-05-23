@@ -3,17 +3,17 @@ import { fieldOption } from '@/constants/fieldOption';
 import { studyPeriodOption } from '@/constants/studyCreateOption';
 import Button from '@/components/common/Button';
 import type { ChangeEventHandler, FC } from 'react';
-import type { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import StackForm from '@/components/study/Stack';
 
 interface Props {
   onChangeCheckList: ChangeEventHandler<HTMLInputElement>;
   checkedStackList: string[];
-  register: UseFormRegister<FieldValues>;
-  errors: FieldErrors<FieldValues>;
 }
 
-const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList, register, errors }) => {
+const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList }) => {
+  const { register } = useFormContext();
+
   return (
     <div className="additional-info">
       <div className="subtitle">
@@ -29,13 +29,7 @@ const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList, regist
             <div className="fieldset">
               {studyPeriodOption.map(({ label, value }) => (
                 <label key={value}>
-                  <input
-                    className="radio-input"
-                    {...register('period')}
-                    aria-invalid={errors['period'] ? 'true' : 'false'}
-                    value={value}
-                    type="radio"
-                  />
+                  <input className="radio-input" {...register('period')} value={value} type="radio" />
                   <span>{label}</span>
                 </label>
               ))}
@@ -44,7 +38,11 @@ const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList, regist
         </div>
 
         <div className="additional-bottom">
-          <StackForm onChangeCheckList={onChangeCheckList} checkedStackList={checkedStackList} />
+          <StackForm
+            onChangeCheckList={onChangeCheckList}
+            checkedStackList={checkedStackList}
+            {...register('stacks')}
+          />
         </div>
       </div>
 

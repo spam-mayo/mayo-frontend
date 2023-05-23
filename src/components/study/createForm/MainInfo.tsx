@@ -4,13 +4,11 @@ import CalendarPeriod from '@/components/study/createForm/CalendarPeriod';
 import Dropdown from '@/components/study/createForm/Dropdown';
 import { peopleNumberOption } from '@/constants/studyCreateOption';
 import type { FC } from 'react';
-import type { FieldValues, UseFormRegister } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
-interface Props {
-  register: UseFormRegister<FieldValues>;
-}
+const MainInfo: FC = () => {
+  const { register } = useFormContext();
 
-const MainInfo: FC<Props> = ({ register }) => {
   return (
     <div className="main-info">
       <div className="subtitle">
