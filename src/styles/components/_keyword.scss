@@ -6,7 +6,10 @@
   #map {
     position: absolute;
     overflow: hidden;
+    width: 500px;
+    height: 300px;
   }
+
   #menuDiv {
     display: flex;
     position: relative;

@@ -18,18 +18,8 @@ const MainInfo: FC<Props> = ({ register }) => {
       </div>
       <div className="inner">
         <div className="inner-left">
-          <Input
-            placeholder="스터디 그룹 명을 정하세요"
-            label="스터디명"
-            className="required"
-            {...register('studyName')}
-          />
-          <Input
-            placeholder="구인 글의 제목을 정하세요"
-            label="스터디 제목"
-            className="required"
-            {...register('title')}
-          />
+          <Input placeholder="스터디 그룹 명을 정하세요" label="스터디명" {...register('studyName')} />
+          <Input placeholder="구인 글의 제목을 정하세요" label="스터디 제목" {...register('title')} />
           <div>
             <span>모집 기간</span>
             <CalendarPeriod />

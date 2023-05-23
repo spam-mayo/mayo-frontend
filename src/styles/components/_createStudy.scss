@@ -57,6 +57,13 @@
       flex-direction: column;
       flex: 1;
       gap: 30px;
+
+      .input-container > label > span {
+        &::after {
+          content: ' *';
+          color: $red;
+        }
+      }
     }
   }
 

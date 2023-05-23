@@ -1,8 +1,8 @@
 export enum StackType {
-  FRONT = '프론트엔드',
-  BACK = '백엔드',
-  DESIGN = '디자인',
-  OTHER = '기타',
+  FRONT = 'FRONT',
+  BACK = 'BACK',
+  DESIGN = 'DESIGN',
+  OTHER = 'OTHER',
 }
 
 export type StackOption = {

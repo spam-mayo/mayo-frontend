@@ -8,6 +8,11 @@ const StudyCreate: FC = () => {
   const [checked, setChecked] = useState<string[]>([]);
   const navigate = useNavigate();
 
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
+
   const onClickGoBack = () => {
     navigate(-1);
   };
@@ -22,10 +27,6 @@ const StudyCreate: FC = () => {
     setChecked(updatedList);
   };
 
-  const {
-    register,
-    formState: { errors },
-  } = useForm();
   return (
     <div className="container">
       <div className="row">
@@ -39,7 +40,12 @@ const StudyCreate: FC = () => {
               <div />
             </div>
             <MainInfo register={register} />
-            <AdditionalInfo onChange={onChangeCheckList} checked={checked} register={register} errors={errors} />
+            <AdditionalInfo
+              onChange={onChangeCheckList}
+              checkedStackList={checked}
+              register={register}
+              errors={errors}
+            />
           </form>
         </div>
       </div>

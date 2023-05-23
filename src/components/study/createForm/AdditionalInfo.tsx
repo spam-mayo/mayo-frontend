@@ -1,19 +1,19 @@
 import Dropdown from '@/components/study/createForm/Dropdown';
-import StackForm from '@/components/study/Stack';
 import { fieldOption } from '@/constants/fieldOption';
 import { studyPeriodOption } from '@/constants/studyCreateOption';
 import Button from '@/components/common/Button';
-import type { ChangeEvent, FC } from 'react';
+import type { ChangeEventHandler, FC } from 'react';
 import type { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import StackForm from '@/components/study/Stack';
 
 interface Props {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  checked: string[];
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  checkedStackList: string[];
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors<FieldValues>;
 }
 
-const AdditionalInfo: FC<Props> = ({ onChange, checked, register, errors }) => {
+const AdditionalInfo: FC<Props> = ({ onChange, checkedStackList, register, errors }) => {
   return (
     <div className="additional-info">
       <div className="subtitle">
@@ -44,7 +44,7 @@ const AdditionalInfo: FC<Props> = ({ onChange, checked, register, errors }) => {
         </div>
 
         <div className="additional-bottom">
-          <StackForm onChange={onChange} checked={checked} />
+          <StackForm onChange={onChange} checked={checkedStackList} />
         </div>
       </div>
 

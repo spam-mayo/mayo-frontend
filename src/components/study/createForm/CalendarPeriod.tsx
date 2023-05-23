@@ -10,7 +10,7 @@ const CalendarPeriod: FC = () => {
     <div className="calender-container">
       <DatePicker
         selected={startDate}
-        onChange={(date) => setStartDate(new Date(date ?? ''))}
+        onChange={(date) => date && setStartDate(new Date(date))}
         selectsStart
         startDate={startDate}
         minDate={startDate}
@@ -20,7 +20,7 @@ const CalendarPeriod: FC = () => {
 
       <DatePicker
         selected={startDate}
-        onChange={(date) => setEndDate(new Date(date ?? ''))}
+        onChange={(date) => date && setEndDate(new Date(date))}
         selectsStart
         startDate={startDate}
         minDate={startDate}

@@ -4,10 +4,9 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   type?: string;
-  className?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, className, ...rest }, ref) => {
+const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, ...rest }, ref) => {
   const [visible, setVisible] = useState(false);
 
   const onToggleVisble = useCallback(() => {
@@ -18,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, Props>(({ label, error, type, classNa
     <div className="input-container">
       <label>
         {label}
-        <span className={className}></span>
+        <span></span>
       </label>
       {type === 'password' ? (
         <div className="input-box visible">
