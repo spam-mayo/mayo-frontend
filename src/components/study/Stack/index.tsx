@@ -4,10 +4,10 @@ import type { FC } from 'react';
 
 interface Props {
   checkedStackList?: string[];
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeCheckList: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const StackForm: FC<Props> = ({ checkedStackList, onChange }: Props) => {
+const StackForm: FC<Props> = ({ checkedStackList, onChangeCheckList }: Props) => {
   const checkedItems = (checkedStackList ?? []).join(', ');
 
   return (
@@ -23,7 +23,7 @@ const StackForm: FC<Props> = ({ checkedStackList, onChange }: Props) => {
               <Checkbox
                 value={item.value}
                 key={item.id}
-                onChange={onChange}
+                onChange={onChangeCheckList}
                 checked={checkedItems.includes(item.value)}
                 label={item.label}
               />

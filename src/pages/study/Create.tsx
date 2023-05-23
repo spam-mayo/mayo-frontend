@@ -41,7 +41,7 @@ const StudyCreate: FC = () => {
             </div>
             <MainInfo register={register} />
             <AdditionalInfo
-              onChange={onChangeCheckList}
+              onChangeCheckList={onChangeCheckList}
               checkedStackList={checked}
               register={register}
               errors={errors}

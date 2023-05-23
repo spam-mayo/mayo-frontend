@@ -7,13 +7,13 @@ import type { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 import StackForm from '@/components/study/Stack';
 
 interface Props {
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChangeCheckList: ChangeEventHandler<HTMLInputElement>;
   checkedStackList: string[];
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors<FieldValues>;
 }
 
-const AdditionalInfo: FC<Props> = ({ onChange, checkedStackList, register, errors }) => {
+const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList, register, errors }) => {
   return (
     <div className="additional-info">
       <div className="subtitle">
@@ -44,7 +44,7 @@ const AdditionalInfo: FC<Props> = ({ onChange, checkedStackList, register, error
         </div>
 
         <div className="additional-bottom">
-          <StackForm onChange={onChange} checkedStackList={checkedStackList} />
+          <StackForm onChangeCheckList={onChangeCheckList} checkedStackList={checkedStackList} />
         </div>
       </div>
 

@@ -84,7 +84,7 @@ const ExtraInfo: FC<Props> = ({ field, stack = [], userId }) => {
             </div>
             <div className="row">
               <p className="label">관심 분야</p>
-              <StackForm onChange={onChangeCheckList} checked={checkedList} />
+              <StackForm onChangeCheckList={onChangeCheckList} checkedStackList={checkedList} />
             </div>
           </>
         ) : (
