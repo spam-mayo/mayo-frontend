@@ -44,7 +44,7 @@ const AdditionalInfo: FC<Props> = ({ onChange, checkedStackList, register, error
         </div>
 
         <div className="additional-bottom">
-          <StackForm onChange={onChange} checked={checkedStackList} />
+          <StackForm onChange={onChange} checkedStackList={checkedStackList} />
         </div>
       </div>
 
