@@ -1,6 +1,6 @@
 import Checkbox from '@/components/common/Checkbox';
 import { stackOption } from '@/constants/stackOption';
-import { ChangeEventHandler, type FC, forwardRef, Ref } from 'react';
+import { type ChangeEventHandler, type FC, forwardRef, Ref } from 'react';
 
 interface Props {
   checkedStackList?: string[];
