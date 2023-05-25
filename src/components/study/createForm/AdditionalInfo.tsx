@@ -9,9 +9,10 @@ import StackForm from '@/components/study/Stack';
 interface Props {
   onChangeCheckList: ChangeEventHandler<HTMLInputElement>;
   checkedStackList: string[];
+  onChangeActivity: ChangeEventHandler<HTMLSelectElement>;
 }
 
-const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList }) => {
+const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList, onChangeActivity }) => {
   const { register } = useFormContext();
 
   return (
@@ -22,7 +23,7 @@ const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList }) => {
       <div className="inner additional">
         <div className="additional-top">
           <div className="inner-left">
-            <Dropdown title="활동분야" {...register('activity')} options={fieldOption} />
+            <Dropdown title="활동분야" {...register('activity')} options={fieldOption} onChange={onChangeActivity} />
           </div>
           <div className="inner-right">
             <span>모임 주기</span>
@@ -47,7 +48,7 @@ const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList }) => {
           <StackForm
             onChangeCheckList={onChangeCheckList}
             checkedStackList={checkedStackList}
-            {...register('stacks')}
+            {...register('studyStacks')}
           />
         </div>
       </div>

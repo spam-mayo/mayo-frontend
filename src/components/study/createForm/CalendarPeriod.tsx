@@ -23,7 +23,7 @@ const CalendarPeriod: FC = () => {
     if (date) {
       setEndDate(date);
       const newEndDate = formatDate(date, 'yyyy-MM-dd');
-      setStudyPeriod({ ...studyPeriod, startDate: newEndDate });
+      setStudyPeriod({ ...studyPeriod, endDate: newEndDate });
     }
   };
 
@@ -36,7 +36,6 @@ const CalendarPeriod: FC = () => {
         selectsStart
         startDate={startDate}
         minDate={startDate}
-        endDate={endDate}
         calendarClassName="period-calendar"
       />
 
@@ -47,7 +46,6 @@ const CalendarPeriod: FC = () => {
         selectsEnd
         startDate={startDate}
         minDate={endDate}
-        endDate={endDate}
         calendarClassName="period-calendar"
       />
     </div>

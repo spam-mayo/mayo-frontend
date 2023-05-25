@@ -11,6 +11,7 @@ import type {
   StudyCommentEditReq,
   PostStudyTaskReq,
   PatchStudyTaskReq,
+  PostStudyReq,
 } from '@/api/study/studyTypes';
 
 export const getMypageStudy = (page: number, params?: { status?: string; tab?: string; approvalStatus?: string }) => {
@@ -56,3 +57,5 @@ export const deleteStudyComment = (studyCommentId: number) =>
 
 export const patchStudyComment = ({ studyCommentId, body }: { studyCommentId: number; body: StudyCommentEditReq }) =>
   axiosInstance.patch(`/api/study-comment/${studyCommentId}`, body);
+
+export const postStudy = (body: PostStudyReq) => axiosInstance.post(`/api/study`, body);

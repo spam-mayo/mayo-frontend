@@ -12,8 +12,8 @@ export const userIdState = atom<number | null>({
 export const placeState = atom({
   key: 'placeInfo',
   default: {
-    lat: 0,
-    lng: 0,
+    latitude: 0,
+    longitude: 0,
     place: '장소 없음',
   },
 });

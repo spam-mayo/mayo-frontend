@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil';
 
 const KakaoKeywordMap: FC = () => {
   const [keyword, setKeyword] = useState('');
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [placeInfo, setPlaceInfo] = useRecoilState(placeState);
 
   const onChangeSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,10 +17,10 @@ const KakaoKeywordMap: FC = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const onClickMarker = useCallback((lat: number, lng: number, place: string) => {
+  const onClickMarker = useCallback((latitude: number, longitude: number, place: string) => {
     setPlaceInfo({
-      lat,
-      lng,
+      latitude,
+      longitude,
       place,
     });
   }, []);
@@ -51,7 +51,7 @@ const KakaoKeywordMap: FC = () => {
           </div>
 
           <div id="btnDiv">
-            <button id="searchBtn" onClick={onClickToggleListBox}>
+            <button type="button" id="searchBtn" onClick={onClickToggleListBox}>
               {isOpen ? '닫기' : '열기'}
             </button>
           </div>

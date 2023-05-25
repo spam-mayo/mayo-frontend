@@ -1,31 +1,27 @@
-import { placeState } from '@/atom/atom';
+import { postStudy } from '@/api/study/studyAPI';
+import type { PostStudyReq } from '@/api/study/studyTypes';
+import { placeState, studyPeriodState } from '@/atom/atom';
 import AdditionalInfo from '@/components/study/createForm/AdditionalInfo';
 import MainInfo from '@/components/study/createForm/MainInfo';
+import { useMutation } from '@tanstack/react-query';
 import { ChangeEvent, type FC, useState } from 'react';
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-interface PostStudyFormValue {
-  studyName: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  personnel: string;
-  place: string;
-  latitude?: number;
-  longitude?: number;
-  activity?: string[];
-  period?: string;
-  online?: boolean;
-  studyStacks?: string[];
-}
-
 const StudyCreate: FC = () => {
   const [checked, setChecked] = useState<string[]>([]);
-  const navigate = useNavigate();
-  const methods = useForm<PostStudyFormValue>();
+  const [activity, setActivity] = useState<string[]>([]);
+  const methods = useForm<PostStudyReq>();
   const placeInfo = useRecoilValue(placeState);
+  const periodInfo = useRecoilValue(studyPeriodState);
+  const navigate = useNavigate();
+
+  const { mutate: postNewStudy } = useMutation(postStudy, {
+    onSuccess: () => {
+      alert('스터디가 생성되었습니다');
+    },
+  });
 
   const onClickGoBack = () => {
     navigate(-1);
@@ -36,13 +32,23 @@ const StudyCreate: FC = () => {
     setChecked((prev) => (prev.includes(value) ? prev.filter((p) => p !== value) : [...prev, value]));
   };
 
-  const onSubmit: SubmitHandler<PostStudyFormValue> = (data) => {
+  const onChangeActivity = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { options } = e.target;
+    const selectedValues = Array.from(options)
+      .filter((option) => option.selected)
+      .map((option) => option.value);
+    setActivity(selectedValues);
+  };
+
+  const onSubmit: SubmitHandler<PostStudyReq> = (data) => {
     const body = {
       ...data,
       ...placeInfo,
-      stacks: checked,
+      ...periodInfo,
+      activity,
+      studyStacks: checked,
     };
-    alert(JSON.stringify(body));
+    postNewStudy(body);
   };
 
   return (
@@ -59,7 +65,11 @@ const StudyCreate: FC = () => {
                 <div />
               </div>
               <MainInfo />
-              <AdditionalInfo onChangeCheckList={onChangeCheckList} checkedStackList={checked} />
+              <AdditionalInfo
+                onChangeCheckList={onChangeCheckList}
+                checkedStackList={checked}
+                onChangeActivity={onChangeActivity}
+              />
             </form>
           </FormProvider>
         </div>
