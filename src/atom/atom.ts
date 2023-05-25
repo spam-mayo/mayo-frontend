@@ -17,3 +17,11 @@ export const placeState = atom({
     place: '장소 없음',
   },
 });
+
+export const studyPeriodState = atom({
+  key: 'period',
+  default: {
+    startDate: '',
+    endDate: '',
+  },
+});
