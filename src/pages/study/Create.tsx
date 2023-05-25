@@ -1,8 +1,10 @@
+import { placeState } from '@/atom/atom';
 import AdditionalInfo from '@/components/study/createForm/AdditionalInfo';
 import MainInfo from '@/components/study/createForm/MainInfo';
 import { ChangeEvent, type FC, useState } from 'react';
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 interface PostStudyFormValue {
   studyName: string;
@@ -23,6 +25,7 @@ const StudyCreate: FC = () => {
   const [checked, setChecked] = useState<string[]>([]);
   const navigate = useNavigate();
   const methods = useForm<PostStudyFormValue>();
+  const placeInfo = useRecoilValue(placeState);
 
   const onClickGoBack = () => {
     navigate(-1);
@@ -36,9 +39,10 @@ const StudyCreate: FC = () => {
   const onSubmit: SubmitHandler<PostStudyFormValue> = (data) => {
     const body = {
       ...data,
+      ...placeInfo,
       stacks: checked,
     };
-    alert(body);
+    alert(JSON.stringify(body));
   };
 
   return (

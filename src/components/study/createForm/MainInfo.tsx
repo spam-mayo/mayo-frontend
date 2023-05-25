@@ -30,9 +30,6 @@ const MainInfo: FC = () => {
           />
         </div>
         <div className="inner-right">
-          <div>
-            <span>모임 장소</span>
-          </div>
           <KakaoKeywordMap />
         </div>
       </div>

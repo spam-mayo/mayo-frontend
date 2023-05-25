@@ -8,3 +8,12 @@ export const userIdState = atom<number | null>({
   default: null,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const placeState = atom({
+  key: 'placeInfo',
+  default: {
+    lat: 0,
+    lng: 0,
+    place: '장소 없음',
+  },
+});

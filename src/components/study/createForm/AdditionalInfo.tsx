@@ -29,7 +29,13 @@ const AdditionalInfo: FC<Props> = ({ onChangeCheckList, checkedStackList }) => {
             <div className="fieldset">
               {studyPeriodOption.map(({ label, value }) => (
                 <label key={value}>
-                  <input className="radio-input" {...register('period')} value={value} type="radio" />
+                  <input
+                    className="radio-input"
+                    {...register('period')}
+                    value={value}
+                    type="radio"
+                    defaultChecked={value === 'ETC'}
+                  />
                   <span>{label}</span>
                 </label>
               ))}
