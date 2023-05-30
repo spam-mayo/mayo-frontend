@@ -41,7 +41,7 @@ const UserCreateStudy: FC = () => {
         ) : (
           data.data.map(({ studyId, endDate, startDate, title, stack }) => {
             const studyData = { endDate, startDate, title, stack, studyId };
-            return <StudyBlock key={studyId} studyData={studyData} />;
+            return <StudyBlock key={studyId} studyData={studyData} isRecruit={selectOption === 'before_recruitment'} />;
           })
         )}
       </div>

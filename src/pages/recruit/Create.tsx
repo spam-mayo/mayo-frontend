@@ -6,10 +6,10 @@ import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const RecruitCreate: FC = () => {
-  const studyId = 266;
+  const { studyId } = useParams();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<PostRecruitReq>();
 
@@ -31,7 +31,7 @@ const RecruitCreate: FC = () => {
   };
 
   const onSumbit: SubmitHandler<PostRecruitReq> = (data) => {
-    postNewRecruit({ studyId, body: data });
+    postNewRecruit({ studyId: Number(studyId), body: data });
   };
 
   return (

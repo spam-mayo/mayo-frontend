@@ -43,7 +43,7 @@ export const RoutesSetup = () => {
         <Route path="edit" element={<StudyEdit />} />
       </Route>
       <Route path="/recruit">
-        <Route path="create" element={<RecruitCreate />} />
+        <Route path="create/:studyId" element={<RecruitCreate />} />
         <Route path="edit" element={<RecruitEdit />} />
       </Route>
 
