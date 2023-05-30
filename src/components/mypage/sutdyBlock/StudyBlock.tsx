@@ -2,7 +2,6 @@ import StudyPeriod from '@/components/mypage/sutdyBlock/StudyPeriod';
 import type { FC } from 'react';
 import StudyIntro from '@/components/mypage/sutdyBlock/StudyIntro';
 import type { Stack } from '@/api/auth/types';
-import { Link } from 'react-router-dom';
 
 interface Props {
   studyData: {
@@ -23,9 +22,7 @@ const StudyBlock: FC<Props> = ({
 }: Props) => {
   return (
     <div className="studyBlock-container">
-      <Link to={isRecruit ? `/recruit/create/${studyId}` : ''}>
-        <StudyIntro title={title} stacks={stack} isDetail={isDetail} studyId={studyId} />
-      </Link>
+      <StudyIntro title={title} stacks={stack} isDetail={isDetail} studyId={studyId} isRecruit={isRecruit} />
       <StudyPeriod startDate={startDate} endDate={endDate} />
     </div>
   );

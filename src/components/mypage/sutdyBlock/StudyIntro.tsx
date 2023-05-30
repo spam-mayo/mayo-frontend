@@ -6,12 +6,14 @@ interface Props {
   stacks: { stackId: number; stackName: string }[];
   studyId: number;
   isDetail?: boolean;
+  isRecruit?: boolean;
 }
 
-const StudyIntro: FC<Props> = ({ title, stacks, isDetail, studyId }: Props) => {
+const StudyIntro: FC<Props> = ({ title, stacks, isDetail, studyId, isRecruit }: Props) => {
+  const linkTo = isRecruit ? `/recruit/create/${studyId}` : `/study/${studyId}`;
   return (
     <div className="title-container">
-      <div className="title">{isDetail ? <Link to={`/study/${studyId}`}>{title}</Link> : <>{title}</>}</div>
+      <div className="title">{isDetail || isRecruit ? <Link to={linkTo}>{title}</Link> : <>{title}</>}</div>
       <div className="stacks">
         {stacks.map(({ stackId, stackName }) => (
           <p key={stackId}>{stackName}</p>
