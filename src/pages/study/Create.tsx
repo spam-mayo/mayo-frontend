@@ -20,6 +20,7 @@ const StudyCreate: FC = () => {
   const { mutate: postNewStudy } = useMutation(postStudy, {
     onSuccess: () => {
       alert('스터디가 생성되었습니다');
+      navigate('/user/mypage/create');
     },
   });
 

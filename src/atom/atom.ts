@@ -15,7 +15,7 @@ export const placeState = atom({
     latitude: 0,
     longitude: 0,
     place: '장소 없음',
-    online: false,
+    online: true,
   },
 });
 

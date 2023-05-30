@@ -22,7 +22,7 @@ const KakaoKeywordMap: FC = () => {
       latitude,
       longitude,
       place,
-      online: true,
+      online: false,
     });
   }, []);
 
