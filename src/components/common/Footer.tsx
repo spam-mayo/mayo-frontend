@@ -30,7 +30,7 @@ const Footer: FC = () => {
                   스터디 수정
                 </Button>
               </Link>
-              <Link to="/recruit/create">
+              <Link to="/recruit/create/266">
                 <Button size="small" color="gray" text>
                   구인 글 생성
                 </Button>
