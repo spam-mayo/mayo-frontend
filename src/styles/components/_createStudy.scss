@@ -1,22 +1,22 @@
+.title-area {
+  margin: 40px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    @include text-style-46;
+    text-align: center;
+    font-weight: 600;
+  }
+  i {
+    @include text-style-24;
+  }
+}
+
 .section-form {
   padding: 0;
   margin: 0 auto;
-
-  .title-area {
-    margin: 60px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    p {
-      @include text-style-46;
-      text-align: center;
-      font-weight: 600;
-    }
-    i {
-      @include text-style-24;
-    }
-  }
 
   .main-info,
   .additional-info {
@@ -67,16 +67,16 @@
     }
   }
 
-  .button-area {
-    text-align: right;
-    border-top: 1px solid $border;
-    padding-right: 30px;
-    padding-top: 20px;
-  }
-
   .content-title {
     margin-bottom: 10px;
   }
+}
+
+.button-area {
+  text-align: right;
+  border-top: 1px solid $border;
+  padding-right: 30px;
+  padding-top: 20px;
 }
 
 .dropdown-wrapper {

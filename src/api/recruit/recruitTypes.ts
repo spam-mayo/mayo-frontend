@@ -22,3 +22,8 @@ export interface Recruit extends RecruitStack, RecruitOwner {
   online: boolean;
   checkLikes: boolean;
 }
+
+export interface PostRecruitReq {
+  offerIntro: string;
+  offerRule: string;
+}

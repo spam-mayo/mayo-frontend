@@ -6,7 +6,7 @@ import type { GetStudyDetailRes } from '@/api/study/studyTypes';
 
 interface Props {
   detailData?: GetStudyDetailRes;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {

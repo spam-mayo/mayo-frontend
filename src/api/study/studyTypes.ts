@@ -34,6 +34,9 @@ export interface GetStudyDetailRes {
   place: string;
   latitude: number;
   longitude: number;
+  studyStatus: string;
+  period: string;
+  online: boolean;
   stack: Stack[];
   owner: StudyOwner;
 }
