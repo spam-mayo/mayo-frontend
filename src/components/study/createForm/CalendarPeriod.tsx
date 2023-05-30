@@ -45,7 +45,7 @@ const CalendarPeriod: FC = () => {
         onChange={handleEndDateChange}
         selectsEnd
         startDate={startDate}
-        minDate={endDate}
+        minDate={startDate}
         calendarClassName="period-calendar"
       />
     </div>

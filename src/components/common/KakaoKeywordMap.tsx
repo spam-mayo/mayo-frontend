@@ -22,6 +22,7 @@ const KakaoKeywordMap: FC = () => {
       latitude,
       longitude,
       place,
+      online: true,
     });
   }, []);
 
@@ -60,7 +61,7 @@ const KakaoKeywordMap: FC = () => {
         <div id="map"></div>
       </div>
       <div className="selected-place">
-        <p>선택된 장소 : {placeInfo.place}</p>
+        <p>선택 장소 : {placeInfo.place}</p>
       </div>
     </div>
   );

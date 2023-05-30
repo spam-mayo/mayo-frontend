@@ -16,9 +16,21 @@ const MainInfo: FC = () => {
       </div>
       <div className="inner">
         <div className="inner-left">
-          <Input placeholder="스터디 그룹 명을 정하세요" label="스터디명" {...register('studyName')} />
-          <Input placeholder="구인 글의 제목을 정하세요" label="스터디 제목" {...register('title')} />
-          <div>
+          <Input
+            placeholder="스터디 그룹 명을 작성해주세요."
+            label="스터디명"
+            {...register('studyName', {
+              required: true,
+            })}
+          />
+          <Input
+            placeholder="스터디 제목을 작성해주세요."
+            label="스터디 제목"
+            {...register('title', {
+              required: true,
+            })}
+          />
+          <div className="calendar-period">
             <span>모집 기간</span>
             <CalendarPeriod />
           </div>
