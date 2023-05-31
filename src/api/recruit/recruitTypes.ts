@@ -27,3 +27,7 @@ export interface PostRecruitReq {
   offerIntro: string;
   offerRule: string;
 }
+
+export interface GetRecruitRes extends PostRecruitReq {
+  offerId: number;
+}

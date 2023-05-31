@@ -1,5 +1,6 @@
+import axiosBase from '@/api/axiosBase';
 import axiosInstance from '@/api/axiosInstance';
-import type { PostRecruitReq, Recruit } from '@/api/recruit/recruitTypes';
+import type { GetRecruitRes, PostRecruitReq, Recruit } from '@/api/recruit/recruitTypes';
 
 interface PaginationResponse<T> {
   data: T;
@@ -35,3 +36,5 @@ export const getRecruits = async (pageNum: number, category: string | null, sort
 
 export const postRecruit = ({ studyId, body }: { studyId: number; body: PostRecruitReq }) =>
   axiosInstance.post(`/api/offer/study/${studyId}`, body);
+
+export const getRecruit = (studyId: number) => axiosBase.get<GetRecruitRes>(`/api/offer/study/${studyId}`);

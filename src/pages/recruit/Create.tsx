@@ -22,7 +22,7 @@ const RecruitCreate: FC = () => {
   const { mutate: postNewRecruit } = useMutation(postRecruit, {
     onSuccess: () => {
       alert('구인글이 작성되었습니다!');
-      navigate(`/recruit/detail/${studyId}`);
+      navigate(`/recruit/detail/(${studyId}`);
     },
   });
 
@@ -40,7 +40,7 @@ const RecruitCreate: FC = () => {
         <div className="col-lg-12">
           <div className="title-area">
             <button onClick={onClickGoBack}>
-              <i className="icon-arrow-left"></i>
+              <i className="icon-arrow-left" />
             </button>
             <p>구인 글 생성하기</p>
             <div />

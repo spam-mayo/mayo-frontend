@@ -49,7 +49,7 @@ const StudyCreate: FC = () => {
             <form className="section-form" onSubmit={methods.handleSubmit(onSubmit)}>
               <div className="title-area">
                 <button onClick={onClickGoBack}>
-                  <i className="icon-arrow-left"></i>
+                  <i className="icon-arrow-left" />
                 </button>
                 <p>스터디 생성하기</p>
                 <div />
