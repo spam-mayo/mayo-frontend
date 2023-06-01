@@ -1,3 +1,4 @@
+import type { Place, StudyPeriod } from '@/atom/types';
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
@@ -9,7 +10,7 @@ export const userIdState = atom<number | null>({
   effects_UNSTABLE: [persistAtom],
 });
 
-export const placeState = atom({
+export const placeState = atom<Place>({
   key: 'placeInfo',
   default: {
     latitude: 0,
@@ -19,7 +20,7 @@ export const placeState = atom({
   },
 });
 
-export const studyPeriodState = atom({
+export const studyPeriodState = atom<StudyPeriod>({
   key: 'period',
   default: {
     startDate: '',
