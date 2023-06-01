@@ -3,19 +3,18 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
 import { formatDate } from '@/utils/dateForm';
-import { useRecoilState } from 'recoil';
-import { studyPeriodState } from '@/atom/atom';
+import { useFormContext } from 'react-hook-form';
 
 const CalendarPeriod: FC = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [studyPeriod, setStudyPeriod] = useRecoilState(studyPeriodState);
+  const { setValue } = useFormContext();
 
   const handleStartDateChange = (date: Date) => {
     if (date) {
       setStartDate(date);
       const newStartDate = formatDate(date, 'yyyy-MM-dd');
-      setStudyPeriod({ ...studyPeriod, startDate: newStartDate });
+      setValue('startDate', newStartDate);
     }
   };
 
@@ -23,7 +22,7 @@ const CalendarPeriod: FC = () => {
     if (date) {
       setEndDate(date);
       const newEndDate = formatDate(date, 'yyyy-MM-dd');
-      setStudyPeriod({ ...studyPeriod, endDate: newEndDate });
+      setValue('endDate', newEndDate);
     }
   };
 

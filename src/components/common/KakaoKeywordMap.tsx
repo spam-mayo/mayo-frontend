@@ -1,13 +1,18 @@
-import { placeState } from '@/atom/atom';
 import Input from '@/components/common/Input';
 import keywordMap from '@/utils/keywordMap';
 import { type FC, useEffect, useState, useCallback } from 'react';
-import { useRecoilState } from 'recoil';
+import { useFormContext } from 'react-hook-form';
 
 const KakaoKeywordMap: FC = () => {
   const [keyword, setKeyword] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [placeInfo, setPlaceInfo] = useRecoilState(placeState);
+  const [place, setPlace] = useState('');
+  const [checkPlace, setCheckPlace] = useState(false);
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
 
   const onChangeSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
@@ -17,18 +22,30 @@ const KakaoKeywordMap: FC = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const onClickMarker = useCallback((latitude: number, longitude: number, place: string) => {
-    setPlaceInfo({
-      latitude,
-      longitude,
-      place,
-      online: false,
-    });
+  const onClickMarker = useCallback((lat: number, lng: number, place: string) => {
+    setPlace(place);
+    setValue('latitude', lat);
+    setValue('longitude', lng);
+    setValue('online', false);
+    setValue('place', place);
   }, []);
+
+  const handleOnlineChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked;
+    setValue('online', true);
+    if (checked) {
+      setValue('place', '장소 없음');
+      setValue('latitude', 0);
+      setValue('longitude', 0);
+      setPlace('장소 없음');
+      setKeyword('');
+    }
+    setCheckPlace(checked);
+  };
 
   useEffect(() => {
     keywordMap({ onClick: onClickMarker });
-  }, [onClickMarker, placeInfo]);
+  }, [onClickMarker]);
 
   return (
     <div className="keywordmap-container">
@@ -39,10 +56,15 @@ const KakaoKeywordMap: FC = () => {
           value={keyword}
           id="keyword"
           onChange={onChangeSearch}
+          disabled={checkPlace}
         />
         <button id="submit_btn" type="submit">
           검색
         </button>
+        <label>
+          <input type="checkbox" {...register('online')} onChange={handleOnlineChange} checked={checkPlace} />
+          장소없음
+        </label>
       </div>
       <div className="map_wrap">
         <div id="menuDiv">
@@ -61,8 +83,9 @@ const KakaoKeywordMap: FC = () => {
         <div id="map"></div>
       </div>
       <div className="selected-place">
-        <p>선택 장소 : {placeInfo.place}</p>
+        <p {...register('place')}>선택 장소 : {place}</p>
       </div>
+      {errors.place && <p className="place-error">{errors.place.message?.toString()}</p>}
     </div>
   );
 };

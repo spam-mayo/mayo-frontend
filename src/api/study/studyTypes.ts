@@ -88,10 +88,10 @@ export interface PostStudyReq {
   endDate: string;
   personnel: string;
   place: string;
-  latitude?: number;
-  longitude?: number;
+  latitude: number;
+  longitude: number;
   activity?: string[];
   period?: string;
-  online?: boolean;
+  online: boolean;
   studyStacks?: string[];
 }

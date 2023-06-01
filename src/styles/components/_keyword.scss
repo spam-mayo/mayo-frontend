@@ -4,7 +4,7 @@
   gap: 30px;
 
   .input-container {
-    width: 380px;
+    width: 330px;
 
     input {
       height: 50px;
@@ -129,4 +129,9 @@
   p {
     color: $black;
   }
+}
+
+.place-error {
+  color: $red;
+  font-size: 13px;
 }

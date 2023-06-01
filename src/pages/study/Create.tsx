@@ -1,20 +1,20 @@
 import { postStudy } from '@/api/study/studyAPI';
 import type { PostStudyReq } from '@/api/study/studyTypes';
-import { placeState, studyPeriodState } from '@/atom/atom';
 import AdditionalInfo from '@/components/study/createForm/AdditionalInfo';
 import MainInfo from '@/components/study/createForm/MainInfo';
+import { studySchema } from '@/constants/schema/studySchema';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
 import { ChangeEvent, type FC, useState } from 'react';
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 
 const StudyCreate: FC = () => {
   const [checked, setChecked] = useState<string[]>([]);
   const [activity, setActivity] = useState<string[]>([]);
-  const methods = useForm<PostStudyReq>();
-  const placeInfo = useRecoilValue(placeState);
-  const periodInfo = useRecoilValue(studyPeriodState);
+  const methods = useForm<PostStudyReq>({
+    resolver: yupResolver(studySchema),
+  });
   const navigate = useNavigate();
 
   const { mutate: postNewStudy } = useMutation(postStudy, {
@@ -44,12 +44,11 @@ const StudyCreate: FC = () => {
   const onSubmit: SubmitHandler<PostStudyReq> = (data) => {
     const body = {
       ...data,
-      ...placeInfo,
-      ...periodInfo,
       activity,
       studyStacks: checked,
     };
     postNewStudy(body);
+    // console.log(body);
   };
 
   return (
