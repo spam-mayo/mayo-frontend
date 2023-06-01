@@ -2,7 +2,7 @@ import type { SelectOption } from '@/components/auth/Select';
 import { forwardRef, type DetailedHTMLProps, type SelectHTMLAttributes } from 'react';
 
 interface Props extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
-  name?: string;
+  name: string;
   title: string;
   options: SelectOption[];
   className?: string;
