@@ -22,7 +22,7 @@ const RecruitCreate: FC = () => {
   const { mutate: postNewRecruit } = useMutation(postRecruit, {
     onSuccess: () => {
       alert('구인글이 작성되었습니다!');
-      navigate(`/recruit/detail/(${studyId}`);
+      navigate(`/recruit/detail/${studyId}`);
     },
   });
 
