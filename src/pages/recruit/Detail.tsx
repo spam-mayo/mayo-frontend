@@ -21,21 +21,8 @@ const RecruitDetail: FC = () => {
     navigate(-1);
   };
 
-  //   const introLines = recruit?.offerIntro.split('\n').map((line) => (
-  //     <p key={line}>
-  //       {line}
-  //       <br />
-  //     </p>
-  //   ));
-
   const introHTML = recruit?.offerIntro.replace(/\n/g, '<br/>');
-
-  const ruleLines = recruit?.offerRule.split('\n').map((line) => (
-    <p key={line}>
-      {line}
-      <br />
-    </p>
-  ));
+  const ruleHTML = recruit?.offerRule.replace(/\n/g, '<br/>');
 
   return (
     <div className="container">
@@ -51,16 +38,14 @@ const RecruitDetail: FC = () => {
           <div className="recruit-detail-container">
             <div className="detail-block">
               <p className="recruit-subtitle">스터디 소개</p>
-              {/* {introLines} */}
               <div dangerouslySetInnerHTML={{ __html: introHTML ?? '' }} />
-              {/* <div dangerouslySetInnerHTML={{ __html: recruit?.offerIntro ?? '' }} /> */}
             </div>
             <div className="detail-block">
               <p className="recruit-subtitle">스터디 규칙</p>
-              <div>{ruleLines}</div>
-              {/* <div dangerouslySetInnerHTML={{ __html: recruit?.offerRule ?? '' }} /> */}
+              <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
             </div>
           </div>
+          {/* <AddUserComment taskId={1} selectedDate="2023-11-11" /> */}
         </div>
       </div>
     </div>
