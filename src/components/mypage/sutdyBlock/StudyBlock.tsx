@@ -12,12 +12,17 @@ interface Props {
     stack: Stack[];
   };
   isDetail?: boolean;
+  isRecruit?: boolean;
 }
 
-const StudyBlock: FC<Props> = ({ studyData: { endDate, startDate, title, stack, studyId }, isDetail }: Props) => {
+const StudyBlock: FC<Props> = ({
+  studyData: { endDate, startDate, title, stack, studyId },
+  isDetail,
+  isRecruit,
+}: Props) => {
   return (
     <div className="studyBlock-container">
-      <StudyIntro title={title} stacks={stack} isDetail={isDetail} studyId={studyId} />
+      <StudyIntro title={title} stacks={stack} isDetail={isDetail} studyId={studyId} isRecruit={isRecruit} />
       <StudyPeriod startDate={startDate} endDate={endDate} />
     </div>
   );
