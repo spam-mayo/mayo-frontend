@@ -13,7 +13,9 @@ const StudyIntro: FC<Props> = ({ title, stacks, isDetail, studyId, isRecruit }: 
   const linkTo = isRecruit ? `/recruit/create/${studyId}` : `/study/${studyId}`;
   return (
     <div className="title-container">
-      <div className="title">{isDetail || isRecruit ? <Link to={linkTo}>{title}</Link> : <>{title}</>}</div>
+      <div className="title">
+        <Link to={isDetail || isRecruit ? linkTo : ''}>{title}</Link>
+      </div>
       <div className="stacks">
         {stacks.map(({ stackId, stackName }) => (
           <p key={stackId}>{stackName}</p>
