@@ -48,7 +48,6 @@ const StudyCreate: FC = () => {
       studyStacks: checked,
     };
     postNewStudy(body);
-    // console.log(body);
   };
 
   return (

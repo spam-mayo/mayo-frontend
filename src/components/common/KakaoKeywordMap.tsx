@@ -39,6 +39,7 @@ const KakaoKeywordMap: FC = () => {
       setValue('longitude', 0);
       setPlace('장소 없음');
       setKeyword('');
+      setIsOpen(false);
     }
     setCheckPlace(checked);
   };
@@ -73,11 +74,13 @@ const KakaoKeywordMap: FC = () => {
             <div id="pagination"></div>
           </div>
 
-          <div id="btnDiv">
-            <button type="button" id="searchBtn" onClick={onClickToggleListBox}>
-              {isOpen ? '닫기' : '열기'}
-            </button>
-          </div>
+          {!checkPlace && (
+            <div id="btnDiv">
+              <button type="button" id="searchBtn" onClick={onClickToggleListBox}>
+                {isOpen ? '닫기' : '열기'}
+              </button>
+            </div>
+          )}
         </div>
 
         <div id="map"></div>
