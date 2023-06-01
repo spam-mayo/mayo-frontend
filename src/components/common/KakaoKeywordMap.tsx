@@ -22,7 +22,7 @@ const KakaoKeywordMap: FC = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const onClickMarker = useCallback((lat: number, lng: number, place: string) => {
+  const onClickPlace = useCallback((lat: number, lng: number, place: string) => {
     setPlace(place);
     setValue('latitude', lat);
     setValue('longitude', lng);
@@ -45,8 +45,8 @@ const KakaoKeywordMap: FC = () => {
   };
 
   useEffect(() => {
-    keywordMap({ onClick: onClickMarker });
-  }, [onClickMarker]);
+    keywordMap({ onClick: onClickPlace });
+  }, [onClickPlace]);
 
   return (
     <div className="keywordmap-container">
