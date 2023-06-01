@@ -1,25 +1,56 @@
+#form {
+  margin-bottom: 30px;
+  @include flexbox(flex-start, flex-end);
+  gap: 30px;
+
+  .input-container {
+    width: 330px;
+
+    input {
+      height: 50px;
+    }
+  }
+}
+
+#keyword {
+  width: 100%;
+  outline: none;
+  height: 40px;
+  text-indent: 10px;
+}
+
+#submit_btn {
+  background-color: $yellow;
+  border-radius: 6px;
+  width: 50px;
+  height: 50px;
+  @include text-style-14();
+  color: $white;
+  font-weight: 500;
+}
 .map_wrap {
   display: flex;
   width: 500px;
-  height: 300px;
+  height: 500px;
+  flex-direction: column;
+  position: relative;
 
   #map {
     position: absolute;
     overflow: hidden;
     width: 500px;
-    height: 300px;
+    height: 100%;
+    cursor: pointer;
   }
 
   #menuDiv {
+    height: 100%;
     display: flex;
-    position: relative;
-    z-index: 2;
+    z-index: 999;
   }
 
   #menu_wrap {
-    position: relative;
-    height: 300px;
-    border-radius: 10px;
+    height: 100%;
     padding: 10px;
     overflow-y: auto;
     background: rgba(255, 255, 255, 0.7);
@@ -30,28 +61,6 @@
     width: 100%;
     padding: 10px;
     font-size: 20px;
-  }
-
-  #form {
-    @include flexbox(space-between, center);
-    gap: 10px;
-  }
-
-  #keyword {
-    width: 100%;
-    outline: none;
-    height: 40px;
-    text-indent: 10px;
-  }
-
-  #submit_btn {
-    background-color: $yellow;
-    border: none;
-    width: 50px;
-    height: 40px;
-    @include text-style-14();
-    color: $white;
-    font-weight: 500;
   }
 
   #placesList h5 {
@@ -100,7 +109,7 @@
 
   #btnDiv {
     @include flexbox();
-    height: 300px;
+    height: 100%;
   }
 
   #searchBtn {
@@ -110,4 +119,19 @@
     background-color: $yellow;
     border: none;
   }
+}
+
+.selected-place {
+  margin-top: 30px;
+  height: 40px;
+  @include flexbox(flex-start, center);
+
+  p {
+    color: $black;
+  }
+}
+
+.place-error {
+  color: $red;
+  font-size: 13px;
 }

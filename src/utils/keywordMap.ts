@@ -1,4 +1,8 @@
-const keywordMap = () => {
+interface Props {
+  onClick: (lat: number, lng: number, place: string) => void;
+}
+
+const keywordMap = ({ onClick }: Props) => {
   let markers: kakao.maps.Marker[] = [];
 
   const mapContainer = document.getElementById('map') as HTMLElement, // 지도를 표시할 div
@@ -128,11 +132,11 @@ const keywordMap = () => {
         };
 
         // 목록 클릭 시 이름 + 위도 + 경도 얻어옴
-        // itemEl.onclick = function () {
-        //   console.log('lat :', marker.getPosition().getLat());
-        //   console.log('lng :', marker.getPosition().getLng());
-        //   console.log('title :', title);
-        // };
+        itemEl.onclick = function () {
+          const lat = marker.getPosition().getLat();
+          const lng = marker.getPosition().getLng();
+          onClick(lat, lng, title);
+        };
       })(marker, places[i].place_name);
 
       fragment.appendChild(itemEl);

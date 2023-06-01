@@ -80,3 +80,18 @@ export interface PatchStudyTaskReq {
 export interface PostStudyTaskReq extends PatchStudyTaskReq {
   taskDate: string;
 }
+
+export interface PostStudyReq {
+  studyName: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  personnel: string;
+  place: string;
+  latitude: number;
+  longitude: number;
+  activity?: string[];
+  period?: string;
+  online: boolean;
+  studyStacks?: string[];
+}

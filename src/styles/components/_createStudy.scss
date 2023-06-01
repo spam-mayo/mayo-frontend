@@ -58,7 +58,8 @@
       flex: 1;
       gap: 30px;
 
-      .input-container > label > span {
+      .input-container > label > span,
+      .calendar-period > span {
         &::after {
           content: ' *';
           color: $red;
