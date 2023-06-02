@@ -3,11 +3,13 @@ import Announcement from '@/components/study/studySchedule/Announcement';
 import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
 import TodoList from '@/components/study/studySchedule/todoList/TodoList';
-import AddUserComment from '@/components/common/AddUserComment';
-import { useQuery } from '@tanstack/react-query';
+import AddUserComment, { CommentFormValue } from '@/components/common/AddUserComment';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
 import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
 import useAuth from '@/hooks/useAuth';
+import { postStudyComment } from '@/api/study/studyAPI';
+import { formatDate } from '@/utils/dateForm';
 
 interface Props {
   startDate?: string;
@@ -24,6 +26,24 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     queryFn: () => getUserById(Number(userId)),
     queryKey: ['user', userId],
   });
+
+  const { mutate: postComment } = useMutation(postStudyComment, {
+    onSuccess: () => {
+      alert('등록되었습니다!');
+    },
+  });
+
+  const onSubmit = (data: CommentFormValue) => {
+    const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
+
+    const body = {
+      taskId: taskId,
+      taskDate: taskDate,
+      comment: data.commnet,
+    };
+
+    postComment({ studyId: Number(studyId), body });
+  };
 
   const handleDateChange = (date: Date | null) => {
     if (date) setSelectedDate(date);
@@ -42,12 +62,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
             <Calendar curDate={selectedDate} onDateChange={handleDateChange} startDate={startDate} endDate={endDate} />
             <TodoList selectedDate={selectedDate} studyId={studyId} onChange={onChangeTaskId} />
           </div>
-          <AddUserComment
-            profileUrl={data?.data.profileUrl}
-            studyId={studyId}
-            selectedDate={selectedDate}
-            taskId={taskId}
-          />
+          <AddUserComment profileUrl={data?.data.profileUrl} onSubmitComment={onSubmit} />
           <CommentBox startDate={selectedDate} studyId={studyId} />
         </div>
       </div>

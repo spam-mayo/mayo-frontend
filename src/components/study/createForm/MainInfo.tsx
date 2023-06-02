@@ -32,11 +32,11 @@ const MainInfo: FC = () => {
             error={errors.title?.message as string}
           />
           <div className="calendar-period">
-            <span>모집 기간</span>
+            <span>스터디 기간</span>
             <CalendarPeriod />
           </div>
           <Dropdown
-            title="모집인원"
+            title="모집 인원"
             {...register('personnel', { required: true })}
             options={peopleNumberOption}
             className="required"

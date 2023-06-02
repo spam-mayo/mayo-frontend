@@ -1,6 +1,6 @@
 import axiosBase from '@/api/axiosBase';
 import axiosInstance from '@/api/axiosInstance';
-import type { GetRecruitRes, PostRecruitReq, Recruit } from '@/api/recruit/recruitTypes';
+import type { GetRecruitRes, PostRecruitCommentReq, PostRecruitReq, Recruit } from '@/api/recruit/recruitTypes';
 
 interface PaginationResponse<T> {
   data: T;
@@ -38,3 +38,6 @@ export const postRecruit = ({ studyId, body }: { studyId: number; body: PostRecr
   axiosInstance.post(`/api/offer/study/${studyId}`, body);
 
 export const getRecruit = (studyId: number) => axiosBase.get<GetRecruitRes>(`/api/offer/study/${studyId}`);
+
+export const postRecruitComment = ({ studyId, body }: { studyId: number; body: PostRecruitCommentReq }) =>
+  axiosInstance.post(`/api/offer-comment/study/${studyId}`, body);

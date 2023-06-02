@@ -31,3 +31,8 @@ export interface PostRecruitReq {
 export interface GetRecruitRes extends PostRecruitReq {
   offerId: number;
 }
+
+export interface PostRecruitCommentReq {
+  comment: string;
+  secret: boolean;
+}

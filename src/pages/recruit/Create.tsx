@@ -1,9 +1,9 @@
 import { postRecruit } from '@/api/recruit/recruitAPI';
 import type { PostRecruitReq } from '@/api/recruit/recruitTypes';
-import { getStudyDetail } from '@/api/study/studyAPI';
+import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,12 +12,7 @@ const RecruitCreate: FC = () => {
   const { studyId } = useParams();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<PostRecruitReq>();
-
-  const { data } = useQuery({
-    queryFn: () => getStudyDetail(Number(studyId)),
-    queryKey: ['studyDetail', studyId],
-    select: ({ data }) => data,
-  });
+  const { data } = useStudyDetailQuery(Number(studyId));
 
   const { mutate: postNewRecruit } = useMutation(postRecruit, {
     onSuccess: () => {
