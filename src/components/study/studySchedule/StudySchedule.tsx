@@ -10,6 +10,9 @@ import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
 import useAuth from '@/hooks/useAuth';
 import { postStudyComment } from '@/api/study/studyAPI';
 import { formatDate } from '@/utils/dateForm';
+import useStudyCommentQuery from '@/queries/study/useStudyCommentQuery';
+import useStudyCommentDelete from '@/queries/study/useStudyCommentDeleteQuery';
+import useStudyCommentPatch from '@/queries/study/useStudyCommentPatchQuery';
 
 interface Props {
   startDate?: string;
@@ -21,6 +24,9 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const [taskId, setTaskId] = useState(0);
   const { studyId } = useParams();
   const { userId } = useAuth();
+  const { data: comment } = useStudyCommentQuery(Number(studyId), startDate ?? '');
+  const deleteCom = useStudyCommentDelete();
+  const patchCom = useStudyCommentPatch();
 
   const { data } = useQuery({
     queryFn: () => getUserById(Number(userId)),
@@ -39,10 +45,20 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     const body = {
       taskId: taskId,
       taskDate: taskDate,
-      comment: data.commnet,
+      comment: data.comment,
     };
 
     postComment({ studyId: Number(studyId), body });
+  };
+
+  const onSubmitPatchComment = ({ data, id }: { data: CommentFormValue; id: number }) => {
+    const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
+    const body = {
+      taskDate: taskDate,
+      comment: data.comment,
+    };
+
+    patchCom({ studyCommentId: id, body });
   };
 
   const handleDateChange = (date: Date | null) => {
@@ -63,7 +79,11 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
             <TodoList selectedDate={selectedDate} studyId={studyId} onChange={onChangeTaskId} />
           </div>
           <AddUserComment profileUrl={data?.data.profileUrl} onSubmitComment={onSubmit} />
-          <CommentBox startDate={selectedDate} studyId={studyId} />
+          <CommentBox
+            getComments={comment ?? []}
+            deleteComment={deleteCom}
+            onSubmitPatchComment={onSubmitPatchComment}
+          />
         </div>
       </div>
     </div>

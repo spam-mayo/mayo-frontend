@@ -36,3 +36,14 @@ export interface PostRecruitCommentReq {
   comment: string;
   secret: boolean;
 }
+
+export interface GetRecruitCommentRes {
+  comment: string;
+  createdAt: string;
+  offerCommentId: number;
+  profileUrl: string;
+  replies: string[];
+  secret: boolean;
+  userId: number;
+  userName: string;
+}

@@ -1,76 +1,59 @@
 import UserProfileImg from '@/components/common/UserProfileImg';
 import { type FC, useState } from 'react';
 import MultiButton from '@/components/mypage/UserInfo/MultiButton';
-import { deleteStudyComment, patchStudyComment } from '@/api/study/studyAPI';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
 import type { CommentFormValue } from '@/components/common/AddUserComment';
 import { formatDate } from '@/utils/dateForm';
 import useAuth from '@/hooks/useAuth';
+import type { CommentData } from '@/components/study/studySchedule/comment/CommentBox';
 
 interface Props {
-  commentItem: {
-    userName: string;
-    comment: string;
-    createdAt: string;
-    profileUrl: string;
-    studyCommentId: number;
-    userId: number;
-  };
-  taskDate: string;
+  commentItem: CommentData;
+  taskDate?: string;
+  onSubmitPatchComment: ({ data, id }: { data: CommentFormValue; id: number }) => void;
+  deleteComment: (id: number) => void;
 }
 
-const SingleUserComment: FC<Props> = ({ commentItem, taskDate }) => {
+const SingleUserComment: FC<Props> = ({ commentItem, deleteComment, onSubmitPatchComment }) => {
   const [isEdit, setIsEdit] = useState(false);
 
-  const { userName, comment, createdAt, profileUrl, studyCommentId, userId } = commentItem;
-  const { handleSubmit, register, reset } = useForm<CommentFormValue>({ defaultValues: { commnet: comment } });
+  const { userName, comment, createdAt, profileUrl, studyCommentId, userId, offerCommentId } = commentItem;
+
+  const { handleSubmit, register } = useForm<CommentFormValue>({ defaultValues: { comment: comment } });
 
   const commentDateForm = formatDate(createdAt, 'yyyy-MM-dd HH:mm');
 
   const { userId: idOfUser } = useAuth();
 
-  const { mutate: deleteComment } = useMutation(deleteStudyComment, {
-    onSuccess: () => {
-      alert('삭제되었습니다.');
-    },
-  });
-
-  const { mutate: patchComment } = useMutation(patchStudyComment, {
-    onSuccess: () => {
-      reset();
-      setIsEdit(false);
-      alert('수정되었습니다.');
-    },
-  });
-
   const onClickEditButton = () => {
     setIsEdit((prev) => !prev);
   };
 
-  const onSubmitPatchComment: SubmitHandler<CommentFormValue> = ({ commnet }) => {
-    const body = {
-      taskDate: taskDate,
-      comment: commnet,
-    };
-    patchComment({ studyCommentId, body });
+  const onSubmit: SubmitHandler<CommentFormValue> = (data) => {
+    onSubmitPatchComment({ data, id: Number(offerCommentId) });
+    // onSubmitPatchComment({ data, id: Number(studyCommentId) });
+  };
+
+  const onClickDeleteComment = () => {
+    if (offerCommentId) deleteComment(offerCommentId);
+    if (studyCommentId) deleteComment(studyCommentId);
   };
 
   return (
-    <form className="comment-list" onSubmit={handleSubmit(onSubmitPatchComment)}>
+    <form className="comment-list" onSubmit={handleSubmit(onSubmit)}>
       <UserProfileImg src={profileUrl} />
       <div className="comment-content-container">
         <div className="comment-top">
           <p className="comment-top-name">{userName}</p>
           <p>{commentDateForm}</p>
         </div>
-        {isEdit ? <input {...register('commnet')} /> : <p className="comment-content">{comment}</p>}
+        {isEdit ? <input {...register('comment')} /> : <p className="comment-content">{comment}</p>}
       </div>
       <div className="comment-button-container">
         {idOfUser === userId && (
           <>
             <MultiButton isEdit={isEdit} onClick={onClickEditButton} />
-            <button type="button" onClick={() => deleteComment(studyCommentId)} className="delete-button">
+            <button type="button" onClick={onClickDeleteComment} className="delete-button">
               <i className="icon-bin" />
               삭제
             </button>

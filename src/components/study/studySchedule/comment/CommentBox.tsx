@@ -1,25 +1,34 @@
 import type { FC } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getStudyTaskComment } from '@/api/study/studyAPI';
 import SingleUserComment from '@/components/study/studySchedule/comment/SingleUserComment';
-import { formatDate } from '@/utils/dateForm';
-
-interface Props {
-  startDate: Date;
-  studyId?: string;
+import type { CommentFormValue } from '@/components/common/AddUserComment';
+export interface CommentData {
+  comment: string;
+  createdAt: string;
+  offerCommentId?: number;
+  profileUrl: string;
+  replies?: string[];
+  secret?: boolean;
+  studyCommentId?: number;
+  userId: number;
+  userName: string;
 }
 
-const CommentBox: FC<Props> = ({ startDate, studyId }) => {
-  const taskDate = formatDate(startDate, 'yyyy-MM-dd');
-  const { data } = useQuery({
-    queryFn: () => getStudyTaskComment(Number(studyId), taskDate),
-    queryKey: ['studyComments', taskDate],
-  });
+interface Props {
+  getComments: CommentData[];
+  deleteComment: (id: number) => void;
+  onSubmitPatchComment: ({ data, id }: { data: CommentFormValue; id: number }) => void;
+}
 
+const CommentBox: FC<Props> = ({ getComments, deleteComment, onSubmitPatchComment }) => {
   return (
     <div className="comment-list-container">
-      {data?.data.map((data) => (
-        <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentItem={data} />
+      {getComments?.map((list) => (
+        <SingleUserComment
+          key={list.comment}
+          commentItem={list}
+          deleteComment={deleteComment}
+          onSubmitPatchComment={onSubmitPatchComment}
+        />
       ))}
     </div>
   );

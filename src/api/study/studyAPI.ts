@@ -5,7 +5,6 @@ import type {
   GetStudyUserRes,
   PaginationRes,
   PutStudyUser,
-  GetStudyTaskCommentRes,
   GetStudyTaskRes,
   StudyCommentReq,
   StudyCommentEditReq,
@@ -13,6 +12,7 @@ import type {
   PatchStudyTaskReq,
   PostStudyReq,
 } from '@/api/study/studyTypes';
+import type { CommentData } from '@/components/study/studySchedule/comment/CommentBox';
 
 export const getMypageStudy = (page: number, params?: { status?: string; tab?: string; approvalStatus?: string }) => {
   return axiosInstance.get<PaginationRes<GetMyStudyRes>>('/api/study/my-page?size=8', { params: { page, ...params } });
@@ -39,7 +39,7 @@ export const getStudyTask = (studyId: number, taskDate: string) =>
   axiosInstance.get<GetStudyTaskRes>(`/api/tasks/study/${studyId}`, { params: { taskDate } });
 
 export const getStudyTaskComment = (studyId: number, taskDate: string) =>
-  axiosInstance.get<GetStudyTaskCommentRes[]>(`/api/study-comment/study/${studyId}`, { params: { taskDate } });
+  axiosInstance.get<CommentData[]>(`/api/study-comment/study/${studyId}`, { params: { taskDate } });
 
 export const postStudyTask = ({ studyId, body }: { studyId: number; body: PostStudyTaskReq }) =>
   axiosInstance.post(`/api/tasks/study/${studyId}`, body);

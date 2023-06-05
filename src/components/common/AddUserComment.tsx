@@ -8,7 +8,7 @@ interface Props {
 }
 
 export interface CommentFormValue {
-  commnet: string;
+  comment: string;
 }
 
 const AddUserComment: FC<Props> = ({ profileUrl, onSubmitComment }) => {
@@ -19,7 +19,7 @@ const AddUserComment: FC<Props> = ({ profileUrl, onSubmitComment }) => {
       <p className="comment-title">댓글</p>
       <form className="comment-input-container" onSubmit={handleSubmit(onSubmitComment)}>
         <UserProfileImg src={profileUrl} />
-        <input {...register('commnet')} />
+        <input {...register('comment')} />
         <button type="submit">등록하기</button>
       </form>
     </div>
