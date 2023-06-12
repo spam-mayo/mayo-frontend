@@ -21,10 +21,9 @@ interface Props {
 
 const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [taskId, setTaskId] = useState(0);
   const { studyId } = useParams();
   const { userId } = useAuth();
-  const { data: comment } = useStudyCommentQuery(Number(studyId), startDate ?? '');
+  const { data: comment } = useStudyCommentQuery(Number(studyId), selectedDate);
   const deleteCom = useStudyCommentDelete();
   const patchCom = useStudyCommentPatch();
 
@@ -43,7 +42,6 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
 
     const body = {
-      taskId: taskId,
       taskDate: taskDate,
       comment: data.comment,
     };
@@ -65,10 +63,6 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     if (date) setSelectedDate(date);
   };
 
-  const onChangeTaskId = (taskId: number) => {
-    setTaskId(taskId);
-  };
-
   return (
     <div className="container">
       <div className="row">
@@ -76,7 +70,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
           <Announcement />
           <div className="detail-todo-container">
             <Calendar curDate={selectedDate} onDateChange={handleDateChange} startDate={startDate} endDate={endDate} />
-            <TodoList selectedDate={selectedDate} studyId={studyId} onChange={onChangeTaskId} />
+            <TodoList selectedDate={selectedDate} studyId={studyId} />
           </div>
           <AddUserComment profileUrl={data?.data.profileUrl} onSubmitComment={onSubmit} />
           <CommentBox

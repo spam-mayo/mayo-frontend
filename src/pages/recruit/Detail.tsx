@@ -1,15 +1,15 @@
-import { postRecruitComment } from '@/api/recruit/recruitAPI';
 import AddUserComment, { CommentFormValue } from '@/components/common/AddUserComment';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
 import useRecruitCommentDelete from '@/queries/recruit/useRecruitCommentDelete';
 import useRecruitCommentPatch from '@/queries/recruit/useRecruitCommentPatch';
+import useRecruitCommentPost from '@/queries/recruit/useRecruitCommentPost';
 import useRecruitCommentQuery from '@/queries/recruit/useRecruitCommentQuery';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
+import useStudyGroupPost from '@/queries/study/useStudyGroupPost';
 import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
-import { useMutation } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -21,13 +21,9 @@ const RecruitDetail: FC = () => {
   const { data: recruitComment } = useRecruitCommentQuery(Number(studyId));
   const deleteCom = useRecruitCommentDelete();
   const patchCom = useRecruitCommentPatch();
+  const postCom = useRecruitCommentPost();
+  const postStudy = useStudyGroupPost();
   const navigate = useNavigate();
-
-  const { mutate: postRecruitCom } = useMutation(postRecruitComment, {
-    onSuccess: () => {
-      alert('댓글이 등록되었습니다!');
-    },
-  });
 
   const onSubmit = (data: CommentFormValue) => {
     if (!studyId) return;
@@ -37,7 +33,7 @@ const RecruitDetail: FC = () => {
       secret: false,
     };
 
-    postRecruitCom({ studyId: Number(studyId), body });
+    postCom({ studyId: Number(studyId), body });
   };
 
   const onSubmitPatchComment = ({ data, id }: { data: CommentFormValue; id: number }) => {
@@ -53,6 +49,10 @@ const RecruitDetail: FC = () => {
     navigate(-1);
   };
 
+  const onClickStudyJoin = () => {
+    postStudy(Number(studyId));
+  };
+
   const introHTML = recruit?.offerIntro.replace(/\n/g, '<br/>');
   const ruleHTML = recruit?.offerRule.replace(/\n/g, '<br/>');
 
@@ -66,7 +66,11 @@ const RecruitDetail: FC = () => {
             </button>
           </div>
           <StudyDetailIntro detailData={study} />
-          <Button size="large">신청하기</Button>
+          <div className="join-button">
+            <Button size="large" onClick={onClickStudyJoin}>
+              신청하기
+            </Button>
+          </div>
           <div className="recruit-detail-content">
             <div className="recruit-detail-main">
               <div className="detail-block">

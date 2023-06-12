@@ -12,12 +12,17 @@ export interface CommentFormValue {
 }
 
 const AddUserComment: FC<Props> = ({ profileUrl, onSubmitComment }) => {
-  const { handleSubmit, register } = useForm<CommentFormValue>();
+  const { handleSubmit, register, reset } = useForm<CommentFormValue>();
+
+  const onSubmit = (data: CommentFormValue) => {
+    onSubmitComment(data);
+    reset();
+  };
 
   return (
     <div>
       <p className="comment-title">댓글</p>
-      <form className="comment-input-container" onSubmit={handleSubmit(onSubmitComment)}>
+      <form className="comment-input-container" onSubmit={handleSubmit(onSubmit)}>
         <UserProfileImg src={profileUrl} />
         <input {...register('comment')} />
         <button type="submit">등록하기</button>
