@@ -8,13 +8,16 @@ import '@/styles/main.scss';
 import Search from '@/components/main/Search/Search';
 import useDebounce from '@/hooks/useDebounce';
 import type { Recruit } from '@/api/recruit/recruitTypes';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '@/hooks/useAuth';
 
 const Main: FC = () => {
   const [search, setSearch] = useState<string | null>('');
   const [sort, setSort] = useState<string>('latest');
   const [category, setCategory] = useState<string>('');
   const [activePage, setActivePage] = useState(1);
+  const { isLogin } = useAuth();
+  const navigate = useNavigate();
 
   const debouncedSearch = useDebounce(search, 500);
 
@@ -66,6 +69,13 @@ const Main: FC = () => {
     setCategory(e.target.value);
   };
 
+  const onClickCreateStudy = () => {
+    if (!isLogin) {
+      alert('로그인이 필요합니다.');
+      navigate('/auth/login');
+    } else navigate('/study/create');
+  };
+
   return (
     <main className="container">
       <Search onChange={onChange} onChangeSort={onChangeSort} onChangeCategory={onChangeCategory} />
@@ -78,6 +88,9 @@ const Main: FC = () => {
           </li>
         ))}
       </ul>
+      <button className="make-study" onClick={onClickCreateStudy}>
+        +
+      </button>
       <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
     </main>
   );
