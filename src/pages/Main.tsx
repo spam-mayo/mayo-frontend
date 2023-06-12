@@ -70,11 +70,7 @@ const Main: FC = () => {
   };
 
   const onClickCreateStudy = () => {
-    if (isLogin) navigate('/study/create');
-    else {
-      alert('로그인이 필요합니다.');
-      navigate('/auth/login');
-    }
+    isLogin ? navigate('/study/create') : (alert('로그인이 필요합니다.'), navigate('/auth/login'));
   };
 
   return (
