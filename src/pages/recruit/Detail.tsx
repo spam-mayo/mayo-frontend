@@ -2,6 +2,7 @@ import AddUserComment, { CommentFormValue } from '@/components/common/AddUserCom
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
+import useAuth from '@/hooks/useAuth';
 import useRecruitCommentDelete from '@/queries/recruit/useRecruitCommentDelete';
 import useRecruitCommentPatch from '@/queries/recruit/useRecruitCommentPatch';
 import useRecruitCommentPost from '@/queries/recruit/useRecruitCommentPost';
@@ -24,6 +25,7 @@ const RecruitDetail: FC = () => {
   const postCom = useRecruitCommentPost();
   const postStudy = useStudyGroupPost();
   const navigate = useNavigate();
+  const { isLogin } = useAuth();
 
   const onSubmit = (data: CommentFormValue) => {
     if (!studyId) return;
@@ -33,6 +35,7 @@ const RecruitDetail: FC = () => {
       secret: false,
     };
 
+    if (!isLogin) alert('로그인이 필요합니다.');
     postCom({ studyId: Number(studyId), body });
   };
 
@@ -50,6 +53,7 @@ const RecruitDetail: FC = () => {
   };
 
   const onClickStudyJoin = () => {
+    if (!isLogin) alert('로그인이 필요합니다.');
     postStudy(Number(studyId));
   };
 
