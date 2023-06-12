@@ -8,6 +8,7 @@ import '@/styles/main.scss';
 import Search from '@/components/main/Search/Search';
 import useDebounce from '@/hooks/useDebounce';
 import type { Recruit } from '@/api/recruit/recruitTypes';
+import { Link } from 'react-router-dom';
 
 const Main: FC = () => {
   const [search, setSearch] = useState<string | null>('');
@@ -71,7 +72,9 @@ const Main: FC = () => {
       <ul className="row recruit-card-wrapper">
         {data?.data?.map((post: Recruit) => (
           <li key={post.studyId} className="col-lg-3 col-md-6 col-sm-4">
-            <RecruitCard recruit={post} />
+            <Link to={`/recruit/detail/${post.studyId}`}>
+              <RecruitCard recruit={post} />
+            </Link>
           </li>
         ))}
       </ul>
