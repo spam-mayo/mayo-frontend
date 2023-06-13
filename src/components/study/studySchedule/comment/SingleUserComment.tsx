@@ -30,11 +30,9 @@ const SingleUserComment: FC<Props> = ({ commentItem, deleteComment, onSubmitPatc
   };
 
   const onSubmit: SubmitHandler<CommentFormValue> = (data) => {
-    if (offerCommentId !== undefined) {
-      onSubmitPatchComment({ data, id: Number(offerCommentId) });
-    } else if (studyCommentId !== undefined) {
-      onSubmitPatchComment({ data, id: Number(studyCommentId) });
-    }
+    const id = offerCommentId || studyCommentId;
+
+    if (id !== undefined) onSubmitPatchComment({ data, id: Number(id) });
   };
 
   const onClickDeleteComment = () => {
