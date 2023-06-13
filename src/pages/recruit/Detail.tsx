@@ -59,15 +59,15 @@ const RecruitDetail: FC = () => {
     postStudy(Number(studyId));
   };
 
-  const onToggleHeart = () => {
+  const onToggleHeart = useCallback(() => {
     setIsClicked((prev) => !prev);
-  };
+  }, []);
 
   const postRecruitLike = useRecruitLikesPost(onToggleHeart);
 
-  const onClickHeart = useCallback(() => {
+  const onClickHeart = () => {
     postRecruitLike(Number(studyId));
-  }, []);
+  };
 
   const introHTML = recruit?.offerIntro.replace(/\n/g, '<br/>');
   const ruleHTML = recruit?.offerRule.replace(/\n/g, '<br/>');
