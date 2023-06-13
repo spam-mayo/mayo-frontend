@@ -55,3 +55,5 @@ export const patchRecruitComment = ({
 
 export const deleteRecruitComment = (offerCommentId: number) =>
   axiosInstance.delete(`/api/offer-comment/${offerCommentId}`);
+
+export const postRecruitLikes = (studyId: number) => axiosInstance.post(`/api/study/${studyId}/likes`);

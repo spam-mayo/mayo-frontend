@@ -2,16 +2,16 @@ import AddUserComment, { CommentFormValue } from '@/components/common/AddUserCom
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
-import useAuth from '@/hooks/useAuth';
 import useRecruitCommentDelete from '@/queries/recruit/useRecruitCommentDelete';
 import useRecruitCommentPatch from '@/queries/recruit/useRecruitCommentPatch';
 import useRecruitCommentPost from '@/queries/recruit/useRecruitCommentPost';
 import useRecruitCommentQuery from '@/queries/recruit/useRecruitCommentQuery';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
+import useRecruitLikesPost from '@/queries/recruit/useRecruitLikesPost';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import useStudyGroupPost from '@/queries/study/useStudyGroupPost';
 import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
-import type { FC } from 'react';
+import { type FC, useState, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const RecruitDetail: FC = () => {
@@ -20,12 +20,16 @@ const RecruitDetail: FC = () => {
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
   const { data: user } = useUserDetailQuery();
   const { data: recruitComment } = useRecruitCommentQuery(Number(studyId));
+  const [isClicked, setIsClicked] = useState(false);
   const deleteCom = useRecruitCommentDelete();
   const patchCom = useRecruitCommentPatch();
   const postCom = useRecruitCommentPost();
   const postStudy = useStudyGroupPost();
   const navigate = useNavigate();
-  const { isLogin } = useAuth();
+
+  useEffect(() => {
+    if (study?.checkLikes !== undefined && study.checkLikes !== null) setIsClicked(study.checkLikes);
+  }, [study?.checkLikes]);
 
   const onSubmit = (data: CommentFormValue) => {
     if (!studyId) return;
@@ -35,7 +39,6 @@ const RecruitDetail: FC = () => {
       secret: false,
     };
 
-    if (!isLogin) alert('로그인이 필요합니다.');
     postCom({ studyId: Number(studyId), body });
   };
 
@@ -53,9 +56,18 @@ const RecruitDetail: FC = () => {
   };
 
   const onClickStudyJoin = () => {
-    if (!isLogin) alert('로그인이 필요합니다.');
     postStudy(Number(studyId));
   };
+
+  const onToggleHeart = () => {
+    setIsClicked((prev) => !prev);
+  };
+
+  const postRecruitLike = useRecruitLikesPost(onToggleHeart);
+
+  const onClickHeart = useCallback(() => {
+    postRecruitLike(Number(studyId));
+  }, []);
 
   const introHTML = recruit?.offerIntro.replace(/\n/g, '<br/>');
   const ruleHTML = recruit?.offerRule.replace(/\n/g, '<br/>');
@@ -71,6 +83,7 @@ const RecruitDetail: FC = () => {
           </div>
           <StudyDetailIntro detailData={study} />
           <div className="join-button">
+            <i className={`icon-heart ${isClicked ? 'clicked' : ''}`} onClick={onClickHeart} />
             <Button size="large" onClick={onClickStudyJoin}>
               신청하기
             </Button>
