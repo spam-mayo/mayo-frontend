@@ -7,12 +7,13 @@ import useRecruitCommentPatch from '@/queries/recruit/useRecruitCommentPatch';
 import useRecruitCommentPost from '@/queries/recruit/useRecruitCommentPost';
 import useRecruitCommentQuery from '@/queries/recruit/useRecruitCommentQuery';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
-import useRecruitLikesPost from '@/queries/recruit/useRecruitLikesPost';
+import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMutation';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import useStudyGroupPost from '@/queries/study/useStudyGroupPost';
 import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
-import { type FC, useState, useCallback, useEffect } from 'react';
+import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import classNames from 'classnames';
 
 const RecruitDetail: FC = () => {
   const { studyId } = useParams();
@@ -25,6 +26,11 @@ const RecruitDetail: FC = () => {
   const patchCom = useRecruitCommentPatch();
   const postCom = useRecruitCommentPost();
   const postStudy = useStudyGroupPost();
+  const { mutate: postRecruitLike } = usePostRecruitLikesMutation({
+    onSuccess: () => {
+      setIsClicked((prev) => !prev);
+    },
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -59,12 +65,6 @@ const RecruitDetail: FC = () => {
     postStudy(Number(studyId));
   };
 
-  const onToggleHeart = useCallback(() => {
-    setIsClicked((prev) => !prev);
-  }, []);
-
-  const postRecruitLike = useRecruitLikesPost(onToggleHeart);
-
   const onClickHeart = () => {
     postRecruitLike(Number(studyId));
   };
@@ -83,7 +83,7 @@ const RecruitDetail: FC = () => {
           </div>
           <StudyDetailIntro detailData={study} />
           <div className="join-button">
-            <i className={`icon-heart ${isClicked ? 'clicked' : ''}`} onClick={onClickHeart} />
+            <i className={classNames('icon-heart', { clicked: isClicked })} onClick={onClickHeart} />
             <Button size="large" onClick={onClickStudyJoin}>
               신청하기
             </Button>
