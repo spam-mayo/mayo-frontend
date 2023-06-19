@@ -9,7 +9,7 @@ import useRecruitCommentQuery from '@/queries/recruit/useRecruitCommentQuery';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMutation';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
-import useStudyGroupPost from '@/queries/study/useStudyGroupPost';
+import usePostStudyGroupMutation from '@/queries/study/usePostStudyGroupMutation';
 import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
 import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -25,7 +25,7 @@ const RecruitDetail: FC = () => {
   const deleteCom = useDeleteRecruitCommentMutation();
   const patchCom = usePatchRecruitCommentMutation();
   const postCom = usePostRecruitCommentMutation();
-  const postStudy = useStudyGroupPost();
+  const postStudy = usePostStudyGroupMutation();
   const { mutate: postRecruitLike } = usePostRecruitLikesMutation({
     onSuccess: () => {
       setIsClicked((prev) => !prev);
@@ -62,7 +62,7 @@ const RecruitDetail: FC = () => {
   };
 
   const onClickStudyJoin = () => {
-    postStudy(Number(studyId));
+    postStudy.mutate(Number(studyId));
   };
 
   const onClickHeart = () => {

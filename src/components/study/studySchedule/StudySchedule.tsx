@@ -11,8 +11,8 @@ import useAuth from '@/hooks/useAuth';
 import { postStudyComment } from '@/api/study/studyAPI';
 import { formatDate } from '@/utils/dateForm';
 import useStudyCommentQuery from '@/queries/study/useStudyCommentQuery';
-import useStudyCommentDelete from '@/queries/study/useStudyCommentDeleteQuery';
-import useStudyCommentPatch from '@/queries/study/useStudyCommentPatchQuery';
+import useDeleteStudyCommentMutation from '@/queries/study/useDeleteStudyCommentMutation';
+import usePatchStudyCommentMutation from '@/queries/study/usePatchStudyCommentMutation';
 
 interface Props {
   startDate?: string;
@@ -24,8 +24,8 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const { studyId } = useParams();
   const { userId } = useAuth();
   const { data: comment } = useStudyCommentQuery(Number(studyId), selectedDate);
-  const deleteCom = useStudyCommentDelete();
-  const patchCom = useStudyCommentPatch();
+  const deleteCom = useDeleteStudyCommentMutation();
+  const patchCom = usePatchStudyCommentMutation();
 
   const { data } = useQuery({
     queryFn: () => getUserById(Number(userId)),
@@ -56,7 +56,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
       comment: data.comment,
     };
 
-    patchCom({ studyCommentId: id, body });
+    patchCom.mutate({ studyCommentId: id, body });
   };
 
   const handleDateChange = (date: Date | null) => {
@@ -75,7 +75,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
           <AddUserComment profileUrl={data?.data.profileUrl} onSubmitComment={onSubmit} />
           <CommentBox
             getComments={comment ?? []}
-            deleteComment={deleteCom}
+            deleteComment={deleteCom.mutate}
             onSubmitPatchComment={onSubmitPatchComment}
           />
         </div>
