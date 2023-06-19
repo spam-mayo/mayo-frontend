@@ -31,7 +31,7 @@ const RecruitCreate: FC = () => {
   };
 
   const onSumbit: SubmitHandler<PostRecruitReq> = (data) => {
-    postNewRecruit({ studyId: Number(studyId), body: data });
+    postNewRecruit({ studyId: Number(studyId), offerIntro: data.offerIntro, offerRule: data.offerRule });
   };
 
   return (
