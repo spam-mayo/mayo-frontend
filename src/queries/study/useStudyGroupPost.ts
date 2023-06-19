@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 const useStudyGroupPost = () => {
-  const { mutate: postStudyJoin } = useMutation(postStudyGroup, {
+  const { mutate: postStudyJoin } = useMutation((studyId: number) => postStudyGroup(studyId), {
     onSuccess: () => {
       alert('스터디 신청이 완료됐습니다!');
     },
@@ -15,11 +15,7 @@ const useStudyGroupPost = () => {
     },
   });
 
-  const studyJoin = (studyId: number) => {
-    postStudyJoin(studyId);
-  };
-
-  return studyJoin;
+  return postStudyJoin;
 };
 
 export default useStudyGroupPost;

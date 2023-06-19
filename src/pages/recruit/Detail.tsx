@@ -2,9 +2,9 @@ import AddUserComment, { CommentFormValue } from '@/components/common/AddUserCom
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
-import useRecruitCommentDelete from '@/queries/recruit/useRecruitCommentDelete';
-import useRecruitCommentPatch from '@/queries/recruit/useRecruitCommentPatch';
-import useRecruitCommentPost from '@/queries/recruit/useRecruitCommentPost';
+import useDeleteRecruitCommentMutation from '@/queries/recruit/useDeleteRecruitCommentMutation';
+import usePatchRecruitCommentMutation from '@/queries/recruit/usePatchRecruitCommentMutation';
+import usePostRecruitCommentMutation from '@/queries/recruit/usePostRecruitCommentMutation';
 import useRecruitCommentQuery from '@/queries/recruit/useRecruitCommentQuery';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMutation';
@@ -22,9 +22,9 @@ const RecruitDetail: FC = () => {
   const { data: user } = useUserDetailQuery();
   const { data: recruitComment } = useRecruitCommentQuery(Number(studyId));
   const [isClicked, setIsClicked] = useState(false);
-  const deleteCom = useRecruitCommentDelete();
-  const patchCom = useRecruitCommentPatch();
-  const postCom = useRecruitCommentPost();
+  const deleteCom = useDeleteRecruitCommentMutation();
+  const patchCom = usePatchRecruitCommentMutation();
+  const postCom = usePostRecruitCommentMutation();
   const postStudy = useStudyGroupPost();
   const { mutate: postRecruitLike } = usePostRecruitLikesMutation({
     onSuccess: () => {
@@ -45,7 +45,7 @@ const RecruitDetail: FC = () => {
       secret: false,
     };
 
-    postCom({ studyId: Number(studyId), body });
+    postCom.mutate({ studyId: Number(studyId), body });
   };
 
   const onSubmitPatchComment = ({ data, id }: { data: CommentFormValue; id: number }) => {
@@ -54,7 +54,7 @@ const RecruitDetail: FC = () => {
       secret: false,
     };
 
-    patchCom({ offerCommentId: id, body });
+    patchCom.mutate({ offerCommentId: id, body });
   };
 
   const onClickGoBack = () => {
