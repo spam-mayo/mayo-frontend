@@ -19,3 +19,18 @@
     gap: 10px;
   }
 }
+
+.join-button {
+  margin: 20px 0;
+  @include flexbox(flex-end, center);
+}
+
+.icon-heart {
+  font-size: 30px;
+  margin-right: 20px;
+  color: $white;
+
+  &.clicked {
+    color: $primary;
+  }
+}

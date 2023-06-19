@@ -1,24 +1,40 @@
-import { getRecruit } from '@/api/recruit/recruitAPI';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
+import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMutation';
+import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
+import usePostStudyGroupMutation from '@/queries/study/usePostStudyGroupMutation';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
-import { useQuery } from '@tanstack/react-query';
-import type { FC } from 'react';
+import classNames from 'classnames';
+import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const RecruitDetail: FC = () => {
   const { studyId } = useParams();
-  const { data } = useStudyDetailQuery(Number(studyId));
+  const { data: study } = useStudyDetailQuery(Number(studyId));
+  const { data: recruit } = useRecruitDetailQuery(Number(studyId));
+  const [isClicked, setIsClicked] = useState(false);
+  const postStudy = usePostStudyGroupMutation();
+  const { mutate: postRecruitLike } = usePostRecruitLikesMutation({
+    onSuccess: () => {
+      setIsClicked((prev) => !prev);
+    },
+  });
   const navigate = useNavigate();
 
-  const { data: recruit } = useQuery({
-    queryFn: () => getRecruit(Number(studyId)),
-    queryKey: ['recruit', studyId],
-    select: ({ data }) => data,
-  });
+  useEffect(() => {
+    if (study?.checkLikes !== undefined && study.checkLikes !== null) setIsClicked(study.checkLikes);
+  }, [study?.checkLikes]);
 
   const onClickGoBack = () => {
     navigate(-1);
+  };
+
+  const onClickStudyJoin = () => {
+    postStudy.mutate(Number(studyId));
+  };
+
+  const onClickHeart = () => {
+    postRecruitLike(Number(studyId));
   };
 
   const introHTML = recruit?.offerIntro.replace(/\n/g, '<br/>');
@@ -33,8 +49,13 @@ const RecruitDetail: FC = () => {
               <i className="icon-arrow-left" />
             </button>
           </div>
-          <StudyDetailIntro detailData={data} />
-          <Button size="large">신청하기</Button>
+          <StudyDetailIntro detailData={study} />
+          <div className="join-button">
+            <i className={classNames('icon-heart', { clicked: isClicked })} onClick={onClickHeart} />
+            <Button size="large" onClick={onClickStudyJoin}>
+              신청하기
+            </Button>
+          </div>
           <div className="recruit-detail-container">
             <div className="detail-block">
               <p className="recruit-subtitle">스터디 소개</p>

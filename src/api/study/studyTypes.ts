@@ -39,6 +39,7 @@ export interface GetStudyDetailRes {
   online: boolean;
   stack: Stack[];
   owner: StudyOwner;
+  checkLikes: boolean;
 }
 
 export interface GetStudyUserRes {
