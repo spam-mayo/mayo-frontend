@@ -74,7 +74,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
           </div>
           <AddUserComment profileUrl={data?.data.profileUrl} onSubmitComment={onSubmit} />
           <CommentBox
-            getComments={comment ?? []}
+            Comments={comment ?? []}
             deleteComment={deleteCom.mutate}
             onSubmitPatchComment={onSubmitPatchComment}
           />

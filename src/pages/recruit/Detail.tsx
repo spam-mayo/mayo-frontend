@@ -101,7 +101,7 @@ const RecruitDetail: FC = () => {
             </div>
             <AddUserComment onSubmitComment={onSubmit} profileUrl={user?.profileUrl} />
             <CommentBox
-              getComments={recruitComment ?? []}
+              Comments={recruitComment ?? []}
               deleteComment={deleteCom}
               onSubmitPatchComment={onSubmitPatchComment}
             />

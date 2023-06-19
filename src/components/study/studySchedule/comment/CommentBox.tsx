@@ -14,17 +14,17 @@ export interface CommentData {
 }
 
 interface Props {
-  getComments: CommentData[];
+  Comments: CommentData[];
   deleteComment: (id: number) => void;
   onSubmitPatchComment: ({ data, id }: { data: CommentFormValue; id: number }) => void;
 }
 
-const CommentBox: FC<Props> = ({ getComments, deleteComment, onSubmitPatchComment }) => {
+const CommentBox: FC<Props> = ({ Comments, deleteComment, onSubmitPatchComment }) => {
   return (
     <div className="comment-list-container">
-      {getComments?.map((list) => (
+      {Comments?.map((list) => (
         <SingleUserComment
-          key={list.comment}
+          key={list.studyCommentId || list.offerCommentId}
           commentItem={list}
           deleteComment={deleteComment}
           onSubmitPatchComment={onSubmitPatchComment}
