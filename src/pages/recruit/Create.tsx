@@ -1,5 +1,4 @@
 import { postRecruit } from '@/api/recruit/recruitAPI';
-import type { PostRecruitReq } from '@/api/recruit/recruitTypes';
 import { getStudyDetail } from '@/api/study/studyAPI';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
@@ -8,10 +7,15 @@ import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
+interface RecruitFormValue {
+  offerIntro: string;
+  offerRule: string;
+}
+
 const RecruitCreate: FC = () => {
   const { studyId } = useParams();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<PostRecruitReq>();
+  const { register, handleSubmit } = useForm<RecruitFormValue>();
 
   const { data } = useQuery({
     queryFn: () => getStudyDetail(Number(studyId)),
@@ -30,8 +34,8 @@ const RecruitCreate: FC = () => {
     navigate(-1);
   };
 
-  const onSumbit: SubmitHandler<PostRecruitReq> = (data) => {
-    postNewRecruit({ studyId: Number(studyId), offerIntro: data.offerIntro, offerRule: data.offerRule });
+  const onSumbit: SubmitHandler<RecruitFormValue> = (data) => {
+    postNewRecruit({ studyId: Number(studyId), ...data });
   };
 
   return (
