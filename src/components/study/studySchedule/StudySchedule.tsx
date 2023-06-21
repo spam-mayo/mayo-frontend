@@ -58,6 +58,10 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     if (date) setSelectedDate(date);
   };
 
+  const handleDeleteComment = (id: number) => {
+    onDeleteComment.mutate(id);
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -70,7 +74,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
           <AddUserComment profileUrl={data?.data.profileUrl} onSubmitPostComment={onSubmitPostComment} />
           <CommentBox
             comments={comment ?? []}
-            onDeleteComment={onDeleteComment.mutate}
+            onDeleteComment={handleDeleteComment}
             onSubmitPatchComment={onSubmitPatchComment}
           />
         </div>
