@@ -1,5 +1,11 @@
 import axiosInstance from '@/api/axiosInstance';
-import type { GetRecruitRes, PostRecruitReq, Recruit } from '@/api/recruit/recruitTypes';
+import type {
+  CommentRes,
+  GetRecruitRes,
+  PostRecruitCommentReq,
+  PostRecruitReq,
+  Recruit,
+} from '@/api/recruit/recruitTypes';
 
 interface PaginationResponse<T> {
   data: T;
@@ -37,5 +43,22 @@ export const postRecruit = ({ studyId, ...body }: PostRecruitReq) =>
   axiosInstance.post(`/api/offer/study/${studyId}`, body);
 
 export const getRecruit = (studyId: number) => axiosInstance.get<GetRecruitRes>(`/api/offer/study/${studyId}`);
+
+export const postRecruitComment = ({ studyId, body }: { studyId: number; body: PostRecruitCommentReq }) =>
+  axiosInstance.post(`/api/offer-comment/study/${studyId}`, body);
+
+export const getRecruitComment = (studyId: number) =>
+  axiosInstance.get<CommentRes[]>(`/api/offer-comment/study/${studyId}`);
+
+export const patchRecruitComment = ({
+  offerCommentId,
+  body,
+}: {
+  offerCommentId: number;
+  body: PostRecruitCommentReq;
+}) => axiosInstance.patch(`/api/offer-comment/${offerCommentId}`, body);
+
+export const deleteRecruitComment = (offerCommentId: number) =>
+  axiosInstance.delete(`/api/offer-comment/${offerCommentId}`);
 
 export const postRecruitLikes = (studyId: number) => axiosInstance.post(`/api/study/${studyId}/likes`);

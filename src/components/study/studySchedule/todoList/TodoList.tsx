@@ -8,17 +8,13 @@ import { formatDate } from '@/utils/dateForm';
 interface Props {
   selectedDate: Date;
   studyId?: string;
-  onChange: (taskId: number) => void;
 }
 
-const TodoList: FC<Props> = ({ selectedDate, studyId, onChange }: Props) => {
+const TodoList: FC<Props> = ({ selectedDate, studyId }: Props) => {
   const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
   const { data } = useQuery({
     queryFn: () => getStudyTask(Number(studyId), taskDate),
     queryKey: ['studyTasks', taskDate],
-    onSuccess: (data) => {
-      if (data) onChange(data.data.taskId);
-    },
   });
 
   return (

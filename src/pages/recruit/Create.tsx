@@ -1,10 +1,10 @@
 import { postRecruit } from '@/api/recruit/recruitAPI';
-import { getStudyDetail } from '@/api/study/studyAPI';
+import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
 import { recruitSchema } from '@/constants/schema/recruitSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -17,17 +17,12 @@ interface RecruitFormValue {
 const RecruitCreate: FC = () => {
   const { studyId } = useParams();
   const navigate = useNavigate();
+  const { data } = useStudyDetailQuery(Number(studyId));
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<RecruitFormValue>({ resolver: yupResolver(recruitSchema) });
-
-  const { data } = useQuery({
-    queryFn: () => getStudyDetail(Number(studyId)),
-    queryKey: ['studyDetail', studyId],
-    select: ({ data }) => data,
-  });
 
   const { mutate: postNewRecruit } = useMutation(postRecruit, {
     onSuccess: () => {

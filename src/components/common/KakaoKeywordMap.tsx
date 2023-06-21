@@ -52,7 +52,7 @@ const KakaoKeywordMap: FC = () => {
     <div className="keywordmap-container">
       <div id="form">
         <Input
-          label="모임장소"
+          label="모임 장소"
           placeholder="장소를 검색하세요"
           value={keyword}
           id="keyword"
@@ -64,7 +64,7 @@ const KakaoKeywordMap: FC = () => {
         </button>
         <label>
           <input type="checkbox" {...register('online')} onChange={handleOnlineChange} checked={checkPlace} />
-          장소없음
+          장소 없음
         </label>
       </div>
       <div className="map_wrap">

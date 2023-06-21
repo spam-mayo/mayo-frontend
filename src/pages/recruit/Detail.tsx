@@ -1,13 +1,20 @@
+import AddUserComment, { CommentFormValue } from '@/components/common/AddUserComment';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
-import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMutation';
+import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
+import useDeleteRecruitCommentMutation from '@/queries/recruit/useDeleteRecruitCommentMutation';
+import usePatchRecruitCommentMutation from '@/queries/recruit/usePatchRecruitCommentMutation';
+import usePostRecruitCommentMutation from '@/queries/recruit/usePostRecruitCommentMutation';
+import useRecruitCommentQuery from '@/queries/recruit/useRecruitCommentQuery';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
-import usePostStudyGroupMutation from '@/queries/study/usePostStudyGroupMutation';
+import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMutation';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
-import changeToHtml from '@/utils/changeToHtml';
-import classNames from 'classnames';
-import { type FC, useState } from 'react';
+import usePostStudyGroupMutation from '@/queries/study/usePostStudyGroupMutation';
+import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
+import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import classNames from 'classnames';
+import changeToHtml from '@/utils/changeToHtml';
 
 const RecruitDetail: FC = () => {
   const { studyId } = useParams();
@@ -17,8 +24,13 @@ const RecruitDetail: FC = () => {
     },
   });
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
+  const { data: user } = useUserDetailQuery();
+  const { data: recruitComment } = useRecruitCommentQuery(Number(studyId));
   const [isClicked, setIsClicked] = useState(false);
-  const postStudy = usePostStudyGroupMutation();
+  const onDeleteComment = useDeleteRecruitCommentMutation();
+  const onPatchComment = usePatchRecruitCommentMutation();
+  const onPostComment = usePostRecruitCommentMutation();
+  const onPostStudy = usePostStudyGroupMutation();
   const { mutate: postRecruitLike } = usePostRecruitLikesMutation({
     onSuccess: () => {
       setIsClicked((prev) => !prev);
@@ -26,12 +38,36 @@ const RecruitDetail: FC = () => {
   });
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (study?.checkLikes !== undefined && study.checkLikes !== null) setIsClicked(study.checkLikes);
+  }, [study?.checkLikes]);
+
+  const onSubmitPostComment = (data: CommentFormValue) => {
+    if (!studyId) return;
+
+    const body = {
+      comment: data.comment,
+      secret: false,
+    };
+
+    onPostComment.mutate({ studyId: Number(studyId), body });
+  };
+
+  const onSubmitPatchComment = ({ data, id }: { data: CommentFormValue; id: number }) => {
+    const body = {
+      comment: data.comment,
+      secret: false,
+    };
+
+    onPatchComment.mutate({ offerCommentId: id, body });
+  };
+
   const onClickGoBack = () => {
     navigate(-1);
   };
 
   const onClickStudyJoin = () => {
-    postStudy.mutate(Number(studyId));
+    onPostStudy.mutate(Number(studyId));
   };
 
   const onClickHeart = () => {
@@ -57,17 +93,24 @@ const RecruitDetail: FC = () => {
               신청하기
             </Button>
           </div>
-          <div className="recruit-detail-container">
-            <div className="detail-block">
-              <p className="recruit-subtitle">스터디 소개</p>
-              <div dangerouslySetInnerHTML={{ __html: introHTML ?? '' }} />
+          <div className="recruit-detail-content">
+            <div className="recruit-detail-main">
+              <div className="detail-block">
+                <p className="recruit-subtitle">스터디 소개</p>
+                <div dangerouslySetInnerHTML={{ __html: introHTML ?? '' }} />
+              </div>
+              <div className="detail-block">
+                <p className="recruit-subtitle">스터디 규칙</p>
+                <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
+              </div>
             </div>
-            <div className="detail-block">
-              <p className="recruit-subtitle">스터디 규칙</p>
-              <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
-            </div>
+            <AddUserComment onSubmitPostComment={onSubmitPostComment} profileUrl={user?.profileUrl} />
+            <CommentBox
+              comments={recruitComment ?? []}
+              onDeleteComment={onDeleteComment}
+              onSubmitPatchComment={onSubmitPatchComment}
+            />
           </div>
-          {/* <AddUserComment taskId={1} selectedDate="2023-11-11" /> */}
         </div>
       </div>
     </div>

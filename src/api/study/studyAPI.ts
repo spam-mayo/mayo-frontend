@@ -1,17 +1,17 @@
 import axiosInstance from '@/api/axiosInstance';
+import type { CommentRes } from '@/api/recruit/recruitTypes';
 import type {
   GetMyStudyRes,
   GetStudyDetailRes,
   GetStudyUserRes,
   PaginationRes,
   PutStudyUser,
-  GetStudyTaskCommentRes,
   GetStudyTaskRes,
   StudyCommentReq,
-  StudyCommentEditReq,
   PostStudyTaskReq,
   PatchStudyTaskReq,
   PostStudyReq,
+  PatchStudyCommentReq,
 } from '@/api/study/studyTypes';
 
 export const getMypageStudy = (page: number, params?: { status?: string; tab?: string; approvalStatus?: string }) => {
@@ -38,8 +38,8 @@ export const putStudyDelegation = ({ studyId, userId }: PutStudyUser) =>
 export const getStudyTask = (studyId: number, taskDate: string) =>
   axiosInstance.get<GetStudyTaskRes>(`/api/tasks/study/${studyId}`, { params: { taskDate } });
 
-export const getStudyTaskComment = (studyId: number, taskDate: string) =>
-  axiosInstance.get<GetStudyTaskCommentRes[]>(`/api/study-comment/study/${studyId}`, { params: { taskDate } });
+export const getStudyTaskComments = (studyId: number, taskDate: string) =>
+  axiosInstance.get<CommentRes[]>(`/api/study-comment/study/${studyId}`, { params: { taskDate } });
 
 export const postStudyTask = ({ studyId, body }: { studyId: number; body: PostStudyTaskReq }) =>
   axiosInstance.post(`/api/tasks/study/${studyId}`, body);
@@ -55,7 +55,7 @@ export const postStudyComment = ({ studyId, body }: { studyId: number; body: Stu
 export const deleteStudyComment = (studyCommentId: number) =>
   axiosInstance.delete(`/api/study-comment/${studyCommentId}`);
 
-export const patchStudyComment = ({ studyCommentId, body }: { studyCommentId: number; body: StudyCommentEditReq }) =>
+export const patchStudyComment = ({ studyCommentId, body }: { studyCommentId: number; body: PatchStudyCommentReq }) =>
   axiosInstance.patch(`/api/study-comment/${studyCommentId}`, body);
 
 export const postStudy = (body: PostStudyReq) => axiosInstance.post(`/api/study`, body);

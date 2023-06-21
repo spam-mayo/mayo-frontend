@@ -6,7 +6,7 @@ type QueryOption = {
   onSuccess: (data: GetStudyDetailRes) => void;
 };
 
-const useStudyDetailQuery = (studyId: number, options: QueryOption) => {
+const useStudyDetailQuery = (studyId: number, options?: QueryOption) => {
   return useQuery(['studyDetail', studyId], () => getStudyDetail(Number(studyId)), {
     select: ({ data }) => data,
     ...options,

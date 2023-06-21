@@ -1,51 +1,39 @@
-import { postStudyComment } from '@/api/study/studyAPI';
 import UserProfileImg from '@/components/common/UserProfileImg';
-import { formatDate } from '@/utils/dateForm';
-import { useMutation } from '@tanstack/react-query';
-import type { FC } from 'react';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import classNames from 'classnames';
+import { type FC, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 interface Props {
   profileUrl?: string;
-  studyId?: string;
-  selectedDate: Date;
-  taskId: number;
+  onSubmitPostComment: (data: CommentFormValue) => void;
 }
 
 export interface CommentFormValue {
-  commnet: string;
+  comment: string;
 }
 
-const AddUserComment: FC<Props> = ({ profileUrl, studyId, selectedDate, taskId }) => {
-  const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
-
+const AddUserComment: FC<Props> = ({ profileUrl, onSubmitPostComment }) => {
   const { handleSubmit, register, reset } = useForm<CommentFormValue>();
+  const [isInputEmpty, setIsInputEmpty] = useState(true);
 
-  const { mutate: postComment } = useMutation(postStudyComment, {
-    onSuccess: () => {
-      alert('등록되었습니다!');
-      reset();
-    },
-  });
+  const onSubmit = (data: CommentFormValue) => {
+    onSubmitPostComment(data);
+    reset();
+  };
 
-  const onSubmitComment: SubmitHandler<CommentFormValue> = ({ commnet }) => {
-    const body = {
-      taskId: taskId,
-      taskDate: taskDate,
-      comment: commnet,
-    };
-
-    if (!studyId) return;
-    postComment({ studyId: Number(studyId), body });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsInputEmpty(e.target.value === '');
   };
 
   return (
     <div>
       <p className="comment-title">댓글</p>
-      <form className="comment-input-container" onSubmit={handleSubmit(onSubmitComment)}>
+      <form className="comment-input-container" onSubmit={handleSubmit(onSubmit)}>
         <UserProfileImg src={profileUrl} />
-        <input {...register('commnet')} />
-        <button type="submit">등록하기</button>
+        <input {...register('comment')} onChange={handleInputChange} />
+        <button type="submit" disabled={isInputEmpty} className={classNames({ disabled: isInputEmpty })}>
+          등록하기
+        </button>
       </form>
     </div>
   );

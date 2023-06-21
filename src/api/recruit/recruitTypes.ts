@@ -29,6 +29,25 @@ export interface PostRecruitReq {
   studyId: number;
 }
 
-export interface GetRecruitRes extends PostRecruitReq {
+export interface GetRecruitRes {
   offerId: number;
+  offerIntro: string;
+  offerRule: string;
+}
+
+export interface PostRecruitCommentReq {
+  comment: string;
+  secret: boolean;
+}
+
+export interface CommentRes {
+  comment: string;
+  createdAt: string;
+  offerCommentId?: number;
+  profileUrl: string;
+  replies: string[];
+  secret: boolean;
+  userId: number;
+  userName: string;
+  studyCommentId?: number;
 }

@@ -1,26 +1,29 @@
 import type { FC } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getStudyTaskComment } from '@/api/study/studyAPI';
 import SingleUserComment from '@/components/study/studySchedule/comment/SingleUserComment';
-import { formatDate } from '@/utils/dateForm';
+import type { CommentFormValue } from '@/components/common/AddUserComment';
+import type { CommentRes } from '@/api/recruit/recruitTypes';
 
 interface Props {
-  startDate: Date;
-  studyId?: string;
+  comments: CommentRes[];
+  onDeleteComment: (id: number) => void;
+  onSubmitPatchComment: ({ data, id }: { data: CommentFormValue; id: number }) => void;
 }
 
-const CommentBox: FC<Props> = ({ startDate, studyId }) => {
-  const taskDate = formatDate(startDate, 'yyyy-MM-dd');
-  const { data } = useQuery({
-    queryFn: () => getStudyTaskComment(Number(studyId), taskDate),
-    queryKey: ['studyComments', taskDate],
-  });
-
+const CommentBox: FC<Props> = ({ comments, onDeleteComment, onSubmitPatchComment }) => {
   return (
     <div className="comment-list-container">
-      {data?.data.map((data) => (
-        <SingleUserComment key={data.studyCommentId} taskDate={taskDate} commentItem={data} />
-      ))}
+      {!comments.length ? (
+        <p>아직 아무 댓글도 달리지 않았어요...</p>
+      ) : (
+        comments?.map((list) => (
+          <SingleUserComment
+            key={list.studyCommentId || list.offerCommentId}
+            commentItem={list}
+            onDeleteComment={onDeleteComment}
+            onSubmitPatchComment={onSubmitPatchComment}
+          />
+        ))
+      )}
     </div>
   );
 };
