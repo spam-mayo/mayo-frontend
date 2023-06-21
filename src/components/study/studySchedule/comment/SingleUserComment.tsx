@@ -11,10 +11,10 @@ interface Props {
   commentItem: CommentRes;
   taskDate?: string;
   onSubmitPatchComment: ({ data, id }: { data: CommentFormValue; id: number }) => void;
-  deleteComment: (id: number) => void;
+  onDeleteComment: (id: number) => void;
 }
 
-const SingleUserComment: FC<Props> = ({ commentItem, deleteComment, onSubmitPatchComment }) => {
+const SingleUserComment: FC<Props> = ({ commentItem, onDeleteComment, onSubmitPatchComment }) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const { userName, comment, createdAt, profileUrl, studyCommentId, userId, offerCommentId } = commentItem;
@@ -36,8 +36,8 @@ const SingleUserComment: FC<Props> = ({ commentItem, deleteComment, onSubmitPatc
   };
 
   const onClickDeleteComment = () => {
-    if (offerCommentId) deleteComment(offerCommentId);
-    if (studyCommentId) deleteComment(studyCommentId);
+    if (offerCommentId) onDeleteComment(offerCommentId);
+    if (studyCommentId) onDeleteComment(studyCommentId);
   };
 
   return (

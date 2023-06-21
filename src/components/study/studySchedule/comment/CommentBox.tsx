@@ -5,21 +5,25 @@ import type { CommentRes } from '@/api/recruit/recruitTypes';
 
 interface Props {
   comments: CommentRes[];
-  deleteComment: (id: number) => void;
+  onDeleteComment: (id: number) => void;
   onSubmitPatchComment: ({ data, id }: { data: CommentFormValue; id: number }) => void;
 }
 
-const CommentBox: FC<Props> = ({ comments, deleteComment, onSubmitPatchComment }) => {
+const CommentBox: FC<Props> = ({ comments, onDeleteComment, onSubmitPatchComment }) => {
   return (
     <div className="comment-list-container">
-      {comments?.map((list) => (
-        <SingleUserComment
-          key={list.studyCommentId || list.offerCommentId}
-          commentItem={list}
-          deleteComment={deleteComment}
-          onSubmitPatchComment={onSubmitPatchComment}
-        />
-      ))}
+      {!comments.length ? (
+        <p>아직 아무 댓글도 달리지 않았어요...</p>
+      ) : (
+        comments?.map((list) => (
+          <SingleUserComment
+            key={list.studyCommentId || list.offerCommentId}
+            commentItem={list}
+            onDeleteComment={onDeleteComment}
+            onSubmitPatchComment={onSubmitPatchComment}
+          />
+        ))
+      )}
     </div>
   );
 };

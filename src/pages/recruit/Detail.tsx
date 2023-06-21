@@ -27,10 +27,10 @@ const RecruitDetail: FC = () => {
   const { data: user } = useUserDetailQuery();
   const { data: recruitComment } = useRecruitCommentQuery(Number(studyId));
   const [isClicked, setIsClicked] = useState(false);
-  const deleteCom = useDeleteRecruitCommentMutation();
-  const patchCom = usePatchRecruitCommentMutation();
-  const postCom = usePostRecruitCommentMutation();
-  const postStudy = usePostStudyGroupMutation();
+  const onDeleteComment = useDeleteRecruitCommentMutation();
+  const onPatchComment = usePatchRecruitCommentMutation();
+  const onPostComment = usePostRecruitCommentMutation();
+  const onPostStudy = usePostStudyGroupMutation();
   const { mutate: postRecruitLike } = usePostRecruitLikesMutation({
     onSuccess: () => {
       setIsClicked((prev) => !prev);
@@ -50,7 +50,7 @@ const RecruitDetail: FC = () => {
       secret: false,
     };
 
-    postCom.mutate({ studyId: Number(studyId), body });
+    onPostComment.mutate({ studyId: Number(studyId), body });
   };
 
   const onSubmitPatchComment = ({ data, id }: { data: CommentFormValue; id: number }) => {
@@ -59,7 +59,7 @@ const RecruitDetail: FC = () => {
       secret: false,
     };
 
-    patchCom.mutate({ offerCommentId: id, body });
+    onPatchComment.mutate({ offerCommentId: id, body });
   };
 
   const onClickGoBack = () => {
@@ -67,7 +67,7 @@ const RecruitDetail: FC = () => {
   };
 
   const onClickStudyJoin = () => {
-    postStudy.mutate(Number(studyId));
+    onPostStudy.mutate(Number(studyId));
   };
 
   const onClickHeart = () => {
@@ -107,7 +107,7 @@ const RecruitDetail: FC = () => {
             <AddUserComment onSubmitPostComment={onSubmitPostComment} profileUrl={user?.profileUrl} />
             <CommentBox
               comments={recruitComment ?? []}
-              deleteComment={deleteCom}
+              onDeleteComment={onDeleteComment}
               onSubmitPatchComment={onSubmitPatchComment}
             />
           </div>

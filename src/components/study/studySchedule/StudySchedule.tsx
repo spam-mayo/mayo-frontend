@@ -4,15 +4,15 @@ import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
 import TodoList from '@/components/study/studySchedule/todoList/TodoList';
 import AddUserComment, { CommentFormValue } from '@/components/common/AddUserComment';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getUserById } from '@/api/auth/authAPI';
 import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
 import useAuth from '@/hooks/useAuth';
-import { postStudyComment } from '@/api/study/studyAPI';
 import { formatDate } from '@/utils/dateForm';
 import useStudyCommentsQuery from '@/queries/study/useStudyCommentsQuery';
 import useDeleteStudyCommentMutation from '@/queries/study/useDeleteStudyCommentMutation';
 import usePatchStudyCommentMutation from '@/queries/study/usePatchStudyCommentMutation';
+import usePostStudyCommentMutation from '@/queries/study/usePostStudyCommentMutation';
 
 interface Props {
   startDate?: string;
@@ -24,18 +24,13 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const { studyId } = useParams();
   const { userId } = useAuth();
   const { data: comment } = useStudyCommentsQuery(Number(studyId), selectedDate);
-  const deleteCom = useDeleteStudyCommentMutation();
-  const patchCom = usePatchStudyCommentMutation();
+  const onDeleteComment = useDeleteStudyCommentMutation();
+  const onPatchComment = usePatchStudyCommentMutation();
+  const onPostComment = usePostStudyCommentMutation();
 
   const { data } = useQuery({
     queryFn: () => getUserById(Number(userId)),
     queryKey: ['user', userId],
-  });
-
-  const { mutate: postComment } = useMutation(postStudyComment, {
-    onSuccess: () => {
-      alert('등록되었습니다!');
-    },
   });
 
   const onSubmitPostComment = (data: CommentFormValue) => {
@@ -46,7 +41,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
       comment: data.comment,
     };
 
-    postComment({ studyId: Number(studyId), body });
+    onPostComment.mutate({ studyId: Number(studyId), body });
   };
 
   const onSubmitPatchComment = ({ data, id }: { data: CommentFormValue; id: number }) => {
@@ -56,7 +51,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
       comment: data.comment,
     };
 
-    patchCom.mutate({ studyCommentId: id, body });
+    onPatchComment.mutate({ studyCommentId: id, body });
   };
 
   const handleDateChange = (date: Date | null) => {
@@ -75,7 +70,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
           <AddUserComment profileUrl={data?.data.profileUrl} onSubmitPostComment={onSubmitPostComment} />
           <CommentBox
             comments={comment ?? []}
-            deleteComment={deleteCom.mutate}
+            onDeleteComment={onDeleteComment.mutate}
             onSubmitPatchComment={onSubmitPatchComment}
           />
         </div>
