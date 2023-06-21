@@ -5,10 +5,10 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import type { CommentFormValue } from '@/components/common/AddUserComment';
 import { formatDate } from '@/utils/dateForm';
 import useAuth from '@/hooks/useAuth';
-import type { CommentData } from '@/components/study/studySchedule/comment/CommentBox';
+import type { CommentRes } from '@/api/recruit/recruitTypes';
 
 interface Props {
-  commentItem: CommentData;
+  commentItem: CommentRes;
   taskDate?: string;
   onSubmitPatchComment: ({ data, id }: { data: CommentFormValue; id: number }) => void;
   deleteComment: (id: number) => void;

@@ -1,6 +1,11 @@
 import axiosInstance from '@/api/axiosInstance';
-import type { GetRecruitRes, PostRecruitCommentReq, PostRecruitReq, Recruit } from '@/api/recruit/recruitTypes';
-import type { CommentData } from '@/components/study/studySchedule/comment/CommentBox';
+import type {
+  CommentRes,
+  GetRecruitRes,
+  PostRecruitCommentReq,
+  PostRecruitReq,
+  Recruit,
+} from '@/api/recruit/recruitTypes';
 
 interface PaginationResponse<T> {
   data: T;
@@ -43,7 +48,7 @@ export const postRecruitComment = ({ studyId, body }: { studyId: number; body: P
   axiosInstance.post(`/api/offer-comment/study/${studyId}`, body);
 
 export const getRecruitComment = (studyId: number) =>
-  axiosInstance.get<CommentData[]>(`/api/offer-comment/study/${studyId}`);
+  axiosInstance.get<CommentRes[]>(`/api/offer-comment/study/${studyId}`);
 
 export const patchRecruitComment = ({
   offerCommentId,

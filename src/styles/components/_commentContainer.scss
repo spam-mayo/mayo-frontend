@@ -25,6 +25,10 @@
     padding: 30px 10px;
     @include flexbox();
   }
+
+  .disabled {
+    cursor: not-allowed;
+  }
 }
 
 .comment-list-container {

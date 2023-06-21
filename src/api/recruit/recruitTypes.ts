@@ -29,12 +29,10 @@ export interface PostRecruitReq {
   studyId: number;
 }
 
-export interface GetRecruitRes extends PostRecruitReq {
+export interface GetRecruitRes {
   offerId: number;
-}
-
-export interface GetRecruitRes extends PostRecruitReq {
-  offerId: number;
+  offerIntro: string;
+  offerRule: string;
 }
 
 export interface PostRecruitCommentReq {
@@ -42,13 +40,14 @@ export interface PostRecruitCommentReq {
   secret: boolean;
 }
 
-export interface GetRecruitCommentRes {
+export interface CommentRes {
   comment: string;
   createdAt: string;
-  offerCommentId: number;
+  offerCommentId?: number;
   profileUrl: string;
   replies: string[];
   secret: boolean;
   userId: number;
   userName: string;
+  studyCommentId?: number;
 }

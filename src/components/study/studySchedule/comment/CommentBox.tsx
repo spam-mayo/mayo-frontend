@@ -1,28 +1,18 @@
 import type { FC } from 'react';
 import SingleUserComment from '@/components/study/studySchedule/comment/SingleUserComment';
 import type { CommentFormValue } from '@/components/common/AddUserComment';
-export interface CommentData {
-  comment: string;
-  createdAt: string;
-  offerCommentId?: number;
-  profileUrl: string;
-  replies?: string[];
-  secret?: boolean;
-  studyCommentId?: number;
-  userId: number;
-  userName: string;
-}
+import type { CommentRes } from '@/api/recruit/recruitTypes';
 
 interface Props {
-  Comments: CommentData[];
+  comments: CommentRes[];
   deleteComment: (id: number) => void;
   onSubmitPatchComment: ({ data, id }: { data: CommentFormValue; id: number }) => void;
 }
 
-const CommentBox: FC<Props> = ({ Comments, deleteComment, onSubmitPatchComment }) => {
+const CommentBox: FC<Props> = ({ comments, deleteComment, onSubmitPatchComment }) => {
   return (
     <div className="comment-list-container">
-      {Comments?.map((list) => (
+      {comments?.map((list) => (
         <SingleUserComment
           key={list.studyCommentId || list.offerCommentId}
           commentItem={list}

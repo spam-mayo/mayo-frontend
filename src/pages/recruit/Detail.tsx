@@ -42,7 +42,7 @@ const RecruitDetail: FC = () => {
     if (study?.checkLikes !== undefined && study.checkLikes !== null) setIsClicked(study.checkLikes);
   }, [study?.checkLikes]);
 
-  const onSubmit = (data: CommentFormValue) => {
+  const onSubmitPostComment = (data: CommentFormValue) => {
     if (!studyId) return;
 
     const body = {
@@ -104,9 +104,9 @@ const RecruitDetail: FC = () => {
                 <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
               </div>
             </div>
-            <AddUserComment onSubmitComment={onSubmit} profileUrl={user?.profileUrl} />
+            <AddUserComment onSubmitPostComment={onSubmitPostComment} profileUrl={user?.profileUrl} />
             <CommentBox
-              Comments={recruitComment ?? []}
+              comments={recruitComment ?? []}
               deleteComment={deleteCom}
               onSubmitPatchComment={onSubmitPatchComment}
             />

@@ -74,6 +74,8 @@ export interface StudyCommentReq {
   comment: string;
 }
 
+export type PatchStudyCommentReq = StudyCommentReq;
+
 export interface PatchStudyTaskReq {
   task: string;
 }

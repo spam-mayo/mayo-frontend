@@ -10,7 +10,7 @@ import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
 import useAuth from '@/hooks/useAuth';
 import { postStudyComment } from '@/api/study/studyAPI';
 import { formatDate } from '@/utils/dateForm';
-import useStudyCommentQuery from '@/queries/study/useStudyCommentQuery';
+import useStudyCommentsQuery from '@/queries/study/useStudyCommentsQuery';
 import useDeleteStudyCommentMutation from '@/queries/study/useDeleteStudyCommentMutation';
 import usePatchStudyCommentMutation from '@/queries/study/usePatchStudyCommentMutation';
 
@@ -23,7 +23,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const { studyId } = useParams();
   const { userId } = useAuth();
-  const { data: comment } = useStudyCommentQuery(Number(studyId), selectedDate);
+  const { data: comment } = useStudyCommentsQuery(Number(studyId), selectedDate);
   const deleteCom = useDeleteStudyCommentMutation();
   const patchCom = usePatchStudyCommentMutation();
 
@@ -38,7 +38,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     },
   });
 
-  const onSubmit = (data: CommentFormValue) => {
+  const onSubmitPostComment = (data: CommentFormValue) => {
     const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
 
     const body = {
@@ -72,9 +72,9 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
             <Calendar curDate={selectedDate} onDateChange={handleDateChange} startDate={startDate} endDate={endDate} />
             <TodoList selectedDate={selectedDate} studyId={studyId} />
           </div>
-          <AddUserComment profileUrl={data?.data.profileUrl} onSubmitComment={onSubmit} />
+          <AddUserComment profileUrl={data?.data.profileUrl} onSubmitPostComment={onSubmitPostComment} />
           <CommentBox
-            Comments={comment ?? []}
+            comments={comment ?? []}
             deleteComment={deleteCom.mutate}
             onSubmitPatchComment={onSubmitPatchComment}
           />
