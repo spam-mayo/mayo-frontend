@@ -6,12 +6,16 @@ import usePostStudyGroupMutation from '@/queries/study/usePostStudyGroupMutation
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import changeToHtml from '@/utils/changeToHtml';
 import classNames from 'classnames';
-import { type FC, useState, useEffect } from 'react';
+import { type FC, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const RecruitDetail: FC = () => {
   const { studyId } = useParams();
-  const { data: study } = useStudyDetailQuery(Number(studyId));
+  const { data: study } = useStudyDetailQuery(Number(studyId), {
+    onSuccess: (data) => {
+      if (data?.checkLikes !== undefined && data.checkLikes !== null) setIsClicked(data.checkLikes);
+    },
+  });
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
   const [isClicked, setIsClicked] = useState(false);
   const postStudy = usePostStudyGroupMutation();
@@ -21,10 +25,6 @@ const RecruitDetail: FC = () => {
     },
   });
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (study?.checkLikes !== undefined && study.checkLikes !== null) setIsClicked(study.checkLikes);
-  }, [study?.checkLikes]);
 
   const onClickGoBack = () => {
     navigate(-1);

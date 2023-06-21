@@ -1,6 +1,6 @@
 import StudyPeriod from '@/components/mypage/sutdyBlock/StudyPeriod';
 import type { FC } from 'react';
-import StudyIntro from '@/components/mypage/sutdyBlock/StudyIntro';
+import StudyIntro, { UserStudyRoute } from '@/components/mypage/sutdyBlock/StudyIntro';
 import type { Stack } from '@/api/auth/types';
 
 interface Props {
@@ -11,18 +11,13 @@ interface Props {
     title: string;
     stack: Stack[];
   };
-  isDetail?: boolean;
-  isRecruit?: boolean;
+  studyRoute?: UserStudyRoute;
 }
 
-const StudyBlock: FC<Props> = ({
-  studyData: { endDate, startDate, title, stack, studyId },
-  isDetail,
-  isRecruit,
-}: Props) => {
+const StudyBlock: FC<Props> = ({ studyData: { endDate, startDate, title, stack, studyId }, studyRoute }: Props) => {
   return (
     <div className="studyBlock-container">
-      <StudyIntro title={title} stacks={stack} isDetail={isDetail} studyId={studyId} isRecruit={isRecruit} />
+      <StudyIntro title={title} stacks={stack} studyRoute={studyRoute} studyId={studyId} />
       <StudyPeriod startDate={startDate} endDate={endDate} />
     </div>
   );

@@ -29,6 +29,7 @@ const UserStudy: FC = () => {
   if (isError) return <div>에러남</div>;
 
   const maxPostPage = data?.pageInfo?.totalPages ?? 0;
+  const studyRoute = selectOption === ('ongoing' || 'end') ? 'detail' : 'recruit';
 
   return (
     <div className="study-container">
@@ -41,7 +42,7 @@ const UserStudy: FC = () => {
         ) : (
           data.data.map(({ studyId, endDate, startDate, title, stack }) => {
             const studyData = { endDate, startDate, title, stack, studyId };
-            return <StudyBlock key={studyId} studyData={studyData} isRecruit />;
+            return <StudyBlock key={studyId} studyData={studyData} studyRoute={studyRoute} />;
           })
         )}
       </div>
