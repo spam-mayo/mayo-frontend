@@ -39,13 +39,13 @@
     }
   }
 
-  .err-msg {
-    color: $red;
-    @include text-style-13();
-  }
-
   .required::after {
     content: ' *';
     color: $red;
   }
+}
+
+.err-msg {
+  color: $red;
+  @include text-style-13();
 }

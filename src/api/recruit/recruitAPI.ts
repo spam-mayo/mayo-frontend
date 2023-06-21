@@ -34,7 +34,7 @@ export const getRecruits = async (pageNum: number, category: string | null, sort
 // export const getSearchNofield = (pageNum: number, sort: string, search: string | null) =>
 //   axiosInstance.get(`api/study?page=${pageNum}&size=12&sort=${sort}&search=${search}`);
 
-export const postRecruit = ({ studyId, body }: { studyId: number; body: PostRecruitReq }) =>
+export const postRecruit = ({ studyId, ...body }: PostRecruitReq) =>
   axiosInstance.post(`/api/offer/study/${studyId}`, body);
 
 export const getRecruit = (studyId: number) => axiosInstance.get<GetRecruitRes>(`/api/offer/study/${studyId}`);

@@ -14,10 +14,15 @@ import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
 import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
+import changeToHtml from '@/utils/changeToHtml';
 
 const RecruitDetail: FC = () => {
   const { studyId } = useParams();
-  const { data: study } = useStudyDetailQuery(Number(studyId));
+  const { data: study } = useStudyDetailQuery(Number(studyId), {
+    onSuccess: (data) => {
+      if (data?.checkLikes !== undefined && data.checkLikes !== null) setIsClicked(data.checkLikes);
+    },
+  });
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
   const { data: user } = useUserDetailQuery();
   const { data: recruitComment } = useRecruitCommentQuery(Number(studyId));
@@ -69,8 +74,8 @@ const RecruitDetail: FC = () => {
     postRecruitLike(Number(studyId));
   };
 
-  const introHTML = recruit?.offerIntro.replace(/\n/g, '<br/>');
-  const ruleHTML = recruit?.offerRule.replace(/\n/g, '<br/>');
+  const introHTML = changeToHtml(recruit?.offerIntro);
+  const ruleHTML = changeToHtml(recruit?.offerRule);
 
   return (
     <div className="container">
