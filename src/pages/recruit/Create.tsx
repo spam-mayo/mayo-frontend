@@ -2,6 +2,8 @@ import { postRecruit } from '@/api/recruit/recruitAPI';
 import { getStudyDetail } from '@/api/study/studyAPI';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
+import { recruitSchema } from '@/constants/schema/recruitSchema';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
@@ -15,7 +17,11 @@ interface RecruitFormValue {
 const RecruitCreate: FC = () => {
   const { studyId } = useParams();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<RecruitFormValue>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RecruitFormValue>({ resolver: yupResolver(recruitSchema) });
 
   const { data } = useQuery({
     queryFn: () => getStudyDetail(Number(studyId)),
@@ -55,11 +61,13 @@ const RecruitCreate: FC = () => {
             <div className="recruit-intro">
               <p>스터디 소개</p>
               <textarea placeholder="내용을 작성해주세요." required form="recruit" {...register('offerIntro')} />
+              {errors.offerIntro && <p className="err-msg">{errors.offerIntro.message}</p>}
             </div>
 
             <div className="recruit-rule">
               <p>스터디 규칙</p>
               <textarea placeholder="내용을 작성해주세요." required form="recruit" {...register('offerRule')} />
+              {errors.offerRule && <p className="err-msg">{errors.offerRule.message?.toString()}</p>}
             </div>
             <div className="button-area">
               <Button size="large" color="gray" outline>
