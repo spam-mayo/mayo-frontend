@@ -4,6 +4,7 @@ import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMu
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import usePostStudyGroupMutation from '@/queries/study/usePostStudyGroupMutation';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
+import changeToHtml from '@/utils/changeToHtml';
 import classNames from 'classnames';
 import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -37,8 +38,8 @@ const RecruitDetail: FC = () => {
     postRecruitLike(Number(studyId));
   };
 
-  const introHTML = recruit?.offerIntro.replace(/\n/g, '<br/>');
-  const ruleHTML = recruit?.offerRule.replace(/\n/g, '<br/>');
+  const introHTML = changeToHtml(recruit?.offerIntro);
+  const ruleHTML = changeToHtml(recruit?.offerRule);
 
   return (
     <div className="container">
