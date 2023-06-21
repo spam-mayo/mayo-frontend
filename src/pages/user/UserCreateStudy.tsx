@@ -30,6 +30,8 @@ const UserCreateStudy: FC = () => {
 
   const maxPostPage = data?.pageInfo?.totalPages ?? 0;
 
+  const studyRoute = selectOption === 'before_recruitment' ? 'createRecruit' : 'recruit';
+
   return (
     <div className="study-container">
       <div>
@@ -41,7 +43,7 @@ const UserCreateStudy: FC = () => {
         ) : (
           data.data.map(({ studyId, endDate, startDate, title, stack }) => {
             const studyData = { endDate, startDate, title, stack, studyId };
-            return <StudyBlock key={studyId} studyData={studyData} isRecruit={selectOption === 'before_recruitment'} />;
+            return <StudyBlock key={studyId} studyData={studyData} studyRoute={studyRoute} />;
           })
         )}
       </div>

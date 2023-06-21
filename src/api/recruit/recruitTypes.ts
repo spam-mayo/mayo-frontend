@@ -26,4 +26,9 @@ export interface Recruit extends RecruitStack, RecruitOwner {
 export interface PostRecruitReq {
   offerIntro: string;
   offerRule: string;
+  studyId: number;
+}
+
+export interface GetRecruitRes extends PostRecruitReq {
+  offerId: number;
 }

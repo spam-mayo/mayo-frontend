@@ -1,0 +1,36 @@
+.recruit-detail-container {
+  background-color: $white;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px 20px;
+  margin-bottom: 60px;
+
+  .recruit-subtitle {
+    @include text-style-24();
+    border-bottom: 1px solid $border;
+    font-weight: 600;
+  }
+
+  .detail-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.join-button {
+  margin: 20px 0;
+  @include flexbox(flex-end, center);
+}
+
+.icon-heart {
+  font-size: 30px;
+  margin-right: 20px;
+  color: $white;
+
+  &.clicked {
+    color: $primary;
+  }
+}
