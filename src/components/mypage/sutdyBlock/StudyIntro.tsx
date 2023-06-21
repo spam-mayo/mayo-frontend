@@ -1,3 +1,4 @@
+import myPageLinkTo from '@/utils/myPageLinkTo';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,14 +11,7 @@ interface Props {
 }
 
 const StudyIntro: FC<Props> = ({ title, stacks, studyId, studyRoute }: Props) => {
-  let linkTo = '';
-  if (studyRoute === 'detail') {
-    linkTo = `/study/${studyId}`;
-  } else if (studyRoute === 'recruit') {
-    linkTo = `/recruit/detail/${studyId}`;
-  } else if (studyRoute === 'createRecruit') {
-    linkTo = `/recruit/create/${studyId}`;
-  }
+  const linkTo = myPageLinkTo(studyRoute, studyId);
 
   return (
     <div className="title-container">
