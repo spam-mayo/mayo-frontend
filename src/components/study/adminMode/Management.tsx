@@ -1,8 +1,10 @@
+import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import type { FC } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const Management: FC = () => {
   const { studyId } = useParams();
+  const data = useStudyDetailQuery(Number(studyId));
 
   return (
     <div className="notice-container">
@@ -12,7 +14,7 @@ const Management: FC = () => {
           <p>구인 글 관리</p>
           <div className="sub-content-bundle">
             <Link to={`/recruit/detail/${studyId}`}>
-              <span>스터디 만들거야 모집중</span>
+              <span>{data.data?.title}</span>
             </Link>
             <div className="notice-button-container">
               <Link to={`/recruit/edit/${studyId}`}>
