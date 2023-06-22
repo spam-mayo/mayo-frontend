@@ -8,11 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-
-interface RecruitFormValue {
-  offerIntro: string;
-  offerRule: string;
-}
+import type { RecruitFormValue } from '@/api/recruit/recruitTypes';
 
 const RecruitCreate: FC = () => {
   const { studyId } = useParams();

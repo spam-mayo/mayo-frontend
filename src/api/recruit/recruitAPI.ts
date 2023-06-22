@@ -2,6 +2,7 @@ import axiosInstance from '@/api/axiosInstance';
 import type {
   CommentRes,
   GetRecruitRes,
+  PatchRecruitReq,
   PostRecruitCommentReq,
   PostRecruitReq,
   Recruit,
@@ -62,3 +63,6 @@ export const deleteRecruitComment = (offerCommentId: number) =>
   axiosInstance.delete(`/api/offer-comment/${offerCommentId}`);
 
 export const postRecruitLikes = (studyId: number) => axiosInstance.post(`/api/study/${studyId}/likes`);
+
+export const patchRecruit = ({ offerId, ...body }: PatchRecruitReq) =>
+  axiosInstance.patch(`/api/offer/${offerId}`, body);
