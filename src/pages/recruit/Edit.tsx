@@ -72,7 +72,7 @@ const RecruitEdit: FC = () => {
               {errors.offerRule && <p className="err-msg">{errors.offerRule.message}</p>}
             </div>
             <div className="button-area">
-              <Button size="large" color="gray" outline>
+              <Button size="large" color="gray" outline onClick={onClickGoBack} type="button">
                 취소
               </Button>
               <Button size="large" type="submit">
