@@ -29,7 +29,7 @@ const UserStudy: FC = () => {
   if (isError) return <div>에러남</div>;
 
   const maxPostPage = data?.pageInfo?.totalPages ?? 0;
-  const studyRoute = selectOption === ('ongoing' || 'end') ? 'detail' : 'recruit';
+  const studyRoute = selectOption === ('before_recruitment' && 'recruiting') ? 'recruit' : 'detail';
 
   return (
     <div className="study-container">
