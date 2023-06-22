@@ -4,15 +4,14 @@ import Calendar from '@/components/study/studySchedule/Calendar';
 import { useParams } from 'react-router-dom';
 import TodoList from '@/components/study/studySchedule/todoList/TodoList';
 import AddUserComment, { CommentFormValue } from '@/components/common/AddUserComment';
-import { useQuery } from '@tanstack/react-query';
-import { getUserById } from '@/api/auth/authAPI';
 import CommentBox from '@/components/study/studySchedule/comment/CommentBox';
-import useAuth from '@/hooks/useAuth';
 import { formatDate } from '@/utils/dateForm';
 import useStudyCommentsQuery from '@/queries/study/useStudyCommentsQuery';
 import useDeleteStudyCommentMutation from '@/queries/study/useDeleteStudyCommentMutation';
 import usePatchStudyCommentMutation from '@/queries/study/usePatchStudyCommentMutation';
 import usePostStudyCommentMutation from '@/queries/study/usePostStudyCommentMutation';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@/atom/atom';
 
 interface Props {
   startDate?: string;
@@ -22,16 +21,11 @@ interface Props {
 const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const { studyId } = useParams();
-  const { userId } = useAuth();
   const { data: comment } = useStudyCommentsQuery(Number(studyId), selectedDate);
   const onDeleteComment = useDeleteStudyCommentMutation();
   const onPatchComment = usePatchStudyCommentMutation();
   const onPostComment = usePostStudyCommentMutation();
-
-  const { data } = useQuery({
-    queryFn: () => getUserById(Number(userId)),
-    queryKey: ['user', userId],
-  });
+  const user = useRecoilValue(userState);
 
   const onSubmitPostComment = (data: CommentFormValue) => {
     const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
@@ -71,7 +65,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
             <Calendar curDate={selectedDate} onDateChange={handleDateChange} startDate={startDate} endDate={endDate} />
             <TodoList selectedDate={selectedDate} studyId={studyId} />
           </div>
-          <AddUserComment profileUrl={data?.data.profileUrl} onSubmitPostComment={onSubmitPostComment} />
+          <AddUserComment profileUrl={user.profileUrl} onSubmitPostComment={onSubmitPostComment} />
           <CommentBox
             comments={comment ?? []}
             onDeleteComment={handleDeleteComment}

@@ -1,5 +1,5 @@
 import { postLogin, postLogout } from '@/api/auth/authAPI';
-import { userIdState } from '@/atom/atom';
+import { userState } from '@/atom/atom';
 import { StorageKeys } from '@/constants/storageKeys';
 import { initAuthStorage } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
@@ -9,14 +9,15 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 const useAuth = () => {
-  const [userId, setUserId] = useRecoilState(userIdState);
+  const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
 
   const { mutate: login } = useMutation(postLogin, {
     onSuccess: ({ headers: { authorization, refresh }, data: { userId } }) => {
       localStorage.setItem(StorageKeys.AT, authorization);
       localStorage.setItem(StorageKeys.RT, refresh);
-      setUserId(userId);
+      localStorage.setItem(StorageKeys.UserID, userId);
+      setUser((prev) => ({ ...prev, userId }));
       navigate('/');
     },
     onError: (err) => {
@@ -29,7 +30,7 @@ const useAuth = () => {
   const { mutate: logout } = useMutation(postLogout, {
     onSuccess: () => {
       initAuthStorage();
-      setUserId(null);
+      setUser({ ...user, userId: null, profileUrl: '' });
       alert('로그아웃 되었습니다.');
       navigate('/');
     },
@@ -37,10 +38,10 @@ const useAuth = () => {
 
   useEffect(() => {
     const id = localStorage.getItem(StorageKeys.UserID);
-    if (id) setUserId(Number(id));
+    if (id) setUser((prev) => ({ ...prev, userId: Number(id) }));
   }, []);
 
-  return { login, logout, isLogin: Boolean(userId), userId };
+  return { login, logout, isLogin: Boolean(user?.userId), userId: user?.userId };
 };
 
 export default useAuth;

@@ -1,17 +1,23 @@
 import Button from '@/components/common/Button';
-import { getUserById } from '@/api/auth/authAPI';
 import { type FC, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import HeaderProfile from '@/components/common/HeaderProfile';
 import UserProfileImg from '@/components/common/UserProfileImg';
 import useAuth from '@/hooks/useAuth';
+import { useSetRecoilState } from 'recoil';
+import { userState } from '@/atom/atom';
+import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
 
 const Header: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { logout, isLogin, userId } = useAuth();
-
-  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
+  const { logout, isLogin } = useAuth();
+  const setUser = useSetRecoilState(userState);
+  const data = useUserDetailQuery({
+    onSuccess: (res) => {
+      const profileUrl = res?.profileUrl;
+      setUser((prev) => ({ ...prev, profileUrl: profileUrl }));
+    },
+  });
 
   const onClickLogout = () => {
     logout();
@@ -49,7 +55,7 @@ const Header: FC = () => {
             {isLogin ? (
               <>
                 <div onClick={onClickMenuOpen}>
-                  <UserProfileImg src={data?.data.profileUrl} />
+                  <UserProfileImg src={data.data?.profileUrl} />
                 </div>
                 {menuOpen && (
                   <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />
