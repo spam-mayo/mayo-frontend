@@ -4,7 +4,11 @@ import { Link, useParams } from 'react-router-dom';
 
 const Management: FC = () => {
   const { studyId } = useParams();
-  const data = useStudyDetailQuery(Number(studyId));
+  const { data, isError } = useStudyDetailQuery(Number(studyId));
+
+  if (isError) {
+    return <div>에러 발생!!</div>;
+  }
 
   return (
     <div className="notice-container">
@@ -14,7 +18,7 @@ const Management: FC = () => {
           <p>구인 글 관리</p>
           <div className="sub-content-bundle">
             <Link to={`/recruit/detail/${studyId}`}>
-              <span>{data.data?.title}</span>
+              <span>{data?.title}</span>
             </Link>
             <div className="notice-button-container">
               <Link to={`/recruit/edit/${studyId}`}>
