@@ -8,20 +8,12 @@ interface Props {
   onClick: () => void;
 }
 
-const style = {
-  color: 'white',
-  fontSize: '20px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
-
 const UserProfile: FC<Props> = ({ src, name, onClick }) => {
   return (
     <div className="proflie">
       <div className="imgContainer">
         <UserProfileImg src={src} />
-        <i className="icon-pencil icon" onClick={onClick} style={style} />
+        <i className="icon-pencil icon" onClick={onClick} />
       </div>
       <p>{name}</p>
     </div>

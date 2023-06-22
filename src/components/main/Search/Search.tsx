@@ -6,12 +6,12 @@ interface Props {
 }
 
 const categoryOption: SelectOption[] = [
-  { label: '분야', value: '', id: 1 },
-  { label: '프론트엔드', value: 'frontend', id: 2 },
-  { label: '백엔드', value: 'backend', id: 3 },
-  { label: '디자인', value: 'design', id: 4 },
-  { label: '기획', value: 'plan', id: 5 },
-  { label: '기타', value: 'other', id: 6 },
+  { label: '분야', value: '' },
+  { label: '프론트엔드', value: 'frontend' },
+  { label: '백엔드', value: 'backend' },
+  { label: '디자인', value: 'design' },
+  { label: '기획', value: 'plan' },
+  { label: '기타', value: 'other' },
 ];
 
 // const placeOption: SelectOption[] = [
@@ -27,10 +27,10 @@ const categoryOption: SelectOption[] = [
 // ];
 
 const arrayOption: SelectOption[] = [
-  { label: '최신순', value: 'latest', id: 1 },
-  { label: '인기순', value: 'likes', id: 2 },
-  { label: '마감임박순', value: 'deadline', id: 3 },
-  { label: '조회수순', value: 'views', id: 4 },
+  { label: '최신순', value: 'latest' },
+  { label: '인기순', value: 'likes' },
+  { label: '마감임박순', value: 'deadline' },
+  { label: '조회수순', value: 'views' },
 ];
 
 const Search = ({ onChangeCategory, onChangeSort, onChange }: Props) => {
