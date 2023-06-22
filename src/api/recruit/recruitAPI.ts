@@ -66,3 +66,5 @@ export const postRecruitLikes = (studyId: number) => axiosInstance.post(`/api/st
 
 export const patchRecruit = ({ offerId, ...body }: PatchRecruitReq) =>
   axiosInstance.patch(`/api/offer/${offerId}`, body);
+
+export const deleteRecruit = (offerId: number) => axiosInstance.delete(`/api/offer/${offerId}`);
