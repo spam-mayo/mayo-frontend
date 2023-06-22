@@ -21,7 +21,12 @@ const RecruitEdit: FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RecruitFormValue>({ resolver: yupResolver(recruitSchema) });
-  const patchRecruit = usePatchRecruitMutation();
+  const patchRecruit = usePatchRecruitMutation({
+    onSuccess: () => {
+      alert('수정되었습니다!');
+      navigate(`/recruit/detail/${studyId}`);
+    },
+  });
 
   const onClickGoBack = () => {
     navigate(-1);

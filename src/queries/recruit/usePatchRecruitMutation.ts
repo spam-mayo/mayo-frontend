@@ -1,11 +1,13 @@
 import { patchRecruit } from '@/api/recruit/recruitAPI';
 import { useMutation } from '@tanstack/react-query';
 
-const usePatchRecruitMutation = () => {
+type MutationOption = {
+  onSuccess: () => void;
+};
+
+const usePatchRecruitMutation = (options?: MutationOption) => {
   return useMutation(patchRecruit, {
-    onSuccess: () => {
-      alert('구인글이 수정되었습니다.');
-    },
+    ...options,
   });
 };
 
