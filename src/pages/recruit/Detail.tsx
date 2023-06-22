@@ -14,8 +14,6 @@ import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import changeToHtml from '@/utils/changeToHtml';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@/atom/atom';
 
 const RecruitDetail: FC = () => {
   const { studyId } = useParams();
@@ -37,7 +35,6 @@ const RecruitDetail: FC = () => {
     },
   });
   const navigate = useNavigate();
-  const user = useRecoilValue(userState);
 
   useEffect(() => {
     if (study?.checkLikes !== undefined && study.checkLikes !== null) setIsClicked(study.checkLikes);
@@ -105,7 +102,7 @@ const RecruitDetail: FC = () => {
                 <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
               </div>
             </div>
-            <AddUserComment onSubmitPostComment={onSubmitPostComment} profileUrl={user.profileUrl} />
+            <AddUserComment onSubmitPostComment={onSubmitPostComment} />
             <CommentBox
               comments={recruitComment ?? []}
               onDeleteComment={onDeleteComment}

@@ -4,20 +4,12 @@ import { Link } from 'react-router-dom';
 import HeaderProfile from '@/components/common/HeaderProfile';
 import UserProfileImg from '@/components/common/UserProfileImg';
 import useAuth from '@/hooks/useAuth';
-import { useSetRecoilState } from 'recoil';
-import { userState } from '@/atom/atom';
 import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
 
 const Header: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { logout, isLogin } = useAuth();
-  const setUser = useSetRecoilState(userState);
-  const data = useUserDetailQuery({
-    onSuccess: (res) => {
-      const profileUrl = res?.profileUrl;
-      setUser((prev) => ({ ...prev, profileUrl: profileUrl }));
-    },
-  });
+  const data = useUserDetailQuery();
 
   const onClickLogout = () => {
     logout();

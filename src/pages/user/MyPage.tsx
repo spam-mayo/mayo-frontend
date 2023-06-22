@@ -4,9 +4,8 @@ import './myPage.scss';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import UserProfile from '@/components/mypage/UserProfile';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@/atom/atom';
 import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
+import useUser from '@/hooks/useUser';
 
 const rootPath = '/user/mypage';
 
@@ -21,8 +20,8 @@ const tabs = [
 const MyPage: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { pathname } = useLocation();
-  const user = useRecoilValue(userState);
   const { data } = useUserDetailQuery();
+  const { userProfile } = useUser();
 
   const onClickOpenModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -31,11 +30,11 @@ const MyPage: FC = () => {
 
   return (
     <>
-      {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={user.profileUrl} />}
+      {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={userProfile} />}
       <div className="container box">
         <div className="row">
           <div className="col-lg-3 column">
-            <UserProfile src={user.profileUrl} name={data?.userName ?? ''} onClick={onClickOpenModal} />
+            <UserProfile src={userProfile} name={data?.userName ?? ''} onClick={onClickOpenModal} />
             <ul className="tab-container">
               {tabs.map((tab) => (
                 <li

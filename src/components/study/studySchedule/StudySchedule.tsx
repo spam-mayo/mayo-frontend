@@ -10,8 +10,6 @@ import useStudyCommentsQuery from '@/queries/study/useStudyCommentsQuery';
 import useDeleteStudyCommentMutation from '@/queries/study/useDeleteStudyCommentMutation';
 import usePatchStudyCommentMutation from '@/queries/study/usePatchStudyCommentMutation';
 import usePostStudyCommentMutation from '@/queries/study/usePostStudyCommentMutation';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@/atom/atom';
 
 interface Props {
   startDate?: string;
@@ -25,7 +23,6 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const onDeleteComment = useDeleteStudyCommentMutation();
   const onPatchComment = usePatchStudyCommentMutation();
   const onPostComment = usePostStudyCommentMutation();
-  const user = useRecoilValue(userState);
 
   const onSubmitPostComment = (data: CommentFormValue) => {
     const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
@@ -65,7 +62,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
             <Calendar curDate={selectedDate} onDateChange={handleDateChange} startDate={startDate} endDate={endDate} />
             <TodoList selectedDate={selectedDate} studyId={studyId} />
           </div>
-          <AddUserComment profileUrl={user.profileUrl} onSubmitPostComment={onSubmitPostComment} />
+          <AddUserComment onSubmitPostComment={onSubmitPostComment} />
           <CommentBox
             comments={comment ?? []}
             onDeleteComment={handleDeleteComment}

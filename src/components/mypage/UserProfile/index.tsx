@@ -13,7 +13,9 @@ const UserProfile: FC<Props> = ({ src, name, onClick }) => {
     <div className="proflie">
       <div className="imgContainer">
         <UserProfileImg src={src} />
-        <i className="icon-pencil icon" onClick={onClick} />
+        <button onClick={onClick}>
+          <i className="icon-pencil icon" />
+        </button>
       </div>
       <p>{name}</p>
     </div>

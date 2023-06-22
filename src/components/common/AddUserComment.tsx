@@ -1,10 +1,10 @@
 import UserProfileImg from '@/components/common/UserProfileImg';
+import useUser from '@/hooks/useUser';
 import classNames from 'classnames';
 import { type FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface Props {
-  profileUrl?: string;
   onSubmitPostComment: (data: CommentFormValue) => void;
 }
 
@@ -12,9 +12,10 @@ export interface CommentFormValue {
   comment: string;
 }
 
-const AddUserComment: FC<Props> = ({ profileUrl, onSubmitPostComment }) => {
+const AddUserComment: FC<Props> = ({ onSubmitPostComment }) => {
   const { handleSubmit, register, reset } = useForm<CommentFormValue>();
   const [isInputEmpty, setIsInputEmpty] = useState(true);
+  const { userProfile } = useUser();
 
   const onSubmit = (data: CommentFormValue) => {
     onSubmitPostComment(data);
@@ -29,7 +30,7 @@ const AddUserComment: FC<Props> = ({ profileUrl, onSubmitPostComment }) => {
     <div>
       <p className="comment-title">댓글</p>
       <form className="comment-input-container" onSubmit={handleSubmit(onSubmit)}>
-        <UserProfileImg src={profileUrl} />
+        <UserProfileImg src={userProfile} />
         <input {...register('comment')} onChange={handleInputChange} />
         <button type="submit" disabled={isInputEmpty} className={classNames({ disabled: isInputEmpty })}>
           등록하기

@@ -23,7 +23,9 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     onSuccess: (res) => {
       alert('수정 완료');
       const profileUrl = res?.data?.profileUrl;
-      setUser((prev) => ({ ...prev, profileUrl: profileUrl }));
+      setUser((prev) => {
+        return prev ? { ...prev, profileUrl } : prev;
+      });
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {

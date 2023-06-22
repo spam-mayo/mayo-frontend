@@ -1,18 +1,18 @@
 import { getUserById } from '@/api/auth/authAPI';
-import type { GetUserRes } from '@/api/auth/types';
+import { userState } from '@/atom/atom';
 import useAuth from '@/hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import { useSetRecoilState } from 'recoil';
 
-type QueryOption = {
-  onSuccess: (data: GetUserRes) => void;
-};
-
-const useUserDetailQuery = (options?: QueryOption) => {
+const useUserDetailQuery = () => {
   const { userId } = useAuth();
+  const setUser = useSetRecoilState(userState);
 
   return useQuery(['user', userId], () => getUserById(Number(userId)), {
     select: ({ data }) => data,
-    ...options,
+    onSuccess: (res) => {
+      setUser((prev) => ({ ...prev, userId: res.userId, profileUrl: res.profileUrl }));
+    },
   });
 };
 
