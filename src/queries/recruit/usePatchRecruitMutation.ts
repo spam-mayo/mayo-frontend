@@ -1,13 +1,15 @@
 import { patchRecruit } from '@/api/recruit/recruitAPI';
 import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
-type MutationOption = {
-  onSuccess: () => void;
-};
+const usePatchRecruitMutation = (studyId: number) => {
+  const navigate = useNavigate();
 
-const usePatchRecruitMutation = (options?: MutationOption) => {
   return useMutation(patchRecruit, {
-    ...options,
+    onSuccess: () => {
+      alert('수정되었습니다!');
+      navigate(`/recruit/detail/${studyId}`);
+    },
   });
 };
 
