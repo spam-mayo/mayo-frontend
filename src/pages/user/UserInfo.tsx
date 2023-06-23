@@ -1,12 +1,13 @@
-import { deleteUser, getUserById } from '@/api/auth/authAPI';
+import { deleteUser } from '@/api/auth/authAPI';
 import ConfirmModal from '@/components/modal/ConfirmModal';
 import BasicInfo from '@/components/mypage/UserInfo/BasicInfo';
 import ExtraInfo from '@/components/mypage/UserInfo/ExtraInfo';
 import PasswordInfo from '@/components/mypage/UserInfo/PasswordInfo';
 import { StorageKeys } from '@/constants/storageKeys';
 import useAuth from '@/hooks/useAuth';
+import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
 import { initAuthStorage } from '@/utils';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { type FC, useState } from 'react';
 import './userInfo.scss';
@@ -15,14 +16,12 @@ const UserInfo: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { userId } = useAuth();
   const oauth = localStorage.getItem(StorageKeys.OAuth);
+  const { data } = useUserDetailQuery();
 
   if (!userId) {
     throw new Error('no user');
   }
 
-  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)), {
-    select: (data) => data.data,
-  });
   const userName = data?.userName;
   const email = data?.email;
   const field = data?.field;

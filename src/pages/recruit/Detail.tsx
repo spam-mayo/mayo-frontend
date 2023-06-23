@@ -10,7 +10,6 @@ import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMutation';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import usePostStudyGroupMutation from '@/queries/study/usePostStudyGroupMutation';
-import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
 import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
@@ -24,7 +23,6 @@ const RecruitDetail: FC = () => {
     },
   });
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
-  const { data: user } = useUserDetailQuery();
   const { data: recruitComment } = useRecruitCommentQuery(Number(studyId));
   const [isClicked, setIsClicked] = useState(false);
   const onDeleteComment = useDeleteRecruitCommentMutation();
@@ -104,7 +102,7 @@ const RecruitDetail: FC = () => {
                 <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
               </div>
             </div>
-            <AddUserComment onSubmitPostComment={onSubmitPostComment} profileUrl={user?.profileUrl} />
+            <AddUserComment onSubmitPostComment={onSubmitPostComment} />
             <CommentBox
               comments={recruitComment ?? []}
               onDeleteComment={onDeleteComment}

@@ -51,3 +51,8 @@ export interface GetUserRes {
   field: string;
   stack: Stack[];
 }
+
+export interface UserState {
+  userId: number | null;
+  profileUrl: string;
+}

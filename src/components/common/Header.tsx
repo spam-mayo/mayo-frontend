@@ -1,17 +1,15 @@
 import Button from '@/components/common/Button';
-import { getUserById } from '@/api/auth/authAPI';
 import { type FC, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import HeaderProfile from '@/components/common/HeaderProfile';
 import UserProfileImg from '@/components/common/UserProfileImg';
 import useAuth from '@/hooks/useAuth';
+import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
 
 const Header: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { logout, isLogin, userId } = useAuth();
-
-  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
+  const { logout, isLogin } = useAuth();
+  const { data } = useUserDetailQuery();
 
   const onClickLogout = () => {
     logout();
@@ -49,7 +47,7 @@ const Header: FC = () => {
             {isLogin ? (
               <>
                 <div onClick={onClickMenuOpen}>
-                  <UserProfileImg src={data?.data.profileUrl} />
+                  <UserProfileImg src={data?.profileUrl} />
                 </div>
                 {menuOpen && (
                   <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />

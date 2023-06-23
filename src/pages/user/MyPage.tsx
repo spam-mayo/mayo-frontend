@@ -1,12 +1,11 @@
 import { type FC, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getUserById } from '@/api/auth/authAPI';
 import ProfileEditModal from '@/components/modal/ProfileEditModal';
 import './myPage.scss';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import UserProfile from '@/components/mypage/UserProfile';
-import useAuth from '@/hooks/useAuth';
+import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
+import useUser from '@/hooks/useUser';
 
 const rootPath = '/user/mypage';
 
@@ -21,10 +20,8 @@ const tabs = [
 const MyPage: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { pathname } = useLocation();
-
-  const { userId } = useAuth();
-
-  const { data } = useQuery(['user', userId], () => getUserById(Number(userId)));
+  const { data } = useUserDetailQuery();
+  const { userProfile } = useUser();
 
   const onClickOpenModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -33,11 +30,11 @@ const MyPage: FC = () => {
 
   return (
     <>
-      {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={data?.data.profileUrl} />}
+      {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={userProfile} />}
       <div className="container box">
         <div className="row">
           <div className="col-lg-3 column">
-            <UserProfile src={data?.data.profileUrl} name={data?.data.userName ?? ''} onClick={onClickOpenModal} />
+            <UserProfile src={userProfile} name={data?.userName ?? ''} onClick={onClickOpenModal} />
             <ul className="tab-container">
               {tabs.map((tab) => (
                 <li

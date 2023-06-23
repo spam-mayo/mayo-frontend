@@ -6,6 +6,8 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import UserProfileImg from '@/components/common/UserProfileImg';
 import useAuth from '@/hooks/useAuth';
+import { useSetRecoilState } from 'recoil';
+import { userState } from '@/atom/atom';
 
 interface Props {
   onClose: () => void;
@@ -15,10 +17,15 @@ interface Props {
 const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const { userId } = useAuth();
+  const setUser = useSetRecoilState(userState);
 
   const { mutate: patchProfileImg } = useMutation(patchProfileImage, {
-    onSuccess: () => {
+    onSuccess: (res) => {
       alert('수정 완료');
+      const profileUrl = res?.data?.profileUrl;
+      setUser((prev) => {
+        return prev ? { ...prev, profileUrl } : prev;
+      });
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
@@ -68,7 +75,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     <div className="profile-edit-modal-container">
       <div className="profile-edit-modal-content">
         <div className="profile-title">
-          <p>프로필 사진 등록</p>
+          <p>프로필 사진 업로드</p>
           <div />
           <button onClick={onClose}>X</button>
         </div>
