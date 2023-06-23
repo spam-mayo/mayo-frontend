@@ -1,5 +1,7 @@
 import UserProfileImg from '@/components/common/UserProfileImg';
+import { commentSchema } from '@/constants/schema/commentSchema';
 import useUser from '@/hooks/useUser';
+import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 import { type FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -13,7 +15,12 @@ export interface CommentFormValue {
 }
 
 const AddUserComment: FC<Props> = ({ onSubmitPostComment }) => {
-  const { handleSubmit, register, reset } = useForm<CommentFormValue>();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm<CommentFormValue>({ resolver: yupResolver(commentSchema) });
   const [isInputEmpty, setIsInputEmpty] = useState(true);
   const { userProfile } = useUser();
 
@@ -31,7 +38,10 @@ const AddUserComment: FC<Props> = ({ onSubmitPostComment }) => {
       <p className="comment-title">댓글</p>
       <form className="comment-input-container" onSubmit={handleSubmit(onSubmit)}>
         <UserProfileImg src={userProfile} />
-        <input {...register('comment')} onChange={handleInputChange} />
+        <div className="comment-input">
+          <input {...register('comment')} onChange={handleInputChange} />
+          {errors.comment && <p className="err-msg">{errors.comment.message}</p>}
+        </div>
         <button type="submit" disabled={isInputEmpty} className={classNames({ disabled: isInputEmpty })}>
           등록하기
         </button>
