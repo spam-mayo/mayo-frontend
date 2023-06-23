@@ -75,7 +75,7 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
     <div className="profile-edit-modal-container">
       <div className="profile-edit-modal-content">
         <div className="profile-title">
-          <p>프로필 사진 등록</p>
+          <p>프로필 사진 업로드</p>
           <div />
           <button onClick={onClose}>X</button>
         </div>
