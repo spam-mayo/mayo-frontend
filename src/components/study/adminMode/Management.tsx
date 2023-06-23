@@ -2,24 +2,21 @@ import useDeleteRecruitMutation from '@/queries/recruit/useDeleteRecruitMutation
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import type { FC } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Management: FC = () => {
   const { studyId } = useParams();
-  const { data: study } = useStudyDetailQuery(Number(studyId));
+  const { data: study, isError } = useStudyDetailQuery(Number(studyId));
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
-  const ondeleteRecruit = useDeleteRecruitMutation({
-    onSuccess: () => {
-      alert('삭제되었습니다!');
-      navigate('/');
-    },
-  });
-
-  const navigate = useNavigate();
+  const ondeleteRecruit = useDeleteRecruitMutation();
 
   const onClickDeleteRecruit = () => {
     ondeleteRecruit.mutate(Number(recruit?.offerId));
   };
+
+  if (isError) {
+    return <div>에러 발생!!</div>;
+  }
 
   return (
     <div className="notice-container">

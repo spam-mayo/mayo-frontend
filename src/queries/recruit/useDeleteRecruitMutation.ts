@@ -1,13 +1,15 @@
 import { deleteRecruit } from '@/api/recruit/recruitAPI';
 import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
-type MutationOption = {
-  onSuccess: () => void;
-};
+const useDeleteRecruitMutation = () => {
+  const navigate = useNavigate();
 
-const useDeleteRecruitMutation = (options: MutationOption) => {
   return useMutation(deleteRecruit, {
-    ...options,
+    onSuccess: () => {
+      alert('삭제되었습니다!');
+      navigate('/');
+    },
   });
 };
 
