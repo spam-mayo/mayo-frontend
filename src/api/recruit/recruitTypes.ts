@@ -51,3 +51,10 @@ export interface CommentRes {
   userName: string;
   studyCommentId?: number;
 }
+
+export interface RecruitFormValue {
+  offerIntro: string;
+  offerRule: string;
+}
+
+export type PatchRecruitReq = GetRecruitRes;

@@ -1,10 +1,18 @@
+import useDeleteRecruitMutation from '@/queries/recruit/useDeleteRecruitMutation';
+import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import type { FC } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const Management: FC = () => {
   const { studyId } = useParams();
-  const { data, isError } = useStudyDetailQuery(Number(studyId));
+  const { data: study, isError } = useStudyDetailQuery(Number(studyId));
+  const { data: recruit } = useRecruitDetailQuery(Number(studyId));
+  const ondeleteRecruit = useDeleteRecruitMutation();
+
+  const onClickDeleteRecruit = () => {
+    ondeleteRecruit.mutate(Number(recruit?.offerId));
+  };
 
   if (isError) {
     return <div>에러 발생!!</div>;
@@ -18,13 +26,15 @@ const Management: FC = () => {
           <p>구인 글 관리</p>
           <div className="sub-content-bundle">
             <Link to={`/recruit/detail/${studyId}`}>
-              <span>{data?.title}</span>
+              <span>{study?.title}</span>
             </Link>
             <div className="notice-button-container">
               <Link to={`/recruit/edit/${studyId}`}>
                 <button>수정</button>
               </Link>
-              <button className="notice-delete">삭제</button>
+              <button className="notice-delete" onClick={onClickDeleteRecruit}>
+                삭제
+              </button>
             </div>
           </div>
         </div>
