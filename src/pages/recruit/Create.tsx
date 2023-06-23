@@ -8,11 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-
-interface RecruitFormValue {
-  offerIntro: string;
-  offerRule: string;
-}
+import type { RecruitFormValue } from '@/api/recruit/recruitTypes';
 
 const RecruitCreate: FC = () => {
   const { studyId } = useParams();
@@ -65,7 +61,7 @@ const RecruitCreate: FC = () => {
               {errors.offerRule && <p className="err-msg">{errors.offerRule.message?.toString()}</p>}
             </div>
             <div className="button-area">
-              <Button size="large" color="gray" outline>
+              <Button size="large" color="gray" outline onClick={onClickGoBack} type="button">
                 취소
               </Button>
               <Button size="large" type="submit">

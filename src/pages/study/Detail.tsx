@@ -13,7 +13,6 @@ import './detail.scss';
 const StudyDetail: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
-
   const { studyId } = useParams();
   const { userId } = useAuth();
   const { data, isLoading, isError } = useQuery({
