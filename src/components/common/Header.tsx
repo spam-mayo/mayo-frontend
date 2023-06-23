@@ -9,7 +9,7 @@ import useUserDetailQuery from '@/queries/user/useUserDetailQuery';
 const Header: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { logout, isLogin } = useAuth();
-  const data = useUserDetailQuery();
+  const { data } = useUserDetailQuery();
 
   const onClickLogout = () => {
     logout();
@@ -47,7 +47,7 @@ const Header: FC = () => {
             {isLogin ? (
               <>
                 <div onClick={onClickMenuOpen}>
-                  <UserProfileImg src={data.data?.profileUrl} />
+                  <UserProfileImg src={data?.profileUrl} />
                 </div>
                 {menuOpen && (
                   <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />
