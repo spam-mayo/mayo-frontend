@@ -6,7 +6,9 @@ interface Props {
 }
 
 const UserProfileImg: FC<Props> = ({ src }: Props) => {
-  return <img src={src ?? BASE_PROFILE_URL} alt="profileImg" />;
+  const imageSrc = src !== '' ? src : BASE_PROFILE_URL;
+
+  return <img src={imageSrc} alt="profileImg" />;
 };
 
 export default UserProfileImg;
