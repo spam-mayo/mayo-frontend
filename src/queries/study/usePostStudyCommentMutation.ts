@@ -10,6 +10,7 @@ const usePostStudyCommentMutation = () => {
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 400) alert('댓글이 공백일 수 없습니다.');
+        if (err.response?.status === 404) alert('할 일을 먼저 작성해주세요.');
       }
     },
   });
