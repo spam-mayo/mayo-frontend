@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
+import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChange.schema';
 import './index.scss';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';

@@ -1,5 +1,5 @@
 import UserProfileImg from '@/components/common/UserProfileImg';
-import { commentSchema } from '@/constants/schema/commentSchema';
+import { commentSchema } from '@/constants/schema/comment.schema';
 import useUser from '@/hooks/useUser';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';

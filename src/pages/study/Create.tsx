@@ -2,7 +2,7 @@ import { postStudy } from '@/api/study/studyAPI';
 import type { PostStudyReq } from '@/api/study/studyTypes';
 import AdditionalInfo from '@/components/study/createForm/AdditionalInfo';
 import MainInfo from '@/components/study/createForm/MainInfo';
-import { studySchema } from '@/constants/schema/studySchema';
+import { studySchema } from '@/constants/schema/study.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
 import { ChangeEvent, type FC, useState } from 'react';
