@@ -1,5 +1,5 @@
 const changeToPlainText = (text?: string) => {
-  return text?.replace(/ /g, '\u00A0');
+  return text?.replace(/\n/g, '<br>');
 };
 
 export default changeToPlainText;

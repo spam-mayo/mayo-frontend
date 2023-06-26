@@ -26,7 +26,7 @@ const StudyDetail: FC = () => {
     Number(userId) === data?.owner.userId
       ? {
           name: '관리자 모드',
-          content: <AdminMode ownerData={data?.owner as StudyOwner} />,
+          content: <AdminMode ownerData={data?.owner as StudyOwner} studyId={studyId} />,
         }
       : null,
   ].filter(Boolean);

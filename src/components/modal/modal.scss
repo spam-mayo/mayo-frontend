@@ -20,5 +20,21 @@
     border-radius: 6px;
     color: $black;
     gap: 20px;
+
+    &.notice-modal {
+      border: 1px solid red;
+      width: 700px;
+      height: 500px;
+
+      input {
+        width: 600px;
+      }
+
+      textarea {
+        width: 600px;
+        height: 300px;
+        resize: none;
+      }
+    }
   }
 }

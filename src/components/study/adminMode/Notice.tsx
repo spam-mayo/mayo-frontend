@@ -1,16 +1,32 @@
-const Notice = () => {
+import NoticeEditModal from '@/components/modal/NoticeEditModal';
+import { type FC, useState } from 'react';
+
+interface Props {
+  studyId?: string;
+}
+
+const Notice: FC<Props> = ({ studyId }) => {
+  const [noticeEditModalOpen, setNoticeEditModalOpen] = useState(false);
+
+  const onClickCloseModal = () => {
+    setNoticeEditModalOpen((prev) => !prev);
+  };
+
   return (
-    <div className="notice-container">
-      <p className="notice-title">공지사항 관리</p>
-      <div className="notice-content">
-        <p>공지사항 수정</p>
-        <div className="notice-button-container">
-          <button>작성</button>
-          <button>수정</button>
-          <button className="notice-delete">삭제</button>
+    <>
+      {noticeEditModalOpen && <NoticeEditModal onClose={onClickCloseModal} studyId={studyId} />}
+      <div className="notice-container">
+        <p className="notice-title">공지사항 관리</p>
+        <div className="notice-content">
+          <p>공지사항 수정</p>
+          <div className="notice-button-container">
+            <button onClick={onClickCloseModal}>작성</button>
+            <button onClick={onClickCloseModal}>수정</button>
+            <button className="notice-delete">삭제</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

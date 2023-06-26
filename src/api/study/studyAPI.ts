@@ -12,6 +12,8 @@ import type {
   PatchStudyTaskReq,
   PostStudyReq,
   PatchStudyCommentReq,
+  PatchNoticeReq,
+  GetNoticeRes,
 } from '@/api/study/studyTypes';
 
 export const getMypageStudy = (page: number, params?: { status?: string; tab?: string; approvalStatus?: string }) => {
@@ -61,3 +63,8 @@ export const patchStudyComment = ({ studyCommentId, body }: { studyCommentId: nu
 export const postStudy = (body: PostStudyReq) => axiosInstance.post(`/api/study`, body);
 
 export const postStudyGroup = (studyId: number) => axiosInstance.post(`/api/study/${studyId}/group`);
+
+export const getStudyNotice = (studyId: number) => axiosInstance.get<GetNoticeRes>(`/api/study/${studyId}/notice`);
+
+export const patchStudyNotice = ({ studyId, ...body }: PatchNoticeReq) =>
+  axiosInstance.patch(`/api/study/${studyId}/notice`, body);

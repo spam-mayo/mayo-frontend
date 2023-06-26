@@ -7,14 +7,15 @@ import type { FC } from 'react';
 
 interface Props {
   ownerData: StudyOwner;
+  studyId?: string;
 }
 
-const AdminMode: FC<Props> = ({ ownerData }: Props) => {
+const AdminMode: FC<Props> = ({ ownerData, studyId }: Props) => {
   return (
     <div className="adminMode-container">
       <div>
         <Management />
-        <Notice />
+        <Notice studyId={studyId} />
       </div>
       <div>
         <ParticipatingList ownerData={ownerData} />
