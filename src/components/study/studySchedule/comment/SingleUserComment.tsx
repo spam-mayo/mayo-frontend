@@ -32,7 +32,7 @@ const SingleUserComment: FC<Props> = ({ commentItem, onDeleteComment, onSubmitPa
   const onSubmit: SubmitHandler<CommentFormValue> = (data) => {
     const id = offerCommentId || studyCommentId;
 
-    if (id !== undefined) {
+    if (id) {
       onSubmitPatchComment({ data, id: Number(id) });
       setIsEdit(false);
     }

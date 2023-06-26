@@ -2,8 +2,8 @@ import { postStudyComment } from '@/api/study/studyAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
-const usePostStudyCommentMutation = () => {
-  return useMutation(postStudyComment, {
+const usePostStudyCommentMutation = () =>
+  useMutation(postStudyComment, {
     onSuccess: () => {
       alert('등록되었습니다!');
     },
@@ -13,6 +13,5 @@ const usePostStudyCommentMutation = () => {
       }
     },
   });
-};
 
 export default usePostStudyCommentMutation;
