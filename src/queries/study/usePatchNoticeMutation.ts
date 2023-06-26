@@ -1,13 +1,11 @@
 import { patchStudyNotice } from '@/api/study/studyAPI';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import type { AxiosResponse } from 'axios';
 
-const usePatchNoticeMutation = (onClose: () => void) => {
-  return useMutation(patchStudyNotice, {
-    onSuccess: () => {
-      alert('공지사항이 등록되었습니다!');
-      onClose();
-    },
-  });
+type MutationOption = UseMutationOptions<AxiosResponse<unknown, unknown>, unknown, unknown, unknown>;
+
+const usePatchNoticeMutation = (options: MutationOption) => {
+  return useMutation(patchStudyNotice, options);
 };
 
 export default usePatchNoticeMutation;

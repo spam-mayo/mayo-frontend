@@ -7,10 +7,15 @@ interface Props {
 }
 
 const Notice: FC<Props> = ({ studyId }) => {
+  const [noticeModalOpen, setNoticeModalOpen] = useState(false);
   const [noticeEditModalOpen, setNoticeEditModalOpen] = useState(false);
   const deleteNotice = useDeleteNoticeMutation();
 
-  const onClickCloseModal = () => {
+  const onClickPostModal = () => {
+    setNoticeModalOpen((prev) => !prev);
+  };
+
+  const onClickPatchModal = () => {
     setNoticeEditModalOpen((prev) => !prev);
   };
 
@@ -20,14 +25,15 @@ const Notice: FC<Props> = ({ studyId }) => {
 
   return (
     <>
-      {noticeEditModalOpen && <NoticeEditModal onClose={onClickCloseModal} studyId={studyId} />}
+      {noticeModalOpen && <NoticeEditModal onClose={onClickPostModal} studyId={studyId} />}
+      {noticeEditModalOpen && <NoticeEditModal onClose={onClickPatchModal} studyId={studyId} isEdit />}
       <div className="notice-container">
         <p className="notice-title">공지사항 관리</p>
         <div className="notice-content">
           <p>공지사항 수정</p>
           <div className="notice-button-container">
-            <button onClick={onClickCloseModal}>작성</button>
-            <button onClick={onClickCloseModal}>수정</button>
+            <button onClick={onClickPostModal}>작성</button>
+            <button onClick={onClickPatchModal}>수정</button>
             <button className="notice-delete" onClick={onClickDeleteNotice}>
               삭제
             </button>
