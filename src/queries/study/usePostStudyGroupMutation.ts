@@ -2,8 +2,8 @@ import { postStudyGroup } from '@/api/study/studyAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
-const usePostStudyGroupMutation = () => {
-  return useMutation(postStudyGroup, {
+const usePostStudyGroupMutation = () =>
+  useMutation(postStudyGroup, {
     onSuccess: () => {
       alert('스터디 신청이 완료됐습니다!');
     },
@@ -14,6 +14,5 @@ const usePostStudyGroupMutation = () => {
       }
     },
   });
-};
 
 export default usePostStudyGroupMutation;
