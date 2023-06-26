@@ -1,4 +1,5 @@
 import NoticeEditModal from '@/components/modal/NoticeEditModal';
+import useDeleteNoticeMutation from '@/queries/study/useDeleteNoticeMutation';
 import { type FC, useState } from 'react';
 
 interface Props {
@@ -7,9 +8,14 @@ interface Props {
 
 const Notice: FC<Props> = ({ studyId }) => {
   const [noticeEditModalOpen, setNoticeEditModalOpen] = useState(false);
+  const deleteNotice = useDeleteNoticeMutation();
 
   const onClickCloseModal = () => {
     setNoticeEditModalOpen((prev) => !prev);
+  };
+
+  const onClickDeleteNotice = () => {
+    deleteNotice.mutate(Number(studyId));
   };
 
   return (
@@ -22,7 +28,9 @@ const Notice: FC<Props> = ({ studyId }) => {
           <div className="notice-button-container">
             <button onClick={onClickCloseModal}>작성</button>
             <button onClick={onClickCloseModal}>수정</button>
-            <button className="notice-delete">삭제</button>
+            <button className="notice-delete" onClick={onClickDeleteNotice}>
+              삭제
+            </button>
           </div>
         </div>
       </div>

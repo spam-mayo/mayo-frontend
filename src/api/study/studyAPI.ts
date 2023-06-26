@@ -68,3 +68,5 @@ export const getStudyNotice = (studyId: number) => axiosInstance.get<GetNoticeRe
 
 export const patchStudyNotice = ({ studyId, ...body }: PatchNoticeReq) =>
   axiosInstance.patch(`/api/study/${studyId}/notice`, body);
+
+export const deleteStudyNotice = (studyId: number) => axiosInstance.delete(`/api/study/${studyId}/notice`);

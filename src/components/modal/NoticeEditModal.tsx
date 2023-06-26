@@ -1,7 +1,7 @@
 import type { PatchNoticeReq } from '@/api/study/studyTypes';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
-import useNoticeMutation from '@/queries/study/useNoticeMutation';
+import usePatchNoticeMutation from '@/queries/study/usePatchNoticeMutation';
 import type { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const NoticeEditModal: FC<Props> = ({ onClose, studyId }) => {
-  const patchNotice = useNoticeMutation(onClose);
+  const patchNotice = usePatchNoticeMutation(onClose);
   const {
     handleSubmit,
     register,
