@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Select from '@/components/auth/Select';
 import './index.scss';
-import { type RegisterSchema, registerSchema } from '@/constants/schema/registerSchema';
+import { type RegisterSchema, registerSchema } from '@/constants/schema/register.schema';
 import { postEmailCheck, postEmailCheckConfirm, postMember } from '@/api/auth/authAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';

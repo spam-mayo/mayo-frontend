@@ -5,8 +5,13 @@
 }
 
 .comment-input-container {
-  @include flexbox();
+  @include flexbox(space-around);
   gap: 20px;
+
+  .comment-input {
+    flex: 1;
+    height: 90px;
+  }
 
   input {
     border: 1px solid rgba($blue, 0.2);
@@ -14,6 +19,7 @@
     height: 80px;
     flex: 1;
     text-indent: 10px;
+    width: 100%;
   }
 
   button {

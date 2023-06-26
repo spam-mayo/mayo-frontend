@@ -3,7 +3,7 @@ import { type FC, useState } from 'react';
 import './info.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChangeSchema';
+import { passwordChangeSchema, PasswordChangeSchema } from '@/constants/schema/passwordChange.schema';
 import { useMutation } from '@tanstack/react-query';
 import { patchUserInfo } from '@/api/auth/authAPI';
 import axios from 'axios';

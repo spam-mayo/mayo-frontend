@@ -2,8 +2,8 @@ import { postRecruitComment } from '@/api/recruit/recruitAPI';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
-const usePostRecruitCommentMutation = () => {
-  return useMutation(postRecruitComment, {
+const usePostRecruitCommentMutation = () =>
+  useMutation(postRecruitComment, {
     onSuccess: () => {
       alert('댓글이 등록되었습니다!');
     },
@@ -14,6 +14,5 @@ const usePostRecruitCommentMutation = () => {
       }
     },
   });
-};
 
 export default usePostRecruitCommentMutation;
