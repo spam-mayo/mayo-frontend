@@ -43,7 +43,8 @@
       flex-direction: column;
       gap: 10px;
 
-      p {
+      p,
+      div {
         font-weight: 500;
       }
 
@@ -51,6 +52,10 @@
         margin-left: 34px;
         font-weight: 400;
         color: $charcoal;
+      }
+
+      .place-name {
+        margin-right: 10px;
       }
     }
   }
