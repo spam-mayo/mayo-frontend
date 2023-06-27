@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import useNoticeQuery from '@/queries/study/useNoticeQuery';
-import changeToPlainText from '@/utils/changeToPlainText';
+import changeToHtml from '@/utils/changeToHtml';
 
 interface Props {
   studyId?: string;
@@ -13,7 +13,7 @@ const Announcement: FC<Props> = ({ studyId }) => {
 
   if (isError) return <div>에러가 발생했습니다.</div>;
 
-  const noticeContent = changeToPlainText(data.noticeContent);
+  const noticeContent = changeToHtml(data.noticeContent);
   const noticeTitle = data.noticeTitle ?? '공지사항';
 
   return (
