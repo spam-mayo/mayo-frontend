@@ -14,7 +14,7 @@ const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {
     return <div>...Loading</div>;
   }
 
-  const { title, stack, studyName, startDate, endDate, place, personnel, owner } = detailData;
+  const { title, stack, studyName, startDate, endDate, place, personnel, owner, online } = detailData;
 
   return (
     <div className="study-intro-container">
@@ -42,12 +42,16 @@ const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {
           </p>
           <p>
             모임 장소
-            <span>
-              {place}
-              <Button size="small" onClick={onClick}>
-                지도보기
-              </Button>
-            </span>
+            {online ? (
+              <span>온라인</span>
+            ) : (
+              <span>
+                {place}
+                <Button size="small" onClick={onClick}>
+                  지도보기
+                </Button>
+              </span>
+            )}
           </p>
           <p>
             모집 인원<span>{personnel}</span>

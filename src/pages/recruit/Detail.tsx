@@ -14,6 +14,7 @@ import { type FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import changeToHtml from '@/utils/changeToHtml';
+import KakaoMap from '@/components/common/KakaoMap';
 
 const RecruitDetail: FC = () => {
   const { studyId } = useParams();
@@ -22,9 +23,11 @@ const RecruitDetail: FC = () => {
       if (data?.checkLikes !== undefined && data.checkLikes !== null) setIsClicked(data.checkLikes);
     },
   });
+
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
   const { data: recruitComment } = useRecruitCommentQuery(Number(studyId));
   const [isClicked, setIsClicked] = useState(false);
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const onDeleteComment = useDeleteRecruitCommentMutation();
   const onPatchComment = usePatchRecruitCommentMutation();
   const onPostComment = usePostRecruitCommentMutation();
@@ -72,46 +75,55 @@ const RecruitDetail: FC = () => {
     postRecruitLike(Number(studyId));
   };
 
+  const onClickMapModal = () => {
+    setIsMapModalOpen((prev) => !prev);
+  };
+
   const introHTML = changeToHtml(recruit?.offerIntro);
   const ruleHTML = changeToHtml(recruit?.offerRule);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="title-area">
-            <button onClick={onClickGoBack}>
-              <i className="icon-arrow-left" />
-            </button>
-          </div>
-          <StudyDetailIntro detailData={study} />
-          <div className="join-button">
-            <i className={classNames('icon-heart', { clicked: isClicked })} onClick={onClickHeart} />
-            <Button size="large" onClick={onClickStudyJoin}>
-              신청하기
-            </Button>
-          </div>
-          <div className="recruit-detail-content">
-            <div className="recruit-detail-main">
-              <div className="detail-block">
-                <p className="recruit-subtitle">스터디 소개</p>
-                <div dangerouslySetInnerHTML={{ __html: introHTML ?? '' }} />
-              </div>
-              <div className="detail-block">
-                <p className="recruit-subtitle">스터디 규칙</p>
-                <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
-              </div>
+    <>
+      {isMapModalOpen && (
+        <KakaoMap latitude={study?.latitude ?? 0} longitude={study?.longitude ?? 0} onClose={onClickMapModal} />
+      )}
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="title-area">
+              <button onClick={onClickGoBack}>
+                <i className="icon-arrow-left" />
+              </button>
             </div>
-            <AddUserComment onSubmitPostComment={onSubmitPostComment} />
-            <CommentBox
-              comments={recruitComment ?? []}
-              onDeleteComment={onDeleteComment}
-              onSubmitPatchComment={onSubmitPatchComment}
-            />
+            <StudyDetailIntro detailData={study} onClick={onClickMapModal} />
+            <div className="join-button">
+              <i className={classNames('icon-heart', { clicked: isClicked })} onClick={onClickHeart} />
+              <Button size="large" onClick={onClickStudyJoin}>
+                신청하기
+              </Button>
+            </div>
+            <div className="recruit-detail-content">
+              <div className="recruit-detail-main">
+                <div className="detail-block">
+                  <p className="recruit-subtitle">스터디 소개</p>
+                  <div dangerouslySetInnerHTML={{ __html: introHTML ?? '' }} />
+                </div>
+                <div className="detail-block">
+                  <p className="recruit-subtitle">스터디 규칙</p>
+                  <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
+                </div>
+              </div>
+              <AddUserComment onSubmitPostComment={onSubmitPostComment} />
+              <CommentBox
+                comments={recruitComment ?? []}
+                onDeleteComment={onDeleteComment}
+                onSubmitPatchComment={onSubmitPatchComment}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
