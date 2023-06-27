@@ -9,15 +9,15 @@ const Management: FC = () => {
   const { studyId } = useParams();
   const { data: study, isError } = useStudyDetailQuery(Number(studyId));
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
-  const deleteRecruit = useDeleteRecruitMutation();
-  const deleteStudy = useDeleteStudyMutation();
+  const { mutate: deleteRecruit } = useDeleteRecruitMutation();
+  const { mutate: deleteStudy } = useDeleteStudyMutation();
 
   const onClickDeleteRecruit = () => {
-    deleteRecruit.mutate(Number(recruit?.offerId));
+    deleteRecruit(Number(recruit?.offerId));
   };
 
   const onClickDeleteStudy = () => {
-    deleteStudy.mutate(Number(studyId));
+    deleteStudy(Number(studyId));
   };
 
   if (isError) {
