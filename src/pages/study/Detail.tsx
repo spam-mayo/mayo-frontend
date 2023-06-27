@@ -47,9 +47,7 @@ const StudyDetail: FC = () => {
 
   return (
     <>
-      {isMapModalOpen && (
-        <KakaoMap latitude={data?.latitude ?? 0} longitude={data?.longitude ?? 0} onClose={onClickMapModal} />
-      )}
+      {isMapModalOpen && <KakaoMap latitude={data?.latitude} longitude={data?.longitude} onClose={onClickMapModal} />}
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

@@ -1,4 +1,6 @@
-const changeToHtml = (text?: string) => {
+const changeToHtml = (text: string | undefined) => {
+  if (!text) return '';
+
   return text?.replace(/\n/g, '<br/>');
 };
 
