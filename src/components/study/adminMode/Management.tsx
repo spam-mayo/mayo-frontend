@@ -1,5 +1,6 @@
 import useDeleteRecruitMutation from '@/queries/recruit/useDeleteRecruitMutation';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
+import useDeleteStudyMutation from '@/queries/study/useDeleteStudyMutation';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import type { FC } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -8,10 +9,15 @@ const Management: FC = () => {
   const { studyId } = useParams();
   const { data: study, isError } = useStudyDetailQuery(Number(studyId));
   const { data: recruit } = useRecruitDetailQuery(Number(studyId));
-  const ondeleteRecruit = useDeleteRecruitMutation();
+  const deleteRecruit = useDeleteRecruitMutation();
+  const deleteStudy = useDeleteStudyMutation();
 
   const onClickDeleteRecruit = () => {
-    ondeleteRecruit.mutate(Number(recruit?.offerId));
+    deleteRecruit.mutate(Number(recruit?.offerId));
+  };
+
+  const onClickDeleteStudy = () => {
+    deleteStudy.mutate(Number(studyId));
   };
 
   if (isError) {
@@ -39,7 +45,10 @@ const Management: FC = () => {
           </div>
         </div>
         <div className="sub-content">
-          <p>관리 운영</p> <span className="study-closed">스터디를 페쇄합니다.</span>
+          <p>관리 운영</p>
+          <button className="study-closed" onClick={onClickDeleteStudy}>
+            스터디를 페쇄합니다.
+          </button>
         </div>
       </div>
     </div>

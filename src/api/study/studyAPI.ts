@@ -61,3 +61,5 @@ export const patchStudyComment = ({ studyCommentId, body }: { studyCommentId: nu
 export const postStudy = (body: PostStudyReq) => axiosInstance.post(`/api/study`, body);
 
 export const postStudyGroup = (studyId: number) => axiosInstance.post(`/api/study/${studyId}/group`);
+
+export const deleteStudy = (studyId: number) => axiosInstance.delete(`/api/study/${studyId}`);
