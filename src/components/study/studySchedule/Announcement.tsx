@@ -14,10 +14,11 @@ const Announcement: FC<Props> = ({ studyId }) => {
   if (isError) return <div>에러가 발생했습니다.</div>;
 
   const noticeContent = changeToPlainText(data.noticeContent);
+  const noticeTitle = data.noticeTitle ?? '공지사항';
 
   return (
     <div className="announcement-container">
-      <p className="announcement-title">공지사항</p>
+      <p className="announcement-title">{noticeTitle}</p>
       {data.noticeContent ? (
         <p className="announcement-list" dangerouslySetInnerHTML={{ __html: noticeContent ?? '' }} />
       ) : (

@@ -1,5 +1,7 @@
 import NoticeEditModal from '@/components/modal/NoticeEditModal';
 import useDeleteNoticeMutation from '@/queries/study/useDeleteNoticeMutation';
+import useNoticeQuery from '@/queries/study/useNoticeQuery';
+import classNames from 'classnames';
 import { type FC, useState } from 'react';
 
 interface Props {
@@ -9,18 +11,21 @@ interface Props {
 const Notice: FC<Props> = ({ studyId }) => {
   const [noticeModalOpen, setNoticeModalOpen] = useState(false);
   const [noticeEditModalOpen, setNoticeEditModalOpen] = useState(false);
-  const deleteNotice = useDeleteNoticeMutation();
+  const { mutate: deleteNotice } = useDeleteNoticeMutation();
+  const { data: notice } = useNoticeQuery(Number(studyId));
+
+  const isNotice = Boolean(notice?.noticeContent); // true면 공지사항 있는거, false면 공지사항 없는거
 
   const onClickPostModal = () => {
-    setNoticeModalOpen((prev) => !prev);
+    if (!isNotice) setNoticeModalOpen((prev) => !prev);
   };
 
   const onClickPatchModal = () => {
-    setNoticeEditModalOpen((prev) => !prev);
+    if (isNotice) setNoticeEditModalOpen((prev) => !prev);
   };
 
   const onClickDeleteNotice = () => {
-    deleteNotice.mutate(Number(studyId));
+    if (isNotice) deleteNotice(Number(studyId));
   };
 
   return (
@@ -28,11 +33,15 @@ const Notice: FC<Props> = ({ studyId }) => {
       <div className="notice-container">
         <p className="notice-title">공지사항 관리</p>
         <div className="notice-content">
-          <p>공지사항 수정</p>
+          <p>공지사항</p>
           <div className="notice-button-container">
-            <button onClick={onClickPostModal}>작성</button>
-            <button onClick={onClickPatchModal}>수정</button>
-            <button className="notice-delete" onClick={onClickDeleteNotice}>
+            <button onClick={onClickPostModal} className={classNames({ disabled: isNotice })}>
+              작성
+            </button>
+            <button onClick={onClickPatchModal} className={classNames({ disabled: !isNotice })}>
+              수정
+            </button>
+            <button className={classNames('notice-delete', { disabled: !isNotice })} onClick={onClickDeleteNotice}>
               삭제
             </button>
           </div>
