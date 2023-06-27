@@ -25,8 +25,6 @@ const Notice: FC<Props> = ({ studyId }) => {
 
   return (
     <>
-      {noticeModalOpen && <NoticeEditModal onClose={onClickPostModal} studyId={studyId} />}
-      {noticeEditModalOpen && <NoticeEditModal onClose={onClickPatchModal} studyId={studyId} isEdit />}
       <div className="notice-container">
         <p className="notice-title">공지사항 관리</p>
         <div className="notice-content">
@@ -40,6 +38,8 @@ const Notice: FC<Props> = ({ studyId }) => {
           </div>
         </div>
       </div>
+      {noticeModalOpen && <NoticeEditModal onClose={onClickPostModal} studyId={studyId} />}
+      {noticeEditModalOpen && <NoticeEditModal onClose={onClickPatchModal} studyId={studyId} isEdit />}
     </>
   );
 };

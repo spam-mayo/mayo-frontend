@@ -70,20 +70,6 @@ const ParticipatingList: FC<Props> = ({ ownerData }: Props) => {
 
   return (
     <>
-      {delegationModalOpen && (
-        <ConfirmModal
-          title={`${selectedUserName}님에게 방장 권한을 위임하시겠습니까?`}
-          onClickCheck={onClickPutDelegation}
-          onClickCancel={onClickCloseModal}
-        />
-      )}
-      {expulsionModalOpen && (
-        <ConfirmModal
-          title={`${selectedUserName}님을 스터디에서 추방하시겠습니까?`}
-          onClickCheck={onClickPutExpulsion}
-          onClickCancel={onClickCloseModal}
-        />
-      )}
       <div className="lists-container">
         <div className="lists-title">
           <p>현 스터디원 목록</p>
@@ -119,6 +105,20 @@ const ParticipatingList: FC<Props> = ({ ownerData }: Props) => {
           <Pagination activePage={activePage} setActivePage={setActivePage} pages={maxPostPage} />
         )}
       </div>
+      {delegationModalOpen && (
+        <ConfirmModal
+          title={`${selectedUserName}님에게 방장 권한을 위임하시겠습니까?`}
+          onClickCheck={onClickPutDelegation}
+          onClickCancel={onClickCloseModal}
+        />
+      )}
+      {expulsionModalOpen && (
+        <ConfirmModal
+          title={`${selectedUserName}님을 스터디에서 추방하시겠습니까?`}
+          onClickCheck={onClickPutExpulsion}
+          onClickCancel={onClickCloseModal}
+        />
+      )}
     </>
   );
 };

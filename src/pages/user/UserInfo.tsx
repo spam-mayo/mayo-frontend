@@ -51,13 +51,6 @@ const UserInfo: FC = () => {
 
   return (
     <>
-      {isModalOpen && (
-        <ConfirmModal
-          title="정말 탈퇴하시겠습니까?"
-          onClickCancel={onClickOpenModal}
-          onClickCheck={onClickUnregister}
-        />
-      )}
       <div className="user-container">
         <BasicInfo name={userName} email={email} userId={userId} />
         <ExtraInfo field={field} stack={stack} userId={userId} />
@@ -66,6 +59,13 @@ const UserInfo: FC = () => {
           <button>회원 탈퇴</button>
         </div>
       </div>
+      {isModalOpen && (
+        <ConfirmModal
+          title="정말 탈퇴하시겠습니까?"
+          onClickCancel={onClickOpenModal}
+          onClickCheck={onClickUnregister}
+        />
+      )}
     </>
   );
 };

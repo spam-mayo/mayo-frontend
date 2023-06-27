@@ -64,20 +64,6 @@ const ApplicantList: FC = () => {
 
   return (
     <>
-      {approvalModalOpen && (
-        <ConfirmModal
-          title={`${selectedUserName}님의 스터디 신청을 승인하시겠습니까?`}
-          onClickCheck={onClickPutApproval}
-          onClickCancel={onClickCloseModal}
-        />
-      )}
-      {rejectModalOpen && (
-        <ConfirmModal
-          title={`${selectedUserName}님의 스터디 신청을 거절하시겠습니까?`}
-          onClickCheck={onClickPutRefuse}
-          onClickCancel={onClickCloseModal}
-        />
-      )}
       <div className="lists-container">
         <div className="lists-title">
           <p>스터디 참가 신청자 목록</p>
@@ -111,6 +97,20 @@ const ApplicantList: FC = () => {
           <Pagination activePage={activePage} pages={maxPostPage} setActivePage={setActivePage} />
         )}
       </div>
+      {approvalModalOpen && (
+        <ConfirmModal
+          title={`${selectedUserName}님의 스터디 신청을 승인하시겠습니까?`}
+          onClickCheck={onClickPutApproval}
+          onClickCancel={onClickCloseModal}
+        />
+      )}
+      {rejectModalOpen && (
+        <ConfirmModal
+          title={`${selectedUserName}님의 스터디 신청을 거절하시겠습니까?`}
+          onClickCheck={onClickPutRefuse}
+          onClickCancel={onClickCloseModal}
+        />
+      )}
     </>
   );
 };

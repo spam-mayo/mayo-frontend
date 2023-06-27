@@ -84,7 +84,6 @@ const RecruitDetail: FC = () => {
 
   return (
     <>
-      {isMapModalOpen && <KakaoMap latitude={study?.latitude} longitude={study?.longitude} onClose={onClickMapModal} />}
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -121,6 +120,7 @@ const RecruitDetail: FC = () => {
           </div>
         </div>
       </div>
+      {isMapModalOpen && <KakaoMap latitude={study?.latitude} longitude={study?.longitude} onClose={onClickMapModal} />}
     </>
   );
 };

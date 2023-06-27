@@ -30,7 +30,6 @@ const MyPage: FC = () => {
 
   return (
     <>
-      {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={userProfile} />}
       <div className="container box">
         <div className="row">
           <div className="col-lg-3 column">
@@ -54,6 +53,7 @@ const MyPage: FC = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && <ProfileEditModal onClose={onClickOpenModal} src={userProfile} />}
     </>
   );
 };
