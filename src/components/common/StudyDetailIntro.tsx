@@ -40,7 +40,7 @@ const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {
               {startDate} ~ {endDate}
             </span>
           </p>
-          <p>
+          <div>
             모임 장소
             {online ? (
               <span>온라인</span>
@@ -52,7 +52,7 @@ const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {
                 </Button>
               </>
             )}
-          </p>
+          </div>
           <p>
             모집 인원<span>{personnel}</span>
           </p>
