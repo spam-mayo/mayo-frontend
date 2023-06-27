@@ -45,9 +45,9 @@ const Management: FC = () => {
           </div>
         </div>
         <div className="sub-content">
-          <p>관리 운영</p>
+          <p>스터디 관리</p>
           <button className="study-closed" onClick={onClickDeleteStudy}>
-            스터디를 페쇄합니다.
+            페쇄
           </button>
         </div>
       </div>
