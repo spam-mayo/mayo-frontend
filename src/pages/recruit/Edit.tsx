@@ -21,14 +21,14 @@ const RecruitEdit: FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RecruitFormValue>({ resolver: yupResolver(recruitSchema) });
-  const patchRecruit = usePatchRecruitMutation(Number(studyId));
+  const { mutate: patchRecruit } = usePatchRecruitMutation(Number(studyId));
 
   const onClickGoBack = () => {
     navigate(-1);
   };
 
   const onSumbit: SubmitHandler<RecruitFormValue> = (data) => {
-    patchRecruit.mutate({ offerId: Number(recruit?.offerId), ...data });
+    patchRecruit({ offerId: Number(recruit?.offerId), ...data });
   };
 
   const introHTML = changeToPlainText(recruit?.offerIntro);

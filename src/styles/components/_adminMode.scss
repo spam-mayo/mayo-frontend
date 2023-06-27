@@ -161,7 +161,11 @@
     }
 
     .study-closed {
-      color: $red;
+      @include text-style-12;
+      color: rgba($red, 0.5);
+      border: 1px solid rgba($red, 0.5);
+      border-radius: 6px;
+      padding: 1px 6px;
     }
 
     &-bundle {
