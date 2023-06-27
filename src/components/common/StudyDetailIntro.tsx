@@ -45,12 +45,12 @@ const StudyDetailIntro: FC<Props> = ({ detailData, onClick }: Props) => {
             {online ? (
               <span>온라인</span>
             ) : (
-              <span>
-                {place}
+              <>
+                <span className="place-name">{place}</span>
                 <Button size="small" onClick={onClick}>
                   지도보기
                 </Button>
-              </span>
+              </>
             )}
           </p>
           <p>
