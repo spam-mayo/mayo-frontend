@@ -1,6 +1,6 @@
 import { useState, type FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { type LoginSchema, loginSchema } from '@/constants/schema/loginSchema';
+import { type LoginSchema, loginSchema } from '@/constants/schema/login.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import './index.scss';
 import PasswordFindModal from '@/components/modal/PasswordFindModal';

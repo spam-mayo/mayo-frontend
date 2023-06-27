@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { nameSchema, NameSchema } from '@/constants/schema/nameSchema';
+import { nameSchema, NameSchema } from '@/constants/schema/name.schema';
 import Input from '@/components/common/Input';
 
 interface Props {

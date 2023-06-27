@@ -1,9 +1,8 @@
-import { getStudyTask } from '@/api/study/studyAPI';
 import EditTodo from '@/components/study/studySchedule/todoList/EditTodo';
 import AddTodo from '@/components/study/studySchedule/todoList/AddTodo';
-import { useQuery } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { formatDate } from '@/utils/dateForm';
+import useTodoQuery from '@/queries/study/useTodoQuery';
 
 interface Props {
   selectedDate: Date;
@@ -12,20 +11,13 @@ interface Props {
 
 const TodoList: FC<Props> = ({ selectedDate, studyId }: Props) => {
   const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
-  const { data } = useQuery({
-    queryFn: () => getStudyTask(Number(studyId), taskDate),
-    queryKey: ['studyTasks', taskDate],
-  });
+  const { data } = useTodoQuery(Number(studyId), taskDate);
 
   return (
     <div className="todo-container">
-      <p>{taskDate}</p>
+      <p>{data?.taskDate}</p>
       <div className="todo-content">
-        {data ? (
-          <EditTodo task={data.data.task} taskId={data.data.taskId} />
-        ) : (
-          <AddTodo taskDate={taskDate} studyId={studyId} />
-        )}
+        {data ? <EditTodo task={data.task} taskId={data.taskId} /> : <AddTodo taskDate={taskDate} studyId={studyId} />}
       </div>
     </div>
   );

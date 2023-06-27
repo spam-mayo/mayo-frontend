@@ -1,7 +1,7 @@
 import type { RecruitFormValue } from '@/api/recruit/recruitTypes';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
-import { recruitSchema } from '@/constants/schema/recruitSchema';
+import { recruitSchema } from '@/constants/schema/recruit.schema';
 import usePatchRecruitMutation from '@/queries/recruit/usePatchRecruitMutation';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
@@ -21,14 +21,14 @@ const RecruitEdit: FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RecruitFormValue>({ resolver: yupResolver(recruitSchema) });
-  const patchRecruit = usePatchRecruitMutation(Number(studyId));
+  const { mutate: patchRecruit } = usePatchRecruitMutation(Number(studyId));
 
   const onClickGoBack = () => {
     navigate(-1);
   };
 
   const onSumbit: SubmitHandler<RecruitFormValue> = (data) => {
-    patchRecruit.mutate({ offerId: Number(recruit?.offerId), ...data });
+    patchRecruit({ offerId: Number(recruit?.offerId), ...data });
   };
 
   const introHTML = changeToPlainText(recruit?.offerIntro);

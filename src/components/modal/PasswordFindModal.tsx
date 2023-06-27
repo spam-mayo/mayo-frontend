@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { postPasswordFind } from '@/api/auth/authAPI';
 import axios from 'axios';
 import './modal.scss';
-import { type EmailSchema, emailSchema } from '@/constants/schema/emailSchema';
+import { type EmailSchema, emailSchema } from '@/constants/schema/email.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';

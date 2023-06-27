@@ -2,7 +2,7 @@ import { postRecruit } from '@/api/recruit/recruitAPI';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import Button from '@/components/common/Button';
 import StudyDetailIntro from '@/components/common/StudyDetailIntro';
-import { recruitSchema } from '@/constants/schema/recruitSchema';
+import { recruitSchema } from '@/constants/schema/recruit.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
 import type { FC } from 'react';

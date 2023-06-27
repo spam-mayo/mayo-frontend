@@ -20,9 +20,9 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const { studyId } = useParams();
   const { data: comment } = useStudyCommentsQuery(Number(studyId), selectedDate);
-  const onDeleteComment = useDeleteStudyCommentMutation();
-  const onPatchComment = usePatchStudyCommentMutation();
-  const onPostComment = usePostStudyCommentMutation();
+  const { mutate: deleteComment } = useDeleteStudyCommentMutation();
+  const { mutate: patchComment } = usePatchStudyCommentMutation();
+  const { mutate: postComment } = usePostStudyCommentMutation();
 
   const onSubmitPostComment = (data: CommentFormValue) => {
     const taskDate = formatDate(selectedDate, 'yyyy-MM-dd');
@@ -32,7 +32,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
       comment: data.comment,
     };
 
-    onPostComment.mutate({ studyId: Number(studyId), body });
+    postComment({ studyId: Number(studyId), body });
   };
 
   const onSubmitPatchComment = ({ data, id }: { data: CommentFormValue; id: number }) => {
@@ -42,7 +42,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
       comment: data.comment,
     };
 
-    onPatchComment.mutate({ studyCommentId: id, body });
+    patchComment({ studyCommentId: id, body });
   };
 
   const handleDateChange = (date: Date | null) => {
@@ -50,7 +50,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
   };
 
   const handleDeleteComment = (id: number) => {
-    onDeleteComment.mutate(id);
+    deleteComment(id);
   };
 
   return (

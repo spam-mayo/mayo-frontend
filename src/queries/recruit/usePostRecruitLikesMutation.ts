@@ -4,8 +4,8 @@ import axios, { AxiosResponse } from 'axios';
 
 type MutationOption = Omit<UseMutationOptions<AxiosResponse<unknown, unknown>, unknown, number, unknown>, 'mutationFn'>;
 
-const usePostRecruitLikesMutation = (options?: MutationOption) => {
-  return useMutation(postRecruitLikes, {
+const usePostRecruitLikesMutation = (options?: MutationOption) =>
+  useMutation(postRecruitLikes, {
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 401) alert('로그인이 필요합니다.');
@@ -13,6 +13,5 @@ const usePostRecruitLikesMutation = (options?: MutationOption) => {
     },
     ...options,
   });
-};
 
 export default usePostRecruitLikesMutation;
