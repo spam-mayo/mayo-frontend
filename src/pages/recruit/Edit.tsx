@@ -5,7 +5,6 @@ import { recruitSchema } from '@/constants/schema/recruit.schema';
 import usePatchRecruitMutation from '@/queries/recruit/usePatchRecruitMutation';
 import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
-import changeToPlainText from '@/utils/changeToPlainText';
 import { yupResolver } from '@hookform/resolvers/yup';
 import type { FC } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
@@ -31,9 +30,6 @@ const RecruitEdit: FC = () => {
     patchRecruit({ offerId: Number(recruit?.offerId), ...data });
   };
 
-  const introHTML = changeToPlainText(recruit?.offerIntro);
-  const ruleHTML = changeToPlainText(recruit?.offerRule);
-
   return (
     <div className="container">
       <div className="row">
@@ -55,7 +51,7 @@ const RecruitEdit: FC = () => {
                 required
                 form="recruit"
                 {...register('offerIntro')}
-                defaultValue={introHTML}
+                defaultValue={recruit?.offerIntro}
               />
               {errors.offerIntro && <p className="err-msg">{errors.offerIntro.message}</p>}
             </div>
@@ -67,7 +63,7 @@ const RecruitEdit: FC = () => {
                 required
                 form="recruit"
                 {...register('offerRule')}
-                defaultValue={ruleHTML}
+                defaultValue={recruit?.offerRule}
               />
               {errors.offerRule && <p className="err-msg">{errors.offerRule.message}</p>}
             </div>

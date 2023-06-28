@@ -18,6 +18,10 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+
+    div {
+      white-space: pre-line;
+    }
   }
 
   img {

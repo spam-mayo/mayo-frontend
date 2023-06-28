@@ -14,7 +14,7 @@ const Notice: FC<Props> = ({ studyId }) => {
   const { mutate: deleteNotice } = useDeleteNoticeMutation();
   const { data: notice } = useNoticeQuery(Number(studyId));
 
-  const isNotice = Boolean(notice?.noticeContent); // true면 공지사항 있는거, false면 공지사항 없는거
+  const isNotice = Boolean(notice?.noticeContent);
 
   const onClickPostModal = () => {
     if (!isNotice) setNoticeModalOpen((prev) => !prev);
