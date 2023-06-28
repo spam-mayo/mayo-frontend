@@ -139,6 +139,10 @@
       color: rgba($blue, 0.5);
     }
 
+    .disabled {
+      cursor: not-allowed;
+    }
+
     .notice-delete {
       color: rgba($red, 0.5);
       border: 1px solid rgba($red, 0.5);

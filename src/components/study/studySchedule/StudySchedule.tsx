@@ -57,7 +57,7 @@ const StudySchedule: FC<Props> = ({ startDate, endDate }) => {
     <div className="container">
       <div className="row">
         <div className="col-lg-12 study-schedule-container">
-          <Announcement />
+          <Announcement studyId={studyId} />
           <div className="detail-todo-container">
             <Calendar curDate={selectedDate} onDateChange={handleDateChange} startDate={startDate} endDate={endDate} />
             <TodoList selectedDate={selectedDate} studyId={studyId} />

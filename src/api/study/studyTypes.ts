@@ -97,3 +97,15 @@ export interface PostStudyReq {
   online: boolean;
   studyStacks?: string[];
 }
+
+export interface GetNoticeRes {
+  studyId: number;
+  noticeTitle: string;
+  noticeContent: string;
+}
+
+export interface PatchNoticeReq {
+  studyId: number;
+  noticeTitle: string;
+  noticeContent: string;
+}

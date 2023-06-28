@@ -34,7 +34,6 @@ const LoginForm: FC = () => {
 
   return (
     <>
-      {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
       <div className="container">
         <div className="row auth-container">
           <div className="col-lg-6 info">
@@ -81,6 +80,7 @@ const LoginForm: FC = () => {
           </form>
         </div>
       </div>
+      {isModalOpened && <PasswordFindModal onClose={onClickCloseModal} />}
     </>
   );
 };

@@ -26,7 +26,7 @@ const StudyDetail: FC = () => {
     Number(userId) === data?.owner.userId
       ? {
           name: '관리자 모드',
-          content: <AdminMode ownerData={data?.owner as StudyOwner} />,
+          content: <AdminMode ownerData={data?.owner as StudyOwner} studyId={studyId} />,
         }
       : null,
   ].filter(Boolean);
@@ -47,7 +47,6 @@ const StudyDetail: FC = () => {
 
   return (
     <>
-      {isMapModalOpen && <KakaoMap latitude={data?.latitude} longitude={data?.longitude} onClose={onClickMapModal} />}
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -63,6 +62,7 @@ const StudyDetail: FC = () => {
           </div>
         </div>
       </div>
+      {isMapModalOpen && <KakaoMap latitude={data?.latitude} longitude={data?.longitude} onClose={onClickMapModal} />}
     </>
   );
 };

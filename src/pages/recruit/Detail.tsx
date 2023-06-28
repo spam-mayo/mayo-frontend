@@ -10,10 +10,9 @@ import useRecruitDetailQuery from '@/queries/recruit/useRecruitDetailQuery';
 import usePostRecruitLikesMutation from '@/queries/recruit/usePostRecruitLikesMutation';
 import useStudyDetailQuery from '@/queries/study/useStudyDetailQuery';
 import usePostStudyGroupMutation from '@/queries/study/usePostStudyGroupMutation';
-import { type FC, useState, useEffect } from 'react';
+import { type FC, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
-import changeToHtml from '@/utils/changeToHtml';
 import KakaoMap from '@/components/common/KakaoMap';
 
 const RecruitDetail: FC = () => {
@@ -38,10 +37,6 @@ const RecruitDetail: FC = () => {
     },
   });
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (study?.checkLikes !== undefined && study.checkLikes !== null) setIsClicked(study.checkLikes);
-  }, [study?.checkLikes]);
 
   const onSubmitPostComment = (data: CommentFormValue) => {
     if (!studyId) return;
@@ -79,12 +74,8 @@ const RecruitDetail: FC = () => {
     setIsMapModalOpen((prev) => !prev);
   };
 
-  const introHTML = changeToHtml(recruit?.offerIntro);
-  const ruleHTML = changeToHtml(recruit?.offerRule);
-
   return (
     <>
-      {isMapModalOpen && <KakaoMap latitude={study?.latitude} longitude={study?.longitude} onClose={onClickMapModal} />}
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -104,11 +95,11 @@ const RecruitDetail: FC = () => {
               <div className="recruit-detail-main">
                 <div className="detail-block">
                   <p className="recruit-subtitle">스터디 소개</p>
-                  <div dangerouslySetInnerHTML={{ __html: introHTML ?? '' }} />
+                  <div>{recruit?.offerIntro}</div>
                 </div>
                 <div className="detail-block">
                   <p className="recruit-subtitle">스터디 규칙</p>
-                  <div dangerouslySetInnerHTML={{ __html: ruleHTML ?? '' }} />
+                  <div>{recruit?.offerRule}</div>
                 </div>
               </div>
               <AddUserComment onSubmitPostComment={onSubmitPostComment} />
@@ -121,6 +112,7 @@ const RecruitDetail: FC = () => {
           </div>
         </div>
       </div>
+      {isMapModalOpen && <KakaoMap latitude={study?.latitude} longitude={study?.longitude} onClose={onClickMapModal} />}
     </>
   );
 };
