@@ -23,10 +23,13 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
       return;
     }
 
+    if (previewSrc) URL.revokeObjectURL(previewSrc);
+
     const file = event.target.files[0];
     setPreviewSrc(URL.createObjectURL(file));
     setProfileSrc(file);
   };
+
   const onClickPatchImage = () => {
     if (!userId || !profileSrc) return;
 
@@ -37,6 +40,8 @@ const ProfileEditModal: FC<Props> = ({ onClose, src }: Props) => {
 
   const onClickDeleteImage = () => {
     if (!userId) return;
+
+    if (previewSrc) URL.revokeObjectURL(previewSrc);
 
     const image = new FormData();
     image.append('image', '');
