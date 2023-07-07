@@ -21,56 +21,58 @@ const Header: FC = () => {
   };
 
   return (
-    <header>
-      <div className="container">
-        <div className="wrapper">
-          <div className="innerLeft">
-            <Link to="/">
-              <img src="/spam.svg" alt="logo" className="logo" />
-            </Link>
-            <nav>
+    <div className="header-container">
+      <header>
+        <div className="container">
+          <div className="wrapper">
+            <div className="innerLeft">
               <Link to="/">
-                <Button color="blue" text>
-                  스터디 찾기
-                </Button>
+                <img src="/spam.svg" alt="logo" className="logo" />
               </Link>
-              {isLogin && (
-                <Link to="/user/mypage/study">
+              <nav>
+                <Link to="/">
                   <Button color="blue" text>
-                    나의 스터디
+                    스터디 찾기
                   </Button>
                 </Link>
-              )}
-            </nav>
-          </div>
-          <div className="innerRight">
-            {isLogin ? (
-              <>
-                <div onClick={onClickMenuOpen}>
-                  <UserProfileImg src={data?.profileUrl} />
-                </div>
-                {menuOpen && (
-                  <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />
+                {isLogin && (
+                  <Link to="/user/mypage/study">
+                    <Button color="blue" text>
+                      나의 스터디
+                    </Button>
+                  </Link>
                 )}
-              </>
-            ) : (
-              <>
-                <Link to="/auth/login">
-                  <Button color="gray" text>
-                    로그인
-                  </Button>
-                </Link>
-                <Link to="/auth/register">
-                  <Button color="gray" text>
-                    회원가입
-                  </Button>
-                </Link>
-              </>
-            )}
+              </nav>
+            </div>
+            <div className="innerRight">
+              {isLogin ? (
+                <>
+                  <div onClick={onClickMenuOpen}>
+                    <UserProfileImg src={data?.profileUrl} />
+                  </div>
+                  {menuOpen && (
+                    <HeaderProfile onClickLogout={onClickLogout} onClickMenu={onClickMenuOpen} menuOpen={menuOpen} />
+                  )}
+                </>
+              ) : (
+                <>
+                  <Link to="/auth/login">
+                    <Button color="gray" text>
+                      로그인
+                    </Button>
+                  </Link>
+                  <Link to="/auth/register">
+                    <Button color="gray" text>
+                      회원가입
+                    </Button>
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 };
 
