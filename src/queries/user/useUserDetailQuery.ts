@@ -13,6 +13,7 @@ const useUserDetailQuery = () => {
     onSuccess: (res) => {
       setUser((prev) => ({ ...prev, userId: res.userId, profileUrl: res.profileUrl }));
     },
+    enabled: !!userId,
   });
 };
 
