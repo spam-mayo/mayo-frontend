@@ -1,6 +1,5 @@
 import Button from '@/components/common/Button';
 import type { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 const Footer: FC = () => {
   return (
@@ -9,32 +8,9 @@ const Footer: FC = () => {
         <div className="wrapper">
           <div className="innerLeft">
             <nav>
-              <Link to="/sample/button">
-                <Button size="small" color="gray" text>
-                  샘플버튼
-                </Button>
-              </Link>
-              <Link to="/sample/grid">
-                <Button size="small" color="gray" text>
-                  샘플그리드
-                </Button>
-              </Link>
-
-              <Link to="/study/create">
-                <Button size="small" color="gray" text>
-                  스터디 생성
-                </Button>
-              </Link>
-              <Link to="/study/edit">
-                <Button size="small" color="gray" text>
-                  스터디 수정
-                </Button>
-              </Link>
-              <Link to="/recruit/edit">
-                <Button size="small" color="gray" text>
-                  구인 글 수정
-                </Button>
-              </Link>
+              <Button size="small" color="gray" text>
+                관리자 문의
+              </Button>
             </nav>
           </div>
           <div className="innerRight">
