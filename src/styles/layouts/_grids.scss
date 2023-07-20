@@ -1,56 +1,54 @@
-.container {
-  width: 100%;
-  height: 100%;
-  padding: 0 $sm-margin;
-  margin: 0 auto;
-
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  [class^='col-'] {
-    padding: 0 calc($gutter / 2);
-  }
-
-  @for $i from 1 through $sm-columns {
-    .col-sm-#{$i} {
-      width: percentage(calc($i / $sm-columns));
-    }
-  }
-
-  @include responsive(md) {
-    max-width: $md-max-container;
-    padding: 0 $md-margin;
-
-    @for $i from 1 through $md-columns {
-      .col-md-#{$i} {
-        width: percentage(calc($i / $md-columns));
-      }
-    }
-  }
-
-  @include responsive(lg) {
-    max-width: $lg-max-container;
-    padding: 0;
-
-    @for $i from 1 through $lg-columns {
-      .col-lg-#{$i} {
-        width: ($lg-unit + $gutter) * $i;
-      }
-    }
-  }
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-
 #wrap {
   height: 100%;
-  padding-bottom: 56px;
-  min-height: calc(100vh - 56px);
+  min-height: 100vh;
+
+  #content {
+    height: 100%;
+    min-height: calc(100vh - 120px);
+    border: 1px solid transparent;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    padding: 0 $sm-margin;
+    margin: 0 auto;
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    [class^='col-'] {
+      padding: 0 calc($gutter / 2);
+    }
+
+    @for $i from 1 through $sm-columns {
+      .col-sm-#{$i} {
+        width: percentage(calc($i / $sm-columns));
+      }
+    }
+
+    @include responsive(md) {
+      max-width: $md-max-container;
+      padding: 0 $md-margin;
+
+      @for $i from 1 through $md-columns {
+        .col-md-#{$i} {
+          width: percentage(calc($i / $md-columns));
+        }
+      }
+    }
+
+    @include responsive(lg) {
+      max-width: $lg-max-container;
+      padding: 0;
+
+      @for $i from 1 through $lg-columns {
+        .col-lg-#{$i} {
+          width: ($lg-unit + $gutter) * $i;
+        }
+      }
+    }
+  }
 }

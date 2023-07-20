@@ -24,9 +24,11 @@ const App = () => {
       <BrowserRouter>
         <div id="wrap">
           <Header />
-          <RoutesSetup />
+          <div id="content">
+            <RoutesSetup />
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </BrowserRouter>
     </AppProvider>
   );
