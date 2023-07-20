@@ -7,23 +7,30 @@ import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import { RoutesSetup } from './routes/RoutesSetup';
 import '@/styles/main.scss';
+import type { ReactNode } from 'react';
 
 const queryClient = new QueryClient();
 
+const AppProvider = ({ children }: { children: ReactNode }) => (
+  <QueryClientProvider client={queryClient}>
+    <RecoilRoot>{children}</RecoilRoot>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
+);
+
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <AppProvider>
       <BrowserRouter>
-        <RecoilRoot>
-          <div className="wrapper">
-            <Header />
+        <div id="wrap">
+          <Header />
+          <div id="content">
             <RoutesSetup />
-            <Footer />
           </div>
-        </RecoilRoot>
+          <Footer />
+        </div>
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    </AppProvider>
   );
 };
 
